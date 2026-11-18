@@ -92,7 +92,7 @@ const check = async (account, version, args) => {
   if (!token) {
     fail(
       `no keyring entry service ${KEYRING_SERVICE} account ${account}; store the test account's token with\n` +
-        `  secret-tool store --label="live check" service ${KEYRING_SERVICE} account ${account}`,
+        `  secret-tool store --label="linear live check" service ${KEYRING_SERVICE} account ${account}`,
     )
   }
   if (run("bash", [LIVE_CHECK, ...args], { input: token, stdio: ["pipe", "inherit", "inherit"] }).status !== 0) {

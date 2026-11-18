@@ -10,7 +10,7 @@ export const IDENTITY: AppIdentity = {
   command: "linear",
   appName: "linear-cli",
   envPrefix: "WCLINEAR",
-  description: "a new WireCat CLI, started from cli-template",
+  description: "Linear issues, projects and comments, copied into the local store for you and your agent",
   version: VERSION,
   issues: "https://github.com/WireCatLabs/linear-cli/issues/new",
   messenger: false,
@@ -23,7 +23,7 @@ export const DESKTOP = {
   ...IDENTITY,
   docs: "https://github.com/WireCatLabs/linear-cli#readme",
   hosts: ["api.linear.app"],
-  tagline: "Linear issues, searchable with your other WireCat data",
+  tagline: "Linear issues and projects in your local WireCat store",
   syncs: "your issues, projects and comments",
   signIn: {
     gives: "Lets your agent read your Linear issues, projects and comments, and change them when you allow it.",

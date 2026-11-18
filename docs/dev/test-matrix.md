@@ -7,7 +7,7 @@ ran it · ⛔ not tested offline, with the reason and where it is checked instea
 Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 [TESTING.md](TESTING.md) for how, and for the states and failures that cut across commands.
 
-**71 ✅ · 24 ⛔ · 0 ❌** — 34 commands, 61 options.
+**2721 ✅ · 24 ⛔ · 0 ❌** — 535 commands, 2210 options.
 
 | Command | Option | | Note |
 |---|---|---|---|
@@ -19,15 +19,2665 @@ Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 | `session status` | `--check` | ✅ |  |
 | `session end` |  | ✅ |  |
 | `session list` |  | ✅ |  |
-| `comments list` |  | ✅ |  |
-| `comments list` | `--limit` | ✅ |  |
-| `comments list` | `--page` | ✅ |  |
-| `comments list` | `--all` | ✅ |  |
-| `comments show` |  | ✅ |  |
-| `comments create` |  | ✅ |  |
-| `comments create` | `--text` | ✅ |  |
-| `comments update` |  | ✅ |  |
-| `comments update` | `--text` | ✅ |  |
+| `api list` |  | ✅ |  |
+| `api show` |  | ✅ |  |
+| `api administrable-teams` |  | ✅ |  |
+| `api administrable-teams` | `--filter` | ✅ |  |
+| `api administrable-teams` | `--before` | ✅ |  |
+| `api administrable-teams` | `--after` | ✅ |  |
+| `api administrable-teams` | `--first` | ✅ |  |
+| `api administrable-teams` | `--last` | ✅ |  |
+| `api administrable-teams` | `--include-archived` | ✅ |  |
+| `api administrable-teams` | `--order-by` | ✅ |  |
+| `api administrable-teams` | `--body` | ✅ |  |
+| `api administrable-teams` | `--body-file` | ✅ |  |
+| `api administrable-teams` | `--all` | ✅ |  |
+| `api agent-activities` |  | ✅ |  |
+| `api agent-activities` | `--filter` | ✅ |  |
+| `api agent-activities` | `--before` | ✅ |  |
+| `api agent-activities` | `--after` | ✅ |  |
+| `api agent-activities` | `--first` | ✅ |  |
+| `api agent-activities` | `--last` | ✅ |  |
+| `api agent-activities` | `--include-archived` | ✅ |  |
+| `api agent-activities` | `--order-by` | ✅ |  |
+| `api agent-activities` | `--body` | ✅ |  |
+| `api agent-activities` | `--body-file` | ✅ |  |
+| `api agent-activities` | `--all` | ✅ |  |
+| `api agent-activity` |  | ✅ |  |
+| `api agent-activity` | `--id` | ✅ |  |
+| `api agent-activity` | `--body` | ✅ |  |
+| `api agent-activity` | `--body-file` | ✅ |  |
+| `api agent-activity-create` |  | ✅ |  |
+| `api agent-activity-create` | `--input` | ✅ |  |
+| `api agent-activity-create` | `--body` | ✅ |  |
+| `api agent-activity-create` | `--body-file` | ✅ |  |
+| `api agent-session` |  | ✅ |  |
+| `api agent-session` | `--id` | ✅ |  |
+| `api agent-session` | `--body` | ✅ |  |
+| `api agent-session` | `--body-file` | ✅ |  |
+| `api agent-session-create-on-comment` |  | ✅ |  |
+| `api agent-session-create-on-comment` | `--input` | ✅ |  |
+| `api agent-session-create-on-comment` | `--body` | ✅ |  |
+| `api agent-session-create-on-comment` | `--body-file` | ✅ |  |
+| `api agent-session-create-on-issue` |  | ✅ |  |
+| `api agent-session-create-on-issue` | `--input` | ✅ |  |
+| `api agent-session-create-on-issue` | `--body` | ✅ |  |
+| `api agent-session-create-on-issue` | `--body-file` | ✅ |  |
+| `api agent-sessions` |  | ✅ |  |
+| `api agent-sessions` | `--before` | ✅ |  |
+| `api agent-sessions` | `--after` | ✅ |  |
+| `api agent-sessions` | `--first` | ✅ |  |
+| `api agent-sessions` | `--last` | ✅ |  |
+| `api agent-sessions` | `--include-archived` | ✅ |  |
+| `api agent-sessions` | `--order-by` | ✅ |  |
+| `api agent-sessions` | `--body` | ✅ |  |
+| `api agent-sessions` | `--body-file` | ✅ |  |
+| `api agent-sessions` | `--all` | ✅ |  |
+| `api agent-session-update` |  | ✅ |  |
+| `api agent-session-update` | `--input` | ✅ |  |
+| `api agent-session-update` | `--id` | ✅ |  |
+| `api agent-session-update` | `--body` | ✅ |  |
+| `api agent-session-update` | `--body-file` | ✅ |  |
+| `api agent-session-update-external-url` |  | ✅ |  |
+| `api agent-session-update-external-url` | `--input` | ✅ |  |
+| `api agent-session-update-external-url` | `--id` | ✅ |  |
+| `api agent-session-update-external-url` | `--body` | ✅ |  |
+| `api agent-session-update-external-url` | `--body-file` | ✅ |  |
+| `api agent-skill` |  | ✅ |  |
+| `api agent-skill` | `--id` | ✅ |  |
+| `api agent-skill` | `--body` | ✅ |  |
+| `api agent-skill` | `--body-file` | ✅ |  |
+| `api agent-skill-create` |  | ✅ |  |
+| `api agent-skill-create` | `--input` | ✅ |  |
+| `api agent-skill-create` | `--body` | ✅ |  |
+| `api agent-skill-create` | `--body-file` | ✅ |  |
+| `api agent-skill-delete` |  | ✅ |  |
+| `api agent-skill-delete` | `--id` | ✅ |  |
+| `api agent-skill-delete` | `--body` | ✅ |  |
+| `api agent-skill-delete` | `--body-file` | ✅ |  |
+| `api agent-skills` |  | ✅ |  |
+| `api agent-skills` | `--filter` | ✅ |  |
+| `api agent-skills` | `--before` | ✅ |  |
+| `api agent-skills` | `--after` | ✅ |  |
+| `api agent-skills` | `--first` | ✅ |  |
+| `api agent-skills` | `--last` | ✅ |  |
+| `api agent-skills` | `--include-archived` | ✅ |  |
+| `api agent-skills` | `--order-by` | ✅ |  |
+| `api agent-skills` | `--body` | ✅ |  |
+| `api agent-skills` | `--body-file` | ✅ |  |
+| `api agent-skills` | `--all` | ✅ |  |
+| `api agent-skill-update` |  | ✅ |  |
+| `api agent-skill-update` | `--input` | ✅ |  |
+| `api agent-skill-update` | `--id` | ✅ |  |
+| `api agent-skill-update` | `--body` | ✅ |  |
+| `api agent-skill-update` | `--body-file` | ✅ |  |
+| `api airbyte-integration-connect` |  | ✅ |  |
+| `api airbyte-integration-connect` | `--input` | ✅ |  |
+| `api airbyte-integration-connect` | `--body` | ✅ |  |
+| `api airbyte-integration-connect` | `--body-file` | ✅ |  |
+| `api application-info` |  | ✅ |  |
+| `api application-info` | `--client-id` | ✅ |  |
+| `api application-info` | `--body` | ✅ |  |
+| `api application-info` | `--body-file` | ✅ |  |
+| `api archived-integrations` |  | ✅ |  |
+| `api attachment` |  | ✅ |  |
+| `api attachment` | `--id` | ✅ |  |
+| `api attachment` | `--body` | ✅ |  |
+| `api attachment` | `--body-file` | ✅ |  |
+| `api attachment-create` |  | ✅ |  |
+| `api attachment-create` | `--input` | ✅ |  |
+| `api attachment-create` | `--body` | ✅ |  |
+| `api attachment-create` | `--body-file` | ✅ |  |
+| `api attachment-delete` |  | ✅ |  |
+| `api attachment-delete` | `--id` | ✅ |  |
+| `api attachment-delete` | `--body` | ✅ |  |
+| `api attachment-delete` | `--body-file` | ✅ |  |
+| `api attachment-issue` |  | ✅ |  |
+| `api attachment-issue` | `--id` | ✅ |  |
+| `api attachment-issue` | `--body` | ✅ |  |
+| `api attachment-issue` | `--body-file` | ✅ |  |
+| `api attachment-link-discord` |  | ✅ |  |
+| `api attachment-link-discord` | `--create-as-user` | ✅ |  |
+| `api attachment-link-discord` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-discord` | `--title` | ✅ |  |
+| `api attachment-link-discord` | `--issue-id` | ✅ |  |
+| `api attachment-link-discord` | `--id` | ✅ |  |
+| `api attachment-link-discord` | `--channel-id` | ✅ |  |
+| `api attachment-link-discord` | `--message-id` | ✅ |  |
+| `api attachment-link-discord` | `--url` | ✅ |  |
+| `api attachment-link-discord` | `--body` | ✅ |  |
+| `api attachment-link-discord` | `--body-file` | ✅ |  |
+| `api attachment-link-front` |  | ✅ |  |
+| `api attachment-link-front` | `--create-as-user` | ✅ |  |
+| `api attachment-link-front` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-front` | `--title` | ✅ |  |
+| `api attachment-link-front` | `--conversation-id` | ✅ |  |
+| `api attachment-link-front` | `--issue-id` | ✅ |  |
+| `api attachment-link-front` | `--id` | ✅ |  |
+| `api attachment-link-front` | `--body` | ✅ |  |
+| `api attachment-link-front` | `--body-file` | ✅ |  |
+| `api attachment-link-git-hub-issue` |  | ✅ |  |
+| `api attachment-link-git-hub-issue` | `--create-as-user` | ✅ |  |
+| `api attachment-link-git-hub-issue` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-git-hub-issue` | `--title` | ✅ |  |
+| `api attachment-link-git-hub-issue` | `--issue-id` | ✅ |  |
+| `api attachment-link-git-hub-issue` | `--id` | ✅ |  |
+| `api attachment-link-git-hub-issue` | `--url` | ✅ |  |
+| `api attachment-link-git-hub-issue` | `--body` | ✅ |  |
+| `api attachment-link-git-hub-issue` | `--body-file` | ✅ |  |
+| `api attachment-link-git-hub-pr` |  | ✅ |  |
+| `api attachment-link-git-hub-pr` | `--create-as-user` | ✅ |  |
+| `api attachment-link-git-hub-pr` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-git-hub-pr` | `--title` | ✅ |  |
+| `api attachment-link-git-hub-pr` | `--issue-id` | ✅ |  |
+| `api attachment-link-git-hub-pr` | `--id` | ✅ |  |
+| `api attachment-link-git-hub-pr` | `--url` | ✅ |  |
+| `api attachment-link-git-hub-pr` | `--link-kind` | ✅ |  |
+| `api attachment-link-git-hub-pr` | `--body` | ✅ |  |
+| `api attachment-link-git-hub-pr` | `--body-file` | ✅ |  |
+| `api attachment-link-git-lab-mr` |  | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--create-as-user` | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--title` | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--issue-id` | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--id` | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--url` | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--project-path-with-namespace` | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--number` | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--body` | ✅ |  |
+| `api attachment-link-git-lab-mr` | `--body-file` | ✅ |  |
+| `api attachment-link-intercom` |  | ✅ |  |
+| `api attachment-link-intercom` | `--create-as-user` | ✅ |  |
+| `api attachment-link-intercom` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-intercom` | `--title` | ✅ |  |
+| `api attachment-link-intercom` | `--conversation-id` | ✅ |  |
+| `api attachment-link-intercom` | `--part-id` | ✅ |  |
+| `api attachment-link-intercom` | `--id` | ✅ |  |
+| `api attachment-link-intercom` | `--issue-id` | ✅ |  |
+| `api attachment-link-intercom` | `--body` | ✅ |  |
+| `api attachment-link-intercom` | `--body-file` | ✅ |  |
+| `api attachment-link-jira-issue` |  | ✅ |  |
+| `api attachment-link-jira-issue` | `--create-as-user` | ✅ |  |
+| `api attachment-link-jira-issue` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-jira-issue` | `--title` | ✅ |  |
+| `api attachment-link-jira-issue` | `--issue-id` | ✅ |  |
+| `api attachment-link-jira-issue` | `--jira-issue-id` | ✅ |  |
+| `api attachment-link-jira-issue` | `--id` | ✅ |  |
+| `api attachment-link-jira-issue` | `--url` | ✅ |  |
+| `api attachment-link-jira-issue` | `--body` | ✅ |  |
+| `api attachment-link-jira-issue` | `--body-file` | ✅ |  |
+| `api attachment-link-salesforce` |  | ✅ |  |
+| `api attachment-link-salesforce` | `--create-as-user` | ✅ |  |
+| `api attachment-link-salesforce` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-salesforce` | `--title` | ✅ |  |
+| `api attachment-link-salesforce` | `--issue-id` | ✅ |  |
+| `api attachment-link-salesforce` | `--id` | ✅ |  |
+| `api attachment-link-salesforce` | `--url` | ✅ |  |
+| `api attachment-link-salesforce` | `--body` | ✅ |  |
+| `api attachment-link-salesforce` | `--body-file` | ✅ |  |
+| `api attachment-link-slack` |  | ✅ |  |
+| `api attachment-link-slack` | `--create-as-user` | ✅ |  |
+| `api attachment-link-slack` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-slack` | `--title` | ✅ |  |
+| `api attachment-link-slack` | `--issue-id` | ✅ |  |
+| `api attachment-link-slack` | `--url` | ✅ |  |
+| `api attachment-link-slack` | `--id` | ✅ |  |
+| `api attachment-link-slack` | `--sync-to-comment-thread` | ✅ |  |
+| `api attachment-link-slack` | `--body` | ✅ |  |
+| `api attachment-link-slack` | `--body-file` | ✅ |  |
+| `api attachment-link-url` |  | ✅ |  |
+| `api attachment-link-url` | `--create-as-user` | ✅ |  |
+| `api attachment-link-url` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-url` | `--title` | ✅ |  |
+| `api attachment-link-url` | `--url` | ✅ |  |
+| `api attachment-link-url` | `--issue-id` | ✅ |  |
+| `api attachment-link-url` | `--id` | ✅ |  |
+| `api attachment-link-url` | `--body` | ✅ |  |
+| `api attachment-link-url` | `--body-file` | ✅ |  |
+| `api attachment-link-zendesk` |  | ✅ |  |
+| `api attachment-link-zendesk` | `--create-as-user` | ✅ |  |
+| `api attachment-link-zendesk` | `--display-icon-url` | ✅ |  |
+| `api attachment-link-zendesk` | `--title` | ✅ |  |
+| `api attachment-link-zendesk` | `--ticket-id` | ✅ |  |
+| `api attachment-link-zendesk` | `--issue-id` | ✅ |  |
+| `api attachment-link-zendesk` | `--id` | ✅ |  |
+| `api attachment-link-zendesk` | `--url` | ✅ |  |
+| `api attachment-link-zendesk` | `--body` | ✅ |  |
+| `api attachment-link-zendesk` | `--body-file` | ✅ |  |
+| `api attachments` |  | ✅ |  |
+| `api attachments` | `--filter` | ✅ |  |
+| `api attachments` | `--before` | ✅ |  |
+| `api attachments` | `--after` | ✅ |  |
+| `api attachments` | `--first` | ✅ |  |
+| `api attachments` | `--last` | ✅ |  |
+| `api attachments` | `--include-archived` | ✅ |  |
+| `api attachments` | `--order-by` | ✅ |  |
+| `api attachments` | `--body` | ✅ |  |
+| `api attachments` | `--body-file` | ✅ |  |
+| `api attachments` | `--all` | ✅ |  |
+| `api attachments-for-url` |  | ✅ |  |
+| `api attachments-for-url` | `--before` | ✅ |  |
+| `api attachments-for-url` | `--after` | ✅ |  |
+| `api attachments-for-url` | `--first` | ✅ |  |
+| `api attachments-for-url` | `--last` | ✅ |  |
+| `api attachments-for-url` | `--include-archived` | ✅ |  |
+| `api attachments-for-url` | `--order-by` | ✅ |  |
+| `api attachments-for-url` | `--url` | ✅ |  |
+| `api attachments-for-url` | `--body` | ✅ |  |
+| `api attachments-for-url` | `--body-file` | ✅ |  |
+| `api attachments-for-url` | `--all` | ✅ |  |
+| `api attachment-sources` |  | ✅ |  |
+| `api attachment-sources` | `--team-id` | ✅ |  |
+| `api attachment-sources` | `--body` | ✅ |  |
+| `api attachment-sources` | `--body-file` | ✅ |  |
+| `api attachment-sync-to-slack` |  | ✅ |  |
+| `api attachment-sync-to-slack` | `--id` | ✅ |  |
+| `api attachment-sync-to-slack` | `--body` | ✅ |  |
+| `api attachment-sync-to-slack` | `--body-file` | ✅ |  |
+| `api attachment-update` |  | ✅ |  |
+| `api attachment-update` | `--input` | ✅ |  |
+| `api attachment-update` | `--id` | ✅ |  |
+| `api attachment-update` | `--body` | ✅ |  |
+| `api attachment-update` | `--body-file` | ✅ |  |
+| `api audit-entries` |  | ✅ |  |
+| `api audit-entries` | `--filter` | ✅ |  |
+| `api audit-entries` | `--before` | ✅ |  |
+| `api audit-entries` | `--after` | ✅ |  |
+| `api audit-entries` | `--first` | ✅ |  |
+| `api audit-entries` | `--last` | ✅ |  |
+| `api audit-entries` | `--include-archived` | ✅ |  |
+| `api audit-entries` | `--order-by` | ✅ |  |
+| `api audit-entries` | `--body` | ✅ |  |
+| `api audit-entries` | `--body-file` | ✅ |  |
+| `api audit-entries` | `--all` | ✅ |  |
+| `api audit-entry-types` |  | ✅ |  |
+| `api authentication-sessions` |  | ✅ |  |
+| `api available-users` |  | ✅ |  |
+| `api comment` |  | ✅ |  |
+| `api comment` | `--id` | ✅ |  |
+| `api comment` | `--hash` | ✅ |  |
+| `api comment` | `--body` | ✅ |  |
+| `api comment` | `--body-file` | ✅ |  |
+| `api comment-create` |  | ✅ |  |
+| `api comment-create` | `--input` | ✅ |  |
+| `api comment-create` | `--body` | ✅ |  |
+| `api comment-create` | `--body-file` | ✅ |  |
+| `api comment-delete` |  | ✅ |  |
+| `api comment-delete` | `--id` | ✅ |  |
+| `api comment-delete` | `--body` | ✅ |  |
+| `api comment-delete` | `--body-file` | ✅ |  |
+| `api comment-resolve` |  | ✅ |  |
+| `api comment-resolve` | `--resolving-comment-id` | ✅ |  |
+| `api comment-resolve` | `--id` | ✅ |  |
+| `api comment-resolve` | `--body` | ✅ |  |
+| `api comment-resolve` | `--body-file` | ✅ |  |
+| `api comments` |  | ✅ |  |
+| `api comments` | `--filter` | ✅ |  |
+| `api comments` | `--before` | ✅ |  |
+| `api comments` | `--after` | ✅ |  |
+| `api comments` | `--first` | ✅ |  |
+| `api comments` | `--last` | ✅ |  |
+| `api comments` | `--include-archived` | ✅ |  |
+| `api comments` | `--order-by` | ✅ |  |
+| `api comments` | `--body` | ✅ |  |
+| `api comments` | `--body-file` | ✅ |  |
+| `api comments` | `--all` | ✅ |  |
+| `api comment-unresolve` |  | ✅ |  |
+| `api comment-unresolve` | `--id` | ✅ |  |
+| `api comment-unresolve` | `--body` | ✅ |  |
+| `api comment-unresolve` | `--body-file` | ✅ |  |
+| `api comment-update` |  | ✅ |  |
+| `api comment-update` | `--skip-edited-at` | ✅ |  |
+| `api comment-update` | `--input` | ✅ |  |
+| `api comment-update` | `--id` | ✅ |  |
+| `api comment-update` | `--body` | ✅ |  |
+| `api comment-update` | `--body-file` | ✅ |  |
+| `api contact-create` |  | ✅ |  |
+| `api contact-create` | `--input` | ✅ |  |
+| `api contact-create` | `--body` | ✅ |  |
+| `api contact-create` | `--body-file` | ✅ |  |
+| `api create-csv-export-report` |  | ✅ |  |
+| `api create-csv-export-report` | `--include-private-team-ids` | ✅ |  |
+| `api create-csv-export-report` | `--include-restricted-team-ids` | ✅ |  |
+| `api create-csv-export-report` | `--body` | ✅ |  |
+| `api create-csv-export-report` | `--body-file` | ✅ |  |
+| `api create-initiative-update-reminder` |  | ✅ |  |
+| `api create-initiative-update-reminder` | `--user-id` | ✅ |  |
+| `api create-initiative-update-reminder` | `--initiative-id` | ✅ |  |
+| `api create-initiative-update-reminder` | `--body` | ✅ |  |
+| `api create-initiative-update-reminder` | `--body-file` | ✅ |  |
+| `api create-project-update-reminder` |  | ✅ |  |
+| `api create-project-update-reminder` | `--user-id` | ✅ |  |
+| `api create-project-update-reminder` | `--project-id` | ✅ |  |
+| `api create-project-update-reminder` | `--body` | ✅ |  |
+| `api create-project-update-reminder` | `--body-file` | ✅ |  |
+| `api customer` |  | ✅ |  |
+| `api customer` | `--id` | ✅ |  |
+| `api customer` | `--body` | ✅ |  |
+| `api customer` | `--body-file` | ✅ |  |
+| `api customer-create` |  | ✅ |  |
+| `api customer-create` | `--input` | ✅ |  |
+| `api customer-create` | `--body` | ✅ |  |
+| `api customer-create` | `--body-file` | ✅ |  |
+| `api customer-delete` |  | ✅ |  |
+| `api customer-delete` | `--id` | ✅ |  |
+| `api customer-delete` | `--body` | ✅ |  |
+| `api customer-delete` | `--body-file` | ✅ |  |
+| `api customer-merge` |  | ✅ |  |
+| `api customer-merge` | `--source-customer-id` | ✅ |  |
+| `api customer-merge` | `--target-customer-id` | ✅ |  |
+| `api customer-merge` | `--body` | ✅ |  |
+| `api customer-merge` | `--body-file` | ✅ |  |
+| `api customer-need` |  | ✅ |  |
+| `api customer-need` | `--id` | ✅ |  |
+| `api customer-need` | `--hash` | ✅ |  |
+| `api customer-need` | `--body` | ✅ |  |
+| `api customer-need` | `--body-file` | ✅ |  |
+| `api customer-need-archive` |  | ✅ |  |
+| `api customer-need-archive` | `--id` | ✅ |  |
+| `api customer-need-archive` | `--body` | ✅ |  |
+| `api customer-need-archive` | `--body-file` | ✅ |  |
+| `api customer-need-create` |  | ✅ |  |
+| `api customer-need-create` | `--input` | ✅ |  |
+| `api customer-need-create` | `--body` | ✅ |  |
+| `api customer-need-create` | `--body-file` | ✅ |  |
+| `api customer-need-create-from-attachment` |  | ✅ |  |
+| `api customer-need-create-from-attachment` | `--input` | ✅ |  |
+| `api customer-need-create-from-attachment` | `--body` | ✅ |  |
+| `api customer-need-create-from-attachment` | `--body-file` | ✅ |  |
+| `api customer-need-delete` |  | ✅ |  |
+| `api customer-need-delete` | `--keep-attachment` | ✅ |  |
+| `api customer-need-delete` | `--id` | ✅ |  |
+| `api customer-need-delete` | `--body` | ✅ |  |
+| `api customer-need-delete` | `--body-file` | ✅ |  |
+| `api customer-needs` |  | ✅ |  |
+| `api customer-needs` | `--filter` | ✅ |  |
+| `api customer-needs` | `--before` | ✅ |  |
+| `api customer-needs` | `--after` | ✅ |  |
+| `api customer-needs` | `--first` | ✅ |  |
+| `api customer-needs` | `--last` | ✅ |  |
+| `api customer-needs` | `--include-archived` | ✅ |  |
+| `api customer-needs` | `--order-by` | ✅ |  |
+| `api customer-needs` | `--body` | ✅ |  |
+| `api customer-needs` | `--body-file` | ✅ |  |
+| `api customer-needs` | `--all` | ✅ |  |
+| `api customer-need-unarchive` |  | ✅ |  |
+| `api customer-need-unarchive` | `--id` | ✅ |  |
+| `api customer-need-unarchive` | `--body` | ✅ |  |
+| `api customer-need-unarchive` | `--body-file` | ✅ |  |
+| `api customer-need-update` |  | ✅ |  |
+| `api customer-need-update` | `--clear-attachment` | ✅ |  |
+| `api customer-need-update` | `--input` | ✅ |  |
+| `api customer-need-update` | `--id` | ✅ |  |
+| `api customer-need-update` | `--body` | ✅ |  |
+| `api customer-need-update` | `--body-file` | ✅ |  |
+| `api customers` |  | ✅ |  |
+| `api customers` | `--filter` | ✅ |  |
+| `api customers` | `--before` | ✅ |  |
+| `api customers` | `--after` | ✅ |  |
+| `api customers` | `--first` | ✅ |  |
+| `api customers` | `--last` | ✅ |  |
+| `api customers` | `--include-archived` | ✅ |  |
+| `api customers` | `--order-by` | ✅ |  |
+| `api customers` | `--sorts` | ✅ |  |
+| `api customers` | `--body` | ✅ |  |
+| `api customers` | `--body-file` | ✅ |  |
+| `api customers` | `--all` | ✅ |  |
+| `api customer-status` |  | ✅ |  |
+| `api customer-status` | `--id` | ✅ |  |
+| `api customer-status` | `--body` | ✅ |  |
+| `api customer-status` | `--body-file` | ✅ |  |
+| `api customer-status-create` |  | ✅ |  |
+| `api customer-status-create` | `--input` | ✅ |  |
+| `api customer-status-create` | `--body` | ✅ |  |
+| `api customer-status-create` | `--body-file` | ✅ |  |
+| `api customer-status-delete` |  | ✅ |  |
+| `api customer-status-delete` | `--id` | ✅ |  |
+| `api customer-status-delete` | `--body` | ✅ |  |
+| `api customer-status-delete` | `--body-file` | ✅ |  |
+| `api customer-statuses` |  | ✅ |  |
+| `api customer-statuses` | `--before` | ✅ |  |
+| `api customer-statuses` | `--after` | ✅ |  |
+| `api customer-statuses` | `--first` | ✅ |  |
+| `api customer-statuses` | `--last` | ✅ |  |
+| `api customer-statuses` | `--include-archived` | ✅ |  |
+| `api customer-statuses` | `--order-by` | ✅ |  |
+| `api customer-statuses` | `--body` | ✅ |  |
+| `api customer-statuses` | `--body-file` | ✅ |  |
+| `api customer-statuses` | `--all` | ✅ |  |
+| `api customer-status-update` |  | ✅ |  |
+| `api customer-status-update` | `--input` | ✅ |  |
+| `api customer-status-update` | `--id` | ✅ |  |
+| `api customer-status-update` | `--body` | ✅ |  |
+| `api customer-status-update` | `--body-file` | ✅ |  |
+| `api customer-tier` |  | ✅ |  |
+| `api customer-tier` | `--id` | ✅ |  |
+| `api customer-tier` | `--body` | ✅ |  |
+| `api customer-tier` | `--body-file` | ✅ |  |
+| `api customer-tier-create` |  | ✅ |  |
+| `api customer-tier-create` | `--input` | ✅ |  |
+| `api customer-tier-create` | `--body` | ✅ |  |
+| `api customer-tier-create` | `--body-file` | ✅ |  |
+| `api customer-tier-delete` |  | ✅ |  |
+| `api customer-tier-delete` | `--id` | ✅ |  |
+| `api customer-tier-delete` | `--body` | ✅ |  |
+| `api customer-tier-delete` | `--body-file` | ✅ |  |
+| `api customer-tiers` |  | ✅ |  |
+| `api customer-tiers` | `--before` | ✅ |  |
+| `api customer-tiers` | `--after` | ✅ |  |
+| `api customer-tiers` | `--first` | ✅ |  |
+| `api customer-tiers` | `--last` | ✅ |  |
+| `api customer-tiers` | `--include-archived` | ✅ |  |
+| `api customer-tiers` | `--order-by` | ✅ |  |
+| `api customer-tiers` | `--body` | ✅ |  |
+| `api customer-tiers` | `--body-file` | ✅ |  |
+| `api customer-tiers` | `--all` | ✅ |  |
+| `api customer-tier-update` |  | ✅ |  |
+| `api customer-tier-update` | `--input` | ✅ |  |
+| `api customer-tier-update` | `--id` | ✅ |  |
+| `api customer-tier-update` | `--body` | ✅ |  |
+| `api customer-tier-update` | `--body-file` | ✅ |  |
+| `api customer-unsync` |  | ✅ |  |
+| `api customer-unsync` | `--id` | ✅ |  |
+| `api customer-unsync` | `--body` | ✅ |  |
+| `api customer-unsync` | `--body-file` | ✅ |  |
+| `api customer-update` |  | ✅ |  |
+| `api customer-update` | `--input` | ✅ |  |
+| `api customer-update` | `--id` | ✅ |  |
+| `api customer-update` | `--body` | ✅ |  |
+| `api customer-update` | `--body-file` | ✅ |  |
+| `api customer-upsert` |  | ✅ |  |
+| `api customer-upsert` | `--input` | ✅ |  |
+| `api customer-upsert` | `--body` | ✅ |  |
+| `api customer-upsert` | `--body-file` | ✅ |  |
+| `api custom-view` |  | ✅ |  |
+| `api custom-view` | `--id` | ✅ |  |
+| `api custom-view` | `--body` | ✅ |  |
+| `api custom-view` | `--body-file` | ✅ |  |
+| `api custom-view-create` |  | ✅ |  |
+| `api custom-view-create` | `--input` | ✅ |  |
+| `api custom-view-create` | `--body` | ✅ |  |
+| `api custom-view-create` | `--body-file` | ✅ |  |
+| `api custom-view-delete` |  | ✅ |  |
+| `api custom-view-delete` | `--id` | ✅ |  |
+| `api custom-view-delete` | `--body` | ✅ |  |
+| `api custom-view-delete` | `--body-file` | ✅ |  |
+| `api custom-view-has-subscribers` |  | ✅ |  |
+| `api custom-view-has-subscribers` | `--id` | ✅ |  |
+| `api custom-view-has-subscribers` | `--body` | ✅ |  |
+| `api custom-view-has-subscribers` | `--body-file` | ✅ |  |
+| `api custom-views` |  | ✅ |  |
+| `api custom-views` | `--filter` | ✅ |  |
+| `api custom-views` | `--before` | ✅ |  |
+| `api custom-views` | `--after` | ✅ |  |
+| `api custom-views` | `--first` | ✅ |  |
+| `api custom-views` | `--last` | ✅ |  |
+| `api custom-views` | `--include-archived` | ✅ |  |
+| `api custom-views` | `--order-by` | ✅ |  |
+| `api custom-views` | `--sort` | ✅ |  |
+| `api custom-views` | `--body` | ✅ |  |
+| `api custom-views` | `--body-file` | ✅ |  |
+| `api custom-views` | `--all` | ✅ |  |
+| `api custom-view-update` |  | ✅ |  |
+| `api custom-view-update` | `--input` | ✅ |  |
+| `api custom-view-update` | `--id` | ✅ |  |
+| `api custom-view-update` | `--body` | ✅ |  |
+| `api custom-view-update` | `--body-file` | ✅ |  |
+| `api cycle` |  | ✅ |  |
+| `api cycle` | `--id` | ✅ |  |
+| `api cycle` | `--body` | ✅ |  |
+| `api cycle` | `--body-file` | ✅ |  |
+| `api cycle-archive` |  | ✅ |  |
+| `api cycle-archive` | `--id` | ✅ |  |
+| `api cycle-archive` | `--body` | ✅ |  |
+| `api cycle-archive` | `--body-file` | ✅ |  |
+| `api cycle-create` |  | ✅ |  |
+| `api cycle-create` | `--input` | ✅ |  |
+| `api cycle-create` | `--body` | ✅ |  |
+| `api cycle-create` | `--body-file` | ✅ |  |
+| `api cycles` |  | ✅ |  |
+| `api cycles` | `--filter` | ✅ |  |
+| `api cycles` | `--before` | ✅ |  |
+| `api cycles` | `--after` | ✅ |  |
+| `api cycles` | `--first` | ✅ |  |
+| `api cycles` | `--last` | ✅ |  |
+| `api cycles` | `--include-archived` | ✅ |  |
+| `api cycles` | `--order-by` | ✅ |  |
+| `api cycles` | `--body` | ✅ |  |
+| `api cycles` | `--body-file` | ✅ |  |
+| `api cycles` | `--all` | ✅ |  |
+| `api cycle-shift-all` |  | ✅ |  |
+| `api cycle-shift-all` | `--input` | ✅ |  |
+| `api cycle-shift-all` | `--body` | ✅ |  |
+| `api cycle-shift-all` | `--body-file` | ✅ |  |
+| `api cycle-start-upcoming-cycle-today` |  | ✅ |  |
+| `api cycle-start-upcoming-cycle-today` | `--id` | ✅ |  |
+| `api cycle-start-upcoming-cycle-today` | `--body` | ✅ |  |
+| `api cycle-start-upcoming-cycle-today` | `--body-file` | ✅ |  |
+| `api cycle-update` |  | ✅ |  |
+| `api cycle-update` | `--input` | ✅ |  |
+| `api cycle-update` | `--id` | ✅ |  |
+| `api cycle-update` | `--body` | ✅ |  |
+| `api cycle-update` | `--body-file` | ✅ |  |
+| `api dependency-package-metadata` |  | ✅ |  |
+| `api dependency-package-metadata` | `--packages` | ✅ |  |
+| `api dependency-package-metadata` | `--body` | ✅ |  |
+| `api dependency-package-metadata` | `--body-file` | ✅ |  |
+| `api document` |  | ✅ |  |
+| `api document` | `--id` | ✅ |  |
+| `api document` | `--body` | ✅ |  |
+| `api document` | `--body-file` | ✅ |  |
+| `api document-content-history` |  | ✅ |  |
+| `api document-content-history` | `--id` | ✅ |  |
+| `api document-content-history` | `--body` | ✅ |  |
+| `api document-content-history` | `--body-file` | ✅ |  |
+| `api document-create` |  | ✅ |  |
+| `api document-create` | `--input` | ✅ |  |
+| `api document-create` | `--body` | ✅ |  |
+| `api document-create` | `--body-file` | ✅ |  |
+| `api document-delete` |  | ✅ |  |
+| `api document-delete` | `--if-parent-document-id` | ✅ |  |
+| `api document-delete` | `--id` | ✅ |  |
+| `api document-delete` | `--body` | ✅ |  |
+| `api document-delete` | `--body-file` | ✅ |  |
+| `api documents` |  | ✅ |  |
+| `api documents` | `--filter` | ✅ |  |
+| `api documents` | `--before` | ✅ |  |
+| `api documents` | `--after` | ✅ |  |
+| `api documents` | `--first` | ✅ |  |
+| `api documents` | `--last` | ✅ |  |
+| `api documents` | `--include-archived` | ✅ |  |
+| `api documents` | `--order-by` | ✅ |  |
+| `api documents` | `--sort` | ✅ |  |
+| `api documents` | `--body` | ✅ |  |
+| `api documents` | `--body-file` | ✅ |  |
+| `api documents` | `--all` | ✅ |  |
+| `api document-unarchive` |  | ✅ |  |
+| `api document-unarchive` | `--id` | ✅ |  |
+| `api document-unarchive` | `--body` | ✅ |  |
+| `api document-unarchive` | `--body-file` | ✅ |  |
+| `api document-update` |  | ✅ |  |
+| `api document-update` | `--input` | ✅ |  |
+| `api document-update` | `--id` | ✅ |  |
+| `api document-update` | `--body` | ✅ |  |
+| `api document-update` | `--body-file` | ✅ |  |
+| `api document-update-workspace-access` |  | ✅ |  |
+| `api document-update-workspace-access` | `--previous-workspace-access` | ✅ |  |
+| `api document-update-workspace-access` | `--apply-to-sub-documents` | ✅ |  |
+| `api document-update-workspace-access` | `--workspace-access` | ✅ |  |
+| `api document-update-workspace-access` | `--id` | ✅ |  |
+| `api document-update-workspace-access` | `--body` | ✅ |  |
+| `api document-update-workspace-access` | `--body-file` | ✅ |  |
+| `api email-intake-address` |  | ✅ |  |
+| `api email-intake-address` | `--id` | ✅ |  |
+| `api email-intake-address` | `--body` | ✅ |  |
+| `api email-intake-address` | `--body-file` | ✅ |  |
+| `api email-intake-address-create` |  | ✅ |  |
+| `api email-intake-address-create` | `--input` | ✅ |  |
+| `api email-intake-address-create` | `--body` | ✅ |  |
+| `api email-intake-address-create` | `--body-file` | ✅ |  |
+| `api email-intake-address-delete` |  | ✅ |  |
+| `api email-intake-address-delete` | `--id` | ✅ |  |
+| `api email-intake-address-delete` | `--body` | ✅ |  |
+| `api email-intake-address-delete` | `--body-file` | ✅ |  |
+| `api email-intake-addresses` |  | ✅ |  |
+| `api email-intake-addresses` | `--before` | ✅ |  |
+| `api email-intake-addresses` | `--after` | ✅ |  |
+| `api email-intake-addresses` | `--first` | ✅ |  |
+| `api email-intake-addresses` | `--last` | ✅ |  |
+| `api email-intake-addresses` | `--include-archived` | ✅ |  |
+| `api email-intake-addresses` | `--order-by` | ✅ |  |
+| `api email-intake-addresses` | `--body` | ✅ |  |
+| `api email-intake-addresses` | `--body-file` | ✅ |  |
+| `api email-intake-addresses` | `--all` | ✅ |  |
+| `api email-intake-address-refresh-ses-domain-status` |  | ✅ |  |
+| `api email-intake-address-refresh-ses-domain-status` | `--id` | ✅ |  |
+| `api email-intake-address-refresh-ses-domain-status` | `--body` | ✅ |  |
+| `api email-intake-address-refresh-ses-domain-status` | `--body-file` | ✅ |  |
+| `api email-intake-address-rotate` |  | ✅ |  |
+| `api email-intake-address-rotate` | `--id` | ✅ |  |
+| `api email-intake-address-rotate` | `--body` | ✅ |  |
+| `api email-intake-address-rotate` | `--body-file` | ✅ |  |
+| `api email-intake-address-update` |  | ✅ |  |
+| `api email-intake-address-update` | `--input` | ✅ |  |
+| `api email-intake-address-update` | `--id` | ✅ |  |
+| `api email-intake-address-update` | `--body` | ✅ |  |
+| `api email-intake-address-update` | `--body-file` | ✅ |  |
+| `api email-token-user-account-auth` |  | ✅ |  |
+| `api email-token-user-account-auth` | `--input` | ✅ |  |
+| `api email-token-user-account-auth` | `--body` | ✅ |  |
+| `api email-token-user-account-auth` | `--body-file` | ✅ |  |
+| `api email-unsubscribe` |  | ✅ |  |
+| `api email-unsubscribe` | `--input` | ✅ |  |
+| `api email-unsubscribe` | `--body` | ✅ |  |
+| `api email-unsubscribe` | `--body-file` | ✅ |  |
+| `api email-user-account-auth-challenge` |  | ✅ |  |
+| `api email-user-account-auth-challenge` | `--input` | ✅ |  |
+| `api email-user-account-auth-challenge` | `--body` | ✅ |  |
+| `api email-user-account-auth-challenge` | `--body-file` | ✅ |  |
+| `api emoji` |  | ✅ |  |
+| `api emoji` | `--id` | ✅ |  |
+| `api emoji` | `--body` | ✅ |  |
+| `api emoji` | `--body-file` | ✅ |  |
+| `api emoji-create` |  | ✅ |  |
+| `api emoji-create` | `--input` | ✅ |  |
+| `api emoji-create` | `--body` | ✅ |  |
+| `api emoji-create` | `--body-file` | ✅ |  |
+| `api emoji-delete` |  | ✅ |  |
+| `api emoji-delete` | `--id` | ✅ |  |
+| `api emoji-delete` | `--body` | ✅ |  |
+| `api emoji-delete` | `--body-file` | ✅ |  |
+| `api emojis` |  | ✅ |  |
+| `api emojis` | `--filter` | ✅ |  |
+| `api emojis` | `--before` | ✅ |  |
+| `api emojis` | `--after` | ✅ |  |
+| `api emojis` | `--first` | ✅ |  |
+| `api emojis` | `--last` | ✅ |  |
+| `api emojis` | `--include-archived` | ✅ |  |
+| `api emojis` | `--order-by` | ✅ |  |
+| `api emojis` | `--sort` | ✅ |  |
+| `api emojis` | `--body` | ✅ |  |
+| `api emojis` | `--body-file` | ✅ |  |
+| `api emojis` | `--all` | ✅ |  |
+| `api entity-external-link` |  | ✅ |  |
+| `api entity-external-link` | `--id` | ✅ |  |
+| `api entity-external-link` | `--body` | ✅ |  |
+| `api entity-external-link` | `--body-file` | ✅ |  |
+| `api entity-external-link-create` |  | ✅ |  |
+| `api entity-external-link-create` | `--input` | ✅ |  |
+| `api entity-external-link-create` | `--body` | ✅ |  |
+| `api entity-external-link-create` | `--body-file` | ✅ |  |
+| `api entity-external-link-delete` |  | ✅ |  |
+| `api entity-external-link-delete` | `--id` | ✅ |  |
+| `api entity-external-link-delete` | `--body` | ✅ |  |
+| `api entity-external-link-delete` | `--body-file` | ✅ |  |
+| `api entity-external-link-update` |  | ✅ |  |
+| `api entity-external-link-update` | `--input` | ✅ |  |
+| `api entity-external-link-update` | `--id` | ✅ |  |
+| `api entity-external-link-update` | `--body` | ✅ |  |
+| `api entity-external-link-update` | `--body-file` | ✅ |  |
+| `api external-user` |  | ✅ |  |
+| `api external-user` | `--id` | ✅ |  |
+| `api external-user` | `--body` | ✅ |  |
+| `api external-user` | `--body-file` | ✅ |  |
+| `api external-users` |  | ✅ |  |
+| `api external-users` | `--before` | ✅ |  |
+| `api external-users` | `--after` | ✅ |  |
+| `api external-users` | `--first` | ✅ |  |
+| `api external-users` | `--last` | ✅ |  |
+| `api external-users` | `--include-archived` | ✅ |  |
+| `api external-users` | `--order-by` | ✅ |  |
+| `api external-users` | `--body` | ✅ |  |
+| `api external-users` | `--body-file` | ✅ |  |
+| `api external-users` | `--all` | ✅ |  |
+| `api favorite` |  | ✅ |  |
+| `api favorite` | `--id` | ✅ |  |
+| `api favorite` | `--body` | ✅ |  |
+| `api favorite` | `--body-file` | ✅ |  |
+| `api favorite-create` |  | ✅ |  |
+| `api favorite-create` | `--input` | ✅ |  |
+| `api favorite-create` | `--body` | ✅ |  |
+| `api favorite-create` | `--body-file` | ✅ |  |
+| `api favorite-delete` |  | ✅ |  |
+| `api favorite-delete` | `--id` | ✅ |  |
+| `api favorite-delete` | `--body` | ✅ |  |
+| `api favorite-delete` | `--body-file` | ✅ |  |
+| `api favorites` |  | ✅ |  |
+| `api favorites` | `--before` | ✅ |  |
+| `api favorites` | `--after` | ✅ |  |
+| `api favorites` | `--first` | ✅ |  |
+| `api favorites` | `--last` | ✅ |  |
+| `api favorites` | `--include-archived` | ✅ |  |
+| `api favorites` | `--order-by` | ✅ |  |
+| `api favorites` | `--body` | ✅ |  |
+| `api favorites` | `--body-file` | ✅ |  |
+| `api favorites` | `--all` | ✅ |  |
+| `api favorite-update` |  | ✅ |  |
+| `api favorite-update` | `--input` | ✅ |  |
+| `api favorite-update` | `--id` | ✅ |  |
+| `api favorite-update` | `--body` | ✅ |  |
+| `api favorite-update` | `--body-file` | ✅ |  |
+| `api file-upload` |  | ✅ |  |
+| `api file-upload` | `--meta-data` | ✅ |  |
+| `api file-upload` | `--make-public` | ✅ |  |
+| `api file-upload` | `--size` | ✅ |  |
+| `api file-upload` | `--content-type` | ✅ |  |
+| `api file-upload` | `--filename` | ✅ |  |
+| `api file-upload` | `--body` | ✅ |  |
+| `api file-upload` | `--body-file` | ✅ |  |
+| `api file-upload-dangerously-delete` |  | ✅ |  |
+| `api file-upload-dangerously-delete` | `--asset-url` | ✅ |  |
+| `api file-upload-dangerously-delete` | `--body` | ✅ |  |
+| `api file-upload-dangerously-delete` | `--body-file` | ✅ |  |
+| `api git-automation-state-create` |  | ✅ |  |
+| `api git-automation-state-create` | `--input` | ✅ |  |
+| `api git-automation-state-create` | `--body` | ✅ |  |
+| `api git-automation-state-create` | `--body-file` | ✅ |  |
+| `api git-automation-state-delete` |  | ✅ |  |
+| `api git-automation-state-delete` | `--id` | ✅ |  |
+| `api git-automation-state-delete` | `--body` | ✅ |  |
+| `api git-automation-state-delete` | `--body-file` | ✅ |  |
+| `api git-automation-state-update` |  | ✅ |  |
+| `api git-automation-state-update` | `--input` | ✅ |  |
+| `api git-automation-state-update` | `--id` | ✅ |  |
+| `api git-automation-state-update` | `--body` | ✅ |  |
+| `api git-automation-state-update` | `--body-file` | ✅ |  |
+| `api git-automation-target-branch-create` |  | ✅ |  |
+| `api git-automation-target-branch-create` | `--input` | ✅ |  |
+| `api git-automation-target-branch-create` | `--body` | ✅ |  |
+| `api git-automation-target-branch-create` | `--body-file` | ✅ |  |
+| `api git-automation-target-branch-delete` |  | ✅ |  |
+| `api git-automation-target-branch-delete` | `--id` | ✅ |  |
+| `api git-automation-target-branch-delete` | `--body` | ✅ |  |
+| `api git-automation-target-branch-delete` | `--body-file` | ✅ |  |
+| `api git-automation-target-branch-update` |  | ✅ |  |
+| `api git-automation-target-branch-update` | `--input` | ✅ |  |
+| `api git-automation-target-branch-update` | `--id` | ✅ |  |
+| `api git-automation-target-branch-update` | `--body` | ✅ |  |
+| `api git-automation-target-branch-update` | `--body-file` | ✅ |  |
+| `api google-user-account-auth` |  | ✅ |  |
+| `api google-user-account-auth` | `--input` | ✅ |  |
+| `api google-user-account-auth` | `--body` | ✅ |  |
+| `api google-user-account-auth` | `--body-file` | ✅ |  |
+| `api image-upload-from-url` |  | ✅ |  |
+| `api image-upload-from-url` | `--url` | ✅ |  |
+| `api image-upload-from-url` | `--body` | ✅ |  |
+| `api image-upload-from-url` | `--body-file` | ✅ |  |
+| `api import-file-upload` |  | ✅ |  |
+| `api import-file-upload` | `--meta-data` | ✅ |  |
+| `api import-file-upload` | `--size` | ✅ |  |
+| `api import-file-upload` | `--content-type` | ✅ |  |
+| `api import-file-upload` | `--filename` | ✅ |  |
+| `api import-file-upload` | `--body` | ✅ |  |
+| `api import-file-upload` | `--body-file` | ✅ |  |
+| `api inbox-notifications` |  | ✅ |  |
+| `api inbox-notifications` | `--first` | ✅ |  |
+| `api inbox-notifications` | `--after` | ✅ |  |
+| `api inbox-notifications` | `--unread-only` | ✅ |  |
+| `api inbox-notifications` | `--body` | ✅ |  |
+| `api inbox-notifications` | `--body-file` | ✅ |  |
+| `api inbox-notifications` | `--all` | ✅ |  |
+| `api inbox-notification-update` |  | ✅ |  |
+| `api inbox-notification-update` | `--input` | ✅ |  |
+| `api inbox-notification-update` | `--id` | ✅ |  |
+| `api inbox-notification-update` | `--body` | ✅ |  |
+| `api inbox-notification-update` | `--body-file` | ✅ |  |
+| `api initiative` |  | ✅ |  |
+| `api initiative` | `--id` | ✅ |  |
+| `api initiative` | `--body` | ✅ |  |
+| `api initiative` | `--body-file` | ✅ |  |
+| `api initiative-add-label` |  | ✅ |  |
+| `api initiative-add-label` | `--label-id` | ✅ |  |
+| `api initiative-add-label` | `--id` | ✅ |  |
+| `api initiative-add-label` | `--body` | ✅ |  |
+| `api initiative-add-label` | `--body-file` | ✅ |  |
+| `api initiative-archive` |  | ✅ |  |
+| `api initiative-archive` | `--id` | ✅ |  |
+| `api initiative-archive` | `--body` | ✅ |  |
+| `api initiative-archive` | `--body-file` | ✅ |  |
+| `api initiative-create` |  | ✅ |  |
+| `api initiative-create` | `--input` | ✅ |  |
+| `api initiative-create` | `--body` | ✅ |  |
+| `api initiative-create` | `--body-file` | ✅ |  |
+| `api initiative-delete` |  | ✅ |  |
+| `api initiative-delete` | `--id` | ✅ |  |
+| `api initiative-delete` | `--body` | ✅ |  |
+| `api initiative-delete` | `--body-file` | ✅ |  |
+| `api initiative-filter-suggestion` |  | ✅ |  |
+| `api initiative-filter-suggestion` | `--team-id` | ✅ |  |
+| `api initiative-filter-suggestion` | `--prompt` | ✅ |  |
+| `api initiative-filter-suggestion` | `--body` | ✅ |  |
+| `api initiative-filter-suggestion` | `--body-file` | ✅ |  |
+| `api initiative-label` |  | ✅ |  |
+| `api initiative-label` | `--id` | ✅ |  |
+| `api initiative-label` | `--body` | ✅ |  |
+| `api initiative-label` | `--body-file` | ✅ |  |
+| `api initiative-label-create` |  | ✅ |  |
+| `api initiative-label-create` | `--input` | ✅ |  |
+| `api initiative-label-create` | `--body` | ✅ |  |
+| `api initiative-label-create` | `--body-file` | ✅ |  |
+| `api initiative-label-delete` |  | ✅ |  |
+| `api initiative-label-delete` | `--id` | ✅ |  |
+| `api initiative-label-delete` | `--body` | ✅ |  |
+| `api initiative-label-delete` | `--body-file` | ✅ |  |
+| `api initiative-label-restore` |  | ✅ |  |
+| `api initiative-label-restore` | `--id` | ✅ |  |
+| `api initiative-label-restore` | `--body` | ✅ |  |
+| `api initiative-label-restore` | `--body-file` | ✅ |  |
+| `api initiative-label-retire` |  | ✅ |  |
+| `api initiative-label-retire` | `--id` | ✅ |  |
+| `api initiative-label-retire` | `--body` | ✅ |  |
+| `api initiative-label-retire` | `--body-file` | ✅ |  |
+| `api initiative-labels` |  | ✅ |  |
+| `api initiative-labels` | `--filter` | ✅ |  |
+| `api initiative-labels` | `--before` | ✅ |  |
+| `api initiative-labels` | `--after` | ✅ |  |
+| `api initiative-labels` | `--first` | ✅ |  |
+| `api initiative-labels` | `--last` | ✅ |  |
+| `api initiative-labels` | `--include-archived` | ✅ |  |
+| `api initiative-labels` | `--order-by` | ✅ |  |
+| `api initiative-labels` | `--body` | ✅ |  |
+| `api initiative-labels` | `--body-file` | ✅ |  |
+| `api initiative-labels` | `--all` | ✅ |  |
+| `api initiative-label-update` |  | ✅ |  |
+| `api initiative-label-update` | `--input` | ✅ |  |
+| `api initiative-label-update` | `--id` | ✅ |  |
+| `api initiative-label-update` | `--body` | ✅ |  |
+| `api initiative-label-update` | `--body-file` | ✅ |  |
+| `api initiative-relation` |  | ✅ |  |
+| `api initiative-relation` | `--id` | ✅ |  |
+| `api initiative-relation` | `--body` | ✅ |  |
+| `api initiative-relation` | `--body-file` | ✅ |  |
+| `api initiative-relation-create` |  | ✅ |  |
+| `api initiative-relation-create` | `--input` | ✅ |  |
+| `api initiative-relation-create` | `--body` | ✅ |  |
+| `api initiative-relation-create` | `--body-file` | ✅ |  |
+| `api initiative-relation-delete` |  | ✅ |  |
+| `api initiative-relation-delete` | `--id` | ✅ |  |
+| `api initiative-relation-delete` | `--body` | ✅ |  |
+| `api initiative-relation-delete` | `--body-file` | ✅ |  |
+| `api initiative-relations` |  | ✅ |  |
+| `api initiative-relations` | `--before` | ✅ |  |
+| `api initiative-relations` | `--after` | ✅ |  |
+| `api initiative-relations` | `--first` | ✅ |  |
+| `api initiative-relations` | `--last` | ✅ |  |
+| `api initiative-relations` | `--include-archived` | ✅ |  |
+| `api initiative-relations` | `--order-by` | ✅ |  |
+| `api initiative-relations` | `--body` | ✅ |  |
+| `api initiative-relations` | `--body-file` | ✅ |  |
+| `api initiative-relations` | `--all` | ✅ |  |
+| `api initiative-relation-update` |  | ✅ |  |
+| `api initiative-relation-update` | `--input` | ✅ |  |
+| `api initiative-relation-update` | `--id` | ✅ |  |
+| `api initiative-relation-update` | `--body` | ✅ |  |
+| `api initiative-relation-update` | `--body-file` | ✅ |  |
+| `api initiative-remove-label` |  | ✅ |  |
+| `api initiative-remove-label` | `--label-id` | ✅ |  |
+| `api initiative-remove-label` | `--id` | ✅ |  |
+| `api initiative-remove-label` | `--body` | ✅ |  |
+| `api initiative-remove-label` | `--body-file` | ✅ |  |
+| `api initiatives` |  | ✅ |  |
+| `api initiatives` | `--filter` | ✅ |  |
+| `api initiatives` | `--before` | ✅ |  |
+| `api initiatives` | `--after` | ✅ |  |
+| `api initiatives` | `--first` | ✅ |  |
+| `api initiatives` | `--last` | ✅ |  |
+| `api initiatives` | `--include-archived` | ✅ |  |
+| `api initiatives` | `--order-by` | ✅ |  |
+| `api initiatives` | `--sort` | ✅ |  |
+| `api initiatives` | `--body` | ✅ |  |
+| `api initiatives` | `--body-file` | ✅ |  |
+| `api initiatives` | `--all` | ✅ |  |
+| `api initiative-to-project` |  | ✅ |  |
+| `api initiative-to-project` | `--id` | ✅ |  |
+| `api initiative-to-project` | `--body` | ✅ |  |
+| `api initiative-to-project` | `--body-file` | ✅ |  |
+| `api initiative-to-project-create` |  | ✅ |  |
+| `api initiative-to-project-create` | `--input` | ✅ |  |
+| `api initiative-to-project-create` | `--body` | ✅ |  |
+| `api initiative-to-project-create` | `--body-file` | ✅ |  |
+| `api initiative-to-project-delete` |  | ✅ |  |
+| `api initiative-to-project-delete` | `--id` | ✅ |  |
+| `api initiative-to-project-delete` | `--body` | ✅ |  |
+| `api initiative-to-project-delete` | `--body-file` | ✅ |  |
+| `api initiative-to-projects` |  | ✅ |  |
+| `api initiative-to-projects` | `--before` | ✅ |  |
+| `api initiative-to-projects` | `--after` | ✅ |  |
+| `api initiative-to-projects` | `--first` | ✅ |  |
+| `api initiative-to-projects` | `--last` | ✅ |  |
+| `api initiative-to-projects` | `--include-archived` | ✅ |  |
+| `api initiative-to-projects` | `--order-by` | ✅ |  |
+| `api initiative-to-projects` | `--body` | ✅ |  |
+| `api initiative-to-projects` | `--body-file` | ✅ |  |
+| `api initiative-to-projects` | `--all` | ✅ |  |
+| `api initiative-to-project-update` |  | ✅ |  |
+| `api initiative-to-project-update` | `--input` | ✅ |  |
+| `api initiative-to-project-update` | `--id` | ✅ |  |
+| `api initiative-to-project-update` | `--body` | ✅ |  |
+| `api initiative-to-project-update` | `--body-file` | ✅ |  |
+| `api initiative-unarchive` |  | ✅ |  |
+| `api initiative-unarchive` | `--id` | ✅ |  |
+| `api initiative-unarchive` | `--body` | ✅ |  |
+| `api initiative-unarchive` | `--body-file` | ✅ |  |
+| `api initiative-update` |  | ✅ |  |
+| `api initiative-update` | `--input` | ✅ |  |
+| `api initiative-update` | `--id` | ✅ |  |
+| `api initiative-update` | `--body` | ✅ |  |
+| `api initiative-update` | `--body-file` | ✅ |  |
+| `api initiative-update-archive` |  | ✅ |  |
+| `api initiative-update-archive` | `--id` | ✅ |  |
+| `api initiative-update-archive` | `--body` | ✅ |  |
+| `api initiative-update-archive` | `--body-file` | ✅ |  |
+| `api initiative-update-create` |  | ✅ |  |
+| `api initiative-update-create` | `--input` | ✅ |  |
+| `api initiative-update-create` | `--body` | ✅ |  |
+| `api initiative-update-create` | `--body-file` | ✅ |  |
+| `api initiative-updates` |  | ✅ |  |
+| `api initiative-updates` | `--filter` | ✅ |  |
+| `api initiative-updates` | `--before` | ✅ |  |
+| `api initiative-updates` | `--after` | ✅ |  |
+| `api initiative-updates` | `--first` | ✅ |  |
+| `api initiative-updates` | `--last` | ✅ |  |
+| `api initiative-updates` | `--include-archived` | ✅ |  |
+| `api initiative-updates` | `--order-by` | ✅ |  |
+| `api initiative-updates` | `--body` | ✅ |  |
+| `api initiative-updates` | `--body-file` | ✅ |  |
+| `api initiative-updates` | `--all` | ✅ |  |
+| `api initiative-update-unarchive` |  | ✅ |  |
+| `api initiative-update-unarchive` | `--id` | ✅ |  |
+| `api initiative-update-unarchive` | `--body` | ✅ |  |
+| `api initiative-update-unarchive` | `--body-file` | ✅ |  |
+| `api initiative-update-update` |  | ✅ |  |
+| `api initiative-update-update` | `--input` | ✅ |  |
+| `api initiative-update-update` | `--id` | ✅ |  |
+| `api initiative-update-update` | `--body` | ✅ |  |
+| `api initiative-update-update` | `--body-file` | ✅ |  |
+| `api integration` |  | ✅ |  |
+| `api integration` | `--id` | ✅ |  |
+| `api integration` | `--body` | ✅ |  |
+| `api integration` | `--body-file` | ✅ |  |
+| `api integration-archive` |  | ✅ |  |
+| `api integration-archive` | `--id` | ✅ |  |
+| `api integration-archive` | `--body` | ✅ |  |
+| `api integration-archive` | `--body-file` | ✅ |  |
+| `api integration-asks-connect-channel` |  | ✅ |  |
+| `api integration-asks-connect-channel` | `--redirect-uri` | ✅ |  |
+| `api integration-asks-connect-channel` | `--code` | ✅ |  |
+| `api integration-asks-connect-channel` | `--body` | ✅ |  |
+| `api integration-asks-connect-channel` | `--body-file` | ✅ |  |
+| `api integration-delete` |  | ✅ |  |
+| `api integration-delete` | `--skip-installation-deletion` | ✅ |  |
+| `api integration-delete` | `--id` | ✅ |  |
+| `api integration-delete` | `--body` | ✅ |  |
+| `api integration-delete` | `--body-file` | ✅ |  |
+| `api integration-discord` |  | ✅ |  |
+| `api integration-discord` | `--redirect-uri` | ✅ |  |
+| `api integration-discord` | `--code` | ✅ |  |
+| `api integration-discord` | `--body` | ✅ |  |
+| `api integration-discord` | `--body-file` | ✅ |  |
+| `api integration-figma` |  | ✅ |  |
+| `api integration-figma` | `--redirect-uri` | ✅ |  |
+| `api integration-figma` | `--code` | ✅ |  |
+| `api integration-figma` | `--body` | ✅ |  |
+| `api integration-figma` | `--body-file` | ✅ |  |
+| `api integration-front` |  | ✅ |  |
+| `api integration-front` | `--redirect-uri` | ✅ |  |
+| `api integration-front` | `--code` | ✅ |  |
+| `api integration-front` | `--body` | ✅ |  |
+| `api integration-front` | `--body-file` | ✅ |  |
+| `api integration-github-commit-create` |  | ✅ |  |
+| `api integration-github-connect` |  | ✅ |  |
+| `api integration-github-connect` | `--confirm-replace` | ✅ |  |
+| `api integration-github-connect` | `--github-host` | ✅ |  |
+| `api integration-github-connect` | `--code-access` | ✅ |  |
+| `api integration-github-connect` | `--code` | ✅ |  |
+| `api integration-github-connect` | `--installation-id` | ✅ |  |
+| `api integration-github-connect` | `--body` | ✅ |  |
+| `api integration-github-connect` | `--body-file` | ✅ |  |
+| `api integration-git-hub-enterprise-server-connect` |  | ✅ |  |
+| `api integration-git-hub-enterprise-server-connect` | `--organization-name` | ✅ |  |
+| `api integration-git-hub-enterprise-server-connect` | `--github-url` | ✅ |  |
+| `api integration-git-hub-enterprise-server-connect` | `--body` | ✅ |  |
+| `api integration-git-hub-enterprise-server-connect` | `--body-file` | ✅ |  |
+| `api integration-github-import-connect` |  | ✅ |  |
+| `api integration-github-import-connect` | `--code` | ✅ |  |
+| `api integration-github-import-connect` | `--installation-id` | ✅ |  |
+| `api integration-github-import-connect` | `--body` | ✅ |  |
+| `api integration-github-import-connect` | `--body-file` | ✅ |  |
+| `api integration-github-import-refresh` |  | ✅ |  |
+| `api integration-github-import-refresh` | `--id` | ✅ |  |
+| `api integration-github-import-refresh` | `--body` | ✅ |  |
+| `api integration-github-import-refresh` | `--body-file` | ✅ |  |
+| `api integration-git-hub-personal` |  | ✅ |  |
+| `api integration-git-hub-personal` | `--enterprise-url` | ✅ |  |
+| `api integration-git-hub-personal` | `--code-access` | ✅ |  |
+| `api integration-git-hub-personal` | `--code` | ✅ |  |
+| `api integration-git-hub-personal` | `--body` | ✅ |  |
+| `api integration-git-hub-personal` | `--body-file` | ✅ |  |
+| `api integration-github-remove-code-access` |  | ✅ |  |
+| `api integration-github-remove-code-access` | `--integration-id` | ✅ |  |
+| `api integration-github-remove-code-access` | `--body` | ✅ |  |
+| `api integration-github-remove-code-access` | `--body-file` | ✅ |  |
+| `api integration-gitlab-connect` |  | ✅ |  |
+| `api integration-gitlab-connect` | `--access-token` | ✅ |  |
+| `api integration-gitlab-connect` | `--gitlab-url` | ✅ |  |
+| `api integration-gitlab-connect` | `--validation-project-path` | ✅ |  |
+| `api integration-gitlab-connect` | `--readonly` | ✅ |  |
+| `api integration-gitlab-connect` | `--expires-at` | ✅ |  |
+| `api integration-gitlab-connect` | `--body` | ✅ |  |
+| `api integration-gitlab-connect` | `--body-file` | ✅ |  |
+| `api integration-gitlab-rotate` |  | ✅ |  |
+| `api integration-gitlab-rotate` | `--integration-id` | ✅ |  |
+| `api integration-gitlab-rotate` | `--body` | ✅ |  |
+| `api integration-gitlab-rotate` | `--body-file` | ✅ |  |
+| `api integration-gitlab-test-connection` |  | ✅ |  |
+| `api integration-gitlab-test-connection` | `--integration-id` | ✅ |  |
+| `api integration-gitlab-test-connection` | `--body` | ✅ |  |
+| `api integration-gitlab-test-connection` | `--body-file` | ✅ |  |
+| `api integration-gitlab-update-rotation-settings` |  | ✅ |  |
+| `api integration-gitlab-update-rotation-settings` | `--enabled` | ✅ |  |
+| `api integration-gitlab-update-rotation-settings` | `--integration-id` | ✅ |  |
+| `api integration-gitlab-update-rotation-settings` | `--body` | ✅ |  |
+| `api integration-gitlab-update-rotation-settings` | `--body-file` | ✅ |  |
+| `api integration-gitlab-update-token` |  | ✅ |  |
+| `api integration-gitlab-update-token` | `--expires-at` | ✅ |  |
+| `api integration-gitlab-update-token` | `--readonly` | ✅ |  |
+| `api integration-gitlab-update-token` | `--access-token` | ✅ |  |
+| `api integration-gitlab-update-token` | `--integration-id` | ✅ |  |
+| `api integration-gitlab-update-token` | `--body` | ✅ |  |
+| `api integration-gitlab-update-token` | `--body-file` | ✅ |  |
+| `api integration-gong` |  | ✅ |  |
+| `api integration-gong` | `--redirect-uri` | ✅ |  |
+| `api integration-gong` | `--code` | ✅ |  |
+| `api integration-gong` | `--body` | ✅ |  |
+| `api integration-gong` | `--body-file` | ✅ |  |
+| `api integration-google-sheets` |  | ✅ |  |
+| `api integration-google-sheets` | `--code` | ✅ |  |
+| `api integration-google-sheets` | `--body` | ✅ |  |
+| `api integration-google-sheets` | `--body-file` | ✅ |  |
+| `api integration-has-scopes` |  | ✅ |  |
+| `api integration-has-scopes` | `--scopes` | ✅ |  |
+| `api integration-has-scopes` | `--integration-id` | ✅ |  |
+| `api integration-has-scopes` | `--body` | ✅ |  |
+| `api integration-has-scopes` | `--body-file` | ✅ |  |
+| `api integration-intercom` |  | ✅ |  |
+| `api integration-intercom` | `--domain-url` | ✅ |  |
+| `api integration-intercom` | `--redirect-uri` | ✅ |  |
+| `api integration-intercom` | `--code` | ✅ |  |
+| `api integration-intercom` | `--body` | ✅ |  |
+| `api integration-intercom` | `--body-file` | ✅ |  |
+| `api integration-intercom-delete` |  | ✅ |  |
+| `api integration-intercom-settings-update` |  | ✅ |  |
+| `api integration-intercom-settings-update` | `--input` | ✅ |  |
+| `api integration-intercom-settings-update` | `--body` | ✅ |  |
+| `api integration-intercom-settings-update` | `--body-file` | ✅ |  |
+| `api integration-jira-personal` |  | ✅ |  |
+| `api integration-jira-personal` | `--workspace-integration-id` | ✅ |  |
+| `api integration-jira-personal` | `--code` | ✅ |  |
+| `api integration-jira-personal` | `--access-token` | ✅ |  |
+| `api integration-jira-personal` | `--body` | ✅ |  |
+| `api integration-jira-personal` | `--body-file` | ✅ |  |
+| `api integration-loom` |  | ✅ |  |
+| `api integration-microsoft-personal-connect` |  | ✅ |  |
+| `api integration-microsoft-personal-connect` | `--redirect-uri` | ✅ |  |
+| `api integration-microsoft-personal-connect` | `--code` | ✅ |  |
+| `api integration-microsoft-personal-connect` | `--body` | ✅ |  |
+| `api integration-microsoft-personal-connect` | `--body-file` | ✅ |  |
+| `api integration-microsoft-teams` |  | ✅ |  |
+| `api integration-microsoft-teams` | `--redirect-uri` | ✅ |  |
+| `api integration-microsoft-teams` | `--code` | ✅ |  |
+| `api integration-microsoft-teams` | `--body` | ✅ |  |
+| `api integration-microsoft-teams` | `--body-file` | ✅ |  |
+| `api integration-request` |  | ✅ |  |
+| `api integration-request` | `--input` | ✅ |  |
+| `api integration-request` | `--body` | ✅ |  |
+| `api integration-request` | `--body-file` | ✅ |  |
+| `api integrations` |  | ✅ |  |
+| `api integrations` | `--before` | ✅ |  |
+| `api integrations` | `--after` | ✅ |  |
+| `api integrations` | `--first` | ✅ |  |
+| `api integrations` | `--last` | ✅ |  |
+| `api integrations` | `--include-archived` | ✅ |  |
+| `api integrations` | `--order-by` | ✅ |  |
+| `api integrations` | `--body` | ✅ |  |
+| `api integrations` | `--body-file` | ✅ |  |
+| `api integrations` | `--all` | ✅ |  |
+| `api integration-salesforce` |  | ✅ |  |
+| `api integration-salesforce` | `--code` | ✅ |  |
+| `api integration-salesforce` | `--subdomain` | ✅ |  |
+| `api integration-salesforce` | `--redirect-uri` | ✅ |  |
+| `api integration-salesforce` | `--code-verifier` | ✅ |  |
+| `api integration-salesforce` | `--body` | ✅ |  |
+| `api integration-salesforce` | `--body-file` | ✅ |  |
+| `api integration-sentry-connect` |  | ✅ |  |
+| `api integration-sentry-connect` | `--code` | ✅ |  |
+| `api integration-sentry-connect` | `--installation-id` | ✅ |  |
+| `api integration-sentry-connect` | `--body` | ✅ |  |
+| `api integration-sentry-connect` | `--body-file` | ✅ |  |
+| `api integration-slack` |  | ✅ |  |
+| `api integration-slack` | `--requested-scopes` | ✅ |  |
+| `api integration-slack` | `--should-use-v2-auth` | ✅ |  |
+| `api integration-slack` | `--redirect-uri` | ✅ |  |
+| `api integration-slack` | `--code` | ✅ |  |
+| `api integration-slack` | `--body` | ✅ |  |
+| `api integration-slack` | `--body-file` | ✅ |  |
+| `api integration-slack-asks` |  | ✅ |  |
+| `api integration-slack-asks` | `--requested-scopes` | ✅ |  |
+| `api integration-slack-asks` | `--redirect-uri` | ✅ |  |
+| `api integration-slack-asks` | `--code` | ✅ |  |
+| `api integration-slack-asks` | `--body` | ✅ |  |
+| `api integration-slack-asks` | `--body-file` | ✅ |  |
+| `api integration-slack-customer-channel-link` |  | ✅ |  |
+| `api integration-slack-customer-channel-link` | `--redirect-uri` | ✅ |  |
+| `api integration-slack-customer-channel-link` | `--customer-id` | ✅ |  |
+| `api integration-slack-customer-channel-link` | `--code` | ✅ |  |
+| `api integration-slack-customer-channel-link` | `--body` | ✅ |  |
+| `api integration-slack-customer-channel-link` | `--body-file` | ✅ |  |
+| `api integration-slack-custom-view-notifications` |  | ✅ |  |
+| `api integration-slack-custom-view-notifications` | `--redirect-uri` | ✅ |  |
+| `api integration-slack-custom-view-notifications` | `--custom-view-id` | ✅ |  |
+| `api integration-slack-custom-view-notifications` | `--code` | ✅ |  |
+| `api integration-slack-custom-view-notifications` | `--body` | ✅ |  |
+| `api integration-slack-custom-view-notifications` | `--body-file` | ✅ |  |
+| `api integration-slack-import-emojis` |  | ✅ |  |
+| `api integration-slack-import-emojis` | `--redirect-uri` | ✅ |  |
+| `api integration-slack-import-emojis` | `--code` | ✅ |  |
+| `api integration-slack-import-emojis` | `--body` | ✅ |  |
+| `api integration-slack-import-emojis` | `--body-file` | ✅ |  |
+| `api integration-slack-or-asks-update-slack-team-name` |  | ✅ |  |
+| `api integration-slack-or-asks-update-slack-team-name` | `--integration-id` | ✅ |  |
+| `api integration-slack-or-asks-update-slack-team-name` | `--body` | ✅ |  |
+| `api integration-slack-or-asks-update-slack-team-name` | `--body-file` | ✅ |  |
+| `api integration-slack-org-project-updates-post` |  | ✅ |  |
+| `api integration-slack-org-project-updates-post` | `--redirect-uri` | ✅ |  |
+| `api integration-slack-org-project-updates-post` | `--code` | ✅ |  |
+| `api integration-slack-org-project-updates-post` | `--body` | ✅ |  |
+| `api integration-slack-org-project-updates-post` | `--body-file` | ✅ |  |
+| `api integration-slack-personal` |  | ✅ |  |
+| `api integration-slack-personal` | `--redirect-uri` | ✅ |  |
+| `api integration-slack-personal` | `--code` | ✅ |  |
+| `api integration-slack-personal` | `--body` | ✅ |  |
+| `api integration-slack-personal` | `--body-file` | ✅ |  |
+| `api integration-slack-post` |  | ✅ |  |
+| `api integration-slack-post` | `--should-use-v2-auth` | ✅ |  |
+| `api integration-slack-post` | `--redirect-uri` | ✅ |  |
+| `api integration-slack-post` | `--team-id` | ✅ |  |
+| `api integration-slack-post` | `--code` | ✅ |  |
+| `api integration-slack-post` | `--body` | ✅ |  |
+| `api integration-slack-post` | `--body-file` | ✅ |  |
+| `api integration-slack-project-post` |  | ✅ |  |
+| `api integration-slack-project-post` | `--service` | ✅ |  |
+| `api integration-slack-project-post` | `--redirect-uri` | ✅ |  |
+| `api integration-slack-project-post` | `--project-id` | ✅ |  |
+| `api integration-slack-project-post` | `--code` | ✅ |  |
+| `api integration-slack-project-post` | `--body` | ✅ |  |
+| `api integration-slack-project-post` | `--body-file` | ✅ |  |
+| `api integrations-settings` |  | ✅ |  |
+| `api integrations-settings` | `--id` | ✅ |  |
+| `api integrations-settings` | `--body` | ✅ |  |
+| `api integrations-settings` | `--body-file` | ✅ |  |
+| `api integrations-settings-create` |  | ✅ |  |
+| `api integrations-settings-create` | `--input` | ✅ |  |
+| `api integrations-settings-create` | `--body` | ✅ |  |
+| `api integrations-settings-create` | `--body-file` | ✅ |  |
+| `api integrations-settings-update` |  | ✅ |  |
+| `api integrations-settings-update` | `--input` | ✅ |  |
+| `api integrations-settings-update` | `--id` | ✅ |  |
+| `api integrations-settings-update` | `--body` | ✅ |  |
+| `api integrations-settings-update` | `--body-file` | ✅ |  |
+| `api integration-template` |  | ✅ |  |
+| `api integration-template` | `--id` | ✅ |  |
+| `api integration-template` | `--body` | ✅ |  |
+| `api integration-template` | `--body-file` | ✅ |  |
+| `api integration-template-create` |  | ✅ |  |
+| `api integration-template-create` | `--input` | ✅ |  |
+| `api integration-template-create` | `--body` | ✅ |  |
+| `api integration-template-create` | `--body-file` | ✅ |  |
+| `api integration-template-delete` |  | ✅ |  |
+| `api integration-template-delete` | `--id` | ✅ |  |
+| `api integration-template-delete` | `--body` | ✅ |  |
+| `api integration-template-delete` | `--body-file` | ✅ |  |
+| `api integration-templates` |  | ✅ |  |
+| `api integration-templates` | `--before` | ✅ |  |
+| `api integration-templates` | `--after` | ✅ |  |
+| `api integration-templates` | `--first` | ✅ |  |
+| `api integration-templates` | `--last` | ✅ |  |
+| `api integration-templates` | `--include-archived` | ✅ |  |
+| `api integration-templates` | `--order-by` | ✅ |  |
+| `api integration-templates` | `--body` | ✅ |  |
+| `api integration-templates` | `--body-file` | ✅ |  |
+| `api integration-templates` | `--all` | ✅ |  |
+| `api integration-zendesk` |  | ✅ |  |
+| `api integration-zendesk` | `--subdomain` | ✅ |  |
+| `api integration-zendesk` | `--code` | ✅ |  |
+| `api integration-zendesk` | `--scope` | ✅ |  |
+| `api integration-zendesk` | `--redirect-uri` | ✅ |  |
+| `api integration-zendesk` | `--bot-user-role` | ✅ |  |
+| `api integration-zendesk` | `--bot-user-id` | ✅ |  |
+| `api integration-zendesk` | `--custom-api-url` | ✅ |  |
+| `api integration-zendesk` | `--access-token` | ✅ |  |
+| `api integration-zendesk` | `--body` | ✅ |  |
+| `api integration-zendesk` | `--body-file` | ✅ |  |
+| `api issue` |  | ✅ |  |
+| `api issue` | `--id` | ✅ |  |
+| `api issue` | `--body` | ✅ |  |
+| `api issue` | `--body-file` | ✅ |  |
+| `api issue-add-label` |  | ✅ |  |
+| `api issue-add-label` | `--label-id` | ✅ |  |
+| `api issue-add-label` | `--id` | ✅ |  |
+| `api issue-add-label` | `--body` | ✅ |  |
+| `api issue-add-label` | `--body-file` | ✅ |  |
+| `api issue-archive` |  | ✅ |  |
+| `api issue-archive` | `--trash` | ✅ |  |
+| `api issue-archive` | `--id` | ✅ |  |
+| `api issue-archive` | `--body` | ✅ |  |
+| `api issue-archive` | `--body-file` | ✅ |  |
+| `api issue-batch-create` |  | ✅ |  |
+| `api issue-batch-create` | `--input` | ✅ |  |
+| `api issue-batch-create` | `--body` | ✅ |  |
+| `api issue-batch-create` | `--body-file` | ✅ |  |
+| `api issue-batch-update` |  | ✅ |  |
+| `api issue-batch-update` | `--input` | ✅ |  |
+| `api issue-batch-update` | `--ids` | ✅ |  |
+| `api issue-batch-update` | `--body` | ✅ |  |
+| `api issue-batch-update` | `--body-file` | ✅ |  |
+| `api issue-create` |  | ✅ |  |
+| `api issue-create` | `--input` | ✅ |  |
+| `api issue-create` | `--body` | ✅ |  |
+| `api issue-create` | `--body-file` | ✅ |  |
+| `api issue-delete` |  | ✅ |  |
+| `api issue-delete` | `--permanently-delete` | ✅ |  |
+| `api issue-delete` | `--id` | ✅ |  |
+| `api issue-delete` | `--body` | ✅ |  |
+| `api issue-delete` | `--body-file` | ✅ |  |
+| `api issue-external-sync-disable` |  | ✅ |  |
+| `api issue-external-sync-disable` | `--attachment-id` | ✅ |  |
+| `api issue-external-sync-disable` | `--body` | ✅ |  |
+| `api issue-external-sync-disable` | `--body-file` | ✅ |  |
+| `api issue-figma-file-key-search` |  | ✅ |  |
+| `api issue-figma-file-key-search` | `--before` | ✅ |  |
+| `api issue-figma-file-key-search` | `--after` | ✅ |  |
+| `api issue-figma-file-key-search` | `--first` | ✅ |  |
+| `api issue-figma-file-key-search` | `--last` | ✅ |  |
+| `api issue-figma-file-key-search` | `--include-archived` | ✅ |  |
+| `api issue-figma-file-key-search` | `--order-by` | ✅ |  |
+| `api issue-figma-file-key-search` | `--file-key` | ✅ |  |
+| `api issue-figma-file-key-search` | `--body` | ✅ |  |
+| `api issue-figma-file-key-search` | `--body-file` | ✅ |  |
+| `api issue-figma-file-key-search` | `--all` | ✅ |  |
+| `api issue-filter-suggestion` |  | ✅ |  |
+| `api issue-filter-suggestion` | `--team-id` | ✅ |  |
+| `api issue-filter-suggestion` | `--project-id` | ✅ |  |
+| `api issue-filter-suggestion` | `--prompt` | ✅ |  |
+| `api issue-filter-suggestion` | `--body` | ✅ |  |
+| `api issue-filter-suggestion` | `--body-file` | ✅ |  |
+| `api issue-import-check-csv` |  | ✅ |  |
+| `api issue-import-check-csv` | `--csv-url` | ✅ |  |
+| `api issue-import-check-csv` | `--service` | ✅ |  |
+| `api issue-import-check-csv` | `--body` | ✅ |  |
+| `api issue-import-check-csv` | `--body-file` | ✅ |  |
+| `api issue-import-check-sync` |  | ✅ |  |
+| `api issue-import-check-sync` | `--issue-import-id` | ✅ |  |
+| `api issue-import-check-sync` | `--body` | ✅ |  |
+| `api issue-import-check-sync` | `--body-file` | ✅ |  |
+| `api issue-import-create-asana` |  | ✅ |  |
+| `api issue-import-create-asana` | `--team-id` | ✅ |  |
+| `api issue-import-create-asana` | `--team-name` | ✅ |  |
+| `api issue-import-create-asana` | `--asana-token` | ✅ |  |
+| `api issue-import-create-asana` | `--asana-team-name` | ✅ |  |
+| `api issue-import-create-asana` | `--asana-project-names` | ✅ |  |
+| `api issue-import-create-asana` | `--instant-process` | ✅ |  |
+| `api issue-import-create-asana` | `--include-closed-issues` | ✅ |  |
+| `api issue-import-create-asana` | `--id` | ✅ |  |
+| `api issue-import-create-asana` | `--body` | ✅ |  |
+| `api issue-import-create-asana` | `--body-file` | ✅ |  |
+| `api issue-import-create-clubhouse` |  | ✅ |  |
+| `api issue-import-create-clubhouse` | `--team-id` | ✅ |  |
+| `api issue-import-create-clubhouse` | `--team-name` | ✅ |  |
+| `api issue-import-create-clubhouse` | `--clubhouse-token` | ✅ |  |
+| `api issue-import-create-clubhouse` | `--clubhouse-group-name` | ✅ |  |
+| `api issue-import-create-clubhouse` | `--instant-process` | ✅ |  |
+| `api issue-import-create-clubhouse` | `--include-closed-issues` | ✅ |  |
+| `api issue-import-create-clubhouse` | `--id` | ✅ |  |
+| `api issue-import-create-clubhouse` | `--body` | ✅ |  |
+| `api issue-import-create-clubhouse` | `--body-file` | ✅ |  |
+| `api issue-import-create-csvjira` |  | ✅ |  |
+| `api issue-import-create-csvjira` | `--team-id` | ✅ |  |
+| `api issue-import-create-csvjira` | `--team-name` | ✅ |  |
+| `api issue-import-create-csvjira` | `--csv-url` | ✅ |  |
+| `api issue-import-create-csvjira` | `--jira-hostname` | ✅ |  |
+| `api issue-import-create-csvjira` | `--jira-token` | ✅ |  |
+| `api issue-import-create-csvjira` | `--jira-email` | ✅ |  |
+| `api issue-import-create-csvjira` | `--body` | ✅ |  |
+| `api issue-import-create-csvjira` | `--body-file` | ✅ |  |
+| `api issue-import-create-github` |  | ✅ |  |
+| `api issue-import-create-github` | `--team-id` | ✅ |  |
+| `api issue-import-create-github` | `--team-name` | ✅ |  |
+| `api issue-import-create-github` | `--github-repo-ids` | ✅ |  |
+| `api issue-import-create-github` | `--github-labels` | ✅ |  |
+| `api issue-import-create-github` | `--instant-process` | ✅ |  |
+| `api issue-import-create-github` | `--include-closed-issues` | ✅ |  |
+| `api issue-import-create-github` | `--body` | ✅ |  |
+| `api issue-import-create-github` | `--body-file` | ✅ |  |
+| `api issue-import-create-jira` |  | ✅ |  |
+| `api issue-import-create-jira` | `--team-id` | ✅ |  |
+| `api issue-import-create-jira` | `--team-name` | ✅ |  |
+| `api issue-import-create-jira` | `--jira-token` | ✅ |  |
+| `api issue-import-create-jira` | `--jira-project` | ✅ |  |
+| `api issue-import-create-jira` | `--jira-email` | ✅ |  |
+| `api issue-import-create-jira` | `--jira-hostname` | ✅ |  |
+| `api issue-import-create-jira` | `--jql` | ✅ |  |
+| `api issue-import-create-jira` | `--instant-process` | ✅ |  |
+| `api issue-import-create-jira` | `--include-closed-issues` | ✅ |  |
+| `api issue-import-create-jira` | `--id` | ✅ |  |
+| `api issue-import-create-jira` | `--body` | ✅ |  |
+| `api issue-import-create-jira` | `--body-file` | ✅ |  |
+| `api issue-import-delete` |  | ✅ |  |
+| `api issue-import-delete` | `--issue-import-id` | ✅ |  |
+| `api issue-import-delete` | `--body` | ✅ |  |
+| `api issue-import-delete` | `--body-file` | ✅ |  |
+| `api issue-import-jql-check` |  | ✅ |  |
+| `api issue-import-jql-check` | `--jira-hostname` | ✅ |  |
+| `api issue-import-jql-check` | `--jira-token` | ✅ |  |
+| `api issue-import-jql-check` | `--jira-email` | ✅ |  |
+| `api issue-import-jql-check` | `--jira-project` | ✅ |  |
+| `api issue-import-jql-check` | `--jql` | ✅ |  |
+| `api issue-import-jql-check` | `--body` | ✅ |  |
+| `api issue-import-jql-check` | `--body-file` | ✅ |  |
+| `api issue-import-process` |  | ✅ |  |
+| `api issue-import-process` | `--mapping` | ✅ |  |
+| `api issue-import-process` | `--issue-import-id` | ✅ |  |
+| `api issue-import-process` | `--body` | ✅ |  |
+| `api issue-import-process` | `--body-file` | ✅ |  |
+| `api issue-import-update` |  | ✅ |  |
+| `api issue-import-update` | `--input` | ✅ |  |
+| `api issue-import-update` | `--id` | ✅ |  |
+| `api issue-import-update` | `--body` | ✅ |  |
+| `api issue-import-update` | `--body-file` | ✅ |  |
+| `api issue-label` |  | ✅ |  |
+| `api issue-label` | `--id` | ✅ |  |
+| `api issue-label` | `--body` | ✅ |  |
+| `api issue-label` | `--body-file` | ✅ |  |
+| `api issue-label-create` |  | ✅ |  |
+| `api issue-label-create` | `--replace-team-labels` | ✅ |  |
+| `api issue-label-create` | `--input` | ✅ |  |
+| `api issue-label-create` | `--body` | ✅ |  |
+| `api issue-label-create` | `--body-file` | ✅ |  |
+| `api issue-label-delete` |  | ✅ |  |
+| `api issue-label-delete` | `--id` | ✅ |  |
+| `api issue-label-delete` | `--body` | ✅ |  |
+| `api issue-label-delete` | `--body-file` | ✅ |  |
+| `api issue-label-restore` |  | ✅ |  |
+| `api issue-label-restore` | `--id` | ✅ |  |
+| `api issue-label-restore` | `--body` | ✅ |  |
+| `api issue-label-restore` | `--body-file` | ✅ |  |
+| `api issue-label-retire` |  | ✅ |  |
+| `api issue-label-retire` | `--id` | ✅ |  |
+| `api issue-label-retire` | `--body` | ✅ |  |
+| `api issue-label-retire` | `--body-file` | ✅ |  |
+| `api issue-labels` |  | ✅ |  |
+| `api issue-labels` | `--filter` | ✅ |  |
+| `api issue-labels` | `--before` | ✅ |  |
+| `api issue-labels` | `--after` | ✅ |  |
+| `api issue-labels` | `--first` | ✅ |  |
+| `api issue-labels` | `--last` | ✅ |  |
+| `api issue-labels` | `--include-archived` | ✅ |  |
+| `api issue-labels` | `--order-by` | ✅ |  |
+| `api issue-labels` | `--body` | ✅ |  |
+| `api issue-labels` | `--body-file` | ✅ |  |
+| `api issue-labels` | `--all` | ✅ |  |
+| `api issue-label-update` |  | ✅ |  |
+| `api issue-label-update` | `--replace-team-labels` | ✅ |  |
+| `api issue-label-update` | `--input` | ✅ |  |
+| `api issue-label-update` | `--id` | ✅ |  |
+| `api issue-label-update` | `--body` | ✅ |  |
+| `api issue-label-update` | `--body-file` | ✅ |  |
+| `api issue-priority-values` |  | ✅ |  |
+| `api issue-relation` |  | ✅ |  |
+| `api issue-relation` | `--id` | ✅ |  |
+| `api issue-relation` | `--body` | ✅ |  |
+| `api issue-relation` | `--body-file` | ✅ |  |
+| `api issue-relation-create` |  | ✅ |  |
+| `api issue-relation-create` | `--override-created-at` | ✅ |  |
+| `api issue-relation-create` | `--input` | ✅ |  |
+| `api issue-relation-create` | `--body` | ✅ |  |
+| `api issue-relation-create` | `--body-file` | ✅ |  |
+| `api issue-relation-delete` |  | ✅ |  |
+| `api issue-relation-delete` | `--id` | ✅ |  |
+| `api issue-relation-delete` | `--body` | ✅ |  |
+| `api issue-relation-delete` | `--body-file` | ✅ |  |
+| `api issue-relations` |  | ✅ |  |
+| `api issue-relations` | `--before` | ✅ |  |
+| `api issue-relations` | `--after` | ✅ |  |
+| `api issue-relations` | `--first` | ✅ |  |
+| `api issue-relations` | `--last` | ✅ |  |
+| `api issue-relations` | `--include-archived` | ✅ |  |
+| `api issue-relations` | `--order-by` | ✅ |  |
+| `api issue-relations` | `--body` | ✅ |  |
+| `api issue-relations` | `--body-file` | ✅ |  |
+| `api issue-relations` | `--all` | ✅ |  |
+| `api issue-relation-update` |  | ✅ |  |
+| `api issue-relation-update` | `--input` | ✅ |  |
+| `api issue-relation-update` | `--id` | ✅ |  |
+| `api issue-relation-update` | `--body` | ✅ |  |
+| `api issue-relation-update` | `--body-file` | ✅ |  |
+| `api issue-reminder` |  | ✅ |  |
+| `api issue-reminder` | `--reminder-at` | ✅ |  |
+| `api issue-reminder` | `--id` | ✅ |  |
+| `api issue-reminder` | `--body` | ✅ |  |
+| `api issue-reminder` | `--body-file` | ✅ |  |
+| `api issue-remove-label` |  | ✅ |  |
+| `api issue-remove-label` | `--label-id` | ✅ |  |
+| `api issue-remove-label` | `--id` | ✅ |  |
+| `api issue-remove-label` | `--body` | ✅ |  |
+| `api issue-remove-label` | `--body-file` | ✅ |  |
+| `api issue-repository-suggestions` |  | ✅ |  |
+| `api issue-repository-suggestions` | `--agent-session-id` | ✅ |  |
+| `api issue-repository-suggestions` | `--candidate-repositories` | ✅ |  |
+| `api issue-repository-suggestions` | `--issue-id` | ✅ |  |
+| `api issue-repository-suggestions` | `--body` | ✅ |  |
+| `api issue-repository-suggestions` | `--body-file` | ✅ |  |
+| `api issues` |  | ✅ |  |
+| `api issues` | `--filter` | ✅ |  |
+| `api issues` | `--before` | ✅ |  |
+| `api issues` | `--after` | ✅ |  |
+| `api issues` | `--first` | ✅ |  |
+| `api issues` | `--last` | ✅ |  |
+| `api issues` | `--include-archived` | ✅ |  |
+| `api issues` | `--order-by` | ✅ |  |
+| `api issues` | `--sort` | ✅ |  |
+| `api issues` | `--body` | ✅ |  |
+| `api issues` | `--body-file` | ✅ |  |
+| `api issues` | `--all` | ✅ |  |
+| `api issue-search` |  | ✅ |  |
+| `api issue-search` | `--filter` | ✅ |  |
+| `api issue-search` | `--query` | ✅ |  |
+| `api issue-search` | `--before` | ✅ |  |
+| `api issue-search` | `--after` | ✅ |  |
+| `api issue-search` | `--first` | ✅ |  |
+| `api issue-search` | `--last` | ✅ |  |
+| `api issue-search` | `--include-archived` | ✅ |  |
+| `api issue-search` | `--order-by` | ✅ |  |
+| `api issue-search` | `--body` | ✅ |  |
+| `api issue-search` | `--body-file` | ✅ |  |
+| `api issue-search` | `--all` | ✅ |  |
+| `api issue-share` |  | ✅ |  |
+| `api issue-share` | `--user-id` | ✅ |  |
+| `api issue-share` | `--id` | ✅ |  |
+| `api issue-share` | `--body` | ✅ |  |
+| `api issue-share` | `--body-file` | ✅ |  |
+| `api issue-subscribe` |  | ✅ |  |
+| `api issue-subscribe` | `--user-email` | ✅ |  |
+| `api issue-subscribe` | `--user-id` | ✅ |  |
+| `api issue-subscribe` | `--id` | ✅ |  |
+| `api issue-subscribe` | `--body` | ✅ |  |
+| `api issue-subscribe` | `--body-file` | ✅ |  |
+| `api issue-title-suggestion-from-customer-request` |  | ✅ |  |
+| `api issue-title-suggestion-from-customer-request` | `--request` | ✅ |  |
+| `api issue-title-suggestion-from-customer-request` | `--body` | ✅ |  |
+| `api issue-title-suggestion-from-customer-request` | `--body-file` | ✅ |  |
+| `api issue-to-release` |  | ✅ |  |
+| `api issue-to-release` | `--id` | ✅ |  |
+| `api issue-to-release` | `--body` | ✅ |  |
+| `api issue-to-release` | `--body-file` | ✅ |  |
+| `api issue-to-release-create` |  | ✅ |  |
+| `api issue-to-release-create` | `--input` | ✅ |  |
+| `api issue-to-release-create` | `--body` | ✅ |  |
+| `api issue-to-release-create` | `--body-file` | ✅ |  |
+| `api issue-to-release-delete` |  | ✅ |  |
+| `api issue-to-release-delete` | `--id` | ✅ |  |
+| `api issue-to-release-delete` | `--body` | ✅ |  |
+| `api issue-to-release-delete` | `--body-file` | ✅ |  |
+| `api issue-to-release-delete-by-issue-and-release` |  | ✅ |  |
+| `api issue-to-release-delete-by-issue-and-release` | `--release-id` | ✅ |  |
+| `api issue-to-release-delete-by-issue-and-release` | `--issue-id` | ✅ |  |
+| `api issue-to-release-delete-by-issue-and-release` | `--body` | ✅ |  |
+| `api issue-to-release-delete-by-issue-and-release` | `--body-file` | ✅ |  |
+| `api issue-to-releases` |  | ✅ |  |
+| `api issue-to-releases` | `--before` | ✅ |  |
+| `api issue-to-releases` | `--after` | ✅ |  |
+| `api issue-to-releases` | `--first` | ✅ |  |
+| `api issue-to-releases` | `--last` | ✅ |  |
+| `api issue-to-releases` | `--include-archived` | ✅ |  |
+| `api issue-to-releases` | `--order-by` | ✅ |  |
+| `api issue-to-releases` | `--body` | ✅ |  |
+| `api issue-to-releases` | `--body-file` | ✅ |  |
+| `api issue-to-releases` | `--all` | ✅ |  |
+| `api issue-unarchive` |  | ✅ |  |
+| `api issue-unarchive` | `--id` | ✅ |  |
+| `api issue-unarchive` | `--body` | ✅ |  |
+| `api issue-unarchive` | `--body-file` | ✅ |  |
+| `api issue-unshare` |  | ✅ |  |
+| `api issue-unshare` | `--user-id` | ✅ |  |
+| `api issue-unshare` | `--id` | ✅ |  |
+| `api issue-unshare` | `--body` | ✅ |  |
+| `api issue-unshare` | `--body-file` | ✅ |  |
+| `api issue-unsubscribe` |  | ✅ |  |
+| `api issue-unsubscribe` | `--user-email` | ✅ |  |
+| `api issue-unsubscribe` | `--user-id` | ✅ |  |
+| `api issue-unsubscribe` | `--id` | ✅ |  |
+| `api issue-unsubscribe` | `--body` | ✅ |  |
+| `api issue-unsubscribe` | `--body-file` | ✅ |  |
+| `api issue-update` |  | ✅ |  |
+| `api issue-update` | `--input` | ✅ |  |
+| `api issue-update` | `--id` | ✅ |  |
+| `api issue-update` | `--body` | ✅ |  |
+| `api issue-update` | `--body-file` | ✅ |  |
+| `api issue-vcs-branch-search` |  | ✅ |  |
+| `api issue-vcs-branch-search` | `--branch-name` | ✅ |  |
+| `api issue-vcs-branch-search` | `--body` | ✅ |  |
+| `api issue-vcs-branch-search` | `--body-file` | ✅ |  |
+| `api jira-project` |  | ✅ |  |
+| `api jira-project` | `--id` | ✅ |  |
+| `api jira-project` | `--body` | ✅ |  |
+| `api jira-project` | `--body-file` | ✅ |  |
+| `api jira-project-batch-migrate` |  | ✅ |  |
+| `api jira-project-batch-migrate` | `--input` | ✅ |  |
+| `api jira-project-batch-migrate` | `--body` | ✅ |  |
+| `api jira-project-batch-migrate` | `--body-file` | ✅ |  |
+| `api jira-projects` |  | ✅ |  |
+| `api jira-projects` | `--filter` | ✅ |  |
+| `api jira-projects` | `--before` | ✅ |  |
+| `api jira-projects` | `--after` | ✅ |  |
+| `api jira-projects` | `--first` | ✅ |  |
+| `api jira-projects` | `--last` | ✅ |  |
+| `api jira-projects` | `--include-archived` | ✅ |  |
+| `api jira-projects` | `--order-by` | ✅ |  |
+| `api jira-projects` | `--body` | ✅ |  |
+| `api jira-projects` | `--body-file` | ✅ |  |
+| `api jira-projects` | `--all` | ✅ |  |
+| `api latest-release-by-access-key` |  | ✅ |  |
+| `api logout` |  | ✅ |  |
+| `api logout` | `--reason` | ✅ |  |
+| `api logout` | `--body` | ✅ |  |
+| `api logout` | `--body-file` | ✅ |  |
+| `api logout-all-sessions` |  | ✅ |  |
+| `api logout-all-sessions` | `--reason` | ✅ |  |
+| `api logout-all-sessions` | `--body` | ✅ |  |
+| `api logout-all-sessions` | `--body-file` | ✅ |  |
+| `api logout-other-sessions` |  | ✅ |  |
+| `api logout-other-sessions` | `--reason` | ✅ |  |
+| `api logout-other-sessions` | `--body` | ✅ |  |
+| `api logout-other-sessions` | `--body-file` | ✅ |  |
+| `api logout-session` |  | ✅ |  |
+| `api logout-session` | `--session-id` | ✅ |  |
+| `api logout-session` | `--body` | ✅ |  |
+| `api logout-session` | `--body-file` | ✅ |  |
+| `api notification` |  | ✅ |  |
+| `api notification` | `--id` | ✅ |  |
+| `api notification` | `--body` | ✅ |  |
+| `api notification` | `--body-file` | ✅ |  |
+| `api notification-archive` |  | ✅ |  |
+| `api notification-archive` | `--id` | ✅ |  |
+| `api notification-archive` | `--body` | ✅ |  |
+| `api notification-archive` | `--body-file` | ✅ |  |
+| `api notification-archive-all` |  | ✅ |  |
+| `api notification-archive-all` | `--input` | ✅ |  |
+| `api notification-archive-all` | `--body` | ✅ |  |
+| `api notification-archive-all` | `--body-file` | ✅ |  |
+| `api notification-category-channel-subscription-update` |  | ✅ |  |
+| `api notification-category-channel-subscription-update` | `--channel` | ✅ |  |
+| `api notification-category-channel-subscription-update` | `--category` | ✅ |  |
+| `api notification-category-channel-subscription-update` | `--subscribe` | ✅ |  |
+| `api notification-category-channel-subscription-update` | `--body` | ✅ |  |
+| `api notification-category-channel-subscription-update` | `--body-file` | ✅ |  |
+| `api notification-mark-read-all` |  | ✅ |  |
+| `api notification-mark-read-all` | `--read-at` | ✅ |  |
+| `api notification-mark-read-all` | `--input` | ✅ |  |
+| `api notification-mark-read-all` | `--body` | ✅ |  |
+| `api notification-mark-read-all` | `--body-file` | ✅ |  |
+| `api notification-mark-unread-all` |  | ✅ |  |
+| `api notification-mark-unread-all` | `--input` | ✅ |  |
+| `api notification-mark-unread-all` | `--body` | ✅ |  |
+| `api notification-mark-unread-all` | `--body-file` | ✅ |  |
+| `api notifications` |  | ✅ |  |
+| `api notifications` | `--filter` | ✅ |  |
+| `api notifications` | `--before` | ✅ |  |
+| `api notifications` | `--after` | ✅ |  |
+| `api notifications` | `--first` | ✅ |  |
+| `api notifications` | `--last` | ✅ |  |
+| `api notifications` | `--include-archived` | ✅ |  |
+| `api notifications` | `--order-by` | ✅ |  |
+| `api notifications` | `--body` | ✅ |  |
+| `api notifications` | `--body-file` | ✅ |  |
+| `api notifications` | `--all` | ✅ |  |
+| `api notification-snooze-all` |  | ✅ |  |
+| `api notification-snooze-all` | `--snoozed-until-at` | ✅ |  |
+| `api notification-snooze-all` | `--input` | ✅ |  |
+| `api notification-snooze-all` | `--body` | ✅ |  |
+| `api notification-snooze-all` | `--body-file` | ✅ |  |
+| `api notification-subscription` |  | ✅ |  |
+| `api notification-subscription` | `--id` | ✅ |  |
+| `api notification-subscription` | `--body` | ✅ |  |
+| `api notification-subscription` | `--body-file` | ✅ |  |
+| `api notification-subscription-create` |  | ✅ |  |
+| `api notification-subscription-create` | `--input` | ✅ |  |
+| `api notification-subscription-create` | `--body` | ✅ |  |
+| `api notification-subscription-create` | `--body-file` | ✅ |  |
+| `api notification-subscription-delete` |  | ✅ |  |
+| `api notification-subscription-delete` | `--id` | ✅ |  |
+| `api notification-subscription-delete` | `--body` | ✅ |  |
+| `api notification-subscription-delete` | `--body-file` | ✅ |  |
+| `api notification-subscriptions` |  | ✅ |  |
+| `api notification-subscriptions` | `--before` | ✅ |  |
+| `api notification-subscriptions` | `--after` | ✅ |  |
+| `api notification-subscriptions` | `--first` | ✅ |  |
+| `api notification-subscriptions` | `--last` | ✅ |  |
+| `api notification-subscriptions` | `--include-archived` | ✅ |  |
+| `api notification-subscriptions` | `--order-by` | ✅ |  |
+| `api notification-subscriptions` | `--body` | ✅ |  |
+| `api notification-subscriptions` | `--body-file` | ✅ |  |
+| `api notification-subscriptions` | `--all` | ✅ |  |
+| `api notification-subscription-update` |  | ✅ |  |
+| `api notification-subscription-update` | `--input` | ✅ |  |
+| `api notification-subscription-update` | `--id` | ✅ |  |
+| `api notification-subscription-update` | `--body` | ✅ |  |
+| `api notification-subscription-update` | `--body-file` | ✅ |  |
+| `api notification-unarchive` |  | ✅ |  |
+| `api notification-unarchive` | `--id` | ✅ |  |
+| `api notification-unarchive` | `--body` | ✅ |  |
+| `api notification-unarchive` | `--body-file` | ✅ |  |
+| `api notification-unsnooze-all` |  | ✅ |  |
+| `api notification-unsnooze-all` | `--unsnoozed-at` | ✅ |  |
+| `api notification-unsnooze-all` | `--input` | ✅ |  |
+| `api notification-unsnooze-all` | `--body` | ✅ |  |
+| `api notification-unsnooze-all` | `--body-file` | ✅ |  |
+| `api notification-update` |  | ✅ |  |
+| `api notification-update` | `--input` | ✅ |  |
+| `api notification-update` | `--id` | ✅ |  |
+| `api notification-update` | `--body` | ✅ |  |
+| `api notification-update` | `--body-file` | ✅ |  |
+| `api oauth-application` |  | ✅ |  |
+| `api oauth-application` | `--id` | ✅ |  |
+| `api oauth-application` | `--body` | ✅ |  |
+| `api oauth-application` | `--body-file` | ✅ |  |
+| `api oauth-application-archive` |  | ✅ |  |
+| `api oauth-application-archive` | `--id` | ✅ |  |
+| `api oauth-application-archive` | `--body` | ✅ |  |
+| `api oauth-application-archive` | `--body-file` | ✅ |  |
+| `api oauth-application-coding-session-trusted-source` |  | ✅ |  |
+| `api oauth-application-create` |  | ✅ |  |
+| `api oauth-application-create` | `--input` | ✅ |  |
+| `api oauth-application-create` | `--body` | ✅ |  |
+| `api oauth-application-create` | `--body-file` | ✅ |  |
+| `api oauth-application-rotate-secret` |  | ✅ |  |
+| `api oauth-application-rotate-secret` | `--id` | ✅ |  |
+| `api oauth-application-rotate-secret` | `--body` | ✅ |  |
+| `api oauth-application-rotate-secret` | `--body-file` | ✅ |  |
+| `api oauth-application-rotate-webhook-secret` |  | ✅ |  |
+| `api oauth-application-rotate-webhook-secret` | `--id` | ✅ |  |
+| `api oauth-application-rotate-webhook-secret` | `--body` | ✅ |  |
+| `api oauth-application-rotate-webhook-secret` | `--body-file` | ✅ |  |
+| `api oauth-applications` |  | ✅ |  |
+| `api oauth-application-update` |  | ✅ |  |
+| `api oauth-application-update` | `--input` | ✅ |  |
+| `api oauth-application-update` | `--id` | ✅ |  |
+| `api oauth-application-update` | `--body` | ✅ |  |
+| `api oauth-application-update` | `--body-file` | ✅ |  |
+| `api organization` |  | ✅ |  |
+| `api organization-cancel-delete` |  | ✅ |  |
+| `api organization-delete` |  | ✅ |  |
+| `api organization-delete` | `--input` | ✅ |  |
+| `api organization-delete` | `--body` | ✅ |  |
+| `api organization-delete` | `--body-file` | ✅ |  |
+| `api organization-delete-challenge` |  | ✅ |  |
+| `api organization-domain-delete` |  | ✅ |  |
+| `api organization-domain-delete` | `--id` | ✅ |  |
+| `api organization-domain-delete` | `--body` | ✅ |  |
+| `api organization-domain-delete` | `--body-file` | ✅ |  |
+| `api organization-exists` |  | ✅ |  |
+| `api organization-exists` | `--url-key` | ✅ |  |
+| `api organization-exists` | `--body` | ✅ |  |
+| `api organization-exists` | `--body-file` | ✅ |  |
+| `api organization-invite` |  | ✅ |  |
+| `api organization-invite` | `--id` | ✅ |  |
+| `api organization-invite` | `--body` | ✅ |  |
+| `api organization-invite` | `--body-file` | ✅ |  |
+| `api organization-invite-create` |  | ✅ |  |
+| `api organization-invite-create` | `--input` | ✅ |  |
+| `api organization-invite-create` | `--body` | ✅ |  |
+| `api organization-invite-create` | `--body-file` | ✅ |  |
+| `api organization-invite-delete` |  | ✅ |  |
+| `api organization-invite-delete` | `--id` | ✅ |  |
+| `api organization-invite-delete` | `--body` | ✅ |  |
+| `api organization-invite-delete` | `--body-file` | ✅ |  |
+| `api organization-invite-details` |  | ✅ |  |
+| `api organization-invite-details` | `--id` | ✅ |  |
+| `api organization-invite-details` | `--body` | ✅ |  |
+| `api organization-invite-details` | `--body-file` | ✅ |  |
+| `api organization-invites` |  | ✅ |  |
+| `api organization-invites` | `--before` | ✅ |  |
+| `api organization-invites` | `--after` | ✅ |  |
+| `api organization-invites` | `--first` | ✅ |  |
+| `api organization-invites` | `--last` | ✅ |  |
+| `api organization-invites` | `--include-archived` | ✅ |  |
+| `api organization-invites` | `--order-by` | ✅ |  |
+| `api organization-invites` | `--body` | ✅ |  |
+| `api organization-invites` | `--body-file` | ✅ |  |
+| `api organization-invites` | `--all` | ✅ |  |
+| `api organization-invite-update` |  | ✅ |  |
+| `api organization-invite-update` | `--input` | ✅ |  |
+| `api organization-invite-update` | `--id` | ✅ |  |
+| `api organization-invite-update` | `--body` | ✅ |  |
+| `api organization-invite-update` | `--body-file` | ✅ |  |
+| `api organization-start-trial` |  | ✅ |  |
+| `api organization-start-trial-for-plan` |  | ✅ |  |
+| `api organization-start-trial-for-plan` | `--input` | ✅ |  |
+| `api organization-start-trial-for-plan` | `--body` | ✅ |  |
+| `api organization-start-trial-for-plan` | `--body-file` | ✅ |  |
+| `api organization-update` |  | ✅ |  |
+| `api organization-update` | `--input` | ✅ |  |
+| `api organization-update` | `--body` | ✅ |  |
+| `api organization-update` | `--body-file` | ✅ |  |
+| `api project` |  | ✅ |  |
+| `api project` | `--id` | ✅ |  |
+| `api project` | `--body` | ✅ |  |
+| `api project` | `--body-file` | ✅ |  |
+| `api project-add-label` |  | ✅ |  |
+| `api project-add-label` | `--label-id` | ✅ |  |
+| `api project-add-label` | `--id` | ✅ |  |
+| `api project-add-label` | `--body` | ✅ |  |
+| `api project-add-label` | `--body-file` | ✅ |  |
+| `api project-archive` |  | ✅ |  |
+| `api project-archive` | `--trash` | ✅ |  |
+| `api project-archive` | `--id` | ✅ |  |
+| `api project-archive` | `--body` | ✅ |  |
+| `api project-archive` | `--body-file` | ✅ |  |
+| `api project-create` |  | ✅ |  |
+| `api project-create` | `--ai-conversation-id` | ✅ |  |
+| `api project-create` | `--project-draft-id` | ✅ |  |
+| `api project-create` | `--slack-channel-name` | ✅ |  |
+| `api project-create` | `--input` | ✅ |  |
+| `api project-create` | `--body` | ✅ |  |
+| `api project-create` | `--body-file` | ✅ |  |
+| `api project-delete` |  | ✅ |  |
+| `api project-delete` | `--id` | ✅ |  |
+| `api project-delete` | `--body` | ✅ |  |
+| `api project-delete` | `--body-file` | ✅ |  |
+| `api project-external-sync-disable` |  | ✅ |  |
+| `api project-external-sync-disable` | `--sync-source` | ✅ |  |
+| `api project-external-sync-disable` | `--project-id` | ✅ |  |
+| `api project-external-sync-disable` | `--body` | ✅ |  |
+| `api project-external-sync-disable` | `--body-file` | ✅ |  |
+| `api project-filter-suggestion` |  | ✅ |  |
+| `api project-filter-suggestion` | `--team-id` | ✅ |  |
+| `api project-filter-suggestion` | `--prompt` | ✅ |  |
+| `api project-filter-suggestion` | `--body` | ✅ |  |
+| `api project-filter-suggestion` | `--body-file` | ✅ |  |
+| `api project-label` |  | ✅ |  |
+| `api project-label` | `--id` | ✅ |  |
+| `api project-label` | `--body` | ✅ |  |
+| `api project-label` | `--body-file` | ✅ |  |
+| `api project-label-create` |  | ✅ |  |
+| `api project-label-create` | `--replace-team-labels` | ✅ |  |
+| `api project-label-create` | `--input` | ✅ |  |
+| `api project-label-create` | `--body` | ✅ |  |
+| `api project-label-create` | `--body-file` | ✅ |  |
+| `api project-label-delete` |  | ✅ |  |
+| `api project-label-delete` | `--id` | ✅ |  |
+| `api project-label-delete` | `--body` | ✅ |  |
+| `api project-label-delete` | `--body-file` | ✅ |  |
+| `api project-label-restore` |  | ✅ |  |
+| `api project-label-restore` | `--id` | ✅ |  |
+| `api project-label-restore` | `--body` | ✅ |  |
+| `api project-label-restore` | `--body-file` | ✅ |  |
+| `api project-label-retire` |  | ✅ |  |
+| `api project-label-retire` | `--id` | ✅ |  |
+| `api project-label-retire` | `--body` | ✅ |  |
+| `api project-label-retire` | `--body-file` | ✅ |  |
+| `api project-labels` |  | ✅ |  |
+| `api project-labels` | `--filter` | ✅ |  |
+| `api project-labels` | `--before` | ✅ |  |
+| `api project-labels` | `--after` | ✅ |  |
+| `api project-labels` | `--first` | ✅ |  |
+| `api project-labels` | `--last` | ✅ |  |
+| `api project-labels` | `--include-archived` | ✅ |  |
+| `api project-labels` | `--order-by` | ✅ |  |
+| `api project-labels` | `--body` | ✅ |  |
+| `api project-labels` | `--body-file` | ✅ |  |
+| `api project-labels` | `--all` | ✅ |  |
+| `api project-label-update` |  | ✅ |  |
+| `api project-label-update` | `--replace-team-labels` | ✅ |  |
+| `api project-label-update` | `--input` | ✅ |  |
+| `api project-label-update` | `--id` | ✅ |  |
+| `api project-label-update` | `--body` | ✅ |  |
+| `api project-label-update` | `--body-file` | ✅ |  |
+| `api project-milestone` |  | ✅ |  |
+| `api project-milestone` | `--id` | ✅ |  |
+| `api project-milestone` | `--body` | ✅ |  |
+| `api project-milestone` | `--body-file` | ✅ |  |
+| `api project-milestone-create` |  | ✅ |  |
+| `api project-milestone-create` | `--input` | ✅ |  |
+| `api project-milestone-create` | `--body` | ✅ |  |
+| `api project-milestone-create` | `--body-file` | ✅ |  |
+| `api project-milestone-delete` |  | ✅ |  |
+| `api project-milestone-delete` | `--id` | ✅ |  |
+| `api project-milestone-delete` | `--body` | ✅ |  |
+| `api project-milestone-delete` | `--body-file` | ✅ |  |
+| `api project-milestone-move` |  | ✅ |  |
+| `api project-milestone-move` | `--input` | ✅ |  |
+| `api project-milestone-move` | `--id` | ✅ |  |
+| `api project-milestone-move` | `--body` | ✅ |  |
+| `api project-milestone-move` | `--body-file` | ✅ |  |
+| `api project-milestones` |  | ✅ |  |
+| `api project-milestones` | `--filter` | ✅ |  |
+| `api project-milestones` | `--before` | ✅ |  |
+| `api project-milestones` | `--after` | ✅ |  |
+| `api project-milestones` | `--first` | ✅ |  |
+| `api project-milestones` | `--last` | ✅ |  |
+| `api project-milestones` | `--include-archived` | ✅ |  |
+| `api project-milestones` | `--order-by` | ✅ |  |
+| `api project-milestones` | `--body` | ✅ |  |
+| `api project-milestones` | `--body-file` | ✅ |  |
+| `api project-milestones` | `--all` | ✅ |  |
+| `api project-milestone-update` |  | ✅ |  |
+| `api project-milestone-update` | `--input` | ✅ |  |
+| `api project-milestone-update` | `--id` | ✅ |  |
+| `api project-milestone-update` | `--body` | ✅ |  |
+| `api project-milestone-update` | `--body-file` | ✅ |  |
+| `api project-relation` |  | ✅ |  |
+| `api project-relation` | `--id` | ✅ |  |
+| `api project-relation` | `--body` | ✅ |  |
+| `api project-relation` | `--body-file` | ✅ |  |
+| `api project-relation-create` |  | ✅ |  |
+| `api project-relation-create` | `--input` | ✅ |  |
+| `api project-relation-create` | `--body` | ✅ |  |
+| `api project-relation-create` | `--body-file` | ✅ |  |
+| `api project-relation-delete` |  | ✅ |  |
+| `api project-relation-delete` | `--id` | ✅ |  |
+| `api project-relation-delete` | `--body` | ✅ |  |
+| `api project-relation-delete` | `--body-file` | ✅ |  |
+| `api project-relations` |  | ✅ |  |
+| `api project-relations` | `--before` | ✅ |  |
+| `api project-relations` | `--after` | ✅ |  |
+| `api project-relations` | `--first` | ✅ |  |
+| `api project-relations` | `--last` | ✅ |  |
+| `api project-relations` | `--include-archived` | ✅ |  |
+| `api project-relations` | `--order-by` | ✅ |  |
+| `api project-relations` | `--body` | ✅ |  |
+| `api project-relations` | `--body-file` | ✅ |  |
+| `api project-relations` | `--all` | ✅ |  |
+| `api project-relation-update` |  | ✅ |  |
+| `api project-relation-update` | `--input` | ✅ |  |
+| `api project-relation-update` | `--id` | ✅ |  |
+| `api project-relation-update` | `--body` | ✅ |  |
+| `api project-relation-update` | `--body-file` | ✅ |  |
+| `api project-remove-label` |  | ✅ |  |
+| `api project-remove-label` | `--label-id` | ✅ |  |
+| `api project-remove-label` | `--id` | ✅ |  |
+| `api project-remove-label` | `--body` | ✅ |  |
+| `api project-remove-label` | `--body-file` | ✅ |  |
+| `api projects` |  | ✅ |  |
+| `api projects` | `--filter` | ✅ |  |
+| `api projects` | `--before` | ✅ |  |
+| `api projects` | `--after` | ✅ |  |
+| `api projects` | `--first` | ✅ |  |
+| `api projects` | `--last` | ✅ |  |
+| `api projects` | `--include-archived` | ✅ |  |
+| `api projects` | `--order-by` | ✅ |  |
+| `api projects` | `--sort` | ✅ |  |
+| `api projects` | `--body` | ✅ |  |
+| `api projects` | `--body-file` | ✅ |  |
+| `api projects` | `--all` | ✅ |  |
+| `api project-status` |  | ✅ |  |
+| `api project-status` | `--id` | ✅ |  |
+| `api project-status` | `--body` | ✅ |  |
+| `api project-status` | `--body-file` | ✅ |  |
+| `api project-status-archive` |  | ✅ |  |
+| `api project-status-archive` | `--id` | ✅ |  |
+| `api project-status-archive` | `--body` | ✅ |  |
+| `api project-status-archive` | `--body-file` | ✅ |  |
+| `api project-status-create` |  | ✅ |  |
+| `api project-status-create` | `--input` | ✅ |  |
+| `api project-status-create` | `--body` | ✅ |  |
+| `api project-status-create` | `--body-file` | ✅ |  |
+| `api project-statuses` |  | ✅ |  |
+| `api project-statuses` | `--before` | ✅ |  |
+| `api project-statuses` | `--after` | ✅ |  |
+| `api project-statuses` | `--first` | ✅ |  |
+| `api project-statuses` | `--last` | ✅ |  |
+| `api project-statuses` | `--include-archived` | ✅ |  |
+| `api project-statuses` | `--order-by` | ✅ |  |
+| `api project-statuses` | `--body` | ✅ |  |
+| `api project-statuses` | `--body-file` | ✅ |  |
+| `api project-statuses` | `--all` | ✅ |  |
+| `api project-status-unarchive` |  | ✅ |  |
+| `api project-status-unarchive` | `--id` | ✅ |  |
+| `api project-status-unarchive` | `--body` | ✅ |  |
+| `api project-status-unarchive` | `--body-file` | ✅ |  |
+| `api project-status-update` |  | ✅ |  |
+| `api project-status-update` | `--input` | ✅ |  |
+| `api project-status-update` | `--id` | ✅ |  |
+| `api project-status-update` | `--body` | ✅ |  |
+| `api project-status-update` | `--body-file` | ✅ |  |
+| `api project-unarchive` |  | ✅ |  |
+| `api project-unarchive` | `--id` | ✅ |  |
+| `api project-unarchive` | `--body` | ✅ |  |
+| `api project-unarchive` | `--body-file` | ✅ |  |
+| `api project-update` |  | ✅ |  |
+| `api project-update` | `--input` | ✅ |  |
+| `api project-update` | `--id` | ✅ |  |
+| `api project-update` | `--body` | ✅ |  |
+| `api project-update` | `--body-file` | ✅ |  |
+| `api project-update-archive` |  | ✅ |  |
+| `api project-update-archive` | `--id` | ✅ |  |
+| `api project-update-archive` | `--body` | ✅ |  |
+| `api project-update-archive` | `--body-file` | ✅ |  |
+| `api project-update-create` |  | ✅ |  |
+| `api project-update-create` | `--input` | ✅ |  |
+| `api project-update-create` | `--body` | ✅ |  |
+| `api project-update-create` | `--body-file` | ✅ |  |
+| `api project-update-delete` |  | ✅ |  |
+| `api project-update-delete` | `--id` | ✅ |  |
+| `api project-update-delete` | `--body` | ✅ |  |
+| `api project-update-delete` | `--body-file` | ✅ |  |
+| `api project-updates` |  | ✅ |  |
+| `api project-updates` | `--filter` | ✅ |  |
+| `api project-updates` | `--before` | ✅ |  |
+| `api project-updates` | `--after` | ✅ |  |
+| `api project-updates` | `--first` | ✅ |  |
+| `api project-updates` | `--last` | ✅ |  |
+| `api project-updates` | `--include-archived` | ✅ |  |
+| `api project-updates` | `--order-by` | ✅ |  |
+| `api project-updates` | `--body` | ✅ |  |
+| `api project-updates` | `--body-file` | ✅ |  |
+| `api project-updates` | `--all` | ✅ |  |
+| `api project-update-unarchive` |  | ✅ |  |
+| `api project-update-unarchive` | `--id` | ✅ |  |
+| `api project-update-unarchive` | `--body` | ✅ |  |
+| `api project-update-unarchive` | `--body-file` | ✅ |  |
+| `api project-update-update` |  | ✅ |  |
+| `api project-update-update` | `--input` | ✅ |  |
+| `api project-update-update` | `--id` | ✅ |  |
+| `api project-update-update` | `--body` | ✅ |  |
+| `api project-update-update` | `--body-file` | ✅ |  |
+| `api push-subscription-create` |  | ✅ |  |
+| `api push-subscription-create` | `--input` | ✅ |  |
+| `api push-subscription-create` | `--body` | ✅ |  |
+| `api push-subscription-create` | `--body-file` | ✅ |  |
+| `api push-subscription-delete` |  | ✅ |  |
+| `api push-subscription-delete` | `--id` | ✅ |  |
+| `api push-subscription-delete` | `--body` | ✅ |  |
+| `api push-subscription-delete` | `--body-file` | ✅ |  |
+| `api push-subscription-test` |  | ✅ |  |
+| `api push-subscription-test` | `--target-mobile` | ✅ |  |
+| `api push-subscription-test` | `--send-strategy` | ✅ |  |
+| `api push-subscription-test` | `--body` | ✅ |  |
+| `api push-subscription-test` | `--body-file` | ✅ |  |
+| `api quotas` |  | ✅ |  |
+| `api quotas` | `--filter` | ✅ |  |
+| `api quotas` | `--before` | ✅ |  |
+| `api quotas` | `--after` | ✅ |  |
+| `api quotas` | `--first` | ✅ |  |
+| `api quotas` | `--last` | ✅ |  |
+| `api quotas` | `--body` | ✅ |  |
+| `api quotas` | `--body-file` | ✅ |  |
+| `api quotas` | `--all` | ✅ |  |
+| `api rate-limit-status` |  | ✅ |  |
+| `api reaction-create` |  | ✅ |  |
+| `api reaction-create` | `--input` | ✅ |  |
+| `api reaction-create` | `--body` | ✅ |  |
+| `api reaction-create` | `--body-file` | ✅ |  |
+| `api reaction-delete` |  | ✅ |  |
+| `api reaction-delete` | `--id` | ✅ |  |
+| `api reaction-delete` | `--body` | ✅ |  |
+| `api reaction-delete` | `--body-file` | ✅ |  |
+| `api recent-releases-by-access-key` |  | ✅ |  |
+| `api recent-releases-by-access-key` | `--after` | ✅ |  |
+| `api recent-releases-by-access-key` | `--include-archived` | ✅ |  |
+| `api recent-releases-by-access-key` | `--limit` | ✅ |  |
+| `api recent-releases-by-access-key` | `--body` | ✅ |  |
+| `api recent-releases-by-access-key` | `--body-file` | ✅ |  |
+| `api refresh-google-sheets-data` |  | ✅ |  |
+| `api refresh-google-sheets-data` | `--type` | ✅ |  |
+| `api refresh-google-sheets-data` | `--id` | ✅ |  |
+| `api refresh-google-sheets-data` | `--body` | ✅ |  |
+| `api refresh-google-sheets-data` | `--body-file` | ✅ |  |
+| `api release` |  | ✅ |  |
+| `api release` | `--id` | ✅ |  |
+| `api release` | `--body` | ✅ |  |
+| `api release` | `--body-file` | ✅ |  |
+| `api release-archive` |  | ✅ |  |
+| `api release-archive` | `--id` | ✅ |  |
+| `api release-archive` | `--body` | ✅ |  |
+| `api release-archive` | `--body-file` | ✅ |  |
+| `api release-complete` |  | ✅ |  |
+| `api release-complete` | `--input` | ✅ |  |
+| `api release-complete` | `--body` | ✅ |  |
+| `api release-complete` | `--body-file` | ✅ |  |
+| `api release-complete-by-access-key` |  | ✅ |  |
+| `api release-complete-by-access-key` | `--input` | ✅ |  |
+| `api release-complete-by-access-key` | `--body` | ✅ |  |
+| `api release-complete-by-access-key` | `--body-file` | ✅ |  |
+| `api release-create` |  | ✅ |  |
+| `api release-create` | `--input` | ✅ |  |
+| `api release-create` | `--body` | ✅ |  |
+| `api release-create` | `--body-file` | ✅ |  |
+| `api release-delete` |  | ✅ |  |
+| `api release-delete` | `--id` | ✅ |  |
+| `api release-delete` | `--body` | ✅ |  |
+| `api release-delete` | `--body-file` | ✅ |  |
+| `api release-note` |  | ✅ |  |
+| `api release-note` | `--id` | ✅ |  |
+| `api release-note` | `--body` | ✅ |  |
+| `api release-note` | `--body-file` | ✅ |  |
+| `api release-note-create` |  | ✅ |  |
+| `api release-note-create` | `--input` | ✅ |  |
+| `api release-note-create` | `--body` | ✅ |  |
+| `api release-note-create` | `--body-file` | ✅ |  |
+| `api release-note-delete` |  | ✅ |  |
+| `api release-note-delete` | `--id` | ✅ |  |
+| `api release-note-delete` | `--body` | ✅ |  |
+| `api release-note-delete` | `--body-file` | ✅ |  |
+| `api release-notes` |  | ✅ |  |
+| `api release-notes` | `--filter` | ✅ |  |
+| `api release-notes` | `--before` | ✅ |  |
+| `api release-notes` | `--after` | ✅ |  |
+| `api release-notes` | `--first` | ✅ |  |
+| `api release-notes` | `--last` | ✅ |  |
+| `api release-notes` | `--include-archived` | ✅ |  |
+| `api release-notes` | `--order-by` | ✅ |  |
+| `api release-notes` | `--body` | ✅ |  |
+| `api release-notes` | `--body-file` | ✅ |  |
+| `api release-notes` | `--all` | ✅ |  |
+| `api release-note-update` |  | ✅ |  |
+| `api release-note-update` | `--input` | ✅ |  |
+| `api release-note-update` | `--id` | ✅ |  |
+| `api release-note-update` | `--body` | ✅ |  |
+| `api release-note-update` | `--body-file` | ✅ |  |
+| `api release-pipeline` |  | ✅ |  |
+| `api release-pipeline` | `--id` | ✅ |  |
+| `api release-pipeline` | `--body` | ✅ |  |
+| `api release-pipeline` | `--body-file` | ✅ |  |
+| `api release-pipeline-archive` |  | ✅ |  |
+| `api release-pipeline-archive` | `--id` | ✅ |  |
+| `api release-pipeline-archive` | `--body` | ✅ |  |
+| `api release-pipeline-archive` | `--body-file` | ✅ |  |
+| `api release-pipeline-by-access-key` |  | ✅ |  |
+| `api release-pipeline-create` |  | ✅ |  |
+| `api release-pipeline-create` | `--input` | ✅ |  |
+| `api release-pipeline-create` | `--body` | ✅ |  |
+| `api release-pipeline-create` | `--body-file` | ✅ |  |
+| `api release-pipeline-delete` |  | ✅ |  |
+| `api release-pipeline-delete` | `--id` | ✅ |  |
+| `api release-pipeline-delete` | `--body` | ✅ |  |
+| `api release-pipeline-delete` | `--body-file` | ✅ |  |
+| `api release-pipelines` |  | ✅ |  |
+| `api release-pipelines` | `--filter` | ✅ |  |
+| `api release-pipelines` | `--before` | ✅ |  |
+| `api release-pipelines` | `--after` | ✅ |  |
+| `api release-pipelines` | `--first` | ✅ |  |
+| `api release-pipelines` | `--last` | ✅ |  |
+| `api release-pipelines` | `--include-archived` | ✅ |  |
+| `api release-pipelines` | `--order-by` | ✅ |  |
+| `api release-pipelines` | `--sort` | ✅ |  |
+| `api release-pipelines` | `--body` | ✅ |  |
+| `api release-pipelines` | `--body-file` | ✅ |  |
+| `api release-pipelines` | `--all` | ✅ |  |
+| `api release-pipeline-unarchive` |  | ✅ |  |
+| `api release-pipeline-unarchive` | `--id` | ✅ |  |
+| `api release-pipeline-unarchive` | `--body` | ✅ |  |
+| `api release-pipeline-unarchive` | `--body-file` | ✅ |  |
+| `api release-pipeline-update` |  | ✅ |  |
+| `api release-pipeline-update` | `--input` | ✅ |  |
+| `api release-pipeline-update` | `--id` | ✅ |  |
+| `api release-pipeline-update` | `--body` | ✅ |  |
+| `api release-pipeline-update` | `--body-file` | ✅ |  |
+| `api releases` |  | ✅ |  |
+| `api releases` | `--filter` | ✅ |  |
+| `api releases` | `--before` | ✅ |  |
+| `api releases` | `--after` | ✅ |  |
+| `api releases` | `--first` | ✅ |  |
+| `api releases` | `--last` | ✅ |  |
+| `api releases` | `--include-archived` | ✅ |  |
+| `api releases` | `--order-by` | ✅ |  |
+| `api releases` | `--sort` | ✅ |  |
+| `api releases` | `--body` | ✅ |  |
+| `api releases` | `--body-file` | ✅ |  |
+| `api releases` | `--all` | ✅ |  |
+| `api release-search` |  | ✅ |  |
+| `api release-search` | `--filter` | ✅ |  |
+| `api release-search` | `--first` | ✅ |  |
+| `api release-search` | `--term` | ✅ |  |
+| `api release-search` | `--body` | ✅ |  |
+| `api release-search` | `--body-file` | ✅ |  |
+| `api release-stage` |  | ✅ |  |
+| `api release-stage` | `--id` | ✅ |  |
+| `api release-stage` | `--body` | ✅ |  |
+| `api release-stage` | `--body-file` | ✅ |  |
+| `api release-stage-archive` |  | ✅ |  |
+| `api release-stage-archive` | `--id` | ✅ |  |
+| `api release-stage-archive` | `--body` | ✅ |  |
+| `api release-stage-archive` | `--body-file` | ✅ |  |
+| `api release-stage-create` |  | ✅ |  |
+| `api release-stage-create` | `--input` | ✅ |  |
+| `api release-stage-create` | `--body` | ✅ |  |
+| `api release-stage-create` | `--body-file` | ✅ |  |
+| `api release-stages` |  | ✅ |  |
+| `api release-stages` | `--filter` | ✅ |  |
+| `api release-stages` | `--before` | ✅ |  |
+| `api release-stages` | `--after` | ✅ |  |
+| `api release-stages` | `--first` | ✅ |  |
+| `api release-stages` | `--last` | ✅ |  |
+| `api release-stages` | `--include-archived` | ✅ |  |
+| `api release-stages` | `--order-by` | ✅ |  |
+| `api release-stages` | `--body` | ✅ |  |
+| `api release-stages` | `--body-file` | ✅ |  |
+| `api release-stages` | `--all` | ✅ |  |
+| `api release-stage-unarchive` |  | ✅ |  |
+| `api release-stage-unarchive` | `--id` | ✅ |  |
+| `api release-stage-unarchive` | `--body` | ✅ |  |
+| `api release-stage-unarchive` | `--body-file` | ✅ |  |
+| `api release-stage-update` |  | ✅ |  |
+| `api release-stage-update` | `--input` | ✅ |  |
+| `api release-stage-update` | `--id` | ✅ |  |
+| `api release-stage-update` | `--body` | ✅ |  |
+| `api release-stage-update` | `--body-file` | ✅ |  |
+| `api release-sync` |  | ✅ |  |
+| `api release-sync` | `--input` | ✅ |  |
+| `api release-sync` | `--body` | ✅ |  |
+| `api release-sync` | `--body-file` | ✅ |  |
+| `api release-sync-by-access-key` |  | ✅ |  |
+| `api release-sync-by-access-key` | `--input` | ✅ |  |
+| `api release-sync-by-access-key` | `--body` | ✅ |  |
+| `api release-sync-by-access-key` | `--body-file` | ✅ |  |
+| `api release-unarchive` |  | ✅ |  |
+| `api release-unarchive` | `--id` | ✅ |  |
+| `api release-unarchive` | `--body` | ✅ |  |
+| `api release-unarchive` | `--body-file` | ✅ |  |
+| `api release-update` |  | ✅ |  |
+| `api release-update` | `--input` | ✅ |  |
+| `api release-update` | `--id` | ✅ |  |
+| `api release-update` | `--body` | ✅ |  |
+| `api release-update` | `--body-file` | ✅ |  |
+| `api release-update-by-pipeline` |  | ✅ |  |
+| `api release-update-by-pipeline` | `--input` | ✅ |  |
+| `api release-update-by-pipeline` | `--body` | ✅ |  |
+| `api release-update-by-pipeline` | `--body-file` | ✅ |  |
+| `api release-update-by-pipeline-by-access-key` |  | ✅ |  |
+| `api release-update-by-pipeline-by-access-key` | `--input` | ✅ |  |
+| `api release-update-by-pipeline-by-access-key` | `--body` | ✅ |  |
+| `api release-update-by-pipeline-by-access-key` | `--body-file` | ✅ |  |
+| `api resend-organization-invite` |  | ✅ |  |
+| `api resend-organization-invite` | `--id` | ✅ |  |
+| `api resend-organization-invite` | `--body` | ✅ |  |
+| `api resend-organization-invite` | `--body-file` | ✅ |  |
+| `api resend-organization-invite-by-email` |  | ✅ |  |
+| `api resend-organization-invite-by-email` | `--email` | ✅ |  |
+| `api resend-organization-invite-by-email` | `--body` | ✅ |  |
+| `api resend-organization-invite-by-email` | `--body-file` | ✅ |  |
+| `api roadmap` |  | ✅ |  |
+| `api roadmap` | `--id` | ✅ |  |
+| `api roadmap` | `--body` | ✅ |  |
+| `api roadmap` | `--body-file` | ✅ |  |
+| `api roadmap-archive` |  | ✅ |  |
+| `api roadmap-archive` | `--id` | ✅ |  |
+| `api roadmap-archive` | `--body` | ✅ |  |
+| `api roadmap-archive` | `--body-file` | ✅ |  |
+| `api roadmap-create` |  | ✅ |  |
+| `api roadmap-create` | `--input` | ✅ |  |
+| `api roadmap-create` | `--body` | ✅ |  |
+| `api roadmap-create` | `--body-file` | ✅ |  |
+| `api roadmap-delete` |  | ✅ |  |
+| `api roadmap-delete` | `--id` | ✅ |  |
+| `api roadmap-delete` | `--body` | ✅ |  |
+| `api roadmap-delete` | `--body-file` | ✅ |  |
+| `api roadmaps` |  | ✅ |  |
+| `api roadmaps` | `--before` | ✅ |  |
+| `api roadmaps` | `--after` | ✅ |  |
+| `api roadmaps` | `--first` | ✅ |  |
+| `api roadmaps` | `--last` | ✅ |  |
+| `api roadmaps` | `--include-archived` | ✅ |  |
+| `api roadmaps` | `--order-by` | ✅ |  |
+| `api roadmaps` | `--body` | ✅ |  |
+| `api roadmaps` | `--body-file` | ✅ |  |
+| `api roadmaps` | `--all` | ✅ |  |
+| `api roadmap-to-project` |  | ✅ |  |
+| `api roadmap-to-project` | `--id` | ✅ |  |
+| `api roadmap-to-project` | `--body` | ✅ |  |
+| `api roadmap-to-project` | `--body-file` | ✅ |  |
+| `api roadmap-to-project-create` |  | ✅ |  |
+| `api roadmap-to-project-create` | `--input` | ✅ |  |
+| `api roadmap-to-project-create` | `--body` | ✅ |  |
+| `api roadmap-to-project-create` | `--body-file` | ✅ |  |
+| `api roadmap-to-project-delete` |  | ✅ |  |
+| `api roadmap-to-project-delete` | `--id` | ✅ |  |
+| `api roadmap-to-project-delete` | `--body` | ✅ |  |
+| `api roadmap-to-project-delete` | `--body-file` | ✅ |  |
+| `api roadmap-to-projects` |  | ✅ |  |
+| `api roadmap-to-projects` | `--before` | ✅ |  |
+| `api roadmap-to-projects` | `--after` | ✅ |  |
+| `api roadmap-to-projects` | `--first` | ✅ |  |
+| `api roadmap-to-projects` | `--last` | ✅ |  |
+| `api roadmap-to-projects` | `--include-archived` | ✅ |  |
+| `api roadmap-to-projects` | `--order-by` | ✅ |  |
+| `api roadmap-to-projects` | `--body` | ✅ |  |
+| `api roadmap-to-projects` | `--body-file` | ✅ |  |
+| `api roadmap-to-projects` | `--all` | ✅ |  |
+| `api roadmap-to-project-update` |  | ✅ |  |
+| `api roadmap-to-project-update` | `--input` | ✅ |  |
+| `api roadmap-to-project-update` | `--id` | ✅ |  |
+| `api roadmap-to-project-update` | `--body` | ✅ |  |
+| `api roadmap-to-project-update` | `--body-file` | ✅ |  |
+| `api roadmap-unarchive` |  | ✅ |  |
+| `api roadmap-unarchive` | `--id` | ✅ |  |
+| `api roadmap-unarchive` | `--body` | ✅ |  |
+| `api roadmap-unarchive` | `--body-file` | ✅ |  |
+| `api roadmap-update` |  | ✅ |  |
+| `api roadmap-update` | `--input` | ✅ |  |
+| `api roadmap-update` | `--id` | ✅ |  |
+| `api roadmap-update` | `--body` | ✅ |  |
+| `api roadmap-update` | `--body-file` | ✅ |  |
+| `api saml-token-user-account-auth` |  | ✅ |  |
+| `api saml-token-user-account-auth` | `--input` | ✅ |  |
+| `api saml-token-user-account-auth` | `--body` | ✅ |  |
+| `api saml-token-user-account-auth` | `--body-file` | ✅ |  |
+| `api search-documents` |  | ✅ |  |
+| `api search-documents` | `--filter` | ✅ |  |
+| `api search-documents` | `--before` | ✅ |  |
+| `api search-documents` | `--after` | ✅ |  |
+| `api search-documents` | `--first` | ✅ |  |
+| `api search-documents` | `--last` | ✅ |  |
+| `api search-documents` | `--include-archived` | ✅ |  |
+| `api search-documents` | `--order-by` | ✅ |  |
+| `api search-documents` | `--term` | ✅ |  |
+| `api search-documents` | `--include-comments` | ✅ |  |
+| `api search-documents` | `--team-id` | ✅ |  |
+| `api search-documents` | `--body` | ✅ |  |
+| `api search-documents` | `--body-file` | ✅ |  |
+| `api search-documents` | `--all` | ✅ |  |
+| `api search-issues` |  | ✅ |  |
+| `api search-issues` | `--filter` | ✅ |  |
+| `api search-issues` | `--before` | ✅ |  |
+| `api search-issues` | `--after` | ✅ |  |
+| `api search-issues` | `--first` | ✅ |  |
+| `api search-issues` | `--last` | ✅ |  |
+| `api search-issues` | `--include-archived` | ✅ |  |
+| `api search-issues` | `--order-by` | ✅ |  |
+| `api search-issues` | `--term` | ✅ |  |
+| `api search-issues` | `--include-comments` | ✅ |  |
+| `api search-issues` | `--team-id` | ✅ |  |
+| `api search-issues` | `--body` | ✅ |  |
+| `api search-issues` | `--body-file` | ✅ |  |
+| `api search-issues` | `--all` | ✅ |  |
+| `api search-projects` |  | ✅ |  |
+| `api search-projects` | `--before` | ✅ |  |
+| `api search-projects` | `--after` | ✅ |  |
+| `api search-projects` | `--first` | ✅ |  |
+| `api search-projects` | `--last` | ✅ |  |
+| `api search-projects` | `--include-archived` | ✅ |  |
+| `api search-projects` | `--order-by` | ✅ |  |
+| `api search-projects` | `--term` | ✅ |  |
+| `api search-projects` | `--include-comments` | ✅ |  |
+| `api search-projects` | `--team-id` | ✅ |  |
+| `api search-projects` | `--body` | ✅ |  |
+| `api search-projects` | `--body-file` | ✅ |  |
+| `api search-projects` | `--all` | ✅ |  |
+| `api semantic-search` |  | ✅ |  |
+| `api semantic-search` | `--query` | ✅ |  |
+| `api semantic-search` | `--types` | ✅ |  |
+| `api semantic-search` | `--max-results` | ✅ |  |
+| `api semantic-search` | `--include-archived` | ✅ |  |
+| `api semantic-search` | `--filters` | ✅ |  |
+| `api semantic-search` | `--body` | ✅ |  |
+| `api semantic-search` | `--body-file` | ✅ |  |
+| `api sla-configurations` |  | ✅ |  |
+| `api sla-configurations` | `--team-id` | ✅ |  |
+| `api sla-configurations` | `--body` | ✅ |  |
+| `api sla-configurations` | `--body-file` | ✅ |  |
+| `api sso-url-from-email` |  | ✅ |  |
+| `api sso-url-from-email` | `--is-desktop` | ✅ |  |
+| `api sso-url-from-email` | `--type` | ✅ |  |
+| `api sso-url-from-email` | `--email` | ✅ |  |
+| `api sso-url-from-email` | `--body` | ✅ |  |
+| `api sso-url-from-email` | `--body-file` | ✅ |  |
+| `api team` |  | ✅ |  |
+| `api team` | `--id` | ✅ |  |
+| `api team` | `--body` | ✅ |  |
+| `api team` | `--body-file` | ✅ |  |
+| `api team-create` |  | ✅ |  |
+| `api team-create` | `--copy-settings-from-team-id` | ✅ |  |
+| `api team-create` | `--input` | ✅ |  |
+| `api team-create` | `--body` | ✅ |  |
+| `api team-create` | `--body-file` | ✅ |  |
+| `api team-cycles-delete` |  | ✅ |  |
+| `api team-cycles-delete` | `--id` | ✅ |  |
+| `api team-cycles-delete` | `--body` | ✅ |  |
+| `api team-cycles-delete` | `--body-file` | ✅ |  |
+| `api team-delete` |  | ✅ |  |
+| `api team-delete` | `--id` | ✅ |  |
+| `api team-delete` | `--body` | ✅ |  |
+| `api team-delete` | `--body-file` | ✅ |  |
+| `api team-key-delete` |  | ✅ |  |
+| `api team-key-delete` | `--id` | ✅ |  |
+| `api team-key-delete` | `--body` | ✅ |  |
+| `api team-key-delete` | `--body-file` | ✅ |  |
+| `api team-membership` |  | ✅ |  |
+| `api team-membership` | `--id` | ✅ |  |
+| `api team-membership` | `--body` | ✅ |  |
+| `api team-membership` | `--body-file` | ✅ |  |
+| `api team-membership-create` |  | ✅ |  |
+| `api team-membership-create` | `--input` | ✅ |  |
+| `api team-membership-create` | `--body` | ✅ |  |
+| `api team-membership-create` | `--body-file` | ✅ |  |
+| `api team-membership-delete` |  | ✅ |  |
+| `api team-membership-delete` | `--also-leave-parent-teams` | ✅ |  |
+| `api team-membership-delete` | `--id` | ✅ |  |
+| `api team-membership-delete` | `--body` | ✅ |  |
+| `api team-membership-delete` | `--body-file` | ✅ |  |
+| `api team-memberships` |  | ✅ |  |
+| `api team-memberships` | `--before` | ✅ |  |
+| `api team-memberships` | `--after` | ✅ |  |
+| `api team-memberships` | `--first` | ✅ |  |
+| `api team-memberships` | `--last` | ✅ |  |
+| `api team-memberships` | `--include-archived` | ✅ |  |
+| `api team-memberships` | `--order-by` | ✅ |  |
+| `api team-memberships` | `--body` | ✅ |  |
+| `api team-memberships` | `--body-file` | ✅ |  |
+| `api team-memberships` | `--all` | ✅ |  |
+| `api team-membership-update` |  | ✅ |  |
+| `api team-membership-update` | `--input` | ✅ |  |
+| `api team-membership-update` | `--id` | ✅ |  |
+| `api team-membership-update` | `--body` | ✅ |  |
+| `api team-membership-update` | `--body-file` | ✅ |  |
+| `api teams` |  | ✅ |  |
+| `api teams` | `--filter` | ✅ |  |
+| `api teams` | `--before` | ✅ |  |
+| `api teams` | `--after` | ✅ |  |
+| `api teams` | `--first` | ✅ |  |
+| `api teams` | `--last` | ✅ |  |
+| `api teams` | `--include-archived` | ✅ |  |
+| `api teams` | `--order-by` | ✅ |  |
+| `api teams` | `--body` | ✅ |  |
+| `api teams` | `--body-file` | ✅ |  |
+| `api teams` | `--all` | ✅ |  |
+| `api team-unarchive` |  | ✅ |  |
+| `api team-unarchive` | `--id` | ✅ |  |
+| `api team-unarchive` | `--body` | ✅ |  |
+| `api team-unarchive` | `--body-file` | ✅ |  |
+| `api team-update` |  | ✅ |  |
+| `api team-update` | `--mapping` | ✅ |  |
+| `api team-update` | `--input` | ✅ |  |
+| `api team-update` | `--id` | ✅ |  |
+| `api team-update` | `--body` | ✅ |  |
+| `api team-update` | `--body-file` | ✅ |  |
+| `api template` |  | ✅ |  |
+| `api template` | `--id` | ✅ |  |
+| `api template` | `--body` | ✅ |  |
+| `api template` | `--body-file` | ✅ |  |
+| `api template-create` |  | ✅ |  |
+| `api template-create` | `--input` | ✅ |  |
+| `api template-create` | `--body` | ✅ |  |
+| `api template-create` | `--body-file` | ✅ |  |
+| `api template-delete` |  | ✅ |  |
+| `api template-delete` | `--id` | ✅ |  |
+| `api template-delete` | `--body` | ✅ |  |
+| `api template-delete` | `--body-file` | ✅ |  |
+| `api templates` |  | ✅ |  |
+| `api template-search` |  | ✅ |  |
+| `api template-search` | `--include-archived` | ✅ |  |
+| `api template-search` | `--first` | ✅ |  |
+| `api template-search` | `--filter` | ✅ |  |
+| `api template-search` | `--body` | ✅ |  |
+| `api template-search` | `--body-file` | ✅ |  |
+| `api templates-for-integration` |  | ✅ |  |
+| `api templates-for-integration` | `--integration-type` | ✅ |  |
+| `api templates-for-integration` | `--body` | ✅ |  |
+| `api templates-for-integration` | `--body-file` | ✅ |  |
+| `api template-update` |  | ✅ |  |
+| `api template-update` | `--input` | ✅ |  |
+| `api template-update` | `--id` | ✅ |  |
+| `api template-update` | `--body` | ✅ |  |
+| `api template-update` | `--body-file` | ✅ |  |
+| `api time-schedule` |  | ✅ |  |
+| `api time-schedule` | `--id` | ✅ |  |
+| `api time-schedule` | `--body` | ✅ |  |
+| `api time-schedule` | `--body-file` | ✅ |  |
+| `api time-schedule-create` |  | ✅ |  |
+| `api time-schedule-create` | `--input` | ✅ |  |
+| `api time-schedule-create` | `--body` | ✅ |  |
+| `api time-schedule-create` | `--body-file` | ✅ |  |
+| `api time-schedule-delete` |  | ✅ |  |
+| `api time-schedule-delete` | `--id` | ✅ |  |
+| `api time-schedule-delete` | `--body` | ✅ |  |
+| `api time-schedule-delete` | `--body-file` | ✅ |  |
+| `api time-schedule-refresh-integration-schedule` |  | ✅ |  |
+| `api time-schedule-refresh-integration-schedule` | `--id` | ✅ |  |
+| `api time-schedule-refresh-integration-schedule` | `--body` | ✅ |  |
+| `api time-schedule-refresh-integration-schedule` | `--body-file` | ✅ |  |
+| `api time-schedules` |  | ✅ |  |
+| `api time-schedules` | `--before` | ✅ |  |
+| `api time-schedules` | `--after` | ✅ |  |
+| `api time-schedules` | `--first` | ✅ |  |
+| `api time-schedules` | `--last` | ✅ |  |
+| `api time-schedules` | `--include-archived` | ✅ |  |
+| `api time-schedules` | `--order-by` | ✅ |  |
+| `api time-schedules` | `--body` | ✅ |  |
+| `api time-schedules` | `--body-file` | ✅ |  |
+| `api time-schedules` | `--all` | ✅ |  |
+| `api time-schedule-update` |  | ✅ |  |
+| `api time-schedule-update` | `--input` | ✅ |  |
+| `api time-schedule-update` | `--id` | ✅ |  |
+| `api time-schedule-update` | `--body` | ✅ |  |
+| `api time-schedule-update` | `--body-file` | ✅ |  |
+| `api time-schedule-upsert-external` |  | ✅ |  |
+| `api time-schedule-upsert-external` | `--input` | ✅ |  |
+| `api time-schedule-upsert-external` | `--external-id` | ✅ |  |
+| `api time-schedule-upsert-external` | `--body` | ✅ |  |
+| `api time-schedule-upsert-external` | `--body-file` | ✅ |  |
+| `api track-anonymous-event` |  | ✅ |  |
+| `api track-anonymous-event` | `--input` | ✅ |  |
+| `api track-anonymous-event` | `--body` | ✅ |  |
+| `api track-anonymous-event` | `--body-file` | ✅ |  |
+| `api triage-responsibilities` |  | ✅ |  |
+| `api triage-responsibilities` | `--before` | ✅ |  |
+| `api triage-responsibilities` | `--after` | ✅ |  |
+| `api triage-responsibilities` | `--first` | ✅ |  |
+| `api triage-responsibilities` | `--last` | ✅ |  |
+| `api triage-responsibilities` | `--include-archived` | ✅ |  |
+| `api triage-responsibilities` | `--order-by` | ✅ |  |
+| `api triage-responsibilities` | `--body` | ✅ |  |
+| `api triage-responsibilities` | `--body-file` | ✅ |  |
+| `api triage-responsibilities` | `--all` | ✅ |  |
+| `api triage-responsibility` |  | ✅ |  |
+| `api triage-responsibility` | `--id` | ✅ |  |
+| `api triage-responsibility` | `--body` | ✅ |  |
+| `api triage-responsibility` | `--body-file` | ✅ |  |
+| `api triage-responsibility-create` |  | ✅ |  |
+| `api triage-responsibility-create` | `--input` | ✅ |  |
+| `api triage-responsibility-create` | `--body` | ✅ |  |
+| `api triage-responsibility-create` | `--body-file` | ✅ |  |
+| `api triage-responsibility-delete` |  | ✅ |  |
+| `api triage-responsibility-delete` | `--id` | ✅ |  |
+| `api triage-responsibility-delete` | `--body` | ✅ |  |
+| `api triage-responsibility-delete` | `--body-file` | ✅ |  |
+| `api triage-responsibility-update` |  | ✅ |  |
+| `api triage-responsibility-update` | `--input` | ✅ |  |
+| `api triage-responsibility-update` | `--id` | ✅ |  |
+| `api triage-responsibility-update` | `--body` | ✅ |  |
+| `api triage-responsibility-update` | `--body-file` | ✅ |  |
+| `api usage-alert` |  | ✅ |  |
+| `api usage-alert` | `--id` | ✅ |  |
+| `api usage-alert` | `--body` | ✅ |  |
+| `api usage-alert` | `--body-file` | ✅ |  |
+| `api usage-alerts` |  | ✅ |  |
+| `api usage-alerts` | `--filter` | ✅ |  |
+| `api usage-alerts` | `--before` | ✅ |  |
+| `api usage-alerts` | `--after` | ✅ |  |
+| `api usage-alerts` | `--first` | ✅ |  |
+| `api usage-alerts` | `--last` | ✅ |  |
+| `api usage-alerts` | `--include-archived` | ✅ |  |
+| `api usage-alerts` | `--order-by` | ✅ |  |
+| `api usage-alerts` | `--body` | ✅ |  |
+| `api usage-alerts` | `--body-file` | ✅ |  |
+| `api usage-alerts` | `--all` | ✅ |  |
+| `api user` |  | ✅ |  |
+| `api user` | `--id` | ✅ |  |
+| `api user` | `--body` | ✅ |  |
+| `api user` | `--body-file` | ✅ |  |
+| `api user-change-role` |  | ✅ |  |
+| `api user-change-role` | `--role` | ✅ |  |
+| `api user-change-role` | `--id` | ✅ |  |
+| `api user-change-role` | `--body` | ✅ |  |
+| `api user-change-role` | `--body-file` | ✅ |  |
+| `api user-discord-connect` |  | ✅ |  |
+| `api user-discord-connect` | `--redirect-uri` | ✅ |  |
+| `api user-discord-connect` | `--code` | ✅ |  |
+| `api user-discord-connect` | `--body` | ✅ |  |
+| `api user-discord-connect` | `--body-file` | ✅ |  |
+| `api user-external-user-disconnect` |  | ✅ |  |
+| `api user-external-user-disconnect` | `--workspace-integration-id` | ✅ |  |
+| `api user-external-user-disconnect` | `--service` | ✅ |  |
+| `api user-external-user-disconnect` | `--body` | ✅ |  |
+| `api user-external-user-disconnect` | `--body-file` | ✅ |  |
+| `api user-flag-update` |  | ✅ |  |
+| `api user-flag-update` | `--operation` | ✅ |  |
+| `api user-flag-update` | `--flag` | ✅ |  |
+| `api user-flag-update` | `--body` | ✅ |  |
+| `api user-flag-update` | `--body-file` | ✅ |  |
+| `api user-revoke-all-sessions` |  | ✅ |  |
+| `api user-revoke-all-sessions` | `--id` | ✅ |  |
+| `api user-revoke-all-sessions` | `--body` | ✅ |  |
+| `api user-revoke-all-sessions` | `--body-file` | ✅ |  |
+| `api user-revoke-session` |  | ✅ |  |
+| `api user-revoke-session` | `--session-id` | ✅ |  |
+| `api user-revoke-session` | `--id` | ✅ |  |
+| `api user-revoke-session` | `--body` | ✅ |  |
+| `api user-revoke-session` | `--body-file` | ✅ |  |
+| `api users` |  | ✅ |  |
+| `api users` | `--filter` | ✅ |  |
+| `api users` | `--include-disabled` | ✅ |  |
+| `api users` | `--before` | ✅ |  |
+| `api users` | `--after` | ✅ |  |
+| `api users` | `--first` | ✅ |  |
+| `api users` | `--last` | ✅ |  |
+| `api users` | `--include-archived` | ✅ |  |
+| `api users` | `--order-by` | ✅ |  |
+| `api users` | `--sort` | ✅ |  |
+| `api users` | `--body` | ✅ |  |
+| `api users` | `--body-file` | ✅ |  |
+| `api users` | `--all` | ✅ |  |
+| `api user-sessions` |  | ✅ |  |
+| `api user-sessions` | `--id` | ✅ |  |
+| `api user-sessions` | `--body` | ✅ |  |
+| `api user-sessions` | `--body-file` | ✅ |  |
+| `api user-settings` |  | ✅ |  |
+| `api user-settings-flags-reset` |  | ✅ |  |
+| `api user-settings-flags-reset` | `--flags` | ✅ |  |
+| `api user-settings-flags-reset` | `--body` | ✅ |  |
+| `api user-settings-flags-reset` | `--body-file` | ✅ |  |
+| `api user-settings-update` |  | ✅ |  |
+| `api user-settings-update` | `--input` | ✅ |  |
+| `api user-settings-update` | `--id` | ✅ |  |
+| `api user-settings-update` | `--body` | ✅ |  |
+| `api user-settings-update` | `--body-file` | ✅ |  |
+| `api user-suspend` |  | ✅ |  |
+| `api user-suspend` | `--force-bypass-scim-restrictions` | ✅ |  |
+| `api user-suspend` | `--id` | ✅ |  |
+| `api user-suspend` | `--body` | ✅ |  |
+| `api user-suspend` | `--body-file` | ✅ |  |
+| `api user-unlink-from-identity-provider` |  | ✅ |  |
+| `api user-unlink-from-identity-provider` | `--id` | ✅ |  |
+| `api user-unlink-from-identity-provider` | `--body` | ✅ |  |
+| `api user-unlink-from-identity-provider` | `--body-file` | ✅ |  |
+| `api user-unsuspend` |  | ✅ |  |
+| `api user-unsuspend` | `--force-bypass-scim-restrictions` | ✅ |  |
+| `api user-unsuspend` | `--id` | ✅ |  |
+| `api user-unsuspend` | `--body` | ✅ |  |
+| `api user-unsuspend` | `--body-file` | ✅ |  |
+| `api user-update` |  | ✅ |  |
+| `api user-update` | `--input` | ✅ |  |
+| `api user-update` | `--id` | ✅ |  |
+| `api user-update` | `--body` | ✅ |  |
+| `api user-update` | `--body-file` | ✅ |  |
+| `api user-view-preferences` |  | ✅ |  |
+| `api user-view-preferences` | `--view-type` | ✅ |  |
+| `api user-view-preferences` | `--body` | ✅ |  |
+| `api user-view-preferences` | `--body-file` | ✅ |  |
+| `api verify-git-hub-enterprise-server-installation` |  | ✅ |  |
+| `api verify-git-hub-enterprise-server-installation` | `--integration-id` | ✅ |  |
+| `api verify-git-hub-enterprise-server-installation` | `--body` | ✅ |  |
+| `api verify-git-hub-enterprise-server-installation` | `--body-file` | ✅ |  |
+| `api viewer` |  | ✅ |  |
+| `api view-preferences-create` |  | ✅ |  |
+| `api view-preferences-create` | `--input` | ✅ |  |
+| `api view-preferences-create` | `--body` | ✅ |  |
+| `api view-preferences-create` | `--body-file` | ✅ |  |
+| `api view-preferences-delete` |  | ✅ |  |
+| `api view-preferences-delete` | `--id` | ✅ |  |
+| `api view-preferences-delete` | `--body` | ✅ |  |
+| `api view-preferences-delete` | `--body-file` | ✅ |  |
+| `api view-preferences-update` |  | ✅ |  |
+| `api view-preferences-update` | `--input` | ✅ |  |
+| `api view-preferences-update` | `--id` | ✅ |  |
+| `api view-preferences-update` | `--body` | ✅ |  |
+| `api view-preferences-update` | `--body-file` | ✅ |  |
+| `api webhook` |  | ✅ |  |
+| `api webhook` | `--id` | ✅ |  |
+| `api webhook` | `--body` | ✅ |  |
+| `api webhook` | `--body-file` | ✅ |  |
+| `api webhook-create` |  | ✅ |  |
+| `api webhook-create` | `--input` | ✅ |  |
+| `api webhook-create` | `--body` | ✅ |  |
+| `api webhook-create` | `--body-file` | ✅ |  |
+| `api webhook-delete` |  | ✅ |  |
+| `api webhook-delete` | `--id` | ✅ |  |
+| `api webhook-delete` | `--body` | ✅ |  |
+| `api webhook-delete` | `--body-file` | ✅ |  |
+| `api webhook-rotate-secret` |  | ✅ |  |
+| `api webhook-rotate-secret` | `--id` | ✅ |  |
+| `api webhook-rotate-secret` | `--body` | ✅ |  |
+| `api webhook-rotate-secret` | `--body-file` | ✅ |  |
+| `api webhooks` |  | ✅ |  |
+| `api webhooks` | `--before` | ✅ |  |
+| `api webhooks` | `--after` | ✅ |  |
+| `api webhooks` | `--first` | ✅ |  |
+| `api webhooks` | `--last` | ✅ |  |
+| `api webhooks` | `--include-archived` | ✅ |  |
+| `api webhooks` | `--order-by` | ✅ |  |
+| `api webhooks` | `--body` | ✅ |  |
+| `api webhooks` | `--body-file` | ✅ |  |
+| `api webhooks` | `--all` | ✅ |  |
+| `api webhook-update` |  | ✅ |  |
+| `api webhook-update` | `--input` | ✅ |  |
+| `api webhook-update` | `--id` | ✅ |  |
+| `api webhook-update` | `--body` | ✅ |  |
+| `api webhook-update` | `--body-file` | ✅ |  |
+| `api workflow-state` |  | ✅ |  |
+| `api workflow-state` | `--id` | ✅ |  |
+| `api workflow-state` | `--body` | ✅ |  |
+| `api workflow-state` | `--body-file` | ✅ |  |
+| `api workflow-state-archive` |  | ✅ |  |
+| `api workflow-state-archive` | `--id` | ✅ |  |
+| `api workflow-state-archive` | `--body` | ✅ |  |
+| `api workflow-state-archive` | `--body-file` | ✅ |  |
+| `api workflow-state-create` |  | ✅ |  |
+| `api workflow-state-create` | `--input` | ✅ |  |
+| `api workflow-state-create` | `--body` | ✅ |  |
+| `api workflow-state-create` | `--body-file` | ✅ |  |
+| `api workflow-states` |  | ✅ |  |
+| `api workflow-states` | `--filter` | ✅ |  |
+| `api workflow-states` | `--before` | ✅ |  |
+| `api workflow-states` | `--after` | ✅ |  |
+| `api workflow-states` | `--first` | ✅ |  |
+| `api workflow-states` | `--last` | ✅ |  |
+| `api workflow-states` | `--include-archived` | ✅ |  |
+| `api workflow-states` | `--order-by` | ✅ |  |
+| `api workflow-states` | `--body` | ✅ |  |
+| `api workflow-states` | `--body-file` | ✅ |  |
+| `api workflow-states` | `--all` | ✅ |  |
+| `api workflow-state-update` |  | ✅ |  |
+| `api workflow-state-update` | `--input` | ✅ |  |
+| `api workflow-state-update` | `--id` | ✅ |  |
+| `api workflow-state-update` | `--body` | ✅ |  |
+| `api workflow-state-update` | `--body-file` | ✅ |  |
+| `sync` |  | ✅ |  |
+| `sync` | `--rescan` | ✅ |  |
+| `sync` | `--max-pages` | ✅ |  |
+| `issues list` |  | ✅ |  |
+| `issues list` | `--limit` | ✅ |  |
+| `issues list` | `--page` | ✅ |  |
+| `issues show` |  | ✅ |  |
+| `issues search` |  | ✅ |  |
+| `issues search` | `--limit` | ✅ |  |
+| `issues search` | `--page` | ✅ |  |
+| `issues assign` |  | ✅ |  |
+| `issues assign` | `--due` | ✅ |  |
+| `projects list` |  | ✅ |  |
+| `projects list` | `--limit` | ✅ |  |
+| `projects list` | `--page` | ✅ |  |
+| `teams list` |  | ✅ |  |
+| `teams list` | `--limit` | ✅ |  |
+| `teams list` | `--page` | ✅ |  |
+| `users list` |  | ✅ |  |
+| `users list` | `--limit` | ✅ |  |
+| `users list` | `--page` | ✅ |  |
+| `states list` |  | ✅ |  |
+| `states list` | `--limit` | ✅ |  |
+| `states list` | `--page` | ✅ |  |
+| `labels list` |  | ✅ |  |
+| `labels list` | `--limit` | ✅ |  |
+| `labels list` | `--page` | ✅ |  |
 | `doctor` |  | ✅ |  |
 | `doctor` | `--online` | ✅ |  |
 | `doctor reports show` |  | ⛔ | cli-core's appDoctorCommand; its app-mcp-command test creates and shows a report |

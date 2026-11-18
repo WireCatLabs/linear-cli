@@ -1,7 +1,7 @@
 {
   "wcat_manifest": 2,
   "name": "linear",
-  "description": "a new WireCat CLI, started from cli-template",
+  "description": "Linear issues, projects and comments, copied into the local store for you and your agent",
   "docs_url": "https://github.com/WireCatLabs/linear-cli#readme",
   "package": "@wirecat/linear-cli",
   "bin": "wcat-linear",
@@ -6452,7 +6452,7 @@
     ]
   },
   "desktop": {
-    "tagline": "Linear issues, searchable with your other WireCat data",
+    "tagline": "Linear issues and projects in your local WireCat store",
     "profiles": {
       "args": [
         "session",

@@ -1,7 +1,7 @@
 // Generated from wirecat.config.ts by scripts/from-config.ts; run pnpm generate
 
 export const VERIFY: { operation: string; id: string; name?: string; active?: string } = {
-  operation: "organization",
+  operation: "viewer",
   id: "id",
   name: "name",
 }
@@ -189,7 +189,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
       list: {
         operation: "projects",
         variables: {
-          first: 100,
+          first: 50,
           includeArchived: true,
         },
         selection:
@@ -198,7 +198,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
       changes: {
         operation: "projects",
         variables: {
-          first: 100,
+          first: 50,
           includeArchived: true,
           orderBy: "updatedAt",
           filter: {
@@ -214,7 +214,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
       ids: {
         operation: "projects",
         variables: {
-          first: 100,
+          first: 50,
           includeArchived: true,
         },
         selection: "nodes { id } pageInfo { hasNextPage endCursor }",
@@ -240,7 +240,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
       list: {
         operation: "issues",
         variables: {
-          first: 100,
+          first: 50,
           includeArchived: true,
         },
         selection:
@@ -249,7 +249,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
       changes: {
         operation: "issues",
         variables: {
-          first: 100,
+          first: 50,
           includeArchived: true,
           orderBy: "updatedAt",
           filter: {
@@ -265,7 +265,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
       ids: {
         operation: "issues",
         variables: {
-          first: 100,
+          first: 50,
           includeArchived: true,
         },
         selection: "nodes { id } pageInfo { hasNextPage endCursor }",

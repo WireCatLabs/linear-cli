@@ -31,22 +31,30 @@ mkdir -p "$HOME"
 trap '"${cli[@]}" live session end --json >/dev/null 2>&1 || true; rm -rf "$work"' EXIT
 
 "${cli[@]}" live sync --max-pages 40 --json >"$work/sync.json"
+# The second run sends what changed since the first: the changes calls with their updatedAt filter.
+"${cli[@]}" live sync --max-pages 40 --json >"$work/changes.json"
 "${cli[@]}" live teams list --json >"$work/teams.json"
 "${cli[@]}" live issues list --limit 1 --json >"$work/issues.json"
 # Totals only: the record is public, the workspace's data is not.
 node -e '
   const read = (name) => JSON.parse(require("fs").readFileSync(`${process.argv[1]}/${name}.json`, "utf8"))
-  const sync = read("sync").item ?? {}
-  if (sync.provider !== "linear") throw new Error(`not a linear sync: ${JSON.stringify(sync).slice(0, 200)}`)
-  const synced = sync.synced ?? []
-  const failed = synced.filter((one) => one.error !== undefined)
-  if (failed.length) throw new Error(`kinds failed: ${failed.map((one) => `${one.kind} ${one.error.code ?? ""}`).join(", ")}`)
+  const check = (name) => {
+    const sync = read(name).item ?? {}
+    if (sync.provider !== "linear") throw new Error(`${name}: not a linear sync: ${JSON.stringify(sync).slice(0, 200)}`)
+    const failed = (sync.synced ?? []).filter((one) => one.error !== undefined)
+    if (failed.length) throw new Error(`${name}: kinds failed: ${failed.map((one) => `${one.kind} ${one.error}`).join("; ")}`)
+    return sync
+  }
+  const full = check("sync")
+  if (full.state !== "complete") throw new Error(`the first sync stopped (${full.state}): raise --max-pages or use a smaller workspace`)
   for (const kind of ["team", "issue"])
-    if (!synced.some((one) => one.kind === kind && one.saved > 0)) throw new Error(`no ${kind} saved`)
+    if (!full.synced.some((one) => one.kind === kind && one.saved > 0)) throw new Error(`no ${kind} saved`)
+  const changes = check("changes")
+  if (!changes.synced.some((one) => one.round === "changes")) throw new Error("the second sync read no changes round")
   if (!(read("teams").items ?? []).length || !(read("issues").items ?? []).length) throw new Error("teams or issues list empty")
-  process.stdout.write(`synced: ${synced.map((one) => `${one.kind} ${one.saved}`).join(", ")}; state ${sync.state}\n`)
+  process.stdout.write(`synced: ${full.synced.map((one) => `${one.kind} ${one.saved}`).join(", ")}; changes round: ${changes.synced.length} kinds\n`)
 ' "$work"
 "${cli[@]}" live doctor --json >/dev/null
 
 "${cli[@]}" live session end --json >/dev/null
-echo "live check passed: describe format 2, sign-in, sync, teams and issues from the copy, doctor, sign-out"
+echo "live check passed: describe format 2, sign-in, full and changes sync, teams and issues from the copy, doctor, sign-out"

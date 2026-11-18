@@ -31,8 +31,9 @@ export default defineCli({
     owner: "WireCatLabs",
   },
   spec: { kind: "graphql", from: "https://api.linear.app/graphql" },
-  // The store is keyed by the workspace, as Attio's is, so two keys of one workspace share a copy.
-  auth: { preset: "token", verify: { operation: "organization", id: "id", name: "name" } },
+  // The copy is keyed by the user, not the workspace: Linear shows each member other teams, and a deletion pass over
+  // one member's view would mark another's private issues deleted.
+  auth: { preset: "token", verify: { operation: "viewer", id: "id", name: "name" } },
   category: "tracker",
   source: {
     provider: "linear",
@@ -53,7 +54,11 @@ export default defineCli({
         map: { externalId: "id", name: "name", team: "team.id", ...timeMap },
       },
       project: {
-        ...kind("projects", "name description url targetDate status { type } lead { id } teams { nodes { id } }"),
+        // A nested list with no size counts as 50 rows of Linear's complexity points; 50 a page stays well under the
+        // 10,000 a query may cost. https://linear.app/developers/rate-limiting
+        ...kind("projects", "name description url targetDate status { type } lead { id } teams { nodes { id } }", {
+          first: 50,
+        }),
         map: {
           externalId: "id",
           name: "name",
@@ -71,6 +76,7 @@ export default defineCli({
           "issues",
           "identifier title description url priority dueDate completedAt canceledAt state { id } team { id } " +
             "project { id } assignee { id } creator { id } parent { id } labels { nodes { id } }",
+          { first: 50 },
         ),
         map: {
           externalId: "id",

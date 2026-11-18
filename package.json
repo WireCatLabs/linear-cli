@@ -1,7 +1,7 @@
 {
   "name": "@wirecat/linear-cli",
   "version": "0.0.0",
-  "description": "Linear issues, searchable with your other WireCat data",
+  "description": "Linear issues and projects in your local WireCat store",
   "license": "Apache-2.0",
   "author": "Viacheslav Ptsarev",
   "repository": {

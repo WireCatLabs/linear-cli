@@ -33,15 +33,11 @@ const artifacts = generate(
   ],
   {
     banner: ["Source: spec/linear/, checked against provenance.json", "Run: pnpm generate"],
-    // SAMPLE: operation id → { effect, reason } where the HTTP method misleads, as a POST that deletes.
+    // A query reads and a mutation writes; one named *Delete or *Archive deletes. Lists page by Relay connections.
     overrides: {},
-    // SAMPLE: true when the service's POST …/search and …/query only read.
     readingPosts: false,
-    // SAMPLE: command names from the paths; map an operation whose name comes out wrong in `commands`.
     names: { fromPath: true },
-    // SAMPLE: the permission group, and the body fields or query parameters that delete when true.
     permissions: { group: "linear", deletingFlags: [] },
-    // SAMPLE: how each read pages, found from the spec; an override's `pagination` wins.
     pagination: true,
     // A GraphQL schema names no sign-in. Linear's docs send a personal API key as it is, with no Bearer:
     // https://linear.app/developers/graphql#personal-api-keys

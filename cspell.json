@@ -3,7 +3,6 @@
   "import": ["./config/wirecat/cspell.json"],
   "ignorePaths": ["docs/commands.md", "docs/dev/**", "skills/*/references/api.md", "skills/*/references/api/**"],
   "words": [
-    "Attio",
     "linear",
     "gifsicle",
     "Petstore",
