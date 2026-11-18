@@ -1,0 +1,6 @@
+{
+  "source": "https://api.linear.app/graphql",
+  "sha256": "0266903ae2a84d2f48e8f5f790b96035b9880875ea444de31893cbe9acb7b276",
+  "retrieved_at": "2026-11-18T18:13:41.911Z",
+  "normalization": "types sorted by name, object keys sorted, 2-space JSON"
+}

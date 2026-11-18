@@ -1,0 +1,6604 @@
+{
+  "wcat_manifest": 2,
+  "name": "linear",
+  "description": "a new WireCat CLI, started from cli-template",
+  "docs_url": "https://github.com/WireCatLabs/linear-cli#readme",
+  "package": "@wirecat/linear-cli",
+  "bin": "wcat-linear",
+  "commands": [
+    {
+      "path": [
+        "commands"
+      ],
+      "summary": "every command by section; --json prints its contract, one path per call",
+      "effects": {
+        "remote": "none",
+        "local": "none"
+      }
+    },
+    {
+      "path": [
+        "commands",
+        "info"
+      ],
+      "summary": "one command contract, or all schemas, error reasons and explicit overrides",
+      "effects": {
+        "remote": "none",
+        "local": "none"
+      }
+    },
+    {
+      "path": [
+        "session",
+        "start"
+      ],
+      "summary": "sign in to Linear with its API token",
+      "effects": {
+        "remote": "read",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "session",
+        "status"
+      ],
+      "summary": "show where this profile's token comes from; never the token",
+      "effects": {
+        "remote": "read",
+        "local": "read"
+      }
+    },
+    {
+      "path": [
+        "session",
+        "end"
+      ],
+      "summary": "forget this profile's token on this computer",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "session",
+        "list"
+      ],
+      "summary": "list the profiles here and whether each is signed in",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      }
+    },
+    {
+      "path": [
+        "api",
+        "list"
+      ],
+      "summary": "list every Linear API operation this CLI offers, without calling Linear",
+      "effects": {
+        "remote": "none",
+        "local": "none"
+      },
+      "permission": "api.list",
+      "entity": "api_operation"
+    },
+    {
+      "path": [
+        "api",
+        "show"
+      ],
+      "summary": "show one operation's parameters and request schema, without calling Linear",
+      "effects": {
+        "remote": "none",
+        "local": "none"
+      },
+      "permission": "api.show"
+    },
+    {
+      "path": [
+        "api",
+        "administrable-teams"
+      ],
+      "summary": "All teams whose settings the user can administer. This includes teams the…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.administrable-teams"
+    },
+    {
+      "path": [
+        "api",
+        "agent-activities"
+      ],
+      "summary": "Accessible agent activities, with filters and cursor-based pagination. —…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.agent-activities"
+    },
+    {
+      "path": [
+        "api",
+        "agent-activity"
+      ],
+      "summary": "Retrieves an unarchived agent activity by UUID. — read (query agentActivity)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.agent-activity"
+    },
+    {
+      "path": [
+        "api",
+        "agent-activity-create"
+      ],
+      "summary": "Publishes an activity to your agent’s session and updates its lifecycle.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.agent-activity-create"
+    },
+    {
+      "path": [
+        "api",
+        "agent-session"
+      ],
+      "summary": "Retrieves an unarchived agent session by UUID or URL slug. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.agent-session"
+    },
+    {
+      "path": [
+        "api",
+        "agent-session-create-on-comment"
+      ],
+      "summary": "Starts an active session for your authenticated agent app on an existing…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.agent-session-create-on-comment"
+    },
+    {
+      "path": [
+        "api",
+        "agent-session-create-on-issue"
+      ],
+      "summary": "Starts an active session for your authenticated agent app and creates its…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.agent-session-create-on-issue"
+    },
+    {
+      "path": [
+        "api",
+        "agent-sessions"
+      ],
+      "summary": "Accessible agent sessions, with cursor-based pagination. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.agent-sessions"
+    },
+    {
+      "path": [
+        "api",
+        "agent-session-update"
+      ],
+      "summary": "Updates your agent’s session title, external links, or plan. Only the app…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.agent-session-update"
+    },
+    {
+      "path": [
+        "api",
+        "agent-session-update-external-url"
+      ],
+      "summary": "Updates external links on a session owned by the authenticated agent app. A…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.agent-session-update-external-url"
+    },
+    {
+      "path": [
+        "api",
+        "agent-skill"
+      ],
+      "summary": "Retrieves an accessible, unarchived agent skill by UUID. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.agent-skill"
+    },
+    {
+      "path": [
+        "api",
+        "agent-skill-create"
+      ],
+      "summary": "Creates reusable Markdown instructions for the Linear Agent, owned by the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.agent-skill-create"
+    },
+    {
+      "path": [
+        "api",
+        "agent-skill-delete"
+      ],
+      "summary": "Deletes an agent skill and its inherited copies. Inherited skills must be…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.agent-skill-delete"
+    },
+    {
+      "path": [
+        "api",
+        "agent-skills"
+      ],
+      "summary": "Returns the skills the caller can access, including personal skills and…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.agent-skills"
+    },
+    {
+      "path": [
+        "api",
+        "agent-skill-update"
+      ],
+      "summary": "Updates a skill the caller can manage. Omitted fields remain unchanged, and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.agent-skill-update"
+    },
+    {
+      "path": [
+        "api",
+        "airbyte-integration-connect"
+      ],
+      "summary": "Registers an export key for Airbyte. Requires integration-creation and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.airbyte-integration-connect"
+    },
+    {
+      "path": [
+        "api",
+        "application-info"
+      ],
+      "summary": "Looks up an OAuth application's name, developer, and branding using its…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.application-info"
+    },
+    {
+      "path": [
+        "api",
+        "archived-integrations"
+      ],
+      "summary": "GitHub connections archived within the last 30 days, newest first.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.archived-integrations"
+    },
+    {
+      "path": [
+        "api",
+        "attachment"
+      ],
+      "summary": "An attachment by UUID or URL. A URL returns one matching attachment; use…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.attachment"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-create"
+      ],
+      "summary": "Creates an attachment, or updates the existing attachment with the same URL…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-create"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-delete"
+      ],
+      "summary": "Deletes the attachment record from its issue. This removes the link in…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-delete"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-issue"
+      ],
+      "summary": "The issue linked to an attachment. Deprecated; use attachmentsForURL and…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.attachment-issue"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-discord"
+      ],
+      "summary": "Link a Discord message to an issue. Requires a connected Discord…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-discord"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-front"
+      ],
+      "summary": "Link a Front conversation to an issue. Requires a connected Front…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-front"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-git-hub-issue"
+      ],
+      "summary": "Link a GitHub issue to a Linear issue. Uses the matching GitHub integration…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-git-hub-issue"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-git-hub-pr"
+      ],
+      "summary": "Link a GitHub pull request to an issue. Uses the matching GitHub integration…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-git-hub-pr"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-git-lab-mr"
+      ],
+      "summary": "Links a GitLab merge request to an issue. Supply the merge-request URL,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-git-lab-mr"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-intercom"
+      ],
+      "summary": "Link an Intercom conversation to an issue. Requires a connected Intercom…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-intercom"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-jira-issue"
+      ],
+      "summary": "Links a Jira issue to a Linear issue. The URL selects a connected Jira site;…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-jira-issue"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-salesforce"
+      ],
+      "summary": "Link a Salesforce case to an issue. Requires a connected Salesforce…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-salesforce"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-slack"
+      ],
+      "summary": "Link an existing Slack message to an issue. This creates a rich attachment…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-slack"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-url"
+      ],
+      "summary": "Links a URL to an issue and, when recognized, uses the workspace’s matching…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-url"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-link-zendesk"
+      ],
+      "summary": "Link a Zendesk ticket to an issue. Requires a connected Zendesk integration.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-link-zendesk"
+    },
+    {
+      "path": [
+        "api",
+        "attachments"
+      ],
+      "summary": "Issue attachments the caller can access, with cursor pagination. Use…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.attachments"
+    },
+    {
+      "path": [
+        "api",
+        "attachments-for-url"
+      ],
+      "summary": "Finds the attachments for a resource URL across issues you can access. A URL…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.attachments-for-url"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-sources"
+      ],
+      "summary": "Lists distinct sources on accessible, non-archived issue attachments. API…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.attachment-sources"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-sync-to-slack"
+      ],
+      "summary": "Sync an existing Slack attachment with an issue comment thread and import…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-sync-to-slack"
+    },
+    {
+      "path": [
+        "api",
+        "attachment-update"
+      ],
+      "summary": "Updates an existing attachment’s title, subtitle, metadata, or icon. title…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.attachment-update"
+    },
+    {
+      "path": [
+        "api",
+        "audit-entries"
+      ],
+      "summary": "Lists recorded events from the workspace audit log, such as sign-ins,…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.audit-entries"
+    },
+    {
+      "path": [
+        "api",
+        "audit-entry-types"
+      ],
+      "summary": "Lists supported audit action identifiers and a description of each action.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.audit-entry-types"
+    },
+    {
+      "path": [
+        "api",
+        "authentication-sessions"
+      ],
+      "summary": "Lists active browser, desktop, and mobile sign-in sessions for the…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.authentication-sessions"
+    },
+    {
+      "path": [
+        "api",
+        "available-users"
+      ],
+      "summary": "Lists the signed-in account's workspace access. users contains memberships…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.available-users"
+    },
+    {
+      "path": [
+        "api",
+        "comment"
+      ],
+      "summary": "A comment by UUID or URL hash. Returns an error if no accessible comment…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.comment"
+    },
+    {
+      "path": [
+        "api",
+        "comment-create"
+      ],
+      "summary": "Creates a comment on one resource, or a reply when parentId is supplied. You…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.comment-create"
+    },
+    {
+      "path": [
+        "api",
+        "comment-delete"
+      ],
+      "summary": "Deletes a comment and, for a root comment, its replies. You must be allowed…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.comment-delete"
+    },
+    {
+      "path": [
+        "api",
+        "comment-resolve"
+      ],
+      "summary": "Marks a root comment’s thread as resolved by you. You may select one of its…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.comment-resolve"
+    },
+    {
+      "path": [
+        "api",
+        "comments"
+      ],
+      "summary": "All comments the user has access to in the workspace. — read (query comments)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.comments"
+    },
+    {
+      "path": [
+        "api",
+        "comment-unresolve"
+      ],
+      "summary": "Reopens a resolved thread and clears its resolution time, resolving user,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.comment-unresolve"
+    },
+    {
+      "path": [
+        "api",
+        "comment-update"
+      ],
+      "summary": "Replaces a comment’s Markdown body and records an edit time. Content edits…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.comment-update"
+    },
+    {
+      "path": [
+        "api",
+        "contact-create"
+      ],
+      "summary": "Submits a message to Linear support on behalf of the authenticated user.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.contact-create"
+    },
+    {
+      "path": [
+        "api",
+        "create-csv-export-report"
+      ],
+      "summary": "Queues a workspace CSV export and emails the requesting user a download link…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.create-csv-export-report"
+    },
+    {
+      "path": [
+        "api",
+        "create-initiative-update-reminder"
+      ],
+      "summary": "Create a notification to remind a user about an initiative update. — write…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.create-initiative-update-reminder"
+    },
+    {
+      "path": [
+        "api",
+        "create-project-update-reminder"
+      ],
+      "summary": "Create a notification to remind a user about a project update. — write…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.create-project-update-reminder"
+    },
+    {
+      "path": [
+        "api",
+        "customer"
+      ],
+      "summary": "Retrieves a single customer by ID or slug. — read (query customer)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.customer"
+    },
+    {
+      "path": [
+        "api",
+        "customer-create"
+      ],
+      "summary": "Creates a customer when the Customers feature is available and enabled in…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-create"
+    },
+    {
+      "path": [
+        "api",
+        "customer-delete"
+      ],
+      "summary": "Permanently deletes a customer, including an archived customer. Use…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-delete"
+    },
+    {
+      "path": [
+        "api",
+        "customer-merge"
+      ],
+      "summary": "Merges two customers by transferring all needs from the source customer to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-merge"
+    },
+    {
+      "path": [
+        "api",
+        "customer-need"
+      ],
+      "summary": "Retrieves a single customer need by ID or hash. — read (query customerNeed)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.customer-need"
+    },
+    {
+      "path": [
+        "api",
+        "customer-need-archive"
+      ],
+      "summary": "Archives a customer need so it can be removed from active request lists…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-need-archive"
+    },
+    {
+      "path": [
+        "api",
+        "customer-need-create"
+      ],
+      "summary": "Records customer feedback, optionally linked to an issue. Unlinked requests…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-need-create"
+    },
+    {
+      "path": [
+        "api",
+        "customer-need-create-from-attachment"
+      ],
+      "summary": "Creates a customer need from an existing issue attachment. If that…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-need-create-from-attachment"
+    },
+    {
+      "path": [
+        "api",
+        "customer-need-delete"
+      ],
+      "summary": "Permanently deletes a customer need. By default, its associated issue or…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-need-delete"
+    },
+    {
+      "path": [
+        "api",
+        "customer-needs"
+      ],
+      "summary": "All customer needs in the workspace, with optional filtering. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.customer-needs"
+    },
+    {
+      "path": [
+        "api",
+        "customer-need-unarchive"
+      ],
+      "summary": "Restores an archived customer need. The need must currently be archived; its…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-need-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "customer-need-update"
+      ],
+      "summary": "Updates a customer request, including its feedback, customer, priority, or…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-need-update"
+    },
+    {
+      "path": [
+        "api",
+        "customers"
+      ],
+      "summary": "All customers in the workspace, with optional filtering and sorting. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.customers"
+    },
+    {
+      "path": [
+        "api",
+        "customer-status"
+      ],
+      "summary": "One specific customer status. — read (query customerStatus)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.customer-status"
+    },
+    {
+      "path": [
+        "api",
+        "customer-status-create"
+      ],
+      "summary": "Creates a workspace customer status. Requires permission to manage customer…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-status-create"
+    },
+    {
+      "path": [
+        "api",
+        "customer-status-delete"
+      ],
+      "summary": "Deletes a customer status. Cannot delete the last remaining status in a…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-status-delete"
+    },
+    {
+      "path": [
+        "api",
+        "customer-statuses"
+      ],
+      "summary": "All customer statuses defined in the workspace. — read (query customerStatuses)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.customer-statuses"
+    },
+    {
+      "path": [
+        "api",
+        "customer-status-update"
+      ],
+      "summary": "Updates a workspace customer status. Requires permission to manage customer…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-status-update"
+    },
+    {
+      "path": [
+        "api",
+        "customer-tier"
+      ],
+      "summary": "One specific customer tier. — read (query customerTier)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.customer-tier"
+    },
+    {
+      "path": [
+        "api",
+        "customer-tier-create"
+      ],
+      "summary": "Creates a workspace customer tier. Requires permission to manage customer…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-tier-create"
+    },
+    {
+      "path": [
+        "api",
+        "customer-tier-delete"
+      ],
+      "summary": "Deletes a customer tier. The tier must not be in use by any customers. —…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-tier-delete"
+    },
+    {
+      "path": [
+        "api",
+        "customer-tiers"
+      ],
+      "summary": "All customer tiers defined in the workspace. — read (query customerTiers)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.customer-tiers"
+    },
+    {
+      "path": [
+        "api",
+        "customer-tier-update"
+      ],
+      "summary": "Updates a workspace customer tier. Requires permission to manage customer…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-tier-update"
+    },
+    {
+      "path": [
+        "api",
+        "customer-unsync"
+      ],
+      "summary": "Disconnects a customer from its configured data source integration so the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-unsync"
+    },
+    {
+      "path": [
+        "api",
+        "customer-update"
+      ],
+      "summary": "Updates the supplied customer fields, leaving omitted fields unchanged. For…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-update"
+    },
+    {
+      "path": [
+        "api",
+        "customer-upsert"
+      ],
+      "summary": "Finds a customer using the supplied UUID, external ID, Slack channel, or…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.customer-upsert"
+    },
+    {
+      "path": [
+        "api",
+        "custom-view"
+      ],
+      "summary": "One specific custom view, looked up by ID or slug. — read (query customView)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.custom-view"
+    },
+    {
+      "path": [
+        "api",
+        "custom-view-create"
+      ],
+      "summary": "Creates a saved view owned by you. Choose an issue, project, initiative, or…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.custom-view-create"
+    },
+    {
+      "path": [
+        "api",
+        "custom-view-delete"
+      ],
+      "summary": "Deletes a saved view without deleting the items it displayed. Only workspace…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.custom-view-delete"
+    },
+    {
+      "path": [
+        "api",
+        "custom-view-has-subscribers"
+      ],
+      "summary": "Whether a custom view has active notification subscribers other than the…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.custom-view-has-subscribers"
+    },
+    {
+      "path": [
+        "api",
+        "custom-views"
+      ],
+      "summary": "All custom views accessible to the user, including personal views and shared…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.custom-views"
+    },
+    {
+      "path": [
+        "api",
+        "custom-view-update"
+      ],
+      "summary": "Updates a saved view’s metadata, scope, or filter configuration. Omitted…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.custom-view-update"
+    },
+    {
+      "path": [
+        "api",
+        "cycle"
+      ],
+      "summary": "Finds a cycle by its UUID or team-and-number identifier, such as ENG°12,…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.cycle"
+    },
+    {
+      "path": [
+        "api",
+        "cycle-archive"
+      ],
+      "summary": "Archives a cycle and removes its current issues from it. The issues…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.cycle-archive"
+    },
+    {
+      "path": [
+        "api",
+        "cycle-create"
+      ],
+      "summary": "Unsupported. This mutation always returns an error; cycles are generated…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.cycle-create"
+    },
+    {
+      "path": [
+        "api",
+        "cycles"
+      ],
+      "summary": "All cycles accessible to the user. — read (query cycles)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.cycles"
+    },
+    {
+      "path": [
+        "api",
+        "cycle-shift-all"
+      ],
+      "summary": "Shifts an upcoming cycle and every later cycle in the team by the same…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.cycle-shift-all"
+    },
+    {
+      "path": [
+        "api",
+        "cycle-start-upcoming-cycle-today"
+      ],
+      "summary": "Starts the upcoming cycle as of midnight today. Completes the previous cycle…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.cycle-start-upcoming-cycle-today"
+    },
+    {
+      "path": [
+        "api",
+        "cycle-update"
+      ],
+      "summary": "Updates a cycle’s name, description, or schedule and returns the resulting…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.cycle-update"
+    },
+    {
+      "path": [
+        "api",
+        "dependency-package-metadata"
+      ],
+      "summary": "Looks up license, publication time, and package-wide weekly downloads for up…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.dependency-package-metadata"
+    },
+    {
+      "path": [
+        "api",
+        "document"
+      ],
+      "summary": "Finds a document by UUID or the short identifier used in its URL. Archived…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.document"
+    },
+    {
+      "path": [
+        "api",
+        "document-content-history"
+      ],
+      "summary": "Lists saved-version metadata for a DocumentContent UUID, newest first. Use…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.document-content-history"
+    },
+    {
+      "path": [
+        "api",
+        "document-create"
+      ],
+      "summary": "Creates a document in a project, issue, or release, with optional initial…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.document-create"
+    },
+    {
+      "path": [
+        "api",
+        "document-delete"
+      ],
+      "summary": "Moves a document to the trash and archives it, including the sub-documents…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.document-delete"
+    },
+    {
+      "path": [
+        "api",
+        "documents"
+      ],
+      "summary": "Lists documents you can access, with filters and cursor pagination. Archived…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.documents"
+    },
+    {
+      "path": [
+        "api",
+        "document-unarchive"
+      ],
+      "summary": "Restores a trashed document and its eligible sub-documents. You must be…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.document-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "document-update"
+      ],
+      "summary": "Updates a document’s metadata or replaces its Markdown body. You must have…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.document-update"
+    },
+    {
+      "path": [
+        "api",
+        "document-update-workspace-access"
+      ],
+      "summary": "[Internal] Changes what people outside a document's teams can do with a…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.document-update-workspace-access"
+    },
+    {
+      "path": [
+        "api",
+        "email-intake-address"
+      ],
+      "summary": "An accessible intake address by ID, including archived addresses. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.email-intake-address"
+    },
+    {
+      "path": [
+        "api",
+        "email-intake-address-create"
+      ],
+      "summary": "Creates an address that accepts email for one team or issue template. For…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.email-intake-address-create"
+    },
+    {
+      "path": [
+        "api",
+        "email-intake-address-delete"
+      ],
+      "summary": "Deletes an email intake address object. — destructive (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.email-intake-address-delete"
+    },
+    {
+      "path": [
+        "api",
+        "email-intake-addresses"
+      ],
+      "summary": "Email intake addresses accessible to the user in the workspace. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.email-intake-addresses"
+    },
+    {
+      "path": [
+        "api",
+        "email-intake-address-refresh-ses-domain-status"
+      ],
+      "summary": "Requests a check of the intake address’s custom sending domain after you…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.email-intake-address-refresh-ses-domain-status"
+    },
+    {
+      "path": [
+        "api",
+        "email-intake-address-rotate"
+      ],
+      "summary": "Generates a new email address for an existing team or template intake…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.email-intake-address-rotate"
+    },
+    {
+      "path": [
+        "api",
+        "email-intake-address-update"
+      ],
+      "summary": "Updates an existing email intake address. — write (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.email-intake-address-update"
+    },
+    {
+      "path": [
+        "api",
+        "email-token-user-account-auth"
+      ],
+      "summary": "Completes email sign-in using the emailed token and the same clientAuthCode…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.email-token-user-account-auth"
+    },
+    {
+      "path": [
+        "api",
+        "email-unsubscribe"
+      ],
+      "summary": "Unsubscribes a user from the selected email category using the user ID and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.email-unsubscribe"
+    },
+    {
+      "path": [
+        "api",
+        "email-user-account-auth-challenge"
+      ],
+      "summary": "Starts email sign-in and sends a one-time token to the supplied address.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.email-user-account-auth-challenge"
+    },
+    {
+      "path": [
+        "api",
+        "emoji"
+      ],
+      "summary": "Finds a custom emoji by UUID or exact name. UUID lookup can return archived…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.emoji"
+    },
+    {
+      "path": [
+        "api",
+        "emoji-create"
+      ],
+      "summary": "Creates a custom emoji from an image already uploaded to Linear. Its name…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.emoji-create"
+    },
+    {
+      "path": [
+        "api",
+        "emoji-delete"
+      ],
+      "summary": "Deletes an emoji. — destructive (mutation emojiDelete)",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.emoji-delete"
+    },
+    {
+      "path": [
+        "api",
+        "emojis"
+      ],
+      "summary": "All custom emojis in the workspace. — read (query emojis)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.emojis"
+    },
+    {
+      "path": [
+        "api",
+        "entity-external-link"
+      ],
+      "summary": "Retrieves a single entity external link by its identifier. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.entity-external-link"
+    },
+    {
+      "path": [
+        "api",
+        "entity-external-link-create"
+      ],
+      "summary": "Adds an external resource to an initiative, project, or release the caller…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.entity-external-link-create"
+    },
+    {
+      "path": [
+        "api",
+        "entity-external-link-delete"
+      ],
+      "summary": "Removes a resource link from Linear and clears any team pins that refer to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.entity-external-link-delete"
+    },
+    {
+      "path": [
+        "api",
+        "entity-external-link-update"
+      ],
+      "summary": "Changes an unarchived resource link’s URL, display label, or position within…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.entity-external-link-update"
+    },
+    {
+      "path": [
+        "api",
+        "external-user"
+      ],
+      "summary": "Retrieves an external user by its Linear UUID, including archived records.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.external-user"
+    },
+    {
+      "path": [
+        "api",
+        "external-users"
+      ],
+      "summary": "External users and bots recorded by integrations in the workspace, with…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.external-users"
+    },
+    {
+      "path": [
+        "api",
+        "favorite"
+      ],
+      "summary": "A specific favorite by ID. — read (query favorite)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.favorite"
+    },
+    {
+      "path": [
+        "api",
+        "favorite-create"
+      ],
+      "summary": "Creates a sidebar favorite for the authenticated user. If it already exists,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.favorite-create"
+    },
+    {
+      "path": [
+        "api",
+        "favorite-delete"
+      ],
+      "summary": "Removes a favorite from your sidebar. Deleting a custom folder also removes…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.favorite-delete"
+    },
+    {
+      "path": [
+        "api",
+        "favorites"
+      ],
+      "summary": "The authenticated user's favorites. Returns all bookmarked items that appear…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.favorites"
+    },
+    {
+      "path": [
+        "api",
+        "favorite-update"
+      ],
+      "summary": "Changes the position, parent folder, or name of one of your favorites.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.favorite-update"
+    },
+    {
+      "path": [
+        "api",
+        "file-upload"
+      ],
+      "summary": "Prepares a file upload and returns a signed destination. Upload the raw…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.file-upload"
+    },
+    {
+      "path": [
+        "api",
+        "file-upload-dangerously-delete"
+      ],
+      "summary": "Permanently delete an uploaded file by asset URL. This should be used as a…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.file-upload-dangerously-delete"
+    },
+    {
+      "path": [
+        "api",
+        "git-automation-state-create"
+      ],
+      "summary": "Creates a rule that maps a Git event to an issue status for a team. Requires…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.git-automation-state-create"
+    },
+    {
+      "path": [
+        "api",
+        "git-automation-state-delete"
+      ],
+      "summary": "Permanently deletes a Git automation rule. Requires permission to manage its…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.git-automation-state-delete"
+    },
+    {
+      "path": [
+        "api",
+        "git-automation-state-update"
+      ],
+      "summary": "Updates the status, branch scope, or event of an existing rule. Requires…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.git-automation-state-update"
+    },
+    {
+      "path": [
+        "api",
+        "git-automation-target-branch-create"
+      ],
+      "summary": "Creates a team’s target-branch pattern for Git automation. Add automation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.git-automation-target-branch-create"
+    },
+    {
+      "path": [
+        "api",
+        "git-automation-target-branch-delete"
+      ],
+      "summary": "Deletes a target-branch definition and its associated automation rules.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.git-automation-target-branch-delete"
+    },
+    {
+      "path": [
+        "api",
+        "git-automation-target-branch-update"
+      ],
+      "summary": "Changes the pattern or matching mode used by every automation rule linked to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.git-automation-target-branch-update"
+    },
+    {
+      "path": [
+        "api",
+        "google-user-account-auth"
+      ],
+      "summary": "Exchanges a Google OAuth code, sets the authentication cookie, and returns…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.google-user-account-auth"
+    },
+    {
+      "path": [
+        "api",
+        "image-upload-from-url"
+      ],
+      "summary": "Copies an image from an external URL into Linear’s private upload storage.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.image-upload-from-url"
+    },
+    {
+      "path": [
+        "api",
+        "import-file-upload"
+      ],
+      "summary": "Prepares a file in Linear’s import storage. Upload the raw bytes with HTTP…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.import-file-upload"
+    },
+    {
+      "path": [
+        "api",
+        "inbox-notifications"
+      ],
+      "summary": "The authenticated user’s visible inbox, excluding archived and snoozed…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.inbox-notifications"
+    },
+    {
+      "path": [
+        "api",
+        "inbox-notification-update"
+      ],
+      "summary": "Changes read or snooze state for the authenticated user’s group of related…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.inbox-notification-update"
+    },
+    {
+      "path": [
+        "api",
+        "initiative"
+      ],
+      "summary": "Returns an initiative you can access by UUID, URL slug, or human-readable…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiative"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-add-label"
+      ],
+      "summary": "Adds an initiative label while keeping the other labels. Label groups…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-add-label"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-archive"
+      ],
+      "summary": "Archives an initiative. — destructive (mutation initiativeArchive)",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-archive"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-create"
+      ],
+      "summary": "Creates an initiative in a workspace where initiatives are enabled. You can…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-create"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-delete"
+      ],
+      "summary": "Moves an initiative to the trash instead of immediately deleting it…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-delete"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-filter-suggestion"
+      ],
+      "summary": "Suggests filters for an initiative view based on a text prompt. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiative-filter-suggestion"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-label"
+      ],
+      "summary": "Returns a single initiative label by its identifier. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiative-label"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-label-create"
+      ],
+      "summary": "Creates a workspace label or label group for initiatives. Requires workspace…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-label-create"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-label-delete"
+      ],
+      "summary": "Deletes an initiative label and its children, removing their assignments…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-label-delete"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-label-restore"
+      ],
+      "summary": "Restores a previously retired initiative label, making it available for use…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-label-restore"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-label-retire"
+      ],
+      "summary": "Retires an initiative label. Retired labels remain on existing initiatives…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-label-retire"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-labels"
+      ],
+      "summary": "Returns all initiative labels in the workspace, with optional filtering. —…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiative-labels"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-label-update"
+      ],
+      "summary": "Changes the supplied label fields. Omitted fields stay unchanged. Requires…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-label-update"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-relation"
+      ],
+      "summary": "Returns a single initiative relation by its identifier. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiative-relation"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-relation-create"
+      ],
+      "summary": "Adds a child initiative to a parent. Both must be accessible and unarchived,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-relation-create"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-relation-delete"
+      ],
+      "summary": "Removes a parent-child link without deleting either initiative. Deleting a…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-relation-delete"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-relations"
+      ],
+      "summary": "Returns all initiative parent-child relations in the workspace. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiative-relations"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-relation-update"
+      ],
+      "summary": "Changes a child initiative’s ordering within its parent. The relation’s…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-relation-update"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-remove-label"
+      ],
+      "summary": "Removes a label from the initiative while keeping its other labels. The…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-remove-label"
+    },
+    {
+      "path": [
+        "api",
+        "initiatives"
+      ],
+      "summary": "Returns initiatives visible to you in the workspace, with optional filtering…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiatives"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-to-project"
+      ],
+      "summary": "Returns a single initiative-to-project association by its identifier. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiative-to-project"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-to-project-create"
+      ],
+      "summary": "Links an accessible, active project to an accessible, active initiative.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-to-project-create"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-to-project-delete"
+      ],
+      "summary": "Removes an active project-to-initiative link without deleting either entity.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-to-project-delete"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-to-projects"
+      ],
+      "summary": "Returns all initiative-to-project associations in the workspace. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiative-to-projects"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-to-project-update"
+      ],
+      "summary": "Changes the project’s sort order within the initiative. The initiative and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-to-project-update"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-unarchive"
+      ],
+      "summary": "Restores an archived or trashed initiative. This makes the existing…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-update"
+      ],
+      "summary": "Updates the supplied fields of an initiative you can access. Omitted fields…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-update"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-update-archive"
+      ],
+      "summary": "Archives an update and recalculates the initiative’s health from the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-update-archive"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-update-create"
+      ],
+      "summary": "Publishes an update, records the current user as author, captures the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-update-create"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-updates"
+      ],
+      "summary": "Returns all initiative status updates in the workspace, with optional…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.initiative-updates"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-update-unarchive"
+      ],
+      "summary": "Restores an archived update and recalculates the initiative’s health. You…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-update-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "initiative-update-update"
+      ],
+      "summary": "Edits an update’s message or health. You must be the author or have…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.initiative-update-update"
+    },
+    {
+      "path": [
+        "api",
+        "integration"
+      ],
+      "summary": "Retrieves an integration by UUID, including archived integrations. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.integration"
+    },
+    {
+      "path": [
+        "api",
+        "integration-archive"
+      ],
+      "summary": "Disconnects an integration that supports archiving while retaining its…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-archive"
+    },
+    {
+      "path": [
+        "api",
+        "integration-asks-connect-channel"
+      ],
+      "summary": "Connects the public or private Slack channel selected during OAuth to an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-asks-connect-channel"
+    },
+    {
+      "path": [
+        "api",
+        "integration-delete"
+      ],
+      "summary": "Disconnects an integration that supports deletion and removes its connection…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-delete"
+    },
+    {
+      "path": [
+        "api",
+        "integration-discord"
+      ],
+      "summary": "Connects a Discord server using the OAuth code and redirect URI from its…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-discord"
+    },
+    {
+      "path": [
+        "api",
+        "integration-figma"
+      ],
+      "summary": "Connects Figma using an OAuth authorization code and its redirect URI,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-figma"
+    },
+    {
+      "path": [
+        "api",
+        "integration-front"
+      ],
+      "summary": "Connects Front using an OAuth grant. Requires the workspace's support…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-front"
+    },
+    {
+      "path": [
+        "api",
+        "integration-github-commit-create"
+      ],
+      "summary": "Creates the workspace's GitHub commit integration and returns its webhook…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-github-commit-create"
+    },
+    {
+      "path": [
+        "api",
+        "integration-github-connect"
+      ],
+      "summary": "Connects a GitHub App installation to the workspace using its installation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-github-connect"
+    },
+    {
+      "path": [
+        "api",
+        "integration-git-hub-enterprise-server-connect"
+      ],
+      "summary": "Starts a GitHub Enterprise Server connection for a GitHub organization or…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-git-hub-enterprise-server-connect"
+    },
+    {
+      "path": [
+        "api",
+        "integration-github-import-connect"
+      ],
+      "summary": "Connects the GitHub Import App installation authorized by the supplied OAuth…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-github-import-connect"
+    },
+    {
+      "path": [
+        "api",
+        "integration-github-import-refresh"
+      ],
+      "summary": "Queues a refresh of repositories and labels available to a GitHub import…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-github-import-refresh"
+    },
+    {
+      "path": [
+        "api",
+        "integration-git-hub-personal"
+      ],
+      "summary": "Links your GitHub account using an OAuth code from Linear's GitHub App…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-git-hub-personal"
+    },
+    {
+      "path": [
+        "api",
+        "integration-github-remove-code-access"
+      ],
+      "summary": "Removes repository code access from a GitHub connection. Check action in the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-github-remove-code-access"
+    },
+    {
+      "path": [
+        "api",
+        "integration-gitlab-connect"
+      ],
+      "summary": "Connects a GitLab instance after checking its access token. Configure the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-gitlab-connect"
+    },
+    {
+      "path": [
+        "api",
+        "integration-gitlab-rotate"
+      ],
+      "summary": "Rotates the GitLab token, revoking the previous token and saving its…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-gitlab-rotate"
+    },
+    {
+      "path": [
+        "api",
+        "integration-gitlab-test-connection"
+      ],
+      "summary": "Tests the stored access token against a self-hosted GitLab instance, using…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-gitlab-test-connection"
+    },
+    {
+      "path": [
+        "api",
+        "integration-gitlab-update-rotation-settings"
+      ],
+      "summary": "Enables or disables automatic self-rotation of the GitLab token. — write…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-gitlab-update-rotation-settings"
+    },
+    {
+      "path": [
+        "api",
+        "integration-gitlab-update-token"
+      ],
+      "summary": "Replaces a GitLab integration's access token after validating the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-gitlab-update-token"
+    },
+    {
+      "path": [
+        "api",
+        "integration-gong"
+      ],
+      "summary": "Connects Gong using an OAuth authorization code and its redirect URI.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-gong"
+    },
+    {
+      "path": [
+        "api",
+        "integration-google-sheets"
+      ],
+      "summary": "Connects Google Sheets using an OAuth grant that includes both access and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-google-sheets"
+    },
+    {
+      "path": [
+        "api",
+        "integration-has-scopes"
+      ],
+      "summary": "Checks whether an active integration has every requested OAuth scope…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.integration-has-scopes"
+    },
+    {
+      "path": [
+        "api",
+        "integration-intercom"
+      ],
+      "summary": "Connects an Intercom workspace using an OAuth code and the redirect URI used…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-intercom"
+    },
+    {
+      "path": [
+        "api",
+        "integration-intercom-delete"
+      ],
+      "summary": "Uninstalls the Intercom connection and removes its Linear record. It also…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-intercom-delete"
+    },
+    {
+      "path": [
+        "api",
+        "integration-intercom-settings-update"
+      ],
+      "summary": "[DEPRECATED] Updates settings on the Intercom integration. — write (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-intercom-settings-update"
+    },
+    {
+      "path": [
+        "api",
+        "integration-jira-personal"
+      ],
+      "summary": "Links your Jira account to an existing workspace Jira integration. Supply…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-jira-personal"
+    },
+    {
+      "path": [
+        "api",
+        "integration-loom"
+      ],
+      "summary": "Enables Loom integration for the workspace. — write (mutation integrationLoom)",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-loom"
+    },
+    {
+      "path": [
+        "api",
+        "integration-microsoft-personal-connect"
+      ],
+      "summary": "Links your Microsoft account to Linear. Its tenant must already be connected…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-microsoft-personal-connect"
+    },
+    {
+      "path": [
+        "api",
+        "integration-microsoft-teams"
+      ],
+      "summary": "Connects the Microsoft tenant identified by the OAuth grant to this Linear…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-microsoft-teams"
+    },
+    {
+      "path": [
+        "api",
+        "integration-request"
+      ],
+      "summary": "Records interest in an integration that is not currently available. No…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-request"
+    },
+    {
+      "path": [
+        "api",
+        "integrations"
+      ],
+      "summary": "Integrations accessible to the caller, with cursor-based pagination. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.integrations"
+    },
+    {
+      "path": [
+        "api",
+        "integration-salesforce"
+      ],
+      "summary": "Connects Salesforce using an OAuth grant and verifies that the authorizing…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-salesforce"
+    },
+    {
+      "path": [
+        "api",
+        "integration-sentry-connect"
+      ],
+      "summary": "Connects a Sentry installation by exchanging its grant code and confirming…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-sentry-connect"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack"
+      ],
+      "summary": "Connects a Slack workspace to the main Linear Slack app using an OAuth…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack-asks"
+      ],
+      "summary": "Connects a Slack workspace to the Linear Asks app for issue intake. Requires…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack-asks"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack-customer-channel-link"
+      ],
+      "summary": "Links a customer to a public or private Slack channel in a connected Asks…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack-customer-channel-link"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack-custom-view-notifications"
+      ],
+      "summary": "Connects the Slack channel selected during OAuth to a custom view and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack-custom-view-notifications"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack-import-emojis"
+      ],
+      "summary": "Queues an import of custom emoji from Slack using the OAuth grant. Success…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack-import-emojis"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack-or-asks-update-slack-team-name"
+      ],
+      "summary": "Fetches the current Slack workspace name and updates the name stored on an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack-or-asks-update-slack-team-name"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack-org-project-updates-post"
+      ],
+      "summary": "Connects the Slack channel selected during OAuth to receive project updates…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack-org-project-updates-post"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack-personal"
+      ],
+      "summary": "Links your Slack account for personal notifications and opens a direct…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack-personal"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack-post"
+      ],
+      "summary": "Connects the Slack channel selected during OAuth to a Linear team and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack-post"
+    },
+    {
+      "path": [
+        "api",
+        "integration-slack-project-post"
+      ],
+      "summary": "Connects the Slack channel selected during OAuth to a project you can…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-slack-project-post"
+    },
+    {
+      "path": [
+        "api",
+        "integrations-settings"
+      ],
+      "summary": "Retrieves a specific integration settings configuration by its identifier. —…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.integrations-settings"
+    },
+    {
+      "path": [
+        "api",
+        "integrations-settings-create"
+      ],
+      "summary": "Creates notification preferences for a destination you can access, with edit…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integrations-settings-create"
+    },
+    {
+      "path": [
+        "api",
+        "integrations-settings-update"
+      ],
+      "summary": "Updates the event preferences on an existing integration settings record.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integrations-settings-update"
+    },
+    {
+      "path": [
+        "api",
+        "integration-template"
+      ],
+      "summary": "Retrieves a single integration template connection by its identifier. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.integration-template"
+    },
+    {
+      "path": [
+        "api",
+        "integration-template-create"
+      ],
+      "summary": "Makes an issue template available through Slack Asks, Slack, Intercom,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-template-create"
+    },
+    {
+      "path": [
+        "api",
+        "integration-template-delete"
+      ],
+      "summary": "Removes a template's link to an integration or intake destination. The…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-template-delete"
+    },
+    {
+      "path": [
+        "api",
+        "integration-templates"
+      ],
+      "summary": "All integration template connections for the workspace, linking templates to…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.integration-templates"
+    },
+    {
+      "path": [
+        "api",
+        "integration-zendesk"
+      ],
+      "summary": "Connects Zendesk using an OAuth grant and creates or selects the user that…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.integration-zendesk"
+    },
+    {
+      "path": [
+        "api",
+        "issue"
+      ],
+      "summary": "Finds an issue by UUID or a human-readable identifier such as ENG-123.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue"
+    },
+    {
+      "path": [
+        "api",
+        "issue-add-label"
+      ],
+      "summary": "Add a label without replacing the issue’s existing labels. The label must be…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-add-label"
+    },
+    {
+      "path": [
+        "api",
+        "issue-archive"
+      ],
+      "summary": "Archives an issue and its sub-issues, keeping their data available for later…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-archive"
+    },
+    {
+      "path": [
+        "api",
+        "issue-batch-create"
+      ],
+      "summary": "Creates one to 50 issues in a single batch. If any creation fails, none of…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-batch-create"
+    },
+    {
+      "path": [
+        "api",
+        "issue-batch-update"
+      ],
+      "summary": "Applies the same update input to one to 50 issues. The batch runs as one…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-batch-update"
+    },
+    {
+      "path": [
+        "api",
+        "issue-create"
+      ],
+      "summary": "Creates an issue in the chosen team and returns it with its assigned…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-create"
+    },
+    {
+      "path": [
+        "api",
+        "issue-delete"
+      ],
+      "summary": "Moves an issue to the trash and trashes its unarchived sub-issues that you…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-delete"
+    },
+    {
+      "path": [
+        "api",
+        "issue-external-sync-disable"
+      ],
+      "summary": "Stop syncing an issue with the Jira or GitHub integration identified by its…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-external-sync-disable"
+    },
+    {
+      "path": [
+        "api",
+        "issue-figma-file-key-search"
+      ],
+      "summary": "Find issues that are related to a given Figma file key. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-figma-file-key-search"
+    },
+    {
+      "path": [
+        "api",
+        "issue-filter-suggestion"
+      ],
+      "summary": "Suggests filters for an issue view based on a text prompt. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-filter-suggestion"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-check-csv"
+      ],
+      "summary": "Validate a Jira CSV uploaded to the workspace. Invalid files return an…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-import-check-csv"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-check-sync"
+      ],
+      "summary": "Checks whether a GitHub or Jira import can continue syncing with its source…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-import-check-sync"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-create-asana"
+      ],
+      "summary": "Starts fetching Asana tasks into an asynchronous import job. Choose an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-import-create-asana"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-create-clubhouse"
+      ],
+      "summary": "Starts fetching stories from Shortcut, whose legacy API name is clubhouse,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-import-create-clubhouse"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-create-csvjira"
+      ],
+      "summary": "Creates an asynchronous import from a Jira CSV already uploaded to the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-import-create-csvjira"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-create-github"
+      ],
+      "summary": "Starts fetching GitHub issues into an asynchronous import job. Choose an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-import-create-github"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-create-jira"
+      ],
+      "summary": "Starts fetching Jira issues into an asynchronous import job. Choose an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-import-create-jira"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-delete"
+      ],
+      "summary": "Schedules deletion of an import and the data it created, then returns the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-import-delete"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-jql-check"
+      ],
+      "summary": "Validate JQL within the specified Jira project and return an approximate…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-import-jql-check"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-process"
+      ],
+      "summary": "Saves the supplied mappings and schedules creation of Linear records from…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-import-process"
+    },
+    {
+      "path": [
+        "api",
+        "issue-import-update"
+      ],
+      "summary": "Saves mapping choices without starting the import. For external-service…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-import-update"
+    },
+    {
+      "path": [
+        "api",
+        "issue-label"
+      ],
+      "summary": "A label by UUID, including archived labels. — read (query issueLabel)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-label"
+    },
+    {
+      "path": [
+        "api",
+        "issue-label-create"
+      ],
+      "summary": "Create a workspace or team label. Requires permission to manage labels in…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-label-create"
+    },
+    {
+      "path": [
+        "api",
+        "issue-label-delete"
+      ],
+      "summary": "Deletes a label and its inherited copies. Assignments to that label are…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-label-delete"
+    },
+    {
+      "path": [
+        "api",
+        "issue-label-restore"
+      ],
+      "summary": "Makes a retired label available for new assignments again. Existing issue…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-label-restore"
+    },
+    {
+      "path": [
+        "api",
+        "issue-label-retire"
+      ],
+      "summary": "Retires a label so it cannot be newly assigned, while keeping it on issues…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-label-retire"
+    },
+    {
+      "path": [
+        "api",
+        "issue-labels"
+      ],
+      "summary": "Workspace and team labels the caller can access, with cursor pagination and…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-labels"
+    },
+    {
+      "path": [
+        "api",
+        "issue-label-update"
+      ],
+      "summary": "Update a label. Requires permission to manage labels in its scope; inherited…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-label-update"
+    },
+    {
+      "path": [
+        "api",
+        "issue-priority-values"
+      ],
+      "summary": "Issue priority values and corresponding labels. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-priority-values"
+    },
+    {
+      "path": [
+        "api",
+        "issue-relation"
+      ],
+      "summary": "One specific issue relation, looked up by its unique identifier. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-relation"
+    },
+    {
+      "path": [
+        "api",
+        "issue-relation-create"
+      ],
+      "summary": "Creates a relationship between two issues, replacing any conflicting…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-relation-create"
+    },
+    {
+      "path": [
+        "api",
+        "issue-relation-delete"
+      ],
+      "summary": "Removes a relation by its UUID. Removing a duplicate relation also runs the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-relation-delete"
+    },
+    {
+      "path": [
+        "api",
+        "issue-relations"
+      ],
+      "summary": "Issue relations the caller can access, with cursor pagination. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-relations"
+    },
+    {
+      "path": [
+        "api",
+        "issue-relation-update"
+      ],
+      "summary": "Changes a relation’s type or the issues it connects. Omitted fields are…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-relation-update"
+    },
+    {
+      "path": [
+        "api",
+        "issue-reminder"
+      ],
+      "summary": "Creates a reminder notification for you at reminderAt. The time must be in…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-reminder"
+    },
+    {
+      "path": [
+        "api",
+        "issue-remove-label"
+      ],
+      "summary": "Remove one label while keeping the issue’s other labels. — write (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-remove-label"
+    },
+    {
+      "path": [
+        "api",
+        "issue-repository-suggestions"
+      ],
+      "summary": "Returns code repositories that are most likely to be relevant for…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-repository-suggestions"
+    },
+    {
+      "path": [
+        "api",
+        "issues"
+      ],
+      "summary": "Lists issues you can access. Use filter to narrow the results by team,…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issues"
+    },
+    {
+      "path": [
+        "api",
+        "issue-search"
+      ],
+      "summary": "[DEPRECATED] Search issues. This endpoint is deprecated and will be removed…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-search"
+    },
+    {
+      "path": [
+        "api",
+        "issue-share"
+      ],
+      "summary": "Shares an issue with a user who would not otherwise be able to access it.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-share"
+    },
+    {
+      "path": [
+        "api",
+        "issue-subscribe"
+      ],
+      "summary": "Subscribes a user to issue updates. Omit both userId and userEmail to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-subscribe"
+    },
+    {
+      "path": [
+        "api",
+        "issue-title-suggestion-from-customer-request"
+      ],
+      "summary": "Suggests an issue title based on a customer request message using AI…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-title-suggestion-from-customer-request"
+    },
+    {
+      "path": [
+        "api",
+        "issue-to-release"
+      ],
+      "summary": "Get an active issue-to-release link by its UUID. — read (query issueToRelease)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-to-release"
+    },
+    {
+      "path": [
+        "api",
+        "issue-to-release-create"
+      ],
+      "summary": "Associates an issue with a release and returns the link. The issue must be…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-to-release-create"
+    },
+    {
+      "path": [
+        "api",
+        "issue-to-release-delete"
+      ],
+      "summary": "Removes an issue-to-release association by the link’s UUID, keeping the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-to-release-delete"
+    },
+    {
+      "path": [
+        "api",
+        "issue-to-release-delete-by-issue-and-release"
+      ],
+      "summary": "Removes the association between the specified issue and release, keeping…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-to-release-delete-by-issue-and-release"
+    },
+    {
+      "path": [
+        "api",
+        "issue-to-releases"
+      ],
+      "summary": "A paginated list of accessible issue-to-release links. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-to-releases"
+    },
+    {
+      "path": [
+        "api",
+        "issue-unarchive"
+      ],
+      "summary": "Restores an archived issue and its sub-issues to normal issue lists.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "issue-unshare"
+      ],
+      "summary": "Stops sharing an issue with a user. The viewer must have native access to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-unshare"
+    },
+    {
+      "path": [
+        "api",
+        "issue-unsubscribe"
+      ],
+      "summary": "Removes a user’s subscription to issue updates. Omit both userId and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-unsubscribe"
+    },
+    {
+      "path": [
+        "api",
+        "issue-update"
+      ],
+      "summary": "Updates an issue by UUID or human-readable identifier and returns its…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.issue-update"
+    },
+    {
+      "path": [
+        "api",
+        "issue-vcs-branch-search"
+      ],
+      "summary": "Find an accessible issue referenced by a version-control branch name. Null…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.issue-vcs-branch-search"
+    },
+    {
+      "path": [
+        "api",
+        "jira-project"
+      ],
+      "summary": "Retrieves an accessible Jira project record by its Linear UUID, including an…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.jira-project"
+    },
+    {
+      "path": [
+        "api",
+        "jira-project-batch-migrate"
+      ],
+      "summary": "Imports or syncs up to 50 projects from one connected Jira site. When both…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.jira-project-batch-migrate"
+    },
+    {
+      "path": [
+        "api",
+        "jira-projects"
+      ],
+      "summary": "Jira projects synced with teams the caller can administer, plus projects…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.jira-projects"
+    },
+    {
+      "path": [
+        "api",
+        "latest-release-by-access-key"
+      ],
+      "summary": "Returns the most recently completed or updated release for the pipeline…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.latest-release-by-access-key"
+    },
+    {
+      "path": [
+        "api",
+        "logout"
+      ],
+      "summary": "Signs out the current session and clears authentication cookies. If the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.logout"
+    },
+    {
+      "path": [
+        "api",
+        "logout-all-sessions"
+      ],
+      "summary": "Signs out all sessions for the account, including the current session, and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.logout-all-sessions"
+    },
+    {
+      "path": [
+        "api",
+        "logout-other-sessions"
+      ],
+      "summary": "Signs out every other session for the authenticated account while keeping…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.logout-other-sessions"
+    },
+    {
+      "path": [
+        "api",
+        "logout-session"
+      ],
+      "summary": "Revokes one sign-in session belonging to the authenticated account. Use an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.logout-session"
+    },
+    {
+      "path": [
+        "api",
+        "notification"
+      ],
+      "summary": "Returns one of the authenticated user’s notifications by UUID, including an…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.notification"
+    },
+    {
+      "path": [
+        "api",
+        "notification-archive"
+      ],
+      "summary": "Archives one of your notifications, removing it from the active inbox. Other…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-archive"
+    },
+    {
+      "path": [
+        "api",
+        "notification-archive-all"
+      ],
+      "summary": "Archives the authenticated user’s active notifications for the selected…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-archive-all"
+    },
+    {
+      "path": [
+        "api",
+        "notification-category-channel-subscription-update"
+      ],
+      "summary": "Subscribes to or unsubscribes from a specific notification category for a…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-category-channel-subscription-update"
+    },
+    {
+      "path": [
+        "api",
+        "notification-mark-read-all"
+      ],
+      "summary": "Marks the authenticated user’s active notifications for the selected entity…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-mark-read-all"
+    },
+    {
+      "path": [
+        "api",
+        "notification-mark-unread-all"
+      ],
+      "summary": "Marks the authenticated user’s active notifications for the selected entity…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-mark-unread-all"
+    },
+    {
+      "path": [
+        "api",
+        "notifications"
+      ],
+      "summary": "Returns individual notifications received by the authenticated user, with…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.notifications"
+    },
+    {
+      "path": [
+        "api",
+        "notification-snooze-all"
+      ],
+      "summary": "Snoozes the authenticated user’s active notifications for the selected…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-snooze-all"
+    },
+    {
+      "path": [
+        "api",
+        "notification-subscription"
+      ],
+      "summary": "A specific notification subscription by ID. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.notification-subscription"
+    },
+    {
+      "path": [
+        "api",
+        "notification-subscription-create"
+      ],
+      "summary": "Subscribes the authenticated user to one target and its requested…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-subscription-create"
+    },
+    {
+      "path": [
+        "api",
+        "notification-subscription-delete"
+      ],
+      "summary": "Deletes a notification subscription reference. — destructive (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-subscription-delete"
+    },
+    {
+      "path": [
+        "api",
+        "notification-subscriptions"
+      ],
+      "summary": "The authenticated user's subscriptions to entity notifications. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.notification-subscriptions"
+    },
+    {
+      "path": [
+        "api",
+        "notification-subscription-update"
+      ],
+      "summary": "Updates a subscription owned by the authenticated user. Use active: false to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-subscription-update"
+    },
+    {
+      "path": [
+        "api",
+        "notification-unarchive"
+      ],
+      "summary": "Restores one of your archived notifications. Its read and snooze states are…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "notification-unsnooze-all"
+      ],
+      "summary": "Unsnoozes the authenticated user’s active notifications for the selected…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-unsnooze-all"
+    },
+    {
+      "path": [
+        "api",
+        "notification-update"
+      ],
+      "summary": "Updates one of the authenticated user’s notifications. Related notifications…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.notification-update"
+    },
+    {
+      "path": [
+        "api",
+        "oauth-application"
+      ],
+      "summary": "[ALPHA] A specific OAuth application created by the calling OAuth…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.oauth-application"
+    },
+    {
+      "path": [
+        "api",
+        "oauth-application-archive"
+      ],
+      "summary": "[ALPHA] Archives an OAuth application created by the calling OAuth…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.oauth-application-archive"
+    },
+    {
+      "path": [
+        "api",
+        "oauth-application-coding-session-trusted-source"
+      ],
+      "summary": "Returns the authenticated OAuth application's trusted-source status for…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.oauth-application-coding-session-trusted-source"
+    },
+    {
+      "path": [
+        "api",
+        "oauth-application-create"
+      ],
+      "summary": "[ALPHA] Creates an OAuth application private to the current workspace and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.oauth-application-create"
+    },
+    {
+      "path": [
+        "api",
+        "oauth-application-rotate-secret"
+      ],
+      "summary": "[ALPHA] Replaces the client secret for an application created by the caller…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.oauth-application-rotate-secret"
+    },
+    {
+      "path": [
+        "api",
+        "oauth-application-rotate-webhook-secret"
+      ],
+      "summary": "[ALPHA] Rotates the webhook signing secret for an OAuth application created…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.oauth-application-rotate-webhook-secret"
+    },
+    {
+      "path": [
+        "api",
+        "oauth-applications"
+      ],
+      "summary": "[ALPHA] Lists unarchived applications created by the calling OAuth…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.oauth-applications"
+    },
+    {
+      "path": [
+        "api",
+        "oauth-application-update"
+      ],
+      "summary": "[ALPHA] Updates an unarchived application created by the calling OAuth…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.oauth-application-update"
+    },
+    {
+      "path": [
+        "api",
+        "organization"
+      ],
+      "summary": "Returns the workspace associated with the credentials used for this request.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.organization"
+    },
+    {
+      "path": [
+        "api",
+        "organization-cancel-delete"
+      ],
+      "summary": "Cancels a scheduled workspace deletion while the deletion process still…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-cancel-delete"
+    },
+    {
+      "path": [
+        "api",
+        "organization-delete"
+      ],
+      "summary": "Schedules deletion of the workspace and its data after validating the code…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-delete"
+    },
+    {
+      "path": [
+        "api",
+        "organization-delete-challenge"
+      ],
+      "summary": "Requests a deletion confirmation code for the workspace. The code is sent to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-delete-challenge"
+    },
+    {
+      "path": [
+        "api",
+        "organization-domain-delete"
+      ],
+      "summary": "Removes a domain configuration from the workspace and its authentication…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-domain-delete"
+    },
+    {
+      "path": [
+        "api",
+        "organization-exists"
+      ],
+      "summary": "Checks whether a workspace with the given URL key exists. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.organization-exists"
+    },
+    {
+      "path": [
+        "api",
+        "organization-invite"
+      ],
+      "summary": "Fetches a specific workspace invite by its ID. — read (query organizationInvite)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.organization-invite"
+    },
+    {
+      "path": [
+        "api",
+        "organization-invite-create"
+      ],
+      "summary": "Invites an email address to the workspace and sends an invitation email.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-invite-create"
+    },
+    {
+      "path": [
+        "api",
+        "organization-invite-delete"
+      ],
+      "summary": "Deletes (archives) a workspace invite, preventing it from being accepted. —…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-invite-delete"
+    },
+    {
+      "path": [
+        "api",
+        "organization-invite-details"
+      ],
+      "summary": "Fetches public details of a specific workspace invite by its ID. This query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.organization-invite-details"
+    },
+    {
+      "path": [
+        "api",
+        "organization-invites"
+      ],
+      "summary": "All pending and accepted invites for the workspace. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.organization-invites"
+    },
+    {
+      "path": [
+        "api",
+        "organization-invite-update"
+      ],
+      "summary": "Replaces the teams an invitee will join on acceptance. Requires permission…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-invite-update"
+    },
+    {
+      "path": [
+        "api",
+        "organization-start-trial"
+      ],
+      "summary": "[DEPRECATED] Starts a trial for the workspace. — write (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-start-trial"
+    },
+    {
+      "path": [
+        "api",
+        "organization-start-trial-for-plan"
+      ],
+      "summary": "Starts a trial for the workspace on the specified plan type. The workspace…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-start-trial-for-plan"
+    },
+    {
+      "path": [
+        "api",
+        "organization-update"
+      ],
+      "summary": "Updates the workspace associated with your credentials. Omitted fields keep…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.organization-update"
+    },
+    {
+      "path": [
+        "api",
+        "project"
+      ],
+      "summary": "Returns a project you can access by UUID, URL slug, or human-readable…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project"
+    },
+    {
+      "path": [
+        "api",
+        "project-add-label"
+      ],
+      "summary": "Adds a project label while keeping the project’s other labels. The label…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-add-label"
+    },
+    {
+      "path": [
+        "api",
+        "project-archive"
+      ],
+      "summary": "Archives a project. — destructive (mutation projectArchive)",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-archive"
+    },
+    {
+      "path": [
+        "api",
+        "project-create"
+      ],
+      "summary": "Creates a project in the supplied teams. You can apply a project template to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-create"
+    },
+    {
+      "path": [
+        "api",
+        "project-delete"
+      ],
+      "summary": "Moves a project to the trash. This archives the project rather than…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-delete"
+    },
+    {
+      "path": [
+        "api",
+        "project-external-sync-disable"
+      ],
+      "summary": "Disables external sync on a project. — write (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-external-sync-disable"
+    },
+    {
+      "path": [
+        "api",
+        "project-filter-suggestion"
+      ],
+      "summary": "Suggests filters for a project view based on a text prompt. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-filter-suggestion"
+    },
+    {
+      "path": [
+        "api",
+        "project-label"
+      ],
+      "summary": "Returns a single project label by its identifier. — read (query projectLabel)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-label"
+    },
+    {
+      "path": [
+        "api",
+        "project-label-create"
+      ],
+      "summary": "Creates a label or label group for projects. Workspace labels require…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-label-create"
+    },
+    {
+      "path": [
+        "api",
+        "project-label-delete"
+      ],
+      "summary": "Deletes a project label, its children, and inherited copies, removing their…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-label-delete"
+    },
+    {
+      "path": [
+        "api",
+        "project-label-restore"
+      ],
+      "summary": "Restores a previously retired project label, making it available for use on…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-label-restore"
+    },
+    {
+      "path": [
+        "api",
+        "project-label-retire"
+      ],
+      "summary": "Retires a project label. Retired labels remain on existing projects but…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-label-retire"
+    },
+    {
+      "path": [
+        "api",
+        "project-labels"
+      ],
+      "summary": "All project labels. Returns a paginated list of labels visible to the…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-labels"
+    },
+    {
+      "path": [
+        "api",
+        "project-label-update"
+      ],
+      "summary": "Updates the supplied project-label fields and propagates changes to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-label-update"
+    },
+    {
+      "path": [
+        "api",
+        "project-milestone"
+      ],
+      "summary": "Fetches a milestone by UUID, including archived milestones. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-milestone"
+    },
+    {
+      "path": [
+        "api",
+        "project-milestone-create"
+      ],
+      "summary": "Creates a milestone in a project you can edit. Its name must be unique among…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-milestone-create"
+    },
+    {
+      "path": [
+        "api",
+        "project-milestone-delete"
+      ],
+      "summary": "Permanently deletes a milestone from a project you can edit. The issues are…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-milestone-delete"
+    },
+    {
+      "path": [
+        "api",
+        "project-milestone-move"
+      ],
+      "summary": "Moves a milestone and its issues to another project, including archived…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-milestone-move"
+    },
+    {
+      "path": [
+        "api",
+        "project-milestones"
+      ],
+      "summary": "Returns all project milestones in the workspace, with optional filtering. —…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-milestones"
+    },
+    {
+      "path": [
+        "api",
+        "project-milestone-update"
+      ],
+      "summary": "Updates a milestone in a project you can edit, including an archived…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-milestone-update"
+    },
+    {
+      "path": [
+        "api",
+        "project-relation"
+      ],
+      "summary": "Returns a single project relation by its identifier. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-relation"
+    },
+    {
+      "path": [
+        "api",
+        "project-relation-create"
+      ],
+      "summary": "Creates a dependency between two different projects using date or milestone…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-relation-create"
+    },
+    {
+      "path": [
+        "api",
+        "project-relation-delete"
+      ],
+      "summary": "Deletes the dependency without deleting either project or milestone. —…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-relation-delete"
+    },
+    {
+      "path": [
+        "api",
+        "project-relations"
+      ],
+      "summary": "Returns all project dependency relations in the workspace. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-relations"
+    },
+    {
+      "path": [
+        "api",
+        "project-relation-update"
+      ],
+      "summary": "Updates the supplied dependency fields and validates both project endpoints.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-relation-update"
+    },
+    {
+      "path": [
+        "api",
+        "project-remove-label"
+      ],
+      "summary": "Removes a project label while keeping the project’s other labels. The label…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-remove-label"
+    },
+    {
+      "path": [
+        "api",
+        "projects"
+      ],
+      "summary": "Returns projects visible to you in the workspace. Use filter to narrow the…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.projects"
+    },
+    {
+      "path": [
+        "api",
+        "project-status"
+      ],
+      "summary": "Returns a single project status by its identifier. — read (query projectStatus)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-status"
+    },
+    {
+      "path": [
+        "api",
+        "project-status-archive"
+      ],
+      "summary": "Archives a project status. The status must not have any active projects…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-status-archive"
+    },
+    {
+      "path": [
+        "api",
+        "project-status-create"
+      ],
+      "summary": "Creates a new project status. — write (mutation projectStatusCreate)",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-status-create"
+    },
+    {
+      "path": [
+        "api",
+        "project-statuses"
+      ],
+      "summary": "Returns all project statuses in the workspace. — read (query projectStatuses)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-statuses"
+    },
+    {
+      "path": [
+        "api",
+        "project-status-unarchive"
+      ],
+      "summary": "Unarchives a project status. — write (mutation projectStatusUnarchive)",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-status-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "project-status-update"
+      ],
+      "summary": "Updates a project status. — write (mutation projectStatusUpdate)",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-status-update"
+    },
+    {
+      "path": [
+        "api",
+        "project-unarchive"
+      ],
+      "summary": "Restores an archived or trashed project. The operation checks the project…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "project-update"
+      ],
+      "summary": "Updates the supplied fields of a project you can edit. Omitted fields keep…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-update"
+    },
+    {
+      "path": [
+        "api",
+        "project-update-archive"
+      ],
+      "summary": "Archives an update and recalculates the project’s health from the remaining…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-update-archive"
+    },
+    {
+      "path": [
+        "api",
+        "project-update-create"
+      ],
+      "summary": "Publishes a status update for a project you can edit. The update records the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-update-create"
+    },
+    {
+      "path": [
+        "api",
+        "project-update-delete"
+      ],
+      "summary": "Archives a project update and recalculates project health. Use…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-update-delete"
+    },
+    {
+      "path": [
+        "api",
+        "project-updates"
+      ],
+      "summary": "Returns all project status updates in the workspace, with optional…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.project-updates"
+    },
+    {
+      "path": [
+        "api",
+        "project-update-unarchive"
+      ],
+      "summary": "Restores an archived update and recalculates the project’s health. The…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-update-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "project-update-update"
+      ],
+      "summary": "Edits an update’s message or health. You must be its author or have…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.project-update-update"
+    },
+    {
+      "path": [
+        "api",
+        "push-subscription-create"
+      ],
+      "summary": "Registers a browser or device to receive push notifications for the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.push-subscription-create"
+    },
+    {
+      "path": [
+        "api",
+        "push-subscription-delete"
+      ],
+      "summary": "Deletes a push subscription to stop sending notifications through it. Select…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.push-subscription-delete"
+    },
+    {
+      "path": [
+        "api",
+        "push-subscription-test"
+      ],
+      "summary": "Queues a test notification for the authenticated user. Limited to three…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.push-subscription-test"
+    },
+    {
+      "path": [
+        "api",
+        "quotas"
+      ],
+      "summary": "Public resource quotas for the authenticated workspace. These are not…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.quotas"
+    },
+    {
+      "path": [
+        "api",
+        "rate-limit-status"
+      ],
+      "summary": "Returns the quota state recorded for this GraphQL request, including both…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.rate-limit-status"
+    },
+    {
+      "path": [
+        "api",
+        "reaction-create"
+      ],
+      "summary": "Adds an emoji reaction as you to one issue, comment, or update. If you…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.reaction-create"
+    },
+    {
+      "path": [
+        "api",
+        "reaction-delete"
+      ],
+      "summary": "Removes a reaction by its UUID and updates the target’s reaction summary.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.reaction-delete"
+    },
+    {
+      "path": [
+        "api",
+        "recent-releases-by-access-key"
+      ],
+      "summary": "Returns releases for the pipeline associated with the access key, ordered…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.recent-releases-by-access-key"
+    },
+    {
+      "path": [
+        "api",
+        "refresh-google-sheets-data"
+      ],
+      "summary": "Queues a Google Sheets export refresh. Success confirms scheduling; the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.refresh-google-sheets-data"
+    },
+    {
+      "path": [
+        "api",
+        "release"
+      ],
+      "summary": "Fetch a single release by its UUID or slug identifier. — read (query release)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.release"
+    },
+    {
+      "path": [
+        "api",
+        "release-archive"
+      ],
+      "summary": "Archives a release. — destructive (mutation releaseArchive)",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-archive"
+    },
+    {
+      "path": [
+        "api",
+        "release-complete"
+      ],
+      "summary": "Completes the release identified by pipeline and version, or the latest…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-complete"
+    },
+    {
+      "path": [
+        "api",
+        "release-complete-by-access-key"
+      ],
+      "summary": "Marks a release as completed using an access key. If version is provided,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-complete-by-access-key"
+    },
+    {
+      "path": [
+        "api",
+        "release-create"
+      ],
+      "summary": "Creates a new release in a pipeline. If no stage is specified, defaults to…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-create"
+    },
+    {
+      "path": [
+        "api",
+        "release-delete"
+      ],
+      "summary": "Moves a release to trash for permanent deletion after the retention period.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-delete"
+    },
+    {
+      "path": [
+        "api",
+        "release-note"
+      ],
+      "summary": "Fetch a release note by its UUID or slug identifier. — read (query releaseNote)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.release-note"
+    },
+    {
+      "path": [
+        "api",
+        "release-note-create"
+      ],
+      "summary": "Creates a note covering releases from one pipeline. Supply explicit release…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-note-create"
+    },
+    {
+      "path": [
+        "api",
+        "release-note-delete"
+      ],
+      "summary": "Permanently deletes a release note and its body. The covered releases…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-note-delete"
+    },
+    {
+      "path": [
+        "api",
+        "release-notes"
+      ],
+      "summary": "Release notes in the workspace. — read (query releaseNotes)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.release-notes"
+    },
+    {
+      "path": [
+        "api",
+        "release-note-update"
+      ],
+      "summary": "Updates a release note’s title, body, or covered releases. Omitted fields…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-note-update"
+    },
+    {
+      "path": [
+        "api",
+        "release-pipeline"
+      ],
+      "summary": "Fetch a single release pipeline by its UUID or slug identifier. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.release-pipeline"
+    },
+    {
+      "path": [
+        "api",
+        "release-pipeline-archive"
+      ],
+      "summary": "Archives a pipeline and schedules archival of its releases. The release…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-pipeline-archive"
+    },
+    {
+      "path": [
+        "api",
+        "release-pipeline-by-access-key"
+      ],
+      "summary": "Returns the release pipeline associated with the access key. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.release-pipeline-by-access-key"
+    },
+    {
+      "path": [
+        "api",
+        "release-pipeline-create"
+      ],
+      "summary": "Creates a release pipeline with default stages, subject to your workspace’s…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-pipeline-create"
+    },
+    {
+      "path": [
+        "api",
+        "release-pipeline-delete"
+      ],
+      "summary": "Moves a pipeline and its releases to the trash for permanent deletion after…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-pipeline-delete"
+    },
+    {
+      "path": [
+        "api",
+        "release-pipelines"
+      ],
+      "summary": "All release pipelines in the workspace, with optional filtering and sorting.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.release-pipelines"
+    },
+    {
+      "path": [
+        "api",
+        "release-pipeline-unarchive"
+      ],
+      "summary": "Restores a pipeline and schedules restoration of its archived releases.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-pipeline-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "release-pipeline-update"
+      ],
+      "summary": "Updates an existing release pipeline. Supports updating name, slug, type,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-pipeline-update"
+    },
+    {
+      "path": [
+        "api",
+        "releases"
+      ],
+      "summary": "All releases in the workspace, with optional filtering and sorting. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.releases"
+    },
+    {
+      "path": [
+        "api",
+        "release-search"
+      ],
+      "summary": "Search releases with optional text matching against name, version, and…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.release-search"
+    },
+    {
+      "path": [
+        "api",
+        "release-stage"
+      ],
+      "summary": "Fetch a single release stage by its UUID. — read (query releaseStage)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.release-stage"
+    },
+    {
+      "path": [
+        "api",
+        "release-stage-archive"
+      ],
+      "summary": "Archives a release stage. Only started-type stages can be archived, and only…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-stage-archive"
+    },
+    {
+      "path": [
+        "api",
+        "release-stage-create"
+      ],
+      "summary": "Creates a new release stage in a pipeline. Non-started stages must use…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-stage-create"
+    },
+    {
+      "path": [
+        "api",
+        "release-stages"
+      ],
+      "summary": "All release stages in the workspace, with optional filtering. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.release-stages"
+    },
+    {
+      "path": [
+        "api",
+        "release-stage-unarchive"
+      ],
+      "summary": "Unarchives a release stage. — write (mutation releaseStageUnarchive)",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-stage-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "release-stage-update"
+      ],
+      "summary": "Updates an existing release stage. Only started-type stages can be edited.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-stage-update"
+    },
+    {
+      "path": [
+        "api",
+        "release-sync"
+      ],
+      "summary": "Associates issues found in issue or pull request references with a release.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-sync"
+    },
+    {
+      "path": [
+        "api",
+        "release-sync-by-access-key"
+      ],
+      "summary": "Syncs release data using an access key for CI/CD integration. The pipeline…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-sync-by-access-key"
+    },
+    {
+      "path": [
+        "api",
+        "release-unarchive"
+      ],
+      "summary": "Restores an archived or trashed release before it is permanently deleted.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "release-update"
+      ],
+      "summary": "Updates a release by ID. Omitted fields remain unchanged. A release cannot…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-update"
+    },
+    {
+      "path": [
+        "api",
+        "release-update-by-pipeline"
+      ],
+      "summary": "Updates a release by pipeline identifier. Finds the release by version,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-update-by-pipeline"
+    },
+    {
+      "path": [
+        "api",
+        "release-update-by-pipeline-by-access-key"
+      ],
+      "summary": "Updates a release by pipeline using an access key. — write (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.release-update-by-pipeline-by-access-key"
+    },
+    {
+      "path": [
+        "api",
+        "resend-organization-invite"
+      ],
+      "summary": "Re-sends a workspace invitation email for the specified invite ID. — write…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.resend-organization-invite"
+    },
+    {
+      "path": [
+        "api",
+        "resend-organization-invite-by-email"
+      ],
+      "summary": "Re-sends a workspace invitation email to the specified email address, if an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.resend-organization-invite-by-email"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap"
+      ],
+      "summary": "[Deprecated] Returns a single roadmap by its identifier. Use initiatives…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.roadmap"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-archive"
+      ],
+      "summary": "No longer supported and returns an error. Use initiativeArchive. —…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.roadmap-archive"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-create"
+      ],
+      "summary": "No longer supported and returns an error. Use initiativeCreate. — write…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.roadmap-create"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-delete"
+      ],
+      "summary": "No longer supported and returns an error. Use initiativeDelete. —…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.roadmap-delete"
+    },
+    {
+      "path": [
+        "api",
+        "roadmaps"
+      ],
+      "summary": "Deprecated. Always returns an empty connection. Use initiatives. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.roadmaps"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-to-project"
+      ],
+      "summary": "No longer supported and returns an error. Use initiativeToProject. — read…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.roadmap-to-project"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-to-project-create"
+      ],
+      "summary": "No longer supported and returns an error. Use initiativeToProjectCreate. —…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.roadmap-to-project-create"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-to-project-delete"
+      ],
+      "summary": "No longer supported and returns an error. Use initiativeToProjectDelete. —…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.roadmap-to-project-delete"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-to-projects"
+      ],
+      "summary": "Deprecated. Always returns an empty connection. Use initiativeToProjects. —…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.roadmap-to-projects"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-to-project-update"
+      ],
+      "summary": "No longer supported and returns an error. Use initiativeToProjectUpdate. —…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.roadmap-to-project-update"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-unarchive"
+      ],
+      "summary": "No longer supported and returns an error. Use initiativeUnarchive. — write…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.roadmap-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "roadmap-update"
+      ],
+      "summary": "No longer supported and returns an error. Use initiativeUpdate. — write…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.roadmap-update"
+    },
+    {
+      "path": [
+        "api",
+        "saml-token-user-account-auth"
+      ],
+      "summary": "Completes SAML sign-in with the email and token issued by the SAML flow,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.saml-token-user-account-auth"
+    },
+    {
+      "path": [
+        "api",
+        "search-documents"
+      ],
+      "summary": "Searches accessible documents using text matching and meaning. Use teamId to…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.search-documents"
+    },
+    {
+      "path": [
+        "api",
+        "search-issues"
+      ],
+      "summary": "Searches accessible issues using text matching and meaning. Results are…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.search-issues"
+    },
+    {
+      "path": [
+        "api",
+        "search-projects"
+      ],
+      "summary": "Searches accessible projects using text matching and meaning. Use teamId to…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.search-projects"
+    },
+    {
+      "path": [
+        "api",
+        "semantic-search"
+      ],
+      "summary": "Searches accessible issues, projects, initiatives, and documents together…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.semantic-search"
+    },
+    {
+      "path": [
+        "api",
+        "sla-configurations"
+      ],
+      "summary": "Lists enabled SLA rules from the workspace, the requested team, and its…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.sla-configurations"
+    },
+    {
+      "path": [
+        "api",
+        "sso-url-from-email"
+      ],
+      "summary": "Returns a SAML sign-in URL for an existing membership or a matching email…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.sso-url-from-email"
+    },
+    {
+      "path": [
+        "api",
+        "team"
+      ],
+      "summary": "Fetches a specific team by its ID. — read (query team)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.team"
+    },
+    {
+      "path": [
+        "api",
+        "team-create"
+      ],
+      "summary": "Creates a team with workflow states, labels, and other initial resources.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.team-create"
+    },
+    {
+      "path": [
+        "api",
+        "team-cycles-delete"
+      ],
+      "summary": "Permanently deletes all cycles for a team and disables cycles. Issues are…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.team-cycles-delete"
+    },
+    {
+      "path": [
+        "api",
+        "team-delete"
+      ],
+      "summary": "Archives a team and schedules permanent deletion after a 30-day grace…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.team-delete"
+    },
+    {
+      "path": [
+        "api",
+        "team-key-delete"
+      ],
+      "summary": "Deletes a previously used team key. The active team key (the team's current…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.team-key-delete"
+    },
+    {
+      "path": [
+        "api",
+        "team-membership"
+      ],
+      "summary": "Fetches a specific team membership by its ID. — read (query teamMembership)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.team-membership"
+    },
+    {
+      "path": [
+        "api",
+        "team-membership-create"
+      ],
+      "summary": "Adds a user to an active team after checking permission and membership…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.team-membership-create"
+    },
+    {
+      "path": [
+        "api",
+        "team-membership-delete"
+      ],
+      "summary": "Removes a user from a team after checking removal permissions and membership…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.team-membership-delete"
+    },
+    {
+      "path": [
+        "api",
+        "team-memberships"
+      ],
+      "summary": "All team memberships in the workspace. — read (query teamMemberships)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.team-memberships"
+    },
+    {
+      "path": [
+        "api",
+        "team-membership-update"
+      ],
+      "summary": "Updates the team’s position in the member’s team list. — write (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.team-membership-update"
+    },
+    {
+      "path": [
+        "api",
+        "teams"
+      ],
+      "summary": "All teams whose issues the user can access. This includes public teams and…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.teams"
+    },
+    {
+      "path": [
+        "api",
+        "team-unarchive"
+      ],
+      "summary": "Restores an archived team and cancels its scheduled deletion while the grace…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.team-unarchive"
+    },
+    {
+      "path": [
+        "api",
+        "team-update"
+      ],
+      "summary": "Updates the supplied team fields. Changes require the relevant…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.team-update"
+    },
+    {
+      "path": [
+        "api",
+        "template"
+      ],
+      "summary": "A template by UUID, including archived templates. — read (query template)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.template"
+    },
+    {
+      "path": [
+        "api",
+        "template-create"
+      ],
+      "summary": "Create a template. Requires permission to manage templates in the workspace,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.template-create"
+    },
+    {
+      "path": [
+        "api",
+        "template-delete"
+      ],
+      "summary": "Deletes a template and its inherited copies. Requires permission to manage…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.template-delete"
+    },
+    {
+      "path": [
+        "api",
+        "templates"
+      ],
+      "summary": "All accessible workspace and team templates, including archived templates.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.templates"
+    },
+    {
+      "path": [
+        "api",
+        "template-search"
+      ],
+      "summary": "Finds templates matching a filter, ordered as they appear in Linear. Unlike…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.template-search"
+    },
+    {
+      "path": [
+        "api",
+        "templates-for-integration"
+      ],
+      "summary": "Lists templates enabled for the specified integration service. The returned…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.templates-for-integration"
+    },
+    {
+      "path": [
+        "api",
+        "template-update"
+      ],
+      "summary": "Changes a template’s metadata, saved defaults, or team scope. Update an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.template-update"
+    },
+    {
+      "path": [
+        "api",
+        "time-schedule"
+      ],
+      "summary": "Retrieves an accessible time schedule by UUID, including archived schedules.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.time-schedule"
+    },
+    {
+      "path": [
+        "api",
+        "time-schedule-create"
+      ],
+      "summary": "Creates an API-managed on-call schedule in the workspace. Provide a name and…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.time-schedule-create"
+    },
+    {
+      "path": [
+        "api",
+        "time-schedule-delete"
+      ],
+      "summary": "Deletes an API-managed schedule and replaces linked triage responsibilities…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.time-schedule-delete"
+    },
+    {
+      "path": [
+        "api",
+        "time-schedule-refresh-integration-schedule"
+      ],
+      "summary": "Requests a refresh of a schedule managed by an integration. The schedule…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.time-schedule-refresh-integration-schedule"
+    },
+    {
+      "path": [
+        "api",
+        "time-schedules"
+      ],
+      "summary": "Returns the on-call schedules the caller can access, including API-managed…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.time-schedules"
+    },
+    {
+      "path": [
+        "api",
+        "time-schedule-update"
+      ],
+      "summary": "Updates an unarchived, API-managed schedule. Omitted fields remain…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.time-schedule-update"
+    },
+    {
+      "path": [
+        "api",
+        "time-schedule-upsert-external"
+      ],
+      "summary": "Finds an unarchived schedule by its workspace-unique externalId and updates…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.time-schedule-upsert-external"
+    },
+    {
+      "path": [
+        "api",
+        "track-anonymous-event"
+      ],
+      "summary": "Submits an anonymous $pageview or $pageleave analytics event, with optional…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.track-anonymous-event"
+    },
+    {
+      "path": [
+        "api",
+        "triage-responsibilities"
+      ],
+      "summary": "All triage responsibilities. — read (query triageResponsibilities)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.triage-responsibilities"
+    },
+    {
+      "path": [
+        "api",
+        "triage-responsibility"
+      ],
+      "summary": "A specific triage responsibility. — read (query triageResponsibility)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.triage-responsibility"
+    },
+    {
+      "path": [
+        "api",
+        "triage-responsibility-create"
+      ],
+      "summary": "Creates the team’s triage responsibility using a manual user selection or an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.triage-responsibility-create"
+    },
+    {
+      "path": [
+        "api",
+        "triage-responsibility-delete"
+      ],
+      "summary": "Deletes a triage responsibility. — destructive (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.triage-responsibility-delete"
+    },
+    {
+      "path": [
+        "api",
+        "triage-responsibility-update"
+      ],
+      "summary": "Updates the action or responsible users for a writable team’s existing rule.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.triage-responsibility-update"
+    },
+    {
+      "path": [
+        "api",
+        "usage-alert"
+      ],
+      "summary": "Retrieves a usage-based billing alert by UUID, including archived alerts.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.usage-alert"
+    },
+    {
+      "path": [
+        "api",
+        "usage-alerts"
+      ],
+      "summary": "The workspace's usage-based billing alerts, such as a low or exhausted usage…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.usage-alerts"
+    },
+    {
+      "path": [
+        "api",
+        "user"
+      ],
+      "summary": "Fetches a specific user by their ID. — read (query user)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.user"
+    },
+    {
+      "path": [
+        "api",
+        "user-change-role"
+      ],
+      "summary": "Changes the workspace role of a user. The requesting user must have a role…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-change-role"
+    },
+    {
+      "path": [
+        "api",
+        "user-discord-connect"
+      ],
+      "summary": "Connects the Discord user to this Linear account via OAuth2. — write…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-discord-connect"
+    },
+    {
+      "path": [
+        "api",
+        "user-external-user-disconnect"
+      ],
+      "summary": "Disconnects the external user from this Linear account. — write (mutation…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-external-user-disconnect"
+    },
+    {
+      "path": [
+        "api",
+        "user-flag-update"
+      ],
+      "summary": "Updates a specific user settings flag by performing an operation (e.g.,…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-flag-update"
+    },
+    {
+      "path": [
+        "api",
+        "user-revoke-all-sessions"
+      ],
+      "summary": "Revokes all active sessions for a user, forcing them to re-authenticate. Can…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-revoke-all-sessions"
+    },
+    {
+      "path": [
+        "api",
+        "user-revoke-session"
+      ],
+      "summary": "Revokes a specific authentication session for a user. The admin cannot…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-revoke-session"
+    },
+    {
+      "path": [
+        "api",
+        "users"
+      ],
+      "summary": "Users in the workspace, with filtering and pagination. Disabled accounts are…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.users"
+    },
+    {
+      "path": [
+        "api",
+        "user-sessions"
+      ],
+      "summary": "Lists all active authentication sessions for a user. Can only be called by a…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.user-sessions"
+    },
+    {
+      "path": [
+        "api",
+        "user-settings"
+      ],
+      "summary": "The authenticated user's notification and UI settings. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.user-settings"
+    },
+    {
+      "path": [
+        "api",
+        "user-settings-flags-reset"
+      ],
+      "summary": "Resets one or more of the user's setting flags. If no specific flags are…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-settings-flags-reset"
+    },
+    {
+      "path": [
+        "api",
+        "user-settings-update"
+      ],
+      "summary": "Updates the settings record identified by id. You must own that record or…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-settings-update"
+    },
+    {
+      "path": [
+        "api",
+        "user-suspend"
+      ],
+      "summary": "Suspends a user, deactivating their account and revoking access to the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-suspend"
+    },
+    {
+      "path": [
+        "api",
+        "user-unlink-from-identity-provider"
+      ],
+      "summary": "Unlinks a guest user from their identity provider. Can only be called by an…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-unlink-from-identity-provider"
+    },
+    {
+      "path": [
+        "api",
+        "user-unsuspend"
+      ],
+      "summary": "Re-activates a suspended user, restoring their access to the workspace. Can…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-unsuspend"
+    },
+    {
+      "path": [
+        "api",
+        "user-update"
+      ],
+      "summary": "Updates a user’s profile. Use the user UUID or me for your own account.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.user-update"
+    },
+    {
+      "path": [
+        "api",
+        "user-view-preferences"
+      ],
+      "summary": "The authenticated user's workspace-level view display preferences for a view…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.user-view-preferences"
+    },
+    {
+      "path": [
+        "api",
+        "verify-git-hub-enterprise-server-installation"
+      ],
+      "summary": "Checks whether Linear has received the first connection from the GitHub…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.verify-git-hub-enterprise-server-installation"
+    },
+    {
+      "path": [
+        "api",
+        "viewer"
+      ],
+      "summary": "The account making this request. For OAuth applications using actor=app,…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.viewer"
+    },
+    {
+      "path": [
+        "api",
+        "view-preferences-create"
+      ],
+      "summary": "Saves display settings for a view and scope. Existing records that conflict…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.view-preferences-create"
+    },
+    {
+      "path": [
+        "api",
+        "view-preferences-delete"
+      ],
+      "summary": "Deletes a saved preferences record, allowing the view to use its fallback…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.view-preferences-delete"
+    },
+    {
+      "path": [
+        "api",
+        "view-preferences-update"
+      ],
+      "summary": "Replaces the supplied settings objects on a saved preferences record. You…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.view-preferences-update"
+    },
+    {
+      "path": [
+        "api",
+        "webhook"
+      ],
+      "summary": "Retrieves a single webhook by its identifier. — read (query webhook)",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.webhook"
+    },
+    {
+      "path": [
+        "api",
+        "webhook-create"
+      ],
+      "summary": "Creates a webhook subscription and returns its configuration, including the…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.webhook-create"
+    },
+    {
+      "path": [
+        "api",
+        "webhook-delete"
+      ],
+      "summary": "Deletes a webhook subscription and stops future deliveries. — destructive…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.webhook-delete"
+    },
+    {
+      "path": [
+        "api",
+        "webhook-rotate-secret"
+      ],
+      "summary": "Generates and returns a new HMAC-SHA256 signing secret for the webhook.…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.webhook-rotate-secret"
+    },
+    {
+      "path": [
+        "api",
+        "webhooks"
+      ],
+      "summary": "Webhook subscriptions in the workspace, with cursor-based pagination.…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.webhooks"
+    },
+    {
+      "path": [
+        "api",
+        "webhook-update"
+      ],
+      "summary": "Updates an existing webhook without changing its team scope. Omitted…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.webhook-update"
+    },
+    {
+      "path": [
+        "api",
+        "workflow-state"
+      ],
+      "summary": "An issue status by UUID, including archived statuses. — read (query…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.workflow-state"
+    },
+    {
+      "path": [
+        "api",
+        "workflow-state-archive"
+      ],
+      "summary": "Archives an unused status so it is no longer available for new issues. First…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.workflow-state-archive"
+    },
+    {
+      "path": [
+        "api",
+        "workflow-state-create"
+      ],
+      "summary": "Add an issue status to a team. Requires permission to manage the team;…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.workflow-state-create"
+    },
+    {
+      "path": [
+        "api",
+        "workflow-states"
+      ],
+      "summary": "Issue statuses from teams the caller can access, with cursor pagination and…",
+      "effects": {
+        "remote": "read",
+        "local": "none"
+      },
+      "permission": "api.workflow-states"
+    },
+    {
+      "path": [
+        "api",
+        "workflow-state-update"
+      ],
+      "summary": "Update a status’s name, color, description, or position. Requires permission…",
+      "effects": {
+        "remote": "write",
+        "local": "none"
+      },
+      "permission": "api.workflow-state-update"
+    },
+    {
+      "path": [
+        "sync"
+      ],
+      "summary": "bring the tracker's copy in the local store up to date: teams, users,…",
+      "effects": {
+        "remote": "read",
+        "local": "write"
+      },
+      "permission": "sync",
+      "entity": "tracker_sync"
+    },
+    {
+      "path": [
+        "issues",
+        "list"
+      ],
+      "summary": "issues copied from the tracker, newest change first; run sync to bring them…",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "issues.list",
+      "entity": "tracker_issue"
+    },
+    {
+      "path": [
+        "issues",
+        "show"
+      ],
+      "summary": "one issue with its state, assignee and comments",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "issues.show",
+      "entity": "tracker_issue_detail"
+    },
+    {
+      "path": [
+        "issues",
+        "search"
+      ],
+      "summary": "find issues, projects and comments in the copy by their words",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "issues.search",
+      "entity": "tracker_hit"
+    },
+    {
+      "path": [
+        "issues",
+        "assign"
+      ],
+      "summary": "make an issue the owner's task: the task points at the issue and copies none…",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "issues.assign",
+      "entity": "tracker_issue_task"
+    },
+    {
+      "path": [
+        "projects",
+        "list"
+      ],
+      "summary": "projects copied from the tracker, newest change first",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "projects.list",
+      "entity": "tracker_project"
+    },
+    {
+      "path": [
+        "teams",
+        "list"
+      ],
+      "summary": "teams copied from the tracker, newest change first",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "teams.list",
+      "entity": "tracker_team"
+    },
+    {
+      "path": [
+        "users",
+        "list"
+      ],
+      "summary": "users copied from the tracker, newest change first",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "users.list",
+      "entity": "tracker_user"
+    },
+    {
+      "path": [
+        "states",
+        "list"
+      ],
+      "summary": "states copied from the tracker, newest change first",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "states.list",
+      "entity": "tracker_state"
+    },
+    {
+      "path": [
+        "labels",
+        "list"
+      ],
+      "summary": "labels copied from the tracker, newest change first",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "labels.list",
+      "entity": "tracker_label"
+    },
+    {
+      "path": [
+        "doctor"
+      ],
+      "summary": "the state this installation is in, without connecting unless --online",
+      "effects": {
+        "remote": "read",
+        "local": "read"
+      }
+    },
+    {
+      "path": [
+        "doctor",
+        "reports",
+        "show"
+      ],
+      "summary": "what a report holds and never holds, and where to send it; writes nothing",
+      "effects": {
+        "remote": "none",
+        "local": "none"
+      }
+    },
+    {
+      "path": [
+        "doctor",
+        "reports",
+        "create"
+      ],
+      "summary": "the report file written: its path, the run it is about, and where to send it",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "doctor.reports.create"
+    },
+    {
+      "path": [
+        "skill",
+        "show"
+      ],
+      "summary": "print the tool's instructions for AI agents",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      }
+    },
+    {
+      "path": [
+        "skill",
+        "install"
+      ],
+      "summary": "install the tool's instructions for AI agents",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "skill",
+        "status"
+      ],
+      "summary": "whether the installed instructions for AI agents match this version",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      }
+    },
+    {
+      "path": [
+        "mcp",
+        "serve"
+      ],
+      "summary": "serve this profile's commands to an AI agent",
+      "effects": {
+        "remote": "write",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "mcp",
+        "revoke"
+      ],
+      "summary": "forget every login given to a browser app",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "mcp",
+        "server",
+        "start"
+      ],
+      "summary": "start the HTTP MCP server in the background",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "mcp",
+        "server",
+        "stop"
+      ],
+      "summary": "stop the background HTTP MCP server",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "mcp",
+        "server",
+        "status"
+      ],
+      "summary": "whether the HTTP MCP server runs, its login code and the apps logged in",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      }
+    },
+    {
+      "path": [
+        "mcp",
+        "config"
+      ],
+      "summary": "print the local MCP configuration of this profile, or of those --profiles names",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      }
+    },
+    {
+      "path": [
+        "mcp",
+        "add"
+      ],
+      "summary": "add this profile's local MCP server to Codex or Claude Code",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "mcp",
+        "check"
+      ],
+      "summary": "check this profile's local MCP handshake and tool list",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      }
+    },
+    {
+      "path": [
+        "upgrade"
+      ],
+      "summary": "upgrade linear with the package manager that installed it; --check only looks",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "config",
+        "show"
+      ],
+      "summary": "the profile, the profiles that exist, and each setting with where it came from",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      }
+    },
+    {
+      "path": [
+        "config",
+        "set"
+      ],
+      "summary": "save a setting to the configuration file",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "config",
+        "unset"
+      ],
+      "summary": "remove a setting from the configuration file",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "config",
+        "migrate"
+      ],
+      "summary": "write each setting the file lacks at its default, keeping yours",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "config",
+        "repair"
+      ],
+      "summary": "fix the settings file's JSON syntax, keeping every value",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      }
+    },
+    {
+      "path": [
+        "runs",
+        "list"
+      ],
+      "summary": "recorded runs, newest first",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "entity": "run"
+    },
+    {
+      "path": [
+        "runs",
+        "show"
+      ],
+      "summary": "one run: what it was, how it ended, and every event it logged",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "entity": "run"
+    },
+    {
+      "path": [
+        "runs",
+        "path"
+      ],
+      "summary": "the directory holding one run",
+      "effects": {
+        "remote": "none",
+        "local": "none"
+      },
+      "entity": "run_location"
+    }
+  ],
+  "entities": {
+    "api_operation": {
+      "fields": [
+        "effect",
+        "tag"
+      ]
+    },
+    "run": {
+      "fields": [
+        "run_id",
+        "command",
+        "profile",
+        "started_at",
+        "completed_at",
+        "status",
+        "requests",
+        "duration_ms",
+        "cli_version",
+        "runtime",
+        "platform",
+        "arch",
+        "error_code",
+        "provider_error",
+        "kept_because_failed",
+        "operations",
+        "codes",
+        "trace_id",
+        "cli_command",
+        "argv",
+        "unknown_command",
+        "via",
+        "events_dropped",
+        "directory",
+        "event_count",
+        "events_truncated"
+      ]
+    }
+  },
+  "network": {
+    "hosts": [
+      "api.linear.app",
+      "registry.npmjs.org",
+      "huggingface.co",
+      "*.huggingface.co",
+      "*.hf.co",
+      "github.com",
+      "*.githubusercontent.com"
+    ]
+  },
+  "desktop": {
+    "tagline": "A new WireCat CLI, started from cli-template",
+    "profiles": {
+      "args": [
+        "session",
+        "list",
+        "--no-record",
+        "--json"
+      ],
+      "shape": "items"
+    },
+    "doctor": [
+      "{profile}",
+      "doctor",
+      "--record",
+      "--json"
+    ],
+    "runs": {
+      "list": [
+        "runs",
+        "list",
+        "{query}",
+        "--limit",
+        "{limit}",
+        "--page",
+        "{page}",
+        "--no-record",
+        "--json"
+      ],
+      "show": [
+        "runs",
+        "show",
+        "{run}",
+        "--no-record",
+        "--json"
+      ]
+    },
+    "search": null,
+    "setup": [
+      "{profile}",
+      "session",
+      "start"
+    ],
+    "signIn": {
+      "gives": "Lets your agent read and change your account through linear.",
+      "asks": "An API token or key from the service."
+    },
+    "skill": {
+      "status": [
+        "skill",
+        "status",
+        "--no-record",
+        "--json"
+      ],
+      "install": [
+        "skill",
+        "install",
+        "--for",
+        "{target}",
+        "--json"
+      ],
+      "show": [
+        "skill",
+        "show",
+        "--no-record",
+        "--json"
+      ]
+    },
+    "mcpServer": {
+      "start": [
+        "mcp",
+        "server",
+        "start",
+        "--port",
+        "{port}",
+        "--public-url",
+        "{url}",
+        "--profiles",
+        "all",
+        "--json"
+      ],
+      "stop": [
+        "mcp",
+        "server",
+        "stop",
+        "--profiles",
+        "all",
+        "--json"
+      ],
+      "status": [
+        "mcp",
+        "server",
+        "status",
+        "--profiles",
+        "all",
+        "--no-record",
+        "--json"
+      ],
+      "revoke": [
+        "mcp",
+        "revoke",
+        "--profiles",
+        "all",
+        "--json"
+      ],
+      "config": [
+        "mcp",
+        "config",
+        "--profiles",
+        "all",
+        "--no-record",
+        "--json"
+      ]
+    },
+    "tasks": null,
+    "sync": {
+      "run": [
+        "{profile}",
+        "sync",
+        "--record",
+        "--json"
+      ],
+      "last": [
+        "runs",
+        "list",
+        "command:sync",
+        "status:success",
+        "--limit",
+        "50",
+        "--no-record",
+        "--json"
+      ],
+      "lastShape": "runs",
+      "what": "your issues, projects and comments",
+      "note": null
+    },
+    "storeInfo": null,
+    "storeTables": null,
+    "storeTableSizes": null,
+    "storeCheck": null,
+    "storeBackup": null,
+    "storeBackupEncrypted": null,
+    "storeResetPreview": null,
+    "storeReset": null,
+    "storage": {
+      "app": "linear-cli",
+      "env": "WCLINEAR"
+    },
+    "settings": null
+  }
+}
