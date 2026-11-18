@@ -8,7 +8,6 @@ import { signedIn } from "./testing/harness.js"
 
 const stdin = () => Object.assign(Readable.from([FAKE_TOKEN]), { isTTY: false })
 
-// SAMPLE: give each of your remote commands the words that make it succeed against your fake.
 describe("each remote command runs inside cli-core's run", () => {
   const cases = runScopeCases({
     definition: definition(),

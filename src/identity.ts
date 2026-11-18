@@ -23,11 +23,11 @@ export const DESKTOP = {
   ...IDENTITY,
   docs: "https://github.com/WireCatLabs/linear-cli#readme",
   hosts: ["api.linear.app"],
-  tagline: "A new WireCat CLI, started from cli-template",
+  tagline: "Linear issues, searchable with your other WireCat data",
   syncs: "your issues, projects and comments",
   signIn: {
-    gives: "Lets your agent read and change your account through linear.",
-    asks: "An API token or key from the service.",
+    gives: "Lets your agent read your Linear issues, projects and comments, and change them when you allow it.",
+    asks: "A personal API key from Linear's Settings → Security & access.",
   },
 } satisfies ManifestIdentity
 

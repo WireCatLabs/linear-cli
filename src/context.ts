@@ -15,8 +15,8 @@ export interface ServiceEnvironment extends BaseEnvironment {
   fetch?: typeof fetch
 }
 
-// SAMPLE: your service's documented limit; this one is made up.
-export const PACE = { perMinute: 120, burst: 20 }
+// A personal API key gets 2,500 requests an hour: https://linear.app/developers/rate-limiting
+export const PACE = { perMinute: 40, burst: 10 }
 
 /**
  * Settings, keyring and the run come from cli-core's `baseContext` and nowhere else: a command that resolves settings

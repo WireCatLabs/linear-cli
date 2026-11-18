@@ -6452,7 +6452,7 @@
     ]
   },
   "desktop": {
-    "tagline": "A new WireCat CLI, started from cli-template",
+    "tagline": "Linear issues, searchable with your other WireCat data",
     "profiles": {
       "args": [
         "session",
@@ -6495,8 +6495,8 @@
       "start"
     ],
     "signIn": {
-      "gives": "Lets your agent read and change your account through linear.",
-      "asks": "An API token or key from the service."
+      "gives": "Lets your agent read your Linear issues, projects and comments, and change them when you allow it.",
+      "asks": "A personal API key from Linear's Settings → Security & access."
     },
     "skill": {
       "status": [

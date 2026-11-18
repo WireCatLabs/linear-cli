@@ -1,6 +1,6 @@
 # linear: Linear CLI for AI agents
 
-A new WireCat CLI, started from cli-template. One tool for you and for Claude Code, Codex or any agent that speaks MCP.
+Linear issues, searchable with your other WireCat data. One tool for you and for Claude Code, Codex or any agent that speaks MCP.
 
 <p align="center">
   <a href="https://github.com/WireCatLabs/linear-cli/blob/main/docs/index.md">Docs</a> ·
