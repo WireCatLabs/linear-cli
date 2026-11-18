@@ -6,8 +6,8 @@ const timeMap = { createdAt: "createdAt", updatedAt: "updatedAt", archivedAt: "a
 // Linear hides archived rows unless asked; the copy keeps them, marked.
 const all = { first: 100, includeArchived: true }
 
-// One field, three calls: everything, what changed since the cursor (oldest first, so a cut round resumes in order),
-// and every id for the deletion pass, which selects nothing else to keep Linear's complexity points low.
+// Three calls per kind: everything, what changed since the cursor, and every id for the deletion pass, which selects
+// nothing else to keep Linear's complexity points low.
 const kind = (operation: string, fields: string, extra: Record<string, unknown> = {}) => {
   const selection = `nodes { id ${times} ${fields} } ${page}`
   return {

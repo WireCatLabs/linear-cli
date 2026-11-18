@@ -6599,6 +6599,24 @@
       "app": "linear-cli",
       "env": "WCLINEAR"
     },
-    "settings": null
+    "settings": null,
+    "accountRemove": {
+      "signOut": [
+        "{profile}",
+        "session",
+        "end",
+        "--record",
+        "--json"
+      ],
+      "remove": null,
+      "removes": [
+        "signIn"
+      ],
+      "keeps": [
+        "settings",
+        "data",
+        "listed"
+      ]
+    }
   }
 }
