@@ -1,4 +1,4 @@
-linear — a new WireCat CLI, started from cli-template
+linear — Linear issues, projects and comments, copied into the local store for you and your agent
 
 Usage: linear <profile> <command> [options]
 Account commands start with your profile, a name you choose; none is ever assumed.
