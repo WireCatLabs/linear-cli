@@ -27,7 +27,7 @@ export const DESKTOP = {
   syncs: "your issues, projects and comments",
   signIn: {
     gives: "Lets your agent read your Linear issues, projects and comments, and change them when you allow it.",
-    asks: "A personal API key from Linear's Settings → Security & access.",
+    asks: "A personal API key from Linear's Settings → Account → Security & access.",
   },
 } satisfies ManifestIdentity
 
