@@ -53,7 +53,7 @@ linear commands info [path]
 
 ## `linear session`
 
-keep this profile's Linear token in the OS keyring
+keep this profile's Linear API token in the OS keyring
 
 ### `linear session start`
 

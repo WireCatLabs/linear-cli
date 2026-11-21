@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "group": "linear",
+    "rule": "same-error-reason",
+    "target": "reason account-remove.unknown-profile=account-rename.unknown-profile",
+    "reason": "cli-core 0.717.0 (#3189) moved account rename to profile.unknown; the published CLIs of the family are still on older cli-core with account-rename.unknown-profile, and the entry goes once they publish on 0.717.0+.",
+    "review_after": "2026-11-27"
+  }
+]
