@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "group": "linear",
+    "rule": "same-error-reason",
+    "target": "reason account-remove.unknown-profile=account-rename.unknown-profile",
+    "reason": "whatsapp-cli 0.46.0, on cli-core 0.715.0, registers account-rename.unknown-profile with account-remove's message; cli-core 0.717.0 (#3189) gives profile.unknown, so drop this once whatsapp-cli bumps",
+    "review_after": "2026-12-05"
+  }
+]
