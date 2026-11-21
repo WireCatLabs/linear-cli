@@ -6068,7 +6068,7 @@
         "issues",
         "assign"
       ],
-      "summary": "make an issue the owner's task: the task points at the issue and copies none…",
+      "summary": "make an issue the owner's task, whoever it is assigned to: the task points…",
       "effects": {
         "remote": "none",
         "local": "write"
