@@ -53,7 +53,7 @@ linear commands info [path]
 
 ## `linear session`
 
-keep this profile's Linear token in the OS keyring
+keep this profile's Linear API token in the OS keyring
 
 ### `linear session start`
 
@@ -109,7 +109,7 @@ linear session list
 
 ## `linear api`
 
-the raw Linear API, one command per operation of its OpenAPI document
+the raw Linear API, one command per operation of its GraphQL schema
 
 ### `linear api list`
 
@@ -135,9 +135,9 @@ linear api show <operation>
 
 | Argument | | What it is |
 |---|---|---|
-| `operation` | required | the operation, as api list prints it. |
+| `operation` | required | the operation as api list prints it (quoted), its old name, or its operation id. |
 
-**Example:** `linear personal api show administrable-teams --json`
+**Example:** `linear personal api show "administrable-teams" --json`
 
 ### `linear api administrable-teams`
 
@@ -9299,7 +9299,7 @@ linear api workflow-state-update [options]
 
 ## `linear sync`
 
-bring the tracker's copy in the local store up to date: teams, users, states, labels, projects, issues and comments that changed since the last sync, or everything with --rescan; once a day it also finds what the tracker deleted. A run stops before its deadline or --max-pages and the next one goes on from there
+bring the tracker's copy in the local store up to date: teams, users, states, labels, projects, issues and comments that changed since the last sync, or everything with --rescan; once a day it also finds what the tracker deleted. Open issues assigned to you become your tasks, and close when the issue is done, canceled, deleted or goes to someone else. A run stops before its deadline or --max-pages and the next one goes on from there
 
 **Changes something on this computer only.**
 
@@ -9312,7 +9312,7 @@ linear sync [options]
 | `--rescan` | list everything again, every id too, dropping a round in progress. |
 | `--max-pages <pages>` | at most this many requests to the tracker in this run. |
 
-**Returns:** tracker sync — provider, account, state, complete, synced, gaps, progress, stopped; every field: linear commands info sync
+**Returns:** tracker sync — provider, account, state, complete, synced, gaps, progress, stopped, and 1 more; every field: linear commands info sync
 
 **Example:** `linear work sync`, `linear work sync --rescan`
 
@@ -9380,7 +9380,7 @@ linear issues search <words> [options]
 
 ### `linear issues assign`
 
-make an issue the owner's task: the task points at the issue and copies none of its text; the same issue again answers its existing task
+make an issue the owner's task, whoever it is assigned to: the task points at the issue and shows its key and title, which each sync keeps current; the same issue again answers its existing task
 
 **Changes something on this computer only.**
 
