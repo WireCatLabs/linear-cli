@@ -8,3 +8,6 @@
   document Linear put in the trash is removed; an archived, hidden or no longer visible one keeps its text.
 - **Issues, projects and comments found by meaning.** `sync --embed` indexes them with a model already downloaded,
   and memo's `search all` then finds them by meaning as well as by words (cli-core 0.730.0).
+- **Issues found by other forms of a word and by its start.** `search all` and `issues search` find "invoices" for
+  "invoice" and "export" for "exp…" (four letters or more); comments are found by meaning together with their issue's
+  key and title, and two sign-ins to one workspace show each issue once (cli-core 0.736.0).

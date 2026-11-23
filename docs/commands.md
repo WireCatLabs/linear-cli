@@ -10210,7 +10210,7 @@ linear issues search <words> [options]
 
 | Argument | | What it is |
 |---|---|---|
-| `words` | required | every word must match; prefixes of three letters or more match too. |
+| `words` | required | every word must match, in any form; a word of four letters or more finds the words it begins. |
 
 | Option | What it does |
 |---|---|
