@@ -49,11 +49,11 @@ Languages: en.
   - The account is the viewer's id, the same as the tracker's copy: one member's view never removes another's
     documents.
   - Only `trashed` or `archivedAt` is a deletion. A hidden document is kept: Linear's schema says hiding "is separate
-    from trashing or archiving". A document missing from a round of changes is kept. Until cli-core keeps them
-    too, a full walk (`sync --rescan`, or a change of the chosen folders) still removes a document it did not list.
+    from trashing or archiving". A document missing from a listing keeps its text (cli-core marks it
+    unavailable, not deleted).
   - The change feed names the projects changed since the last round, so a document moved into a new project stays
     in scope.
-  - The commands are not mounted yet: cli-core's documents commands add a top-level `sync`, and so does the
-    tracker.
+  - One `sync` copies both: cli-core's `documentLibrary` gives the documents commands without their own `sync`, and the
+    tracker's `sync` runs theirs as its second part, refused if the documents' account is not the tracker's.
 
 ## Open questions for the owner

@@ -15,6 +15,7 @@ describe("each remote command runs inside cli-core's run", () => {
     commands: {
       "session start": ["personal", "session", "start"],
       "session status": ["personal", "session", "status", "--check"],
+      "folders add": ["personal", "folders", "add", "project-1"],
     },
     skip: {
       ...Object.fromEntries(
@@ -24,6 +25,7 @@ describe("each remote command runs inside cli-core's run", () => {
         ]),
       ),
       "mcp serve": "listens until stopped",
+      "memories extract": "needs a synced document and a model; cli-core's documents kit runs it in its run",
       sync: "cli-core's addTrackerCommands runs it in its run; src/tracker-contracts.test.ts syncs",
       ...Object.fromEntries(
         TRACKER_WRITES.map((write) => [

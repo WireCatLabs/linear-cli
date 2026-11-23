@@ -7,7 +7,7 @@ ran it · ⛔ not tested offline, with the reason and where it is checked instea
 Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 [TESTING.md](TESTING.md) for how, and for the states and failures that cut across commands.
 
-**2743 ✅ · 24 ⛔ · 0 ❌** — 538 commands, 2229 options.
+**2760 ✅ · 89 ⛔ · 0 ❌** — 582 commands, 2267 options.
 
 | Command | Option | | Note |
 |---|---|---|---|
@@ -2651,9 +2651,91 @@ Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 | `api workflow-state-update` | `--id` | ✅ |  |
 | `api workflow-state-update` | `--body` | ✅ |  |
 | `api workflow-state-update` | `--body-file` | ✅ |  |
+| `folders add` |  | ✅ |  |
+| `folders list` |  | ✅ |  |
+| `folders remove` |  | ✅ |  |
+| `status` |  | ✅ |  |
+| `documents list` |  | ✅ |  |
+| `documents list` | `--limit` | ✅ |  |
+| `documents list` | `--page` | ✅ |  |
+| `documents show` |  | ✅ |  |
+| `documents export` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `documents export` | `--output` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `documents history` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `documents history` | `--revision` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `documents context` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `changes` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `changes` | `--since` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `changes` | `--until` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `changes` | `--event` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `changes` | `--limit` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `changes` | `--page` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `search` |  | ✅ |  |
+| `search` | `--limit` | ✅ |  |
+| `search` | `--page` | ✅ |  |
+| `search` | `--exact` | ✅ |  |
+| `catalog import` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog show` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog list` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog list` | `--limit` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog list` | `--page` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog search` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog search` | `--limit` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog search` | `--page` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog tree` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog tree` | `--depth` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog tags list` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog tags add` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `catalog tags remove` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `tags list` |  | ✅ |  |
+| `tags add` |  | ✅ |  |
+| `tags remove` |  | ✅ |  |
+| `relationships list` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `relationships add` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `relationships add` | `--kind` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `relationships add` | `--role` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `relationships add` | `--reason` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `relationships remove` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `notes add` |  | ✅ |  |
+| `notes add` | `--title` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `notes list` |  | ✅ |  |
+| `notes list` | `--limit` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `notes list` | `--page` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `notes show` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `notes edit` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `notes edit` | `--revision` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `notes remove` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories add` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories add` | `--scope` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories add` | `--kind` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories add` | `--supersedes` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories list` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories list` | `--limit` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories show` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories confirm` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories stale` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories search` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `memories extract` |  | ⛔ | needs a downloaded meaning model or a configured model provider; cli-core's documents kit tests the shared command with a fake model, and no test here downloads one |
+| `memories extract` | `--scope` | ⛔ | needs a downloaded meaning model or a configured model provider; cli-core's documents kit tests the shared command with a fake model, and no test here downloads one |
+| `memories extract` | `--tab` | ⛔ | needs a downloaded meaning model or a configured model provider; cli-core's documents kit tests the shared command with a fake model, and no test here downloads one |
+| `memories extract` | `--yes` | ⛔ | needs a downloaded meaning model or a configured model provider; cli-core's documents kit tests the shared command with a fake model, and no test here downloads one |
+| `facts add` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `facts add` | `--type` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `facts add` | `--scope` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `facts add` | `--supersedes` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `facts add` | `--occurred-time` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `facts list` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `facts list` | `--limit` | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `facts show` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `facts confirm` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `facts reverse` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `identities list` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
+| `identities link` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
 | `sync` |  | ✅ |  |
 | `sync` | `--rescan` | ✅ |  |
 | `sync` | `--max-pages` | ✅ |  |
+| `sync` | `--embed` | ⛔ | needs a downloaded meaning model or a configured model provider; cli-core's documents kit tests the shared command with a fake model, and no test here downloads one |
+| `sync` | `--limit` | ⛔ | hidden, and refused while its arguments are parsed, before a run the trace sees; src/documents.test.ts runs it and cli-core's tracker documents-sync tests check the refusal |
 | `issues list` |  | ✅ |  |
 | `issues list` | `--limit` | ✅ |  |
 | `issues list` | `--page` | ✅ |  |

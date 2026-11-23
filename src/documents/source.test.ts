@@ -46,6 +46,7 @@ const syncer = (linear: FakeLinearDocuments) => {
   const env = { WCLINEAR_STATE_DIR: join(dir, "state"), WCLINEAR_CONFIG_DIR: join(dir, "config") }
   const state = documentProfile<LinearFile>(IDENTITY, env, "personal").state("user-1")
   const held = new Map<string, string>()
+  const removals = new Map<string, string | undefined>()
   const source = sourceOver(linear)
   const sync = async (run: Partial<DocumentFaultRun<LinearFile>> & { rescan?: boolean } = {}) => {
     const result = await syncDocuments<LinearFile>({
@@ -55,8 +56,10 @@ const syncer = (linear: FakeLinearDocuments) => {
           held.set(content.metadata.id, content.markdown)
           return `document:${held.size}`
         },
-        remove: async (_principal, id) => {
-          held.delete(id)
+        // As the store does: only a deletion takes the text; a document no longer seen keeps it.
+        remove: async (_principal, id, reason) => {
+          removals.set(id, reason)
+          if (reason === "deleted") held.delete(id)
         },
         openPictures: async () => {
           throw new CliError("not_found", "no pictures")
@@ -82,7 +85,7 @@ const syncer = (linear: FakeLinearDocuments) => {
     })
     return { result, saved: [...held.keys()] }
   }
-  return { sync, held }
+  return { sync, held, removals }
 }
 
 it("the document manifest reads only what the generated API offers", () => {
@@ -135,10 +138,11 @@ describe("the sync tells a deletion in Linear from a document it no longer sees"
   })
 
   it("removes a document Linear trashed or archived", async () => {
-    const { linear, sync, held } = await synced()
+    const { linear, sync, held, removals } = await synced()
     linear.edit("d-1", { trashed: true, archivedAt: new Date(linear.now()).toISOString() })
     linear.edit("d-2", { archivedAt: new Date(linear.now()).toISOString() })
     expect((await sync()).result).toMatchObject({ removed: 2 })
+    expect(Object.fromEntries(removals)).toEqual({ "d-1": "deleted", "d-2": "deleted" })
     expect([...held.keys()].sort()).toEqual(["d-3", "d-4"])
   })
 
@@ -157,13 +161,12 @@ describe("the sync tells a deletion in Linear from a document it no longer sees"
     expect(held.has("d-3")).toBe(true)
   })
 
-  // cli-core 0.718's full walk, on a rescan or a change of the chosen folders, removes every held document it did not
-  // list (services/documents/plan.ts, the remove jobs after the walk); this passes once cli-core keeps them.
-  it.fails("keeps a document that left this member's view through a sync --rescan", async () => {
-    const { linear, sync, held } = await synced()
+  it("keeps the text of a document that left this member's view through a sync --rescan", async () => {
+    const { linear, sync, held, removals } = await synced()
     linear.edit("d-3", { visible: false })
     let result = await sync({ rescan: true })
     while (!result.result.complete) result = await sync()
+    expect(removals.get("d-3")).toBe("unavailable")
     expect(held.has("d-3")).toBe(true)
   })
 

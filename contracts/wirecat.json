@@ -6014,6 +6014,550 @@
     },
     {
       "path": [
+        "folders",
+        "add"
+      ],
+      "summary": "import a folder and everything under it on the next sync",
+      "effects": {
+        "remote": "read",
+        "local": "write"
+      },
+      "permission": "folders.add"
+    },
+    {
+      "path": [
+        "folders",
+        "list"
+      ],
+      "summary": "list the folder ids sync imports",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "folders.list",
+      "entity": "selected_folder"
+    },
+    {
+      "path": [
+        "folders",
+        "remove"
+      ],
+      "summary": "stop importing a folder; the next sync drops its documents",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "folders.remove"
+    },
+    {
+      "path": [
+        "status"
+      ],
+      "summary": "show the last sync, imported documents and pending work",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "status"
+    },
+    {
+      "path": [
+        "documents",
+        "list"
+      ],
+      "summary": "list the synced Linear documents with their projects",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "documents.list",
+      "entity": "document"
+    },
+    {
+      "path": [
+        "documents",
+        "show"
+      ],
+      "summary": "show an imported document's text, tabs and metadata",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "documents.show"
+    },
+    {
+      "path": [
+        "documents",
+        "export"
+      ],
+      "summary": "write an imported document to a new Markdown file",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "documents.export"
+    },
+    {
+      "path": [
+        "documents",
+        "history"
+      ],
+      "summary": "list the versions of a document kept in the local copy, or show one with…",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "documents.history"
+    },
+    {
+      "path": [
+        "documents",
+        "context"
+      ],
+      "summary": "show a document with its tags, relationships, notes, memories and editors",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "documents.context"
+    },
+    {
+      "path": [
+        "changes"
+      ],
+      "summary": "list the documents the sync added, changed, removed or brought back, newest…",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "changes"
+    },
+    {
+      "path": [
+        "search"
+      ],
+      "summary": "search imported documents by words, and by meaning when indexed",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "search"
+    },
+    {
+      "path": [
+        "catalog",
+        "import"
+      ],
+      "summary": "put cached file and folder metadata into the shared database",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "catalog.import"
+    },
+    {
+      "path": [
+        "catalog",
+        "show"
+      ],
+      "summary": "show stored metadata and the stable file or folder reference",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "catalog.show",
+      "entity": "document"
+    },
+    {
+      "path": [
+        "catalog",
+        "list"
+      ],
+      "summary": "list cached files and folders using metadata queries",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "catalog.list",
+      "entity": "document"
+    },
+    {
+      "path": [
+        "catalog",
+        "search"
+      ],
+      "summary": "search cached names, descriptions, types and observed people",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "catalog.search",
+      "entity": "document"
+    },
+    {
+      "path": [
+        "catalog",
+        "tree"
+      ],
+      "summary": "show the cached hierarchy below a folder or all selected roots",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "catalog.tree"
+    },
+    {
+      "path": [
+        "catalog",
+        "tags",
+        "list"
+      ],
+      "summary": "list local tags on a cached file or folder",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "catalog.tags.list",
+      "entity": "document_tag"
+    },
+    {
+      "path": [
+        "catalog",
+        "tags",
+        "add"
+      ],
+      "summary": "add local tags on a cached file or folder",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "catalog.tags.add"
+    },
+    {
+      "path": [
+        "catalog",
+        "tags",
+        "remove"
+      ],
+      "summary": "remove local tags on a cached file or folder",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "catalog.tags.remove"
+    },
+    {
+      "path": [
+        "tags",
+        "list"
+      ],
+      "summary": "list a document's tags",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "tags.list",
+      "entity": "document_tag"
+    },
+    {
+      "path": [
+        "tags",
+        "add"
+      ],
+      "summary": "tag a document",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "tags.add"
+    },
+    {
+      "path": [
+        "tags",
+        "remove"
+      ],
+      "summary": "untag a document",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "tags.remove"
+    },
+    {
+      "path": [
+        "relationships",
+        "list"
+      ],
+      "summary": "list a document's relationships",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "relationships.list",
+      "entity": "document_relationship"
+    },
+    {
+      "path": [
+        "relationships",
+        "add"
+      ],
+      "summary": "connect a document to another reference",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "relationships.add"
+    },
+    {
+      "path": [
+        "relationships",
+        "remove"
+      ],
+      "summary": "remove one of a document's relationships",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "relationships.remove"
+    },
+    {
+      "path": [
+        "notes",
+        "add"
+      ],
+      "summary": "write a note about a document",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "notes.add",
+      "entity": "note"
+    },
+    {
+      "path": [
+        "notes",
+        "list"
+      ],
+      "summary": "list a document's notes",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "notes.list",
+      "entity": "note"
+    },
+    {
+      "path": [
+        "notes",
+        "show"
+      ],
+      "summary": "show one note",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "notes.show",
+      "entity": "note"
+    },
+    {
+      "path": [
+        "notes",
+        "edit"
+      ],
+      "summary": "replace a note's text",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "notes.edit",
+      "entity": "note"
+    },
+    {
+      "path": [
+        "notes",
+        "remove"
+      ],
+      "summary": "delete one note",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "notes.remove"
+    },
+    {
+      "path": [
+        "memories",
+        "add"
+      ],
+      "summary": "record a memory about a document",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "memories.add"
+    },
+    {
+      "path": [
+        "memories",
+        "list"
+      ],
+      "summary": "list a document's memories",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "memories.list",
+      "entity": "memory"
+    },
+    {
+      "path": [
+        "memories",
+        "show"
+      ],
+      "summary": "show one memory",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "memories.show"
+    },
+    {
+      "path": [
+        "memories",
+        "confirm"
+      ],
+      "summary": "confirm a proposed memory as true",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "memories.confirm"
+    },
+    {
+      "path": [
+        "memories",
+        "stale"
+      ],
+      "summary": "mark a memory as out of date",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "memories.stale"
+    },
+    {
+      "path": [
+        "memories",
+        "search"
+      ],
+      "summary": "search a document's memories by words",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "memories.search",
+      "entity": "memory"
+    },
+    {
+      "path": [
+        "memories",
+        "extract"
+      ],
+      "summary": "send a document's text to the model and show the memories it proposes",
+      "effects": {
+        "remote": "write",
+        "local": "write"
+      },
+      "permission": "memories.extract"
+    },
+    {
+      "path": [
+        "facts",
+        "add"
+      ],
+      "summary": "record a fact a document shows",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "facts.add"
+    },
+    {
+      "path": [
+        "facts",
+        "list"
+      ],
+      "summary": "list a document's facts",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "facts.list",
+      "entity": "fact"
+    },
+    {
+      "path": [
+        "facts",
+        "show"
+      ],
+      "summary": "show one fact",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "facts.show"
+    },
+    {
+      "path": [
+        "facts",
+        "confirm"
+      ],
+      "summary": "confirm a proposed fact; a decision it supersedes stops holding",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "facts.confirm"
+    },
+    {
+      "path": [
+        "facts",
+        "reverse"
+      ],
+      "summary": "an accepted decision no longer holds, and nothing replaced it",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "facts.reverse"
+    },
+    {
+      "path": [
+        "identities",
+        "list"
+      ],
+      "summary": "list the people Linear shows for a document",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "identities.list",
+      "entity": "document_identity"
+    },
+    {
+      "path": [
+        "identities",
+        "link"
+      ],
+      "summary": "record that a Linear account belongs to a known person",
+      "effects": {
+        "remote": "none",
+        "local": "write"
+      },
+      "permission": "identities.link"
+    },
+    {
+      "path": [
         "sync"
       ],
       "summary": "bring the tracker's copy in the local store up to date: teams, users,…",
@@ -6022,7 +6566,7 @@
         "local": "write"
       },
       "permission": "sync",
-      "entity": "tracker_sync"
+      "entity": "tracker_documents_sync"
     },
     {
       "path": [
@@ -6446,6 +6990,80 @@
       "fields": [
         "effect",
         "tag"
+      ]
+    },
+    "selected_folder": {
+      "fields": [
+        "id",
+        "name",
+        "path"
+      ]
+    },
+    "document": {
+      "fields": [
+        "name",
+        "kind",
+        "mime"
+      ]
+    },
+    "document_tag": {
+      "fields": [
+        "tag"
+      ]
+    },
+    "document_relationship": {
+      "fields": [
+        "id",
+        "from",
+        "to",
+        "kind",
+        "role",
+        "confirmed",
+        "origin"
+      ]
+    },
+    "note": {
+      "fields": [
+        "ref",
+        "kind",
+        "provider",
+        "account",
+        "url",
+        "id",
+        "source",
+        "folder_id",
+        "path",
+        "title",
+        "text",
+        "revision",
+        "content_hash",
+        "export_path",
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "tags",
+        "excerpt",
+        "found_by"
+      ]
+    },
+    "memory": {
+      "fields": [
+        "kind",
+        "status",
+        "scope"
+      ]
+    },
+    "fact": {
+      "fields": [
+        "kind",
+        "status"
+      ]
+    },
+    "document_identity": {
+      "fields": [
+        "remote_id",
+        "provider",
+        "role"
       ]
     },
     "run": {

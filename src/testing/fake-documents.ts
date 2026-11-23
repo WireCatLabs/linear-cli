@@ -1,4 +1,4 @@
-import { type GraphqlFakeCall, graphqlFake } from "@wirecat/cli-base/codegen"
+import { type GraphqlFakeAnswer, type GraphqlFakeCall, graphqlFake } from "@wirecat/cli-base/codegen"
 import { manifestBaseUrl } from "@wirecat/cli-core/cli"
 import { API } from "../config.js"
 import { definitions } from "../generated/definitions.js"
@@ -29,6 +29,14 @@ export interface FakeProject {
 }
 
 type Variables = Readonly<Record<string, unknown>>
+type Selected = GraphqlFakeCall["selection"]
+
+// The tracker and the documents source ask the same operations for different fields: a row keeps only those asked.
+const within = (row: Record<string, unknown>, selection: unknown): Record<string, unknown> =>
+  selection && typeof selection === "object"
+    ? Object.fromEntries(Object.entries(row).filter(([key]) => key in (selection as object)))
+    : row
+const nodesOf = (selection: Selected) => (selection as { nodes?: unknown } | undefined)?.nodes
 
 const LINEAR_MOST = 250
 
@@ -37,7 +45,16 @@ const LINEAR_MOST = 250
  * answer outside the schema, and this fake refuses the filters and paging it does not model, so a call it answers is
  * one it understood. Rows hold only what the selection asked for.
  */
-export const fakeLinearDocuments = ({ viewer = "user-1", token = FAKE_API_TOKEN } = {}) => {
+export const fakeLinearDocuments = ({
+  viewer = "user-1",
+  token = FAKE_API_TOKEN,
+  answers = {},
+}: {
+  viewer?: string
+  token?: string
+  /** Answers for the other operations, such as the tracker's issues; the rest get a sample of their selection. */
+  answers?: Readonly<Record<string, (call: GraphqlFakeCall) => GraphqlFakeAnswer>>
+} = {}) => {
   let now = Date.parse("2026-11-01T00:00:00.000Z")
   const documents = new Map<string, FakeDocument>()
   const projects = new Map<string, FakeProject>()
@@ -131,24 +148,31 @@ export const fakeLinearDocuments = ({ viewer = "user-1", token = FAKE_API_TOKEN 
     url: manifestBaseUrl(API.manifest),
     auth: { header: "Authorization", value: token },
     answers: {
+      ...answers,
       viewer: () => ({ data: { id: viewer, name: "Fake Member" } }),
-      documents: ({ variables }: GraphqlFakeCall) => {
+      documents: ({ variables, selection }: GraphqlFakeCall) => {
         const down = failure("documents")
         if (down) return down
         const rows = filtered("documents", visible(), variables.filter)
-        return typeof rows === "string" ? refused(rows) : page("documents", rows, variables, documentRow)
+        const asked = nodesOf(selection)
+        return typeof rows === "string"
+          ? refused(rows)
+          : page("documents", rows, variables, (one) => within(documentRow(one), asked))
       },
-      document: ({ variables }: GraphqlFakeCall) => {
+      document: ({ variables, selection }: GraphqlFakeCall) => {
         const one = documents.get(String(variables.id))
-        return one && one.visible !== false ? { data: documentRow(one) } : missing("Document")
+        return one && one.visible !== false ? { data: within(documentRow(one), selection) } : missing("Document")
       },
-      projects: ({ variables }: GraphqlFakeCall) => {
+      projects: ({ variables, selection }: GraphqlFakeCall) => {
         const rows = filtered("projects", [...projects.values()], variables.filter)
-        return typeof rows === "string" ? refused(rows) : page("projects", rows, variables, projectRow)
+        const asked = nodesOf(selection)
+        return typeof rows === "string"
+          ? refused(rows)
+          : page("projects", rows, variables, (one) => within(projectRow(one), asked))
       },
-      project: ({ variables }: GraphqlFakeCall) => {
+      project: ({ variables, selection }: GraphqlFakeCall) => {
         const one = projects.get(String(variables.id))
-        return one ? { data: projectRow(one) } : missing("Project")
+        return one ? { data: within(projectRow(one), selection) } : missing("Project")
       },
     },
   })

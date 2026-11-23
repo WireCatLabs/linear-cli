@@ -17,6 +17,7 @@ import { contextOf, PACE, tokenOf } from "../context.js"
 import { HOOK_OPTIONS, SOURCE } from "../generated/wirecat-config.js"
 import { IDENTITY } from "../identity.js"
 import { API_OPTIONS, serviceFetch } from "./api.js"
+import { linearDocuments } from "./documents.js"
 
 // cli-core seeds linear as a tracker in its registry, so the store gets no provider entry from here.
 const openStore = async (env: NodeJS.ProcessEnv, { readOnly = false } = {}): Promise<MessageStore> => {
@@ -76,9 +77,13 @@ const open = async (command: Command, { readOnly }: { readOnly: boolean }): Prom
   }
 }
 
-/** cli-core's tracker commands over the source wirecat.config.ts describes: sync, issues, the lists and the writes. */
+/**
+ * cli-core's tracker commands over the source wirecat.config.ts describes (sync, issues, the lists and the writes),
+ * and its documents commands, whose sync runs as the second part of the tracker's one `sync`.
+ */
 export const trackerCommands = (): Command[] => {
+  const library = linearDocuments()
   const holder = new Command(IDENTITY.command)
-  addTrackerCommands(holder, { app: IDENTITY, open, writes: TRACKER_WRITES })
-  return [...holder.commands]
+  addTrackerCommands(holder, { app: IDENTITY, open, writes: TRACKER_WRITES, documents: library.sync })
+  return [...library.commands, ...holder.commands]
 }
