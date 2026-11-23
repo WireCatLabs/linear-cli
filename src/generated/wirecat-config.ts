@@ -347,6 +347,76 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
     },
     path: "id",
   },
+  writes: {
+    issue: {
+      create: {
+        operation: "issueCreate",
+        variables: {
+          input: "{values}",
+        },
+        selection:
+          "success issue { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } assignee { id } creator { id } parent { id } labels { nodes { id } } }",
+        items: "issue",
+      },
+      update: {
+        operation: "issueUpdate",
+        variables: {
+          id: "{id}",
+          input: "{values}",
+        },
+        selection:
+          "success issue { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } assignee { id } creator { id } parent { id } labels { nodes { id } } }",
+        items: "issue",
+      },
+      fields: {
+        title: {
+          to: "title",
+        },
+        description: {
+          to: "description",
+        },
+        team: {
+          to: "teamId",
+        },
+        state: {
+          to: "stateId",
+        },
+        assignee: {
+          to: "assigneeId",
+        },
+        priority: {
+          to: "priority",
+        },
+        labels: {
+          to: "labelIds",
+        },
+        project: {
+          to: "projectId",
+        },
+        parent: {
+          to: "parentId",
+        },
+      },
+    },
+    comment: {
+      create: {
+        operation: "commentCreate",
+        variables: {
+          input: "{values}",
+        },
+        selection: "success comment { id createdAt updatedAt archivedAt body url issue { id } user { id } }",
+        items: "comment",
+      },
+      fields: {
+        issue: {
+          to: "issueId",
+        },
+        body: {
+          to: "body",
+        },
+      },
+    },
+  },
 }
 
 import type { TrackerManifestHooks } from "@wirecat/cli-core/tracker"

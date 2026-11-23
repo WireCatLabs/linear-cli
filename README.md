@@ -19,6 +19,10 @@ Linear issues and projects in your local WireCat store. One tool for you and for
 Ask your agent about Linear. It finds the right command with `linear commands --json`, runs it, and answers
 from the result. A command it may not run stops with a clear refusal before anything reaches Linear.
 
+It also writes: `linear personal issues create --title …`, `issues update ENG-12 --state Done` and
+`issues comment ENG-12 --body …`. Giving an issue to someone other than you is refused unless the profile allows
+`issues.assign-others`.
+
 ## Why linear
 
 - The token stays in the system keyring, and every command names the profile it uses.
