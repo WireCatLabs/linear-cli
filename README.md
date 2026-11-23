@@ -123,8 +123,8 @@ linear work issues list assignee:none
 linear work issues show ENG-12                        # one issue with its state, assignee and comments
 linear work issues search "invoice currency"
 linear work issues create --title "Export invoices as CSV" --team ENG
-linear work issues update ENG-12 --state Done
-linear work issues comment ENG-12 --body "Shipped in 2.4"
+linear work issues update ENG-12 --status Done
+linear work issues comments create ENG-12 --text "Shipped in 2.4"
 ```
 
 ### Projects and teams
