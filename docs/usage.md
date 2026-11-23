@@ -1,6 +1,8 @@
 # Use it
 
-This page explains how a command is built, and how an agent uses the tool. Read it before your first command.
+Ask about your team's issues, or change one, from a terminal or through your agent, always in the workspace you
+name. Every command starts with a profile, so nothing goes to the wrong account. A script gets JSON, with an error code
+to branch on, and an agent gets the same commands as a skill or over MCP.
 
 ## The profile comes first
 

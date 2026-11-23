@@ -1,7 +1,8 @@
 # Settings
 
-Settings live in one file, `config.json`, in the folder `linear doctor` shows. Each profile has its own part,
-and `defaults` apply to every profile. This page lists how to see and change them.
+Decide once what your agent may change in Linear, and how much one command lists. Settings live in one file,
+`config.json`, in the folder `linear doctor` shows. Each profile has its own part, and `defaults` apply to every
+profile.
 
 ```sh
 linear personal config show
@@ -19,8 +20,7 @@ the permissions say.
 
 ## Run records
 
-A command that fails is kept as a run, for `linear runs list` and `runs show`. A command you add that does its work
-in `context.run` is kept when it succeeds too, unless `record` is `false` (then only failures) or it ran with
-`--no-record`. `session status --check` does its work in a run, so `--record` keeps it. `record_input` decides whether a run
+A command that fails is kept as a run, for `linear runs list` and `runs show`. With `record` set to `false` only failures
+are kept, and `--no-record` keeps nothing. `session status --check` does its work in a run, so `--record` keeps it. `record_input` decides whether a run
 keeps the words you typed; it is `true` unless you set it to `false`. Secrets are masked either way; see
 [Security](security.md).

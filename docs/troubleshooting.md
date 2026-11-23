@@ -1,7 +1,8 @@
 # When something goes wrong
 
-Start with the symptom, run the check, then retry the command. Keep the error code and the profile name for a
-support request.
+Get a command that failed working again, most often in one step. Find the symptom or the code from the error in the
+table, do what its row says, then run the command again. Keep the error code and the profile name for a support
+request.
 
 | Symptom | What to do |
 | --- | --- |
