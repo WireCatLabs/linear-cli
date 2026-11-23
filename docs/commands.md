@@ -9400,6 +9400,84 @@ linear issues assign <issue> [options]
 
 **Example:** `linear work issues assign ENG-12 --due 2026-12-01`
 
+### `linear issues create`
+
+make an issue in the tracker, then store the tracker's copy of it
+
+**Changes something in the service.**
+
+```sh
+linear issues create [options]
+```
+
+| Option | What it does |
+|---|---|
+| `--title <title>` | the issue's title. |
+| `--description <text>` | the issue's text; an empty value clears it. |
+| `--team <team>` | the team, by its id, key or name; left out, the copy's only team. |
+| `--state <state>` | the workflow state, by its id or a name only one of the team's states has. |
+| `--assignee <user>` | the user, by id, name or e-mail; empty for none; anyone but you checks issues.assign-others. |
+| `--priority <priority>` | 0 to 4, or none, urgent, high, medium, low; empty for none. |
+| `--label <label>` | a label by its id or name; repeat it for each; replaces the issue's labels, and one empty value clears them. Default: ``. |
+| `--project <project>` | the project, by its id or name; empty for none. |
+| `--parent <issue>` | the issue this one is part of, by its key or id; empty for none. |
+
+**Returns:** tracker write — operation_id, untrusted, issue, comment; every field: linear commands info issues create
+
+**Example:** `linear work issues create --title "Example: invoices fail for EUR" --team ENG --label Bug`, `linear work issues create --title "Example: write the guide" --assignee ada@example.com --priority high`
+
+### `linear issues update`
+
+change an issue in the tracker; what is left out keeps its value; the tracker's copy is stored again
+
+**Changes something in the service.**
+
+```sh
+linear issues update <issue> [options]
+```
+
+| Argument | | What it is |
+|---|---|---|
+| `issue` | required | the issue's key (ENG-12) or id. |
+
+| Option | What it does |
+|---|---|
+| `--title <title>` | the issue's title. |
+| `--description <text>` | the issue's text; an empty value clears it. |
+| `--team <team>` | the team, by its id, key or name; left out, the copy's only team. |
+| `--state <state>` | the workflow state, by its id or a name only one of the team's states has. |
+| `--assignee <user>` | the user, by id, name or e-mail; empty for none; anyone but you checks issues.assign-others. |
+| `--priority <priority>` | 0 to 4, or none, urgent, high, medium, low; empty for none. |
+| `--label <label>` | a label by its id or name; repeat it for each; replaces the issue's labels, and one empty value clears them. Default: ``. |
+| `--project <project>` | the project, by its id or name; empty for none. |
+| `--parent <issue>` | the issue this one is part of, by its key or id; empty for none. |
+
+**Returns:** tracker write — operation_id, untrusted, issue, comment; every field: linear commands info issues update
+
+**Example:** `linear work issues update ENG-12 --state "In Progress"`, `linear work issues update ENG-12 --assignee ""`
+
+### `linear issues comment`
+
+add a comment to an issue in the tracker, then store it
+
+**Changes something in the service.**
+
+```sh
+linear issues comment <issue> [options]
+```
+
+| Argument | | What it is |
+|---|---|---|
+| `issue` | required | the issue's key (ENG-12) or id. |
+
+| Option | What it does |
+|---|---|
+| `--body <text>` | the comment, as it is to read. |
+
+**Returns:** tracker write — operation_id, untrusted, issue, comment; every field: linear commands info issues comment
+
+**Example:** `linear work issues comment ENG-12 --body "Example: fixed in the next release"`
+
 ## `linear projects`
 
 the tracker's projects: status, lead, teams and target date

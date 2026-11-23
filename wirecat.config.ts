@@ -5,6 +5,10 @@ const times = "createdAt updatedAt archivedAt"
 const timeMap = { createdAt: "createdAt", updatedAt: "updatedAt", archivedAt: "archivedAt" }
 // Linear hides archived rows unless asked; the copy keeps them, marked.
 const all = { first: 100, includeArchived: true }
+const issueFields =
+  "identifier title description url priority dueDate completedAt canceledAt state { id } team { id } " +
+  "project { id } assignee { id } creator { id } parent { id } labels { nodes { id } }"
+const commentFields = "body url issue { id } user { id }"
 
 // Three calls per kind: everything, what changed since the cursor, and every id for the deletion pass, which selects
 // nothing else to keep Linear's complexity points low.
@@ -72,12 +76,7 @@ export default defineCli({
         },
       },
       issue: {
-        ...kind(
-          "issues",
-          "identifier title description url priority dueDate completedAt canceledAt state { id } team { id } " +
-            "project { id } assignee { id } creator { id } parent { id } labels { nodes { id } }",
-          { first: 50 },
-        ),
+        ...kind("issues", issueFields, { first: 50 }),
         map: {
           externalId: "id",
           key: "identifier",
@@ -99,10 +98,47 @@ export default defineCli({
         },
       },
       comment: {
-        ...kind("comments", "body url issue { id } user { id }"),
+        ...kind("comments", commentFields),
         map: { externalId: "id", issue: "issue.id", body: "body", author: "user.id", url: "url", ...timeMap },
       },
     },
     self: { call: { operation: "viewer" }, path: "id" },
+    // The mutation answers the written row, read with the kind's own map, so no second read follows a write.
+    writes: {
+      issue: {
+        create: {
+          operation: "issueCreate",
+          variables: { input: "{values}" },
+          selection: `success issue { id ${times} ${issueFields} }`,
+          items: "issue",
+        },
+        update: {
+          operation: "issueUpdate",
+          variables: { id: "{id}", input: "{values}" },
+          selection: `success issue { id ${times} ${issueFields} }`,
+          items: "issue",
+        },
+        fields: {
+          title: { to: "title" },
+          description: { to: "description" },
+          team: { to: "teamId" },
+          state: { to: "stateId" },
+          assignee: { to: "assigneeId" },
+          priority: { to: "priority" },
+          labels: { to: "labelIds" },
+          project: { to: "projectId" },
+          parent: { to: "parentId" },
+        },
+      },
+      comment: {
+        create: {
+          operation: "commentCreate",
+          variables: { input: "{values}" },
+          selection: `success comment { id ${times} ${commentFields} }`,
+          items: "comment",
+        },
+        fields: { issue: { to: "issueId" }, body: { to: "body" } },
+      },
+    },
   },
 })

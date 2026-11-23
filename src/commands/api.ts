@@ -15,16 +15,17 @@ export const serviceFetch = (environment: ServiceEnvironment) => hostsFetch(DESK
  * refuses by `api.<operation>`, a delete or a share also by its key. The requests keep the profile's pace.
  * The token is the profile's own, read by `tokenOf` like every other command's.
  */
-export const apiCommand = (): Command =>
-  serviceApiCommand({
-    ...API,
-    app: IDENTITY,
-    configuration,
-    fetch: (command) => {
-      const { environment, env, profile } = contextOf(command)
-      return retrying(serviceFetch(environment), { pacer: new Pacer(pacePathFor(IDENTITY, profile, env), PACE) })
-    },
-    token: tokenOf,
-    schemas: () => import("../generated/schemas.js").then((module) => module.schemas),
-    definitions: () => import("../generated/definitions.js").then((module) => module.definitions),
-  })
+export const API_OPTIONS = {
+  ...API,
+  app: IDENTITY,
+  configuration,
+  fetch: (command: Command) => {
+    const { environment, env, profile } = contextOf(command)
+    return retrying(serviceFetch(environment), { pacer: new Pacer(pacePathFor(IDENTITY, profile, env), PACE) })
+  },
+  token: tokenOf,
+  schemas: () => import("../generated/schemas.js").then((module) => module.schemas),
+  definitions: () => import("../generated/definitions.js").then((module) => module.definitions),
+}
+
+export const apiCommand = (): Command => serviceApiCommand(API_OPTIONS)

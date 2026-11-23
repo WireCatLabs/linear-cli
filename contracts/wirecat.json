@@ -6078,6 +6078,45 @@
     },
     {
       "path": [
+        "issues",
+        "create"
+      ],
+      "summary": "make an issue in the tracker, then store the tracker's copy of it",
+      "effects": {
+        "remote": "write",
+        "local": "write"
+      },
+      "permission": "issues.create",
+      "entity": "tracker_write"
+    },
+    {
+      "path": [
+        "issues",
+        "update"
+      ],
+      "summary": "change an issue in the tracker; what is left out keeps its value; the…",
+      "effects": {
+        "remote": "write",
+        "local": "write"
+      },
+      "permission": "issues.update",
+      "entity": "tracker_write"
+    },
+    {
+      "path": [
+        "issues",
+        "comment"
+      ],
+      "summary": "add a comment to an issue in the tracker, then store it",
+      "effects": {
+        "remote": "write",
+        "local": "write"
+      },
+      "permission": "issues.comment",
+      "entity": "tracker_write"
+    },
+    {
+      "path": [
         "projects",
         "list"
       ],

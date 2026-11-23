@@ -5,6 +5,7 @@ import {
   serviceApiPermissions,
   settingsFor,
 } from "@wirecat/cli-core/cli"
+import { TRACKER_WRITE_DEFAULTS, TRACKER_WRITE_EXTRA_KEYS, trackerAlsoChecks } from "@wirecat/cli-core/tracker"
 import * as manifest from "./generated/manifest.js"
 import { IDENTITY } from "./identity.js"
 
@@ -17,6 +18,16 @@ export const API = {
   service: "Linear",
 }
 
-export const permissions = commandPermissions(serviceApiPermissions(API))
+const shared = serviceApiPermissions(API)
+// An issues write also checks its operation's api key, so --dry-run names it beside the command's own.
+const API_KEYS = { create: "api.issue-create", update: "api.issue-update", comment: "api.comment-create" } as const
+const trackerKeys = trackerAlsoChecks((one) => [API_KEYS[one]])
+export const permissions = commandPermissions({
+  ...shared,
+  // Without the tracker's defaults a --dry-run would call issues.assign-others allowed while the write refuses it.
+  defaults: { ...shared.defaults, ...TRACKER_WRITE_DEFAULTS },
+  extra: [...shared.extra, ...TRACKER_WRITE_EXTRA_KEYS],
+  alsoChecks: (path) => [...trackerKeys(path), ...shared.alsoChecks(path)],
+})
 
 export const configuration: Configuration = settingsFor(IDENTITY, { permissions })

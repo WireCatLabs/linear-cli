@@ -3,6 +3,7 @@ import { parseTrackerManifest } from "@wirecat/cli-core/tracker"
 import {
   type TrackerManifestFake,
   trackerManifestFixture,
+  trackerManifestWriteContract,
   trackerSourceContract,
 } from "@wirecat/cli-core/tracker/testing"
 import { afterEach, describe, expect, it } from "vitest"
@@ -25,6 +26,11 @@ describe("trackerSourceContract over a fake of the API, from wirecat.config.ts",
     fakes.push(fixture.fake)
     return fixture
   }))
+    it(name, run)
+})
+
+describe("trackerWriteContract over a fake of the API, from wirecat.config.ts", () => {
+  for (const { name, run } of trackerManifestWriteContract(SOURCE, { api: API.manifest, definitions, ...HOOK_OPTIONS }))
     it(name, run)
 })
 
