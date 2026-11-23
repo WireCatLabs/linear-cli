@@ -39,7 +39,10 @@ const update = appUpdate({
 const mcpCommand = () =>
   appMcpCommand(IDENTITY, configuration, {
     name: SERVICE,
-    untrusted: ["issue titles and descriptions, comments, and names that Linear's users wrote"],
+    untrusted: [
+      "issue titles and descriptions, comments, and names that Linear's users wrote",
+      "document titles and text, and project names",
+    ],
     permissionExample: "api.list=deny",
     skill: SKILL,
     signedIn: (profile, env, keyring) => new ProfileTokenStore({ app: IDENTITY, env, keyring }).signedIn(profile),

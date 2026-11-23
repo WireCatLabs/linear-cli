@@ -23,6 +23,10 @@ It also writes: `linear personal issues create --title …`, `issues update ENG-
 `issues comment ENG-12 --body …`. Giving an issue to someone other than you is refused unless the profile allows
 `issues.assign-others`.
 
+Linear documents are synced too. Choose them with `linear personal folders add linear:all` (or one project's id), and
+`sync` copies them beside the issues. `linear personal search` finds them by words and by meaning, memo's
+`search all` finds them with your notes and other documents, and `documents list|show` reads them offline.
+
 ## Why linear
 
 - The token stays in the system keyring, and every command names the profile it uses.
