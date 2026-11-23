@@ -5,5 +5,37 @@
     "target": "reason account-remove.unknown-profile=account-rename.unknown-profile",
     "reason": "whatsapp-cli 0.46.0, on cli-core 0.715.0, registers account-rename.unknown-profile with account-remove's message; cli-core 0.717.0 (#3189) gives profile.unknown, so drop this once whatsapp-cli bumps",
     "review_after": "2026-12-05"
+  },
+  {
+    "group": "linear",
+    "rule": "same-flag-meaning",
+    "target": "linear+max+memo+tg+wa --assignee",
+    "expected": "linear: <user>, max: <person...>, memo: <person...>, tg: <person...>, wa: <person...>",
+    "reason": "cli-core 0.724.0 tracker write commands name the value by what Linear takes; cli-core #3237 aligns them with the family vocabulary, then drop this",
+    "review_after": "2026-12-07"
+  },
+  {
+    "group": "linear",
+    "rule": "same-flag-meaning",
+    "target": "drive+linear --body",
+    "expected": "linear: <text>, drive: <json>",
+    "reason": "cli-core 0.724.0 tracker write commands name the value by what Linear takes; cli-core #3237 aligns them with the family vocabulary, then drop this",
+    "review_after": "2026-12-07"
+  },
+  {
+    "group": "linear",
+    "rule": "same-flag-meaning",
+    "target": "drive+linear+max+memo+tg+wa --parent",
+    "expected": "linear: <issue>, drive: <id>, max: <id>, memo: <id>, tg: <id>, wa: <id>",
+    "reason": "cli-core 0.724.0 tracker write commands name the value by what Linear takes; cli-core #3237 aligns them with the family vocabulary, then drop this",
+    "review_after": "2026-12-07"
+  },
+  {
+    "group": "linear",
+    "rule": "same-flag-meaning",
+    "target": "linear+max+memo+tg+wa --priority",
+    "expected": "linear: <priority>, max: <n>, memo: <n>, tg: <n>, wa: <n>",
+    "reason": "cli-core 0.724.0 tracker write commands name the value by what Linear takes; cli-core #3237 aligns them with the family vocabulary, then drop this",
+    "review_after": "2026-12-07"
   }
 ]
