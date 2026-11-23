@@ -6649,14 +6649,15 @@
     {
       "path": [
         "issues",
-        "comment"
+        "comments",
+        "create"
       ],
       "summary": "add a comment to an issue in the tracker, then store it",
       "effects": {
         "remote": "write",
         "local": "write"
       },
-      "permission": "issues.comment",
+      "permission": "issues.comments.create",
       "entity": "tracker_write"
     },
     {

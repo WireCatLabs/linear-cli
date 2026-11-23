@@ -39,10 +39,13 @@ it("a comment goes out as commentCreate through the api group's write path, and 
   const issue = (listed.json() as { items: { key?: string; id?: string; external_id?: string }[] }).items[0]
   const ref = issue?.key ?? issue?.external_id ?? issue?.id
   expect(ref, listed.out).toBeDefined()
-  const sent = await runCli(["work", "issues", "comment", String(ref), "--body", "Synthetic note", "--yes", "--json"], {
-    keyring,
-    service: fake,
-  })
+  const sent = await runCli(
+    ["work", "issues", "comments", "create", String(ref), "--text", "Synthetic note", "--yes", "--json"],
+    {
+      keyring,
+      service: fake,
+    },
+  )
   expect(sent.code, sent.err).toBe(0)
   expect(JSON.stringify(fake.calls)).toContain("commentCreate")
   expect(fake.refusals).toEqual([])
@@ -55,7 +58,7 @@ it("previews a create and an update with every field, naming the references the 
   await runCli(["ops", "sync", "--json"], { keyring, service: fake })
   const sent = fake.calls.length
   const fields = (verb: string) => [
-    ...["--description", `Synthetic ${verb}`, "--team", "", "--state", "", "--priority", "2"],
+    ...["--description", `Synthetic ${verb}`, "--team", "", "--status", "", "--priority", "high"],
     ...["--label", "", "--project", "", "--parent", "", "--assignee", ""],
   ]
   for (const args of [
