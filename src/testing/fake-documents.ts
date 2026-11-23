@@ -56,6 +56,7 @@ export const fakeLinearDocuments = ({
   answers?: Readonly<Record<string, (call: GraphqlFakeCall) => GraphqlFakeAnswer>>
 } = {}) => {
   let now = Date.parse("2026-11-01T00:00:00.000Z")
+  let signedIn = viewer
   const documents = new Map<string, FakeDocument>()
   const projects = new Map<string, FakeProject>()
   const failing = new Set<string>()
@@ -149,7 +150,7 @@ export const fakeLinearDocuments = ({
     auth: { header: "Authorization", value: token },
     answers: {
       ...answers,
-      viewer: () => ({ data: { id: viewer, name: "Fake Member" } }),
+      viewer: () => ({ data: { id: signedIn, name: "Fake Member" } }),
       documents: ({ variables, selection }: GraphqlFakeCall) => {
         const down = failure("documents")
         if (down) return down
@@ -200,6 +201,10 @@ export const fakeLinearDocuments = ({
       const one = documents.get(id)
       if (!one) throw new Error(`no fake document ${id}`)
       documents.set(id, { ...one, ...fields, updatedAt: stamp() })
+    },
+    /** The token now names another member, as a token replaced in the keyring would. */
+    signInAs: (id: string) => {
+      signedIn = id
     },
     /** Every documents listing answers 503 from now on, until `recover`. */
     fail: (name: "documents") => failing.add(name),

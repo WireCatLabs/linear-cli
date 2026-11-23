@@ -1,7 +1,7 @@
 // A nested list with no size counts as 50 rows of Linear's complexity points; 50 a page stays well under the 10,000 a
 // query may cost. https://linear.app/developers/rate-limiting
 const page = { first: 50, after: "{cursor}" }
-// Linear hides archived rows unless asked: an archived or trashed document must reach the sync to be removed.
+// Linear hides archived rows unless asked: a trashed document must reach the sync to be removed, an archived one to stay.
 const all = { ...page, includeArchived: true }
 const changed = { orderBy: "updatedAt", filter: { updatedAt: { gte: "{since}" } } }
 

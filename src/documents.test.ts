@@ -115,9 +115,35 @@ it("chooses, lists and drops folders, pages the copy, and refuses --limit on the
   expect(found.code, found.err).toBe(0)
   expect(JSON.stringify(found.json())).toContain("Zeppelin plan")
   // It would bound the documents part only.
-  expect((await run(["sync", "--limit", "1"])).code).not.toBe(0)
+  const limited = await run(["sync", "--limit", "1"])
+  expect(limited.code).not.toBe(0)
+  expect(limited.json()).toMatchObject({ error: { code: "validation_error" } })
+  expect(limited.err).toContain("--max-pages bounds both parts")
   expect((await run(["folders", "remove", "p-1"])).code).toBe(0)
   expect(JSON.stringify((await run(["folders", "list"])).json())).not.toContain("Roadmap")
+})
+
+it("marks document names as untrusted in documents list", async () => {
+  const { run } = await signedIn()
+  await run(["folders", "add", "linear:all"])
+  await run(["sync"])
+  const listed = (await run(["documents", "list"])).json() as { items: { name: string; untrusted?: string[] }[] }
+  expect(listed.items.length).toBeGreaterThan(0)
+  for (const item of listed.items) expect(item.untrusted).toEqual(["name"])
+})
+
+it("refuses the documents of another member than the tracker's account, and stores none", async () => {
+  const { run, linear } = await signedIn()
+  await run(["folders", "add", "linear:all"])
+  linear.signInAs("user-2")
+  const synced = await run(["sync"])
+  expect(synced.code, synced.err).toBe(0)
+  expect(synced.json()).toMatchObject({
+    item: { documents: { error: { reason: "documents.other-account" } } },
+    meta: { complete: false },
+  })
+  // Refused before the walk: no document was read, so none can be stored under either account.
+  expect(linear.calls.filter((call) => call.operation === "documents" || call.operation === "document")).toEqual([])
 })
 
 describe("documentCommandsContract over linear's mounted commands", () => {

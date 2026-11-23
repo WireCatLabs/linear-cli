@@ -1,17 +1,20 @@
-import { retrying } from "@wirecat/cli-base/http"
-import { type ProviderEntry, providerNamed } from "@wirecat/cli-core"
+import { providerNamed } from "@wirecat/cli-core"
 import { serviceApiCall } from "@wirecat/cli-core/cli"
 import { documentIngestion } from "@wirecat/cli-core/documents"
 import { type DocumentWords, documentLibrary } from "@wirecat/cli-core/documents/cli"
-import { Pacer, pacePathFor } from "@wirecat/cli-core/sends"
 import { API, configuration } from "../config.js"
-import { contextOf, PACE, tokenOf } from "../context.js"
+import { tokenOf } from "../context.js"
 import { isFolder, type LinearFile, linearDocumentSource, ROOT } from "../documents/source.js"
 import { IDENTITY, SERVICE } from "../identity.js"
-import { serviceFetch } from "./api.js"
+import { API_OPTIONS } from "./api.js"
 
 // cli-core's registry holds linear with both kinds, so search all lists one Linear account for issues and documents.
-const PROVIDER = providerNamed("linear") as ProviderEntry
+const PROVIDER = (() => {
+  const entry = providerNamed("linear")
+  if (!entry)
+    throw new Error("cli-core's provider registry has no linear entry; this CLI needs cli-core 0.728.0 or newer")
+  return entry
+})()
 
 export const WORDS: DocumentWords = {
   app: IDENTITY.command,
@@ -42,15 +45,15 @@ export const linearDocuments = () =>
     provider: PROVIDER,
     words: WORDS,
     service: SERVICE,
-    source: (command) => {
-      const { environment, env, profile } = contextOf(command)
-      const fetch = retrying(serviceFetch(environment), {
-        pacer: new Pacer(pacePathFor(IDENTITY, profile, env), PACE),
-      })
-      return linearDocumentSource(
-        serviceApiCall({ manifest: API.manifest, service: API.service, fetch, token: () => tokenOf(command) }),
-      )
-    },
+    source: (command) =>
+      linearDocumentSource(
+        serviceApiCall({
+          manifest: API.manifest,
+          service: API.service,
+          fetch: API_OPTIONS.fetch(command),
+          token: () => tokenOf(command),
+        }),
+      ),
     ingestion: (store) =>
       documentIngestion<LinearFile>(store, {
         provider: PROVIDER.name,
@@ -82,6 +85,8 @@ export const linearDocuments = () =>
       url: file.url,
       modified_at: file.modifiedAt ?? null,
       reference,
+      // Other members write titles; the text, in documents show, is not marked by cli-core's shared commands yet.
+      untrusted: ["name"],
     }),
     textLimit: 1_000_000,
     maxEntries: 10_000,

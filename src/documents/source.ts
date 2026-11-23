@@ -60,10 +60,10 @@ const folder = (id: string, name: string, parents: string[]): LinearFile => ({
 const ROOT_FOLDER = folder(ROOT, "Linear", [])
 const ELSEWHERE_FOLDER = folder(ELSEWHERE, "Not in a project", [ROOT])
 
-// The owner's rule: only Linear's own marks are a deletion. A document missing from a listing may be one another
-// member sees, or the listing was short; it is never taken for deleted. A hidden document keeps its text: Linear's
-// schema says hiding "is separate from trashing or archiving".
-const deleted = (row: Row) => row.trashed === true || Boolean(row.archivedAt)
+// The owner's rule: only a real deletion removes, and only the trash is one. A document missing from a listing may be
+// one another member sees, or the listing was short. Linear archives a completed project's documents by itself, and
+// hiding "is separate from trashing or archiving" (its schema): both keep their text.
+const deleted = (row: Row) => row.trashed === true
 
 const projectFolder = (row: Row): LinearFile => {
   const id = text(row.id)
@@ -108,7 +108,6 @@ export const linearDocumentSource = (
       const listed = new Map<string, { version: string | undefined; markdown: string }>()
       const documentFile = (row: Row): LinearFile => {
         const mapped = file(row)
-        if (typeof row.content === "string") listed.set(mapped.id, { version: mapped.version, markdown: row.content })
         return {
           ...mapped,
           mime: "text/markdown",
@@ -117,6 +116,16 @@ export const linearDocumentSource = (
           canDownload: true,
           providerMetadata: { kind: "document" },
         }
+      }
+      // Only the rows a listing keeps: text of a row the "Not in a project" filter drops is never read.
+      const remember = (rows: Row[], files: LinearFile[]) => {
+        const kept = new Map(files.map((one) => [one.id, one]))
+        for (const row of rows) {
+          const one = kept.get(String(row.id))
+          if (one && typeof row.content === "string")
+            listed.set(one.id, { version: one.version, markdown: row.content })
+        }
+        return files
       }
       const page = async (name: string, slots: DocumentSlots) => listingOf(await read(name, slots), name)
       const every = async (name: string, slots: DocumentSlots) => {
@@ -143,7 +152,10 @@ export const linearDocumentSource = (
         }
         const { rows, next } =
           id === ELSEWHERE ? await page("everyDocument", slots) : await page("children", { ...slots, id })
-        const files = rows.map(documentFile).filter((one) => one.parents.includes(id))
+        const files = remember(
+          rows,
+          rows.map(documentFile).filter((one) => one.parents.includes(id)),
+        )
         return next ? { files, cursor: next } : { files }
       }
       return {
@@ -175,7 +187,8 @@ export const linearDocumentSource = (
           const since = new Date(from - OVERLAP_MS).toISOString()
           // Both lists are read before anything is answered: a round cut short marks nothing.
           const projects = (await every("projectChanges", { since })).map(projectFolder)
-          const documents = (await every("changes", { since })).map(documentFile)
+          const changed = await every("changes", { since })
+          const documents = remember(changed, changed.map(documentFile))
           const items: SourceChange<LinearFile>[] = [...projects, ...documents].map((one) => ({
             id: one.id,
             removed: one.trashed,
@@ -191,7 +204,6 @@ export const linearDocumentSource = (
           if (!known || !held || held.version !== known.version) {
             const row = (await read("content", { id })) as Row
             metadata = known ?? documentFile(row)
-            listed.delete(id)
             markdown = typeof row.content === "string" ? row.content : ""
           }
           const cut = maxChars === undefined ? markdown : markdown.slice(0, maxChars)

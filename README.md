@@ -24,8 +24,8 @@ It also writes: `linear personal issues create --title …`, `issues update ENG-
 `issues.assign-others`.
 
 Linear documents are synced too. Choose them with `linear personal folders add linear:all` (or one project's id), and
-`sync` copies them beside the issues. `search all` finds them with your notes and other documents, by words and by
-meaning, and `documents list|show` reads them offline.
+`sync` copies them beside the issues. `linear personal search` finds them by words and by meaning, memo's
+`search all` finds them with your notes and other documents, and `documents list|show` reads them offline.
 
 ## Why linear
 

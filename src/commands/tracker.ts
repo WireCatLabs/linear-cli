@@ -1,8 +1,6 @@
 import { CliError } from "@wirecat/cli-base"
-import { retrying } from "@wirecat/cli-base/http"
 import { baseContext, recalledAccount, serviceApiCall, serviceApiWriter } from "@wirecat/cli-core/cli"
 import { openCrmStore } from "@wirecat/cli-core/crm/cli"
-import { Pacer, pacePathFor } from "@wirecat/cli-core/sends"
 import type { MessageStore } from "@wirecat/cli-core/store"
 import {
   addTrackerCommands,
@@ -13,10 +11,10 @@ import {
 } from "@wirecat/cli-core/tracker"
 import { Command } from "commander"
 import { API, configuration } from "../config.js"
-import { contextOf, PACE, tokenOf } from "../context.js"
+import { contextOf, tokenOf } from "../context.js"
 import { HOOK_OPTIONS, SOURCE } from "../generated/wirecat-config.js"
 import { IDENTITY } from "../identity.js"
-import { API_OPTIONS, serviceFetch } from "./api.js"
+import { API_OPTIONS } from "./api.js"
 import { linearDocuments } from "./documents.js"
 
 // cli-core seeds linear as a tracker in its registry, so the store gets no provider entry from here.
@@ -50,7 +48,7 @@ const accountOf = (command: Command) => {
 const write = serviceApiWriter(API_OPTIONS)
 
 const open = async (command: Command, { readOnly }: { readOnly: boolean }): Promise<TrackerRun> => {
-  const { env, profile, environment } = contextOf(command)
+  const { env, profile } = contextOf(command)
   const { store, account } = await openCrmStore({
     app: IDENTITY,
     env,
@@ -60,8 +58,12 @@ const open = async (command: Command, { readOnly }: { readOnly: boolean }): Prom
     open: openStore,
     account: () => accountOf(command),
   })
-  const fetch = retrying(serviceFetch(environment), { pacer: new Pacer(pacePathFor(IDENTITY, profile, env), PACE) })
-  const call = serviceApiCall({ manifest: API.manifest, service: API.service, fetch, token: () => tokenOf(command) })
+  const call = serviceApiCall({
+    manifest: API.manifest,
+    service: API.service,
+    fetch: API_OPTIONS.fetch(command),
+    token: () => tokenOf(command),
+  })
   let source: ReturnType<typeof trackerSourceFromManifest> | undefined
   return {
     account,

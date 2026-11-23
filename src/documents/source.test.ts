@@ -137,13 +137,20 @@ describe("the sync tells a deletion in Linear from a document it no longer sees"
     expect((await source.children("p-1")).map((one) => one.parents)).toEqual([["p-1"], ["p-1"]])
   })
 
-  it("removes a document Linear trashed or archived", async () => {
+  it("removes a document Linear trashed, as deleted", async () => {
     const { linear, sync, held, removals } = await synced()
     linear.edit("d-1", { trashed: true, archivedAt: new Date(linear.now()).toISOString() })
-    linear.edit("d-2", { archivedAt: new Date(linear.now()).toISOString() })
-    expect((await sync()).result).toMatchObject({ removed: 2 })
-    expect(Object.fromEntries(removals)).toEqual({ "d-1": "deleted", "d-2": "deleted" })
-    expect([...held.keys()].sort()).toEqual(["d-3", "d-4"])
+    expect((await sync()).result).toMatchObject({ removed: 1 })
+    expect(Object.fromEntries(removals)).toEqual({ "d-1": "deleted" })
+    expect(held.has("d-1")).toBe(false)
+  })
+
+  it("keeps an archived document that is not in the trash, with its text", async () => {
+    const { linear, sync, held, removals } = await synced()
+    linear.edit("d-2", { archivedAt: new Date(linear.now()).toISOString(), content: "archived with its project" })
+    expect((await sync()).result).toMatchObject({ removed: 0 })
+    expect(removals.size).toBe(0)
+    expect(held.get("d-2")).toBe("archived with its project")
   })
 
   it("keeps a hidden document: Linear hides it from a view and keeps its text", async () => {
@@ -151,14 +158,6 @@ describe("the sync tells a deletion in Linear from a document it no longer sees"
     linear.edit("d-1", { hiddenAt: new Date(linear.now()).toISOString() })
     expect((await sync()).result).toMatchObject({ removed: 0 })
     expect(held.has("d-1")).toBe(true)
-  })
-
-  it("keeps a document that only left this member's view", async () => {
-    const { linear, sync, held } = await synced()
-    linear.edit("d-3", { visible: false })
-    linear.edit("d-1", { content: "edited" })
-    expect((await sync()).result).toMatchObject({ removed: 0, saved: 1 })
-    expect(held.has("d-3")).toBe(true)
   })
 
   it("keeps the text of a document that left this member's view through a sync --rescan", async () => {
@@ -188,9 +187,67 @@ describe("the sync tells a deletion in Linear from a document it no longer sees"
     expect(held.get("d-4")).toBe("moved")
   })
 
+  it("keeps the text of only the documents a listing keeps", async () => {
+    const linear = workspace()
+    const plan = (await sourceOver(linear).children("p-1")).find((one) => one.id === "d-1")
+    const source = sourceOver(linear)
+    const spec = (await source.children(ELSEWHERE)).find((one) => one.id === "d-4")
+    linear.calls.length = 0
+    await source.content("d-4", undefined, spec)
+    await source.content("d-1", undefined, plan)
+    expect(linear.calls.map((call) => call.operation)).toEqual(["document"])
+  })
+
   it("reads each document's text from its listing, with no second request", async () => {
     const linear = workspace()
     await syncer(linear).sync()
     expect(linear.calls.filter((call) => call.operation === "document")).toEqual([])
+  })
+})
+
+describe("listings longer than one page", () => {
+  const MANY = 60
+  const crowded = () => {
+    const linear = fakeLinearDocuments()
+    fakes.push(linear)
+    linear.addDocument("lone", { title: "Lone", issue: "i-1" })
+    linear.advance(1000)
+    for (let n = 0; n < MANY; n++) {
+      linear.addProject(`p-${n}`, `Project ${n}`)
+      linear.addDocument(`d-${n}`, { project: "p-0", content: `text ${n}` })
+      linear.advance(1000)
+    }
+    return linear
+  }
+
+  it("adds the folder outside projects only on the root's last page", async () => {
+    const source = sourceOver(crowded())
+    const first = await source.childrenPage(ROOT)
+    expect(first.cursor).toBeDefined()
+    expect(first.files.map((one) => one.id)).not.toContain(ELSEWHERE)
+    const last = await source.childrenPage(ROOT, first.cursor)
+    expect(last.cursor).toBeUndefined()
+    expect(last.files.at(-1)?.id).toBe(ELSEWHERE)
+    expect(first.files.length + last.files.length).toBe(MANY + 1)
+  })
+
+  it("goes on past a page of the folder outside projects that its filter leaves empty", async () => {
+    const source = sourceOver(crowded())
+    // Newest first: the first page holds only project documents, the lone one is on the second.
+    const first = await source.childrenPage(ELSEWHERE)
+    expect(first).toMatchObject({ files: [] })
+    expect(first.cursor).toBeDefined()
+    expect((await source.childrenPage(ELSEWHERE, first.cursor)).files.map((one) => one.id)).toEqual(["lone"])
+  })
+
+  it("reads every page of a change round", async () => {
+    const linear = crowded()
+    const source = sourceOver(linear)
+    const token = await source.startToken()
+    linear.advance(HOUR)
+    for (let n = 0; n < MANY; n++) linear.edit(`d-${n}`, { content: `edited ${n}` })
+    const { items } = await source.changes(token)
+    expect(items.filter((one) => one.id.startsWith("d-"))).toHaveLength(MANY)
+    expect(linear.calls.filter((call) => call.operation === "documents")).toHaveLength(2)
   })
 })

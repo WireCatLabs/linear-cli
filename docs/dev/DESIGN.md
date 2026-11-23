@@ -40,7 +40,7 @@ Languages: en.
 ## Further answers
 
 - **Linear documents go through cli-core's documents (NEED-2807 A, 2026-11-23),** like Notion and Drive, so they
-  reach the store, `search all` and search by meaning. The source is `src/documents/source.ts`, built from
+  reach the store, `linear <profile> search`, memo's `search all` and search by meaning. The source is `src/documents/source.ts`, built from
   `src/documents/manifest.ts` with cli-core's `documentSourceFromManifest`; the manifest stays out of
   `wirecat.config.ts`.
   - Folders are projects under `linear:all`. A document outside a project (on an issue, an initiative, a team, a
@@ -48,9 +48,10 @@ Languages: en.
     project", so that folder lists every document and keeps the rest.
   - The account is the viewer's id, the same as the tracker's copy: one member's view never removes another's
     documents.
-  - Only `trashed` or `archivedAt` is a deletion. A hidden document is kept: Linear's schema says hiding "is separate
-    from trashing or archiving". A document missing from a listing keeps its text (cli-core marks it
-    unavailable, not deleted).
+  - Only `trashed` is a deletion (coordinator's ruling, 2026-11-23, on the owner's "only a real deletion removes").
+    An archived document keeps its text: Linear archives a completed project's documents by itself. A hidden one too:
+    Linear's schema says hiding "is separate from trashing or archiving". A document missing from a listing keeps
+    its text (cli-core marks it unavailable, not deleted).
   - The change feed names the projects changed since the last round, so a document moved into a new project stays
     in scope.
   - One `sync` copies both: cli-core's `documentLibrary` gives the documents commands without their own `sync`, and the
