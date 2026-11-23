@@ -2749,9 +2749,9 @@ Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 | `issues create` | `--title` | ✅ |  |
 | `issues create` | `--description` | ✅ |  |
 | `issues create` | `--team` | ✅ |  |
-| `issues create` | `--state` | ✅ |  |
 | `issues create` | `--assignee` | ✅ |  |
 | `issues create` | `--priority` | ✅ |  |
+| `issues create` | `--status` | ✅ |  |
 | `issues create` | `--label` | ✅ |  |
 | `issues create` | `--project` | ✅ |  |
 | `issues create` | `--parent` | ✅ |  |
@@ -2759,14 +2759,14 @@ Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 | `issues update` | `--title` | ✅ |  |
 | `issues update` | `--description` | ✅ |  |
 | `issues update` | `--team` | ✅ |  |
-| `issues update` | `--state` | ✅ |  |
 | `issues update` | `--assignee` | ✅ |  |
 | `issues update` | `--priority` | ✅ |  |
+| `issues update` | `--status` | ✅ |  |
 | `issues update` | `--label` | ✅ |  |
 | `issues update` | `--project` | ✅ |  |
 | `issues update` | `--parent` | ✅ |  |
-| `issues comment` |  | ✅ |  |
-| `issues comment` | `--body` | ✅ |  |
+| `issues comments create` |  | ✅ |  |
+| `issues comments create` | `--text` | ✅ |  |
 | `projects list` |  | ✅ |  |
 | `projects list` | `--limit` | ✅ |  |
 | `projects list` | `--page` | ✅ |  |

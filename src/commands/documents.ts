@@ -85,8 +85,6 @@ export const linearDocuments = () =>
       url: file.url,
       modified_at: file.modifiedAt ?? null,
       reference,
-      // Other members write titles; the text, in documents show, is not marked by cli-core's shared commands yet.
-      untrusted: ["name"],
     }),
     textLimit: 1_000_000,
     maxEntries: 10_000,

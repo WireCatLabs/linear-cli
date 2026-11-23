@@ -56,7 +56,8 @@ const signedIn = async () => {
       return linear.fetch(input, init)
     },
   }
-  const run = (argv: string[]) => runCli(["personal", ...argv, "--json"], { keyring, service })
+  const run = (argv: string[], env?: NodeJS.ProcessEnv) =>
+    runCli(["personal", ...argv, "--json"], { keyring, service, ...(env ? { env } : {}) })
   const started = await runCli(["personal", "session", "start", "--json"], {
     keyring,
     service,
@@ -123,13 +124,17 @@ it("chooses, lists and drops folders, pages the copy, and refuses --limit on the
   expect(JSON.stringify((await run(["folders", "list"])).json())).not.toContain("Roadmap")
 })
 
-it("marks document names as untrusted in documents list", async () => {
+it("marks document names and text in a scheduled agent's run", async () => {
   const { run } = await signedIn()
   await run(["folders", "add", "linear:all"])
   await run(["sync"])
-  const listed = (await run(["documents", "list"])).json() as { items: { name: string; untrusted?: string[] }[] }
-  expect(listed.items.length).toBeGreaterThan(0)
-  for (const item of listed.items) expect(item.untrusted).toEqual(["name"])
+  const MARK = "0123456789abcdef"
+  const locked = { WCLINEAR_READ_ONLY: "1", WCLINEAR_UNTRUSTED_MARK: MARK }
+  const marked = (text: string) => new RegExp(`^⟦untrusted:${MARK} source=[^⟧]+⟧${text}⟦/untrusted:${MARK}⟧$`)
+  const listed = (await run(["documents", "list"], locked)).json() as { items: { id: string; name: string }[] }
+  expect(listed.items.find((one) => one.id === "d-1")?.name).toMatch(marked("Zeppelin plan"))
+  const shown = (await run(["documents", "show", "d-1"], locked)).json() as { item: { text: string } }
+  expect(shown.item.text).toMatch(marked("[\\s\\S]*zeppelin flies in March[\\s\\S]*"))
 })
 
 it("refuses the documents of another member than the tracker's account, and stores none", async () => {

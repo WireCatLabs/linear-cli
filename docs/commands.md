@@ -10258,12 +10258,12 @@ linear issues create [options]
 | `--title <title>` | the issue's title. |
 | `--description <text>` | the issue's text; an empty value clears it. |
 | `--team <team>` | the team, by its id, key or name; left out, the copy's only team. |
-| `--state <state>` | the workflow state, by its id or a name only one of the team's states has. |
 | `--assignee <user>` | the user, by id, name or e-mail; empty for none; anyone but you checks issues.assign-others. |
-| `--priority <priority>` | 0 to 4, or none, urgent, high, medium, low; empty for none. |
+| `--priority <n>` | critical or urgent (1), high (2), medium (3), low (4), none or empty (0), a 0.0–1.0 score or the old 0–4. |
+| `--status <state>` | the workflow state, by its id or a name only one of the team's states has. |
 | `--label <label>` | a label by its id or name; repeat it for each; replaces the issue's labels, and one empty value clears them. Default: ``. |
 | `--project <project>` | the project, by its id or name; empty for none. |
-| `--parent <issue>` | the issue this one is part of, by its key or id; empty for none. |
+| `--parent <id>` | the issue this one is part of, by its key or id; empty for none. |
 
 **Returns:** tracker write — operation_id, untrusted, issue, comment; every field: linear commands info issues create
 
@@ -10288,25 +10288,29 @@ linear issues update <issue> [options]
 | `--title <title>` | the issue's title. |
 | `--description <text>` | the issue's text; an empty value clears it. |
 | `--team <team>` | the team, by its id, key or name; left out, the copy's only team. |
-| `--state <state>` | the workflow state, by its id or a name only one of the team's states has. |
 | `--assignee <user>` | the user, by id, name or e-mail; empty for none; anyone but you checks issues.assign-others. |
-| `--priority <priority>` | 0 to 4, or none, urgent, high, medium, low; empty for none. |
+| `--priority <n>` | critical or urgent (1), high (2), medium (3), low (4), none or empty (0), a 0.0–1.0 score or the old 0–4. |
+| `--status <state>` | the workflow state, by its id or a name only one of the team's states has. |
 | `--label <label>` | a label by its id or name; repeat it for each; replaces the issue's labels, and one empty value clears them. Default: ``. |
 | `--project <project>` | the project, by its id or name; empty for none. |
-| `--parent <issue>` | the issue this one is part of, by its key or id; empty for none. |
+| `--parent <id>` | the issue this one is part of, by its key or id; empty for none. |
 
 **Returns:** tracker write — operation_id, untrusted, issue, comment; every field: linear commands info issues update
 
-**Example:** `linear work issues update ENG-12 --state "In Progress"`, `linear work issues update ENG-12 --assignee ""`
+**Example:** `linear work issues update ENG-12 --status "In Progress"`, `linear work issues update ENG-12 --assignee ""`
 
-### `linear issues comment`
+### `linear issues comments`
+
+comments on the tracker's issues; issues show lists an issue's
+
+#### `linear issues comments create`
 
 add a comment to an issue in the tracker, then store it
 
 **Changes something in the service.**
 
 ```sh
-linear issues comment <issue> [options]
+linear issues comments create <issue> [options]
 ```
 
 | Argument | | What it is |
@@ -10315,11 +10319,11 @@ linear issues comment <issue> [options]
 
 | Option | What it does |
 |---|---|
-| `--body <text>` | the comment, as it is to read. |
+| `--text <text>` | the comment, as it is to read. |
 
-**Returns:** tracker write — operation_id, untrusted, issue, comment; every field: linear commands info issues comment
+**Returns:** tracker write — operation_id, untrusted, issue, comment; every field: linear commands info issues comments create
 
-**Example:** `linear work issues comment ENG-12 --body "Example: fixed in the next release"`
+**Example:** `linear work issues comments create ENG-12 --text "Example: fixed in the next release"`
 
 ## `linear projects`
 

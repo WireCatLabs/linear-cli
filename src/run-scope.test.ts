@@ -1,6 +1,6 @@
 import { Readable } from "node:stream"
 import { neverAnswers, runScopeCases } from "@wirecat/cli-core/testing"
-import { TRACKER_WRITES } from "@wirecat/cli-core/tracker"
+import { TRACKER_WRITE_KEYS } from "@wirecat/cli-core/tracker"
 import { describe, it } from "vitest"
 import { API } from "./config.js"
 import { definition } from "./program.js"
@@ -28,8 +28,8 @@ describe("each remote command runs inside cli-core's run", () => {
       "memories extract": "needs a synced document and a model; cli-core's documents kit runs it in its run",
       sync: "cli-core's addTrackerCommands runs it in its run; src/tracker-contracts.test.ts syncs",
       ...Object.fromEntries(
-        TRACKER_WRITES.map((write) => [
-          `issues ${write}`,
+        Object.values(TRACKER_WRITE_KEYS).map((key) => [
+          key.replaceAll(".", " "),
           "cli-core's addTrackerCommands runs it in its run; it needs a synced copy: src/writes.test.ts runs it",
         ]),
       ),

@@ -46,7 +46,7 @@ Agent:  (runs linear work issues search "invoice export", then issues show ENG-1
         · ENG-12 "Invoice export drops the currency", In Progress, Anna Example
         · ENG-15 "Export invoices as CSV", Todo, no assignee
 You:    Move ENG-12 to Done and tell Anna it shipped.
-Agent:  (runs linear work issues update ENG-12 --state Done, then issues comment ENG-12 --body "Shipped")
+Agent:  (runs linear work issues update ENG-12 --status Done, then issues comments create ENG-12 --text "Shipped")
         ENG-12 is Done, with your comment.
 ```
 
@@ -123,8 +123,8 @@ linear work issues list assignee:none
 linear work issues show ENG-12                        # one issue with its state, assignee and comments
 linear work issues search "invoice currency"
 linear work issues create --title "Export invoices as CSV" --team ENG
-linear work issues update ENG-12 --state Done
-linear work issues comment ENG-12 --body "Shipped in 2.4"
+linear work issues update ENG-12 --status Done
+linear work issues comments create ENG-12 --text "Shipped in 2.4"
 ```
 
 ### Projects and teams
