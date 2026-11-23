@@ -10153,9 +10153,9 @@ linear sync [options]
 |---|---|
 | `--rescan` | list everything again, issues and documents, dropping a round in progress; a rescan of the documents starts their walk over each time, so run it once and continue with a plain sync. |
 | `--max-pages <pages>` | at most this many requests for the issues in this run, and as many for the documents. |
-| `--embed` | also index the documents' pending text for meaning search, with a model already downloaded. |
+| `--embed` | also index new issues, projects and comments and the documents' pending text for meaning search, with a model already downloaded. |
 
-**Returns:** tracker documents sync — provider, account, state, complete, synced, gaps, progress, documents, and 3 more; every field: linear commands info sync
+**Returns:** tracker documents sync — provider, account, state, complete, synced, gaps, progress, documents, and 4 more; every field: linear commands info sync
 
 **Example:** `linear work sync`, `linear work sync --rescan`
 
