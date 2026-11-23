@@ -7,7 +7,7 @@ ran it · ⛔ not tested offline, with the reason and where it is checked instea
 Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 [TESTING.md](TESTING.md) for how, and for the states and failures that cut across commands.
 
-**2721 ✅ · 24 ⛔ · 0 ❌** — 535 commands, 2210 options.
+**2743 ✅ · 24 ⛔ · 0 ❌** — 538 commands, 2229 options.
 
 | Command | Option | | Note |
 |---|---|---|---|
@@ -2663,6 +2663,28 @@ Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 | `issues search` | `--page` | ✅ |  |
 | `issues assign` |  | ✅ |  |
 | `issues assign` | `--due` | ✅ |  |
+| `issues create` |  | ✅ |  |
+| `issues create` | `--title` | ✅ |  |
+| `issues create` | `--description` | ✅ |  |
+| `issues create` | `--team` | ✅ |  |
+| `issues create` | `--state` | ✅ |  |
+| `issues create` | `--assignee` | ✅ |  |
+| `issues create` | `--priority` | ✅ |  |
+| `issues create` | `--label` | ✅ |  |
+| `issues create` | `--project` | ✅ |  |
+| `issues create` | `--parent` | ✅ |  |
+| `issues update` |  | ✅ |  |
+| `issues update` | `--title` | ✅ |  |
+| `issues update` | `--description` | ✅ |  |
+| `issues update` | `--team` | ✅ |  |
+| `issues update` | `--state` | ✅ |  |
+| `issues update` | `--assignee` | ✅ |  |
+| `issues update` | `--priority` | ✅ |  |
+| `issues update` | `--label` | ✅ |  |
+| `issues update` | `--project` | ✅ |  |
+| `issues update` | `--parent` | ✅ |  |
+| `issues comment` |  | ✅ |  |
+| `issues comment` | `--body` | ✅ |  |
 | `projects list` |  | ✅ |  |
 | `projects list` | `--limit` | ✅ |  |
 | `projects list` | `--page` | ✅ |  |
