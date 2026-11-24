@@ -10141,7 +10141,7 @@ linear identities link <document> <linear-id> <person>
 
 ## `linear sync`
 
-bring the tracker's copy in the local store up to date: teams, users, states, labels, projects, issues and comments that changed since the last sync, or everything with --rescan; once a day it also finds what the tracker deleted. Open issues assigned to you become your tasks, and close when the issue is done, canceled, deleted or goes to someone else. It also imports what changed in the chosen document folders, answered under documents; a part that fails leaves the other's answer. A run stops before its deadline or --max-pages and the next one goes on from there
+bring the tracker's copy in the local store up to date: teams, users, states, labels, projects, sprints, issues and comments that changed since the last sync, or everything with --rescan; once a day it also finds what the tracker deleted, and says when it next will. Open issues assigned to you become your tasks, and close when the issue is done, canceled, a duplicate, deleted or goes to someone else. It also imports what changed in the chosen document folders, answered under documents; a part that fails leaves the other's answer. A run stops before its deadline or --max-pages and the next one goes on from there
 
 **Changes something on this computer only.**
 
@@ -10155,7 +10155,7 @@ linear sync [options]
 | `--max-pages <pages>` | at most this many requests for the issues in this run, and as many for the documents. |
 | `--embed` | also index new issues, projects and comments and the documents' pending text for meaning search, with a model already downloaded. |
 
-**Returns:** tracker documents sync — provider, account, state, complete, synced, gaps, progress, documents, and 4 more; every field: linear commands info sync
+**Returns:** tracker documents sync — provider, account, state, complete, synced, gaps, progress, deletions, and 5 more; every field: linear commands info sync
 
 **Example:** `linear work sync`, `linear work sync --rescan`
 
@@ -10349,6 +10349,31 @@ linear projects list [query] [options]
 **Returns:** tracker project — kind, external_id, deleted; every field: linear commands info projects list
 
 **Example:** `linear work projects list`, `linear work projects list archived:include`
+
+## `linear sprints`
+
+each team's sprints (Linear's cycles): number, start, end and when completed
+
+### `linear sprints list`
+
+sprints copied from the tracker, newest change first
+
+```sh
+linear sprints list [query] [options]
+```
+
+| Argument | | What it is |
+|---|---|---|
+| `query` | optional | field:value terms that narrow the list — the fields are below. |
+
+| Option | What it does |
+|---|---|
+| `--limit <n>` | rows per page, 1–500. Default: `50`. |
+| `--page <n>` | which page, starting at 1. Default: `1`. |
+
+**Returns:** tracker sprint — kind, external_id, deleted; every field: linear commands info sprints list
+
+**Example:** `linear work sprints list`, `linear work sprints list archived:include`
 
 ## `linear teams`
 
