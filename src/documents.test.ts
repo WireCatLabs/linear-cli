@@ -1,4 +1,6 @@
-import { rmSync } from "node:fs"
+import { mkdtempSync, rmSync } from "node:fs"
+import { tmpdir } from "node:os"
+import { join } from "node:path"
 import { memoryKeyring } from "@wirecat/cli-base"
 import { documentCommandsContract } from "@wirecat/cli-core/documents/testing"
 import { pacePathFor } from "@wirecat/cli-core/sends"
@@ -38,7 +40,7 @@ const issues = ({ selection }: { selection?: unknown }) => {
 }
 
 /** A workspace with a project document, a document on an issue, and one issue; profile personal signed in. */
-const signedIn = async () => {
+const signedIn = async (own: NodeJS.ProcessEnv = {}) => {
   const linear = fakeLinearDocuments({ answers: { issues } })
   fakes.push(linear)
   linear.addProject("p-1", "Roadmap")
@@ -52,16 +54,17 @@ const signedIn = async () => {
   // A sync of issues and documents sends more than the pace's burst, and the rest would wait 1.5 s each for real.
   const service = {
     fetch: (input: string | URL | Request, init?: RequestInit) => {
-      rmSync(pacePathFor(IDENTITY, "personal", process.env), { force: true })
+      rmSync(pacePathFor(IDENTITY, "personal", { ...process.env, ...own }), { force: true })
       return linear.fetch(input, init)
     },
   }
-  const run = (argv: string[], env?: NodeJS.ProcessEnv) =>
-    runCli(["personal", ...argv, "--json"], { keyring, service, ...(env ? { env } : {}) })
+  const run = (argv: string[], env: NodeJS.ProcessEnv = {}) =>
+    runCli(["personal", ...argv, "--json"], { keyring, service, env: { ...own, ...env } })
   const started = await runCli(["personal", "session", "start", "--json"], {
     keyring,
     service,
     stdin: FAKE_API_TOKEN,
+    env: own,
   })
   expect(started.code, started.err).toBe(0)
   return { linear, run }
@@ -102,6 +105,42 @@ describe("one linear sync copies issues and the documents of the chosen projects
     } finally {
       await store.close()
     }
+  })
+})
+
+describe("a document trashed in Linear", () => {
+  // A removal stays in the store and the profile's state: each test here keeps its own.
+  const syncedOnce = async () => {
+    const dir = mkdtempSync(join(tmpdir(), "trashed-"))
+    const signed = await signedIn({ WCLINEAR_STATE_DIR: join(dir, "state"), MESSAGING_STORE: join(dir, "wirecat.db") })
+    await signed.run(["folders", "add", "linear:all"])
+    expect((await signed.run(["sync"])).code).toBe(0)
+    // The CLI's change token is the real clock's: the trash must come after it.
+    signed.linear.advance(Date.now() - signed.linear.now() + 60_000)
+    signed.linear.trash("d-1")
+    return signed
+  }
+
+  it("leaves the copy on the next plain sync", async () => {
+    const { run } = await syncedOnce()
+    const synced = await run(["sync"])
+    expect(synced.code, synced.err).toBe(0)
+    expect(synced.json()).toMatchObject({ item: { documents: { complete: true, removed: 1 } } })
+    expect(JSON.stringify((await run(["documents", "list"])).json())).not.toContain("Zeppelin plan")
+  })
+
+  it("stays while the audit log is refused, and the sync says why and succeeds", async () => {
+    const { run, linear } = await syncedOnce()
+    linear.refuseAudit()
+    const synced = await run(["sync"])
+    expect(synced.code, synced.err).toBe(0)
+    expect(synced.json()).toMatchObject({
+      item: {
+        documents: { complete: true, warnings: [{ code: "permission_error", reason: "source.deletions-unchecked" }] },
+      },
+      meta: { issues: expect.arrayContaining([expect.objectContaining({ reason: "source.deletions-unchecked" })]) },
+    })
+    expect(JSON.stringify((await run(["documents", "list"])).json())).toContain("Zeppelin plan")
   })
 })
 

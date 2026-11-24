@@ -3,6 +3,7 @@ import type { ServiceApiCall } from "@wirecat/cli-core/cli"
 import type { SourceChange, SourceContent, SourceFile } from "@wirecat/cli-core/documents"
 import {
   type DocumentSlots,
+  type DocumentWarning,
   documentSourceFromManifest,
   type ManifestDocumentSource,
 } from "@wirecat/cli-core/documents/cli"
@@ -97,12 +98,13 @@ const listingOf = (answer: unknown, name: string) => {
  */
 export const linearDocumentSource = (
   call: ServiceApiCall,
-  { now = Date.now }: { now?: () => number } = {},
+  { now = Date.now, warn }: { now?: () => number; warn: (warning: DocumentWarning) => void },
 ): LinearDocumentSource =>
   documentSourceFromManifest<LinearFile>(DOCUMENT_MANIFEST, {
     api: API.manifest,
     call,
     now,
+    warn,
     hooks: ({ read, file }) => {
       // A listing answers each document's text; the sync reads it right after, so the read is saved.
       const listed = new Map<string, { version: string | undefined; markdown: string }>()

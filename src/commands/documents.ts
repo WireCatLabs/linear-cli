@@ -45,7 +45,7 @@ export const linearDocuments = () =>
     provider: PROVIDER,
     words: WORDS,
     service: SERVICE,
-    source: (command) =>
+    source: (command, _events, { warn }) =>
       linearDocumentSource(
         serviceApiCall({
           manifest: API.manifest,
@@ -53,6 +53,7 @@ export const linearDocuments = () =>
           fetch: API_OPTIONS.fetch(command),
           token: () => tokenOf(command),
         }),
+        { warn },
       ),
     ingestion: (store) =>
       documentIngestion<LinearFile>(store, {
