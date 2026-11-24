@@ -28,6 +28,14 @@ export interface FakeProject {
   archivedAt?: string
 }
 
+interface FakeAuditEntry {
+  id: string
+  type: "documentDeleted"
+  createdAt: string
+  updatedAt: string
+  metadata: { id: string; entityId: string; entityType: "document"; projectId: string | null }
+}
+
 type Variables = Readonly<Record<string, unknown>>
 type Selected = GraphqlFakeCall["selection"]
 
@@ -59,6 +67,8 @@ export const fakeLinearDocuments = ({
   let signedIn = viewer
   const documents = new Map<string, FakeDocument>()
   const projects = new Map<string, FakeProject>()
+  const audit: FakeAuditEntry[] = []
+  let auditRefusal: string | undefined
   const failing = new Set<string>()
   const unmodelled: string[] = []
   const stamp = () => new Date(now).toISOString()
@@ -73,8 +83,8 @@ export const fakeLinearDocuments = ({
     rows: T[],
     variables: Variables,
     selected: (row: T) => Record<string, unknown>,
+    allowed = new Set(["first", "after", "includeArchived", "orderBy", "filter"]),
   ) => {
-    const allowed = new Set(["first", "after", "includeArchived", "orderBy", "filter"])
     const extra = Object.keys(variables).filter((key) => !allowed.has(key))
     if (extra.length) return refused(`${name}: the fake does not model ${extra.join(", ")}`)
     const first = (variables.first as number | undefined) ?? 50
@@ -114,6 +124,18 @@ export const fakeLinearDocuments = ({
         (!project || row.project === project.id?.eq) &&
         (!updatedAt?.gte || Date.parse(row.updatedAt) >= Date.parse(updatedAt.gte)),
     )
+  }
+
+  // Only the source's own filter: deletions of documents since a time.
+  const auditFilter = (filter: unknown) => {
+    const { type, createdAt, ...rest } = (filter ?? {}) as { type?: { eq?: unknown }; createdAt?: { gte?: unknown } }
+    if (Object.keys(rest).length) return `auditEntries: the fake does not model filter ${Object.keys(rest).join(", ")}`
+    if (Object.keys(type ?? {}).join() !== "eq" || type?.eq !== "documentDeleted")
+      return "auditEntries: the fake models type only as { eq: documentDeleted }"
+    if (Object.keys(createdAt ?? {}).join() !== "gte" || typeof createdAt?.gte !== "string")
+      return "auditEntries: the fake models createdAt only as { gte }"
+    const since = Date.parse(createdAt.gte)
+    return audit.filter((entry) => Date.parse(entry.createdAt) >= since)
   }
 
   const documentRow = (one: FakeDocument) => ({
@@ -171,6 +193,20 @@ export const fakeLinearDocuments = ({
           ? refused(rows)
           : page("projects", rows, variables, (one) => within(projectRow(one), asked))
       },
+      auditEntries: ({ variables, selection }: GraphqlFakeCall) => {
+        if (auditRefusal) return { errors: [{ message: "Forbidden", extensions: { code: auditRefusal } }] }
+        const rows = auditFilter(variables.filter)
+        const asked = nodesOf(selection)
+        return typeof rows === "string"
+          ? refused(rows)
+          : page(
+              "auditEntries",
+              rows,
+              variables,
+              (one) => within({ ...one }, asked),
+              new Set(["first", "after", "filter"]),
+            )
+      },
       project: ({ variables, selection }: GraphqlFakeCall) => {
         const one = projects.get(String(variables.id))
         return one ? { data: within(projectRow(one), selection) } : missing("Project")
@@ -201,6 +237,26 @@ export const fakeLinearDocuments = ({
       const one = documents.get(id)
       if (!one) throw new Error(`no fake document ${id}`)
       documents.set(id, { ...one, ...fields, updatedAt: stamp() })
+    },
+    /**
+     * Moves a document to the trash as Linear does: its listings show it trashed, its updatedAt stays, so only the
+     * audit log's documentDeleted entry names it to a round of changes.
+     */
+    trash: (id: string) => {
+      const one = documents.get(id)
+      if (!one) throw new Error(`no fake document ${id}`)
+      documents.set(id, { ...one, trashed: true, archivedAt: stamp() })
+      audit.push({
+        id: `audit-${audit.length + 1}`,
+        type: "documentDeleted",
+        createdAt: stamp(),
+        updatedAt: stamp(),
+        metadata: { id, entityId: id, entityType: "document", projectId: one.project ?? null },
+      })
+    },
+    /** The audit log answers this GraphQL code from now on, as Linear does for a sign-in without audit-log access. */
+    refuseAudit: (code = "FORBIDDEN") => {
+      auditRefusal = code
     },
     /** The token now names another member, as a token replaced in the keyring would. */
     signInAs: (id: string) => {

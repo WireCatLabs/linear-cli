@@ -4,7 +4,7 @@ import { join } from "node:path"
 import { CliError, isCliError } from "@wirecat/cli-base"
 import { serviceApiCall } from "@wirecat/cli-core/cli"
 import { syncDocuments } from "@wirecat/cli-core/documents"
-import { documentProfile, parseDocumentManifest } from "@wirecat/cli-core/documents/cli"
+import { type DocumentWarning, documentProfile, parseDocumentManifest } from "@wirecat/cli-core/documents/cli"
 import { type DocumentFaultRun, documentSourceContract } from "@wirecat/cli-core/documents/testing"
 import { afterEach, describe, expect, it } from "vitest"
 import { API } from "../config.js"
@@ -34,10 +34,10 @@ const workspace = () => {
   return linear
 }
 
-const sourceOver = (linear: FakeLinearDocuments) =>
+const sourceOver = (linear: FakeLinearDocuments, warnings: DocumentWarning[] = []) =>
   linearDocumentSource(
     serviceApiCall({ manifest: API.manifest, service: "Linear", fetch: linear.fetch, token: () => FAKE_API_TOKEN }),
-    { now: linear.now },
+    { now: linear.now, warn: (one) => warnings.push(one) },
   )
 
 /** The sync cli-core runs, over the profile's state files in a folder of its own and an index in memory. */
@@ -124,6 +124,9 @@ describe("the sync tells a deletion in Linear from a document it no longer sees"
     const linear = workspace()
     const run = syncer(linear)
     expect((await run.sync()).result).toMatchObject({ complete: true, saved: 4 })
+    // A second round moves the token past the documents' updatedAt, so a trash reaches a round only by the audit log.
+    linear.advance(HOUR)
+    expect((await run.sync()).result).toMatchObject({ complete: true })
     linear.advance(HOUR)
     return { linear, ...run }
   }
@@ -137,9 +140,9 @@ describe("the sync tells a deletion in Linear from a document it no longer sees"
     expect((await source.children("p-1")).map((one) => one.parents)).toEqual([["p-1"], ["p-1"]])
   })
 
-  it("removes a document Linear trashed, as deleted", async () => {
+  it("removes a document Linear trashed, as deleted, though trashing left its updatedAt", async () => {
     const { linear, sync, held, removals } = await synced()
-    linear.edit("d-1", { trashed: true, archivedAt: new Date(linear.now()).toISOString() })
+    linear.trash("d-1")
     expect((await sync()).result).toMatchObject({ removed: 1 })
     expect(Object.fromEntries(removals)).toEqual({ "d-1": "deleted" })
     expect(held.has("d-1")).toBe(false)
@@ -171,7 +174,7 @@ describe("the sync tells a deletion in Linear from a document it no longer sees"
 
   it("marks nothing when a listing fails, and the next sync goes on", async () => {
     const { linear, sync, held } = await synced()
-    linear.edit("d-1", { trashed: true, archivedAt: new Date(linear.now()).toISOString() })
+    linear.trash("d-1")
     linear.fail("documents")
     await expect(sync()).rejects.toThrow()
     expect(held.size).toBe(4)

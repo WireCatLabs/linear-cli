@@ -144,6 +144,11 @@ linear work search "release checklist"                # by words, and by meaning
 linear work changes --since 7d                        # documents the syncs added, changed or removed
 ```
 
+A document you move to Linear's trash leaves the copy on the next `sync`, read from the workspace's audit log. A key
+without audit-log access gets the warning `source.deletions-unchecked` on each sync, and trashed documents then leave
+only with `sync --rescan`. A document you restore from the trash comes back only with `sync --rescan`, because Linear
+does not mark a restore as a change.
+
 ### Any Linear API operation
 
 ```sh

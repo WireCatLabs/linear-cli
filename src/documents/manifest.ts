@@ -28,6 +28,14 @@ export const DOCUMENT_MANIFEST = {
   },
   children: { operation: "documents", body: { ...all, filter: { project: { id: { eq: "{id}" } } } } },
   changes: { operation: "documents", body: { ...all, ...changed }, since: "iso", time: "updatedAt" },
+  // Trashing keeps a document's updatedAt, so the changes listing misses it; only the audit log names it.
+  deletions: {
+    operation: "auditEntries",
+    body: { ...page, filter: { type: { eq: "documentDeleted" }, createdAt: { gte: "{since}" } } },
+    since: "iso",
+    time: "createdAt",
+    id: "metadata.entityId",
+  },
   content: { operation: "document", body: { id: "{id}" }, markdown: "content" },
   reads: {
     project: { operation: "project", body: { id: "{id}" } },
