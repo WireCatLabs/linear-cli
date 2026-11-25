@@ -7,7 +7,7 @@ ran it · ⛔ not tested offline, with the reason and where it is checked instea
 Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 [TESTING.md](TESTING.md) for how, and for the states and failures that cut across commands.
 
-**2763 ✅ · 89 ⛔ · 0 ❌** — 583 commands, 2269 options.
+**2764 ✅ · 89 ⛔ · 0 ❌** — 583 commands, 2270 options.
 
 | Command | Option | | Note |
 |---|---|---|---|
@@ -2733,6 +2733,7 @@ Measured from the test run (`coverage/argv.jsonl`), not searched for — see
 | `identities link` |  | ⛔ | cli-core's shared documents command, mounted by documentLibrary; cli-core's documents tests and documentCommandsContract drive it, and src/documents.test.ts runs the contract over this CLI |
 | `sync` |  | ✅ |  |
 | `sync` | `--rescan` | ✅ |  |
+| `sync` | `--allow-deletions` | ✅ |  |
 | `sync` | `--max-pages` | ✅ |  |
 | `sync` | `--embed` | ⛔ | needs a downloaded meaning model or a configured model provider; cli-core's documents kit tests the shared command with a fake model, and no test here downloads one |
 | `sync` | `--limit` | ⛔ | hidden, and refused while its arguments are parsed, before a run the trace sees; src/documents.test.ts runs it and cli-core's tracker documents-sync tests check the refusal |

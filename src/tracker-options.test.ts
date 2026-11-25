@@ -21,6 +21,7 @@ it("every option of the tracker commands runs over a synced copy", async () => {
       .split(/\W+/)
       .find((one) => one.length > 2) ?? ref
   for (const argv of [
+    ["sync", "--allow-deletions", "5"],
     ["issues", "list", "--limit", "1", "--page", "1"],
     ["issues", "show", ref],
     ["issues", "search", word, "--limit", "1", "--page", "1"],
@@ -38,4 +39,5 @@ it("every option of the tracker commands runs over a synced copy", async () => {
     expect(answer.code, `${argv.join(" ")}: ${answer.err}`).toBe(0)
   }
   expect(service.refusals).toEqual([])
-})
+  // Two full syncs of the fake: one took 8 s on a CI runner, so the default 15 s left no room for the second.
+}, 60_000)

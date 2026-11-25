@@ -6599,7 +6599,7 @@
         "issues",
         "search"
       ],
-      "summary": "find issues, projects and comments in the copy by their words",
+      "summary": "find issues, projects and comments in the copy by their words, and by…",
       "effects": {
         "remote": "none",
         "local": "read"
