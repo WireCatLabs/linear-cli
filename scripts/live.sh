@@ -5,7 +5,7 @@
 #   scripts/live.sh < token-file
 # Needs: a Linear personal API key the owner chose for this check (keyring service linear), read access is enough
 # Needs: a workspace with at least one team and one issue the key can read, and a team with cycles turned on
-# Needs: write access and the workspace's audit log (an admin's key): the check makes a project with one document, trashes the document and the project
+# Needs: write access and the workspace's audit log (an admin's key): the check makes a project with one document and two issues, and deletes them all
 set -euo pipefail
 root=$(cd -- "$(dirname -- "$0")/.." && pwd)
 work=$(mktemp -d)
@@ -37,6 +37,7 @@ printf '%s\n' '{"profiles":{"live":{"permissions":{"api":"allow","linear.delete"
 started=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 name="WireCat live check $(date -u +%Y%m%dT%H%M%SZ)"
 project=""
+issues=()
 # A check that fails half way still leaves its project in the trash, never in the workspace: found by its name when
 # the create's answer gave no id.
 cleanup() {
@@ -48,6 +49,7 @@ cleanup() {
         process.stdout.write(String((answer.items ?? answer.item?.nodes ?? [])[0]?.id ?? ""))
       } catch {}' "$work/leftover.json")
   fi
+  for issue in "${issues[@]}"; do "${cli[@]}" live api issue-delete --id "$issue" --yes --json >/dev/null 2>&1 || true; done
   [ -z "$project" ] || "${cli[@]}" live api project-delete --id "$project" --yes --json >/dev/null 2>&1 || true
   "${cli[@]}" live session end --json >/dev/null 2>&1 || true
   rm -rf "$work"
@@ -124,9 +126,28 @@ node -e '
     throw new Error("the audit log has no documentDeleted entry with the document at metadata.entityId")
   process.stdout.write("trashed document left the copy on a plain sync\n")
 ' "$work" "$document"
+# The writes an agent does most after creating an issue: its own create and comment, and the api group's relation,
+# archive and delete, which the agent skill points to.
+"${cli[@]}" live issues create --title "$name A" --team "$team" --project "$project" --json >"$work/issue-a.json"
+a=$(field issue-a item.issue.external_id)
+issues+=("$a")
+"${cli[@]}" live issues create --title "$name B" --team "$team" --json >"$work/issue-b.json"
+b=$(field issue-b item.issue.external_id)
+issues+=("$b")
+"${cli[@]}" live issues comments create "$a" --text "written by the live check" --json >/dev/null
+"${cli[@]}" live api issue-relation-create --input "{\"issueId\":\"$a\",\"relatedIssueId\":\"$b\",\"type\":\"blocks\"}" \
+  --json >"$work/relation.json"
+relation=$(field relation item.result.issueRelation.id)
+"${cli[@]}" live api issue-relation-delete --id "$relation" --yes --json >/dev/null
+"${cli[@]}" live api issue-archive --id "$a" --yes --json >/dev/null
+"${cli[@]}" live api issue-unarchive --id "$a" --yes --json >/dev/null
+for issue in "${issues[@]}"; do "${cli[@]}" live api issue-delete --id "$issue" --yes --json >/dev/null; done
+issues=()
+echo "issue writes: create, comment, relation, archive and unarchive, delete"
+
 "${cli[@]}" live api project-delete --id "$project" --yes --json >/dev/null
 project=""
 
 "${cli[@]}" live session end --json >/dev/null
 echo "live check passed: describe format 2, sign-in, full and changes sync, teams, issues and sprints from the copy, doctor," \
-  "a trashed document removed by a plain sync, sign-out"
+  "a trashed document removed by a plain sync, issue writes, sign-out"
