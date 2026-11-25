@@ -4,7 +4,7 @@
 # keyring is out of reach, so nothing touches the owner's store, keyring or settings.
 #   scripts/live.sh < token-file
 # Needs: a Linear personal API key the owner chose for this check (keyring service linear), read access is enough
-# Needs: a workspace with at least one team and one issue the key can read
+# Needs: a workspace with at least one team and one issue the key can read, and a team with cycles turned on
 # Needs: write access and the workspace's audit log (an admin's key): the check makes a project with one document, trashes the document and the project
 set -euo pipefail
 root=$(cd -- "$(dirname -- "$0")/.." && pwd)
@@ -59,6 +59,7 @@ trap cleanup EXIT
 "${cli[@]}" live sync --max-pages 40 --json >"$work/changes.json"
 "${cli[@]}" live teams list --json >"$work/teams.json"
 "${cli[@]}" live issues list --limit 1 --json >"$work/issues.json"
+"${cli[@]}" live sprints list --json >"$work/sprints.json"
 # Totals only: the record is public, the workspace's data is not.
 node -e '
   const read = (name) => JSON.parse(require("fs").readFileSync(`${process.argv[1]}/${name}.json`, "utf8"))
@@ -76,7 +77,11 @@ node -e '
   const changes = check("changes")
   if (!changes.synced.some((one) => one.round === "changes")) throw new Error("the second sync read no changes round")
   if (!(read("teams").items ?? []).length || !(read("issues").items ?? []).length) throw new Error("teams or issues list empty")
-  process.stdout.write(`synced: ${full.synced.map((one) => `${one.kind} ${one.saved}`).join(", ")}; changes round: ${changes.synced.length} kinds\n`)
+  // Linear makes a team's cycles once they are turned on; the API refuses to create one.
+  const sprints = read("sprints").items ?? []
+  if (!sprints.length) throw new Error("sprints list is empty: turn on cycles for a team the key can read")
+  if (!sprints.every((one) => typeof one.number === "number" && one.starts_at)) throw new Error("a sprint has no number or start")
+  process.stdout.write(`synced: ${full.synced.map((one) => `${one.kind} ${one.saved}`).join(", ")}; changes round: ${changes.synced.length} kinds; sprints: ${sprints.length}\n`)
 ' "$work"
 "${cli[@]}" live doctor --json >/dev/null
 
@@ -123,5 +128,5 @@ node -e '
 project=""
 
 "${cli[@]}" live session end --json >/dev/null
-echo "live check passed: describe format 2, sign-in, full and changes sync, teams and issues from the copy, doctor," \
+echo "live check passed: describe format 2, sign-in, full and changes sync, teams, issues and sprints from the copy, doctor," \
   "a trashed document removed by a plain sync, sign-out"

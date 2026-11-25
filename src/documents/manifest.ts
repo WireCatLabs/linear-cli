@@ -37,6 +37,8 @@ export const DOCUMENT_MANIFEST = {
     id: "metadata.entityId",
   },
   content: { operation: "document", body: { id: "{id}" }, markdown: "content" },
+  // A restore from the trash moves no updatedAt and has no audit entry: only a full walk brings the document back.
+  rescanEvery: "7d",
   reads: {
     project: { operation: "project", body: { id: "{id}" } },
     projects: { operation: "projects", body: all },

@@ -54,8 +54,8 @@ Agent:  (runs linear work issues update ENG-12 --status Done, then issues commen
 
 ## Why linear
 
-- **A copy of your workspace on your computer.** `sync` copies teams, users, states, labels, projects, issues and
-  comments into a local store, and the next sync takes only what changed. Lists and search then answer with no
+- **A copy of your workspace on your computer.** `sync` copies teams, users, states, labels, projects, sprints (Linear's
+  cycles), issues and comments into a local store, and the next sync takes only what changed. Lists and search then answer with no
   request to Linear, also offline.
 - **A permission on every action.** Each command and each Linear API operation has its own level: allow, ask, read
   only or deny. A delete needs a key of its own.
@@ -127,12 +127,19 @@ linear work issues update ENG-12 --status Done
 linear work issues comments create ENG-12 --text "Shipped in 2.4"
 ```
 
-### Projects and teams
+### Projects, teams and cycles
 
 ```sh
 linear work projects list
 linear work teams list
+linear work sprints list                              # each team's cycles: number, start and end
+linear work issues list sprint:<sprint id>            # or sprint:none
 ```
+
+An issue you move to Linear's trash leaves the copy at the daily check for deleted issues, which the `sync` answer
+names under `deletions`: Linear does not mark a trashed issue as changed, so a plain `sync` between those checks still
+shows it. Its comments leave with it. An issue you restore from the trash comes back at the next daily check. Issues in
+a Duplicate state stay, and `issues list type:duplicate` lists them.
 
 ### Documents
 
@@ -146,8 +153,8 @@ linear work changes --since 7d                        # documents the syncs adde
 
 A document you move to Linear's trash leaves the copy on the next `sync`, read from the workspace's audit log. A key
 without audit-log access gets the warning `source.deletions-unchecked` on each sync, and trashed documents then leave
-only with `sync --rescan`. A document you restore from the trash comes back only with `sync --rescan`, because Linear
-does not mark a restore as a change.
+only with `sync --rescan`. A document you restore from the trash comes back within a week, when `sync` walks the
+chosen folders in full, or at once with `sync --rescan`, because Linear does not mark a restore as a change.
 
 ### Any Linear API operation
 
