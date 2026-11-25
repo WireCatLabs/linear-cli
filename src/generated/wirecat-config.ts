@@ -11,7 +11,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
   readonly kinds: readonly string[]
 } = {
   provider: "linear",
-  kinds: ["team", "user", "state", "label", "project", "issue", "comment"],
+  kinds: ["team", "user", "state", "label", "project", "sprint", "issue", "comment"],
   entities: {
     team: {
       list: {
@@ -236,6 +236,54 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
         archivedAt: "archivedAt",
       },
     },
+    sprint: {
+      list: {
+        operation: "cycles",
+        variables: {
+          first: 100,
+          includeArchived: true,
+        },
+        selection:
+          "nodes { id createdAt updatedAt archivedAt number name description startsAt endsAt completedAt team { id } } pageInfo { hasNextPage endCursor }",
+      },
+      changes: {
+        operation: "cycles",
+        variables: {
+          first: 100,
+          includeArchived: true,
+          orderBy: "updatedAt",
+          filter: {
+            updatedAt: {
+              gte: "{since}",
+            },
+          },
+        },
+        selection:
+          "nodes { id createdAt updatedAt archivedAt number name description startsAt endsAt completedAt team { id } } pageInfo { hasNextPage endCursor }",
+        since: "iso",
+      },
+      ids: {
+        operation: "cycles",
+        variables: {
+          first: 100,
+          includeArchived: true,
+        },
+        selection: "nodes { id } pageInfo { hasNextPage endCursor }",
+      },
+      map: {
+        externalId: "id",
+        name: "name",
+        number: "number",
+        description: "description",
+        team: "team.id",
+        startsAt: "startsAt",
+        endsAt: "endsAt",
+        completedAt: "completedAt",
+        createdAt: "createdAt",
+        updatedAt: "updatedAt",
+        archivedAt: "archivedAt",
+      },
+    },
     issue: {
       list: {
         operation: "issues",
@@ -244,7 +292,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
           includeArchived: true,
         },
         selection:
-          "nodes { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } assignee { id } creator { id } parent { id } labels { nodes { id } } } pageInfo { hasNextPage endCursor }",
+          "nodes { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } cycle { id } assignee { id } creator { id } parent { id } labels { nodes { id } } trashed } pageInfo { hasNextPage endCursor }",
       },
       changes: {
         operation: "issues",
@@ -259,7 +307,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
           },
         },
         selection:
-          "nodes { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } assignee { id } creator { id } parent { id } labels { nodes { id } } } pageInfo { hasNextPage endCursor }",
+          "nodes { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } cycle { id } assignee { id } creator { id } parent { id } labels { nodes { id } } trashed } pageInfo { hasNextPage endCursor }",
         since: "iso",
       },
       ids: {
@@ -268,7 +316,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
           first: 50,
           includeArchived: true,
         },
-        selection: "nodes { id } pageInfo { hasNextPage endCursor }",
+        selection: "nodes { id trashed } pageInfo { hasNextPage endCursor }",
       },
       map: {
         externalId: "id",
@@ -278,6 +326,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
         state: "state.id",
         team: "team.id",
         project: "project.id",
+        sprint: "cycle.id",
         assignee: "assignee.id",
         creator: "creator.id",
         labels: {
@@ -290,6 +339,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
         completedAt: "completedAt",
         canceledAt: "canceledAt",
         url: "url",
+        deleted: "trashed",
         createdAt: "createdAt",
         updatedAt: "updatedAt",
         archivedAt: "archivedAt",
@@ -355,7 +405,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
           input: "{values}",
         },
         selection:
-          "success issue { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } assignee { id } creator { id } parent { id } labels { nodes { id } } }",
+          "success issue { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } cycle { id } assignee { id } creator { id } parent { id } labels { nodes { id } } trashed }",
         items: "issue",
       },
       update: {
@@ -365,7 +415,7 @@ export const SOURCE: Readonly<Record<string, unknown>> & {
           input: "{values}",
         },
         selection:
-          "success issue { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } assignee { id } creator { id } parent { id } labels { nodes { id } } }",
+          "success issue { id createdAt updatedAt archivedAt identifier title description url priority dueDate completedAt canceledAt state { id } team { id } project { id } cycle { id } assignee { id } creator { id } parent { id } labels { nodes { id } } trashed }",
         items: "issue",
       },
       fields: {

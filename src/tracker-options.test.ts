@@ -25,7 +25,7 @@ it("every option of the tracker commands runs over a synced copy", async () => {
     ["issues", "show", ref],
     ["issues", "search", word, "--limit", "1", "--page", "1"],
     ["issues", "assign", ref, "--due", "3d"],
-    ...["projects", "teams", "users", "states", "labels"].map((group) => [
+    ...["projects", "teams", "users", "states", "labels", "sprints"].map((group) => [
       group,
       "list",
       "--limit",

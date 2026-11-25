@@ -7,12 +7,12 @@ const timeMap = { createdAt: "createdAt", updatedAt: "updatedAt", archivedAt: "a
 const all = { first: 100, includeArchived: true }
 const issueFields =
   "identifier title description url priority dueDate completedAt canceledAt state { id } team { id } " +
-  "project { id } assignee { id } creator { id } parent { id } labels { nodes { id } }"
+  "project { id } cycle { id } assignee { id } creator { id } parent { id } labels { nodes { id } } trashed"
 const commentFields = "body url issue { id } user { id }"
 
 // Three calls per kind: everything, what changed since the cursor, and every id for the deletion pass, which selects
-// nothing else to keep Linear's complexity points low.
-const kind = (operation: string, fields: string, extra: Record<string, unknown> = {}) => {
+// only the id and what marks a row deleted, to keep Linear's complexity points low.
+const kind = (operation: string, fields: string, extra: Record<string, unknown> = {}, ids = "id") => {
   const selection = `nodes { id ${times} ${fields} } ${page}`
   return {
     list: { operation, variables: { ...all, ...extra }, selection },
@@ -22,7 +22,7 @@ const kind = (operation: string, fields: string, extra: Record<string, unknown> 
       selection,
       since: "iso" as const,
     },
-    ids: { operation, variables: { ...all, ...extra }, selection: `nodes { id } ${page}` },
+    ids: { operation, variables: { ...all, ...extra }, selection: `nodes { ${ids} } ${page}` },
   }
 }
 
@@ -41,7 +41,7 @@ export default defineCli({
   category: "tracker",
   source: {
     provider: "linear",
-    kinds: ["team", "user", "state", "label", "project", "issue", "comment"],
+    kinds: ["team", "user", "state", "label", "project", "sprint", "issue", "comment"],
     entities: {
       team: { ...kind("teams", "name key"), map: { externalId: "id", name: "name", key: "key", ...timeMap } },
       user: {
@@ -75,8 +75,24 @@ export default defineCli({
           ...timeMap,
         },
       },
+      // Linear's cycles; most have no name, and the copy titles them by number.
+      sprint: {
+        ...kind("cycles", "number name description startsAt endsAt completedAt team { id }"),
+        map: {
+          externalId: "id",
+          name: "name",
+          number: "number",
+          description: "description",
+          team: "team.id",
+          startsAt: "startsAt",
+          endsAt: "endsAt",
+          completedAt: "completedAt",
+          ...timeMap,
+        },
+      },
       issue: {
-        ...kind("issues", issueFields, { first: 50 }),
+        // Trashing an issue leaves its updatedAt, so only the daily id pass sees it: it reads trashed to leave it out.
+        ...kind("issues", issueFields, { first: 50 }, "id trashed"),
         map: {
           externalId: "id",
           key: "identifier",
@@ -85,6 +101,7 @@ export default defineCli({
           state: "state.id",
           team: "team.id",
           project: "project.id",
+          sprint: "cycle.id",
           assignee: "assignee.id",
           creator: "creator.id",
           labels: { each: "labels.nodes", id: "id" },
@@ -94,6 +111,7 @@ export default defineCli({
           completedAt: "completedAt",
           canceledAt: "canceledAt",
           url: "url",
+          deleted: "trashed",
           ...timeMap,
         },
       },

@@ -6675,6 +6675,19 @@
     },
     {
       "path": [
+        "sprints",
+        "list"
+      ],
+      "summary": "sprints copied from the tracker, newest change first",
+      "effects": {
+        "remote": "none",
+        "local": "read"
+      },
+      "permission": "sprints.list",
+      "entity": "tracker_sprint"
+    },
+    {
+      "path": [
         "teams",
         "list"
       ],
