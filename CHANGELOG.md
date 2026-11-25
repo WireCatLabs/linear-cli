@@ -2,7 +2,7 @@
 
 Notable changes to `@wirecat/linear-cli`. One section per version, newest first.
 
-## 0.4.2 — 25.11.2026
+## 0.5.0 — 25.11.2026
 
 ### Changed — may break callers
 
