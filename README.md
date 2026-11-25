@@ -30,8 +30,8 @@
 
 ## What you get
 
-- **The answer, not the search.** Ask about an issue in your own words. The agent finds it by its words or by meaning,
-  with its state, assignee and comments.
+- **The answer, not the search.** Ask about an issue in your own words. The agent finds it by its words, with its
+  state, assignee and comments; with `memo`, by meaning too, beside your notes and other documents.
 - **Your open issues as your tasks.** Open issues assigned to you become tasks in WireCat, and close when the issue
   is done or goes to someone else.
 - **Issues from the chat.** Create an issue, move it to Done, change its assignee or priority, or add a comment.
@@ -42,7 +42,7 @@
 
 ```text
 You:    What is still open on the invoice export?
-Agent:  (runs linear work issues search "invoice export", then issues show ENG-12)
+Agent:  (runs linear work issues search invoice export, then issues show ENG-12)
         · ENG-12 "Invoice export drops the currency", In Progress, Anna Example
         · ENG-15 "Export invoices as CSV", Todo, no assignee
 You:    Move ENG-12 to Done and tell Anna it shipped.
@@ -121,7 +121,7 @@ More: [agents and MCP](https://github.com/WireCatLabs/linear-cli/blob/main/docs/
 ```sh
 linear work issues list assignee:none
 linear work issues show ENG-12                        # one issue with its state, assignee and comments
-linear work issues search "invoice currency"
+linear work issues search invoice currency            # every word, in any order; quoted words are one phrase
 linear work issues create --title "Export invoices as CSV" --team ENG
 linear work issues update ENG-12 --status Done
 linear work issues comments create ENG-12 --text "Shipped in 2.4"
