@@ -77,7 +77,7 @@ node -e '
   const changes = check("changes")
   if (!changes.synced.some((one) => one.round === "changes")) throw new Error("the second sync read no changes round")
   if (!(read("teams").items ?? []).length || !(read("issues").items ?? []).length) throw new Error("teams or issues list empty")
-  // Linear makes a team's cycles once they are turned on; the API refuses to create one.
+  // Linear makes the cycles of a team once they are turned on, and the API refuses to create one.
   const sprints = read("sprints").items ?? []
   if (!sprints.length) throw new Error("sprints list is empty: turn on cycles for a team the key can read")
   if (!sprints.every((one) => typeof one.number === "number" && one.starts_at)) throw new Error("a sprint has no number or start")
