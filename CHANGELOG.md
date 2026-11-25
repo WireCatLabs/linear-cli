@@ -2,6 +2,12 @@
 
 Notable changes to `@wirecat/linear-cli`. One section per version, newest first.
 
+## 0.4.1 — 25.11.2026
+
+### Fixed
+
+- An agent reading `linear skill show` now learns the main jobs: sync, searching issues with keywords, filters by id, the issue writes, and where archive, relations, attachments and milestones live in the `api` group. It was the template's stub.
+
 ## 0.4.0 — 25.11.2026
 
 ### Added
