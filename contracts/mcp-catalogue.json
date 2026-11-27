@@ -1,6 +1,4 @@
 {
-  "session status": "read",
-  "session list": "read",
   "api administrable-teams": "read",
   "api agent-activities": "read",
   "api agent-activity": "read",
