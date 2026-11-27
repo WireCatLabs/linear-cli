@@ -20,6 +20,7 @@ Works with:
   ydisk                   Yandex Disk folders as local text, searchable with your other WireCat data
   wordpress               WordPress posts and pages, searchable with your other WireCat data
 
+              linear session list  your profiles and their logged-in accounts
 Next:         linear commands      every command, by section
               linear help options  output, offline, timeouts, dry run
 For agents:   linear skill show    rules and the discovery loop

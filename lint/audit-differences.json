@@ -5,5 +5,19 @@
     "target": "reason account-remove.unknown-profile=account-rename.unknown-profile",
     "reason": "whatsapp-cli 0.46.0, on cli-core 0.715.0, registers account-rename.unknown-profile with account-remove's message; cli-core 0.717.0 (#3189) gives profile.unknown, so drop this once whatsapp-cli bumps",
     "review_after": "2026-12-05"
+  },
+  {
+    "group": "linear",
+    "rule": "same-entity-schema",
+    "target": "entity fact",
+    "reason": "cli-core 2.0.0 (#3374) names an AI agent author agent, not bot, in its output schemas; drive-cli 0.79.0 and cli-memo 0.154.0 on npm are still on cli-core 1.x, so drop this once both release on cli-core 2.0",
+    "review_after": "2026-12-04"
+  },
+  {
+    "group": "linear",
+    "rule": "same-entity-schema",
+    "target": "entity memory",
+    "reason": "cli-core 2.0.0 (#3374) names an AI agent author agent, not bot, in its output schemas; drive-cli 0.79.0 and cli-memo 0.154.0 on npm are still on cli-core 1.x, so drop this once both release on cli-core 2.0",
+    "review_after": "2026-12-04"
   }
 ]
