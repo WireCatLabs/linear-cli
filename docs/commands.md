@@ -10535,7 +10535,7 @@ linear skill show [name] [options]
 
 | Argument | | What it is |
 |---|---|---|
-| `name` | optional | a part of this skill, or a skill shipped for a task: api-query, api-mutation, api. |
+| `name` | optional | a part of this skill, or a skill shipped for a task: api-workflow-state, api-webhook, api-view-preferences, api-user, api-user-settings, api-usage-alert, api-triage-responsibility, api-time-schedule, api-template, api-team, api-team-membership, api-sla-configuration, api-roadmap, api-roadmap-to-project, api-release, api-release-stage, api-release-pipeline, api-release-note, api-reaction, api-query, api-push-subscription, api-project, api-project-update, api-project-status, api-project-relation, api-project-milestone, api-project-label, api-organization, api-organization-invite, api-organization-domain, api-oauth-application, api-notification, api-notification-subscription, api-mutation, api-jira-project, api-issue, api-issue-to-release, api-issue-relation, api-issue-label, api-issue-import, api-integrations-settings, api-integration, api-integration-template, api-initiative, api-initiative-update, api-initiative-to-project, api-initiative-relation, api-initiative-label, api-git-automation-target-branch, api-git-automation-state, api-favorite, api-external-user, api-entity-external-link, api-emoji, api-email-intake-address, api-document, api-document-content-history, api-cycle, api-customer, api-customer-tier, api-customer-status, api-customer-need, api-custom-view, api-comment, api-audit-entry, api-attachment, api-application, api-agent-skill, api-agent-session, api-agent-activity, api. |
 
 | Option | What it does |
 |---|---|

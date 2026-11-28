@@ -34,7 +34,7 @@ export const operations: readonly ManifestOperation[] = [
       "All teams whose settings the user can administer. This includes teams the user can change settings for, but whose issues they may not have direct access to. This differs from the `teams` query which returns teams based on issue access.",
     description:
       "All teams whose settings the user can administer. This includes teams the user can change settings for, but whose issues they may not have direct access to. This differs from the `teams` query which returns teams based on issue access.",
-    tags: ["query"],
+    tags: ["team", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -176,7 +176,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Accessible agent activities, with filters and cursor-based pagination.",
     description: "Accessible agent activities, with filters and cursor-based pagination.",
-    tags: ["query"],
+    tags: ["agent-activity", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -312,7 +312,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves an unarchived agent activity by UUID.",
     description: "Retrieves an unarchived agent activity by UUID.",
-    tags: ["query"],
+    tags: ["agent-activity", "query"],
     parameters: [
       {
         name: "id",
@@ -352,7 +352,7 @@ export const operations: readonly ManifestOperation[] = [
       "Publishes an activity to your agent’s session and updates its lifecycle. Thoughts and actions report ongoing work; a response completes the turn unless it has the continue signal, an elicitation waits for user input, and an error records a failed turn. The session must be unarchived and owned by the authenticated app user. Use the agent app’s OAuth or workload identity token; personal API keys cannot publish agent activities.",
     description:
       "Publishes an activity to your agent’s session and updates its lifecycle. Thoughts and actions report ongoing work; a response completes the turn unless it has the continue signal, an elicitation waits for user input, and an error records a failed turn. The session must be unarchived and owned by the authenticated app user. Use the agent app’s OAuth or workload identity token; personal API keys cannot publish agent activities.",
-    tags: ["mutation"],
+    tags: ["agent-activity", "mutation"],
     parameters: [
       {
         name: "input",
@@ -392,7 +392,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves an unarchived agent session by UUID or URL slug.",
     description: "Retrieves an unarchived agent session by UUID or URL slug.",
-    tags: ["query"],
+    tags: ["agent-session", "query"],
     parameters: [
       {
         name: "id",
@@ -432,7 +432,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts an active session for your authenticated agent app on an existing issue comment thread. Supply the UUID of an unarchived root comment; replies and threads that already have a session are rejected. The caller must have access to the issue. Use the returned session ID when publishing activities.",
     description:
       "Starts an active session for your authenticated agent app on an existing issue comment thread. Supply the UUID of an unarchived root comment; replies and threads that already have a session are rejected. The caller must have access to the issue. Use the returned session ID when publishing activities.",
-    tags: ["mutation"],
+    tags: ["agent-session", "mutation"],
     parameters: [
       {
         name: "input",
@@ -473,7 +473,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts an active session for your authenticated agent app and creates its comment thread on the issue. The issue must be accessible and writable. Supply its UUID or identifier, then use the returned session ID to publish progress and results with agentActivityCreate.",
     description:
       "Starts an active session for your authenticated agent app and creates its comment thread on the issue. The issue must be accessible and writable. Supply its UUID or identifier, then use the returned session ID to publish progress and results with agentActivityCreate.",
-    tags: ["mutation"],
+    tags: ["agent-session", "mutation"],
     parameters: [
       {
         name: "input",
@@ -518,7 +518,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Accessible agent sessions, with cursor-based pagination.",
     description: "Accessible agent sessions, with cursor-based pagination.",
-    tags: ["query"],
+    tags: ["agent-session", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -644,7 +644,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates your agent’s session title, external links, or plan. Only the app user that owns the session can change these fields. Omitted fields remain unchanged, while each supplied plan or externalUrls list replaces that value. Updates other than a title-only change acknowledge a pending or stale session by making it active; publishing an activity still determines the next turn status.",
     description:
       "Updates your agent’s session title, external links, or plan. Only the app user that owns the session can change these fields. Omitted fields remain unchanged, while each supplied plan or externalUrls list replaces that value. Updates other than a title-only change acknowledge a pending or stale session by making it active; publishing an activity still determines the next turn status.",
-    tags: ["mutation"],
+    tags: ["agent-session", "mutation"],
     parameters: [
       {
         name: "input",
@@ -696,7 +696,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates external links on a session owned by the authenticated agent app. A pending or stale session becomes active.",
     description:
       "Updates external links on a session owned by the authenticated agent app. A pending or stale session becomes active.",
-    tags: ["mutation"],
+    tags: ["agent-session", "mutation"],
     parameters: [
       {
         name: "input",
@@ -746,7 +746,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves an accessible, unarchived agent skill by UUID.",
     description: "Retrieves an accessible, unarchived agent skill by UUID.",
-    tags: ["query"],
+    tags: ["agent-skill", "query"],
     parameters: [
       {
         name: "id",
@@ -786,7 +786,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates reusable Markdown instructions for the Linear Agent, owned by the authenticated user. Omit teamId for a personal skill, or provide a team UUID to share it with that team. Creating a team skill requires permission to manage the team’s agent skills. The returned skill contains the saved instructions and display details.",
     description:
       "Creates reusable Markdown instructions for the Linear Agent, owned by the authenticated user. Omit teamId for a personal skill, or provide a team UUID to share it with that team. Creating a team skill requires permission to manage the team’s agent skills. The returned skill contains the saved instructions and display details.",
-    tags: ["mutation"],
+    tags: ["agent-skill", "mutation"],
     parameters: [
       {
         name: "input",
@@ -827,7 +827,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes an agent skill and its inherited copies. Inherited skills must be deleted from the team that owns the source skill.",
     description:
       "Deletes an agent skill and its inherited copies. Inherited skills must be deleted from the team that owns the source skill.",
-    tags: ["mutation"],
+    tags: ["agent-skill", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -879,7 +879,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns the skills the caller can access, including personal skills and shared team or workspace skills. Use filter to narrow the result and the connection arguments to paginate. Inherited team skills can appear as separate records; their inheritance fields identify the source.",
     description:
       "Returns the skills the caller can access, including personal skills and shared team or workspace skills. Use filter to narrow the result and the connection arguments to paginate. Inherited team skills can appear as separate records; their inheritance fields identify the source.",
-    tags: ["query"],
+    tags: ["agent-skill", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -1017,7 +1017,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a skill the caller can manage. Omitted fields remain unchanged, and a supplied body replaces the full instruction text. For a team skill, the caller needs agent skill management permission; moving it also requires that permission in the destination team. Inherited copies cannot be edited directly—update their source skill instead.",
     description:
       "Updates a skill the caller can manage. Omitted fields remain unchanged, and a supplied body replaces the full instruction text. For a team skill, the caller needs agent skill management permission; moving it also requires that permission in the destination team. Inherited copies cannot be edited directly—update their source skill instead.",
-    tags: ["mutation"],
+    tags: ["agent-skill", "mutation"],
     parameters: [
       {
         name: "input",
@@ -1068,7 +1068,7 @@ export const operations: readonly ManifestOperation[] = [
       "Registers an export key for Airbyte. Requires integration-creation and export permissions and a plan with data export. The key can read private-team data.",
     description:
       "Registers an export key for Airbyte. Requires integration-creation and export permissions and a plan with data export. The key can read private-team data.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "input",
@@ -1109,7 +1109,7 @@ export const operations: readonly ManifestOperation[] = [
       "Looks up an OAuth application's name, developer, and branding using its OAuth clientId. Use this to identify an application before authorization. Private applications can be read only from their owning workspace; this lookup does not grant or install the application.",
     description:
       "Looks up an OAuth application's name, developer, and branding using its OAuth clientId. Use this to identify an application before authorization. Private applications can be read only from their owning workspace; this lookup does not grant or install the application.",
-    tags: ["query"],
+    tags: ["application", "query"],
     parameters: [
       {
         name: "clientId",
@@ -1147,7 +1147,7 @@ export const operations: readonly ManifestOperation[] = [
       "GitHub connections archived within the last 30 days, newest first. Connections dismissed from the reconnect list are omitted.",
     description:
       "GitHub connections archived within the last 30 days, newest first. Connections dismissed from the reconnect list are omitted.",
-    tags: ["query"],
+    tags: ["integration", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -1172,7 +1172,7 @@ export const operations: readonly ManifestOperation[] = [
       "An attachment by UUID or URL. A URL returns one matching attachment; use attachmentsForURL to retrieve all matches.",
     description:
       "An attachment by UUID or URL. A URL returns one matching attachment; use attachmentsForURL to retrieve all matches.",
-    tags: ["query"],
+    tags: ["attachment", "query"],
     parameters: [
       {
         name: "id",
@@ -1212,7 +1212,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates an attachment, or updates the existing attachment with the same URL on the same issue. This is useful for links and metadata managed by your integration. Use attachmentLinkURL or a service-specific link mutation when you want Linear to fetch integration metadata and apply its supported link behavior.",
     description:
       "Creates an attachment, or updates the existing attachment with the same URL on the same issue. This is useful for links and metadata managed by your integration. Use attachmentLinkURL or a service-specific link mutation when you want Linear to fetch integration metadata and apply its supported link behavior.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "input",
@@ -1253,7 +1253,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes the attachment record from its issue. This removes the link in Linear; it does not delete the external resource.",
     description:
       "Deletes the attachment record from its issue. This removes the link in Linear; it does not delete the external resource.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -1298,7 +1298,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "The issue linked to an attachment. Deprecated; use attachmentsForURL and select each attachment’s issue.",
     description:
       "The issue linked to an attachment. Deprecated; use attachmentsForURL and select each attachment’s issue.",
-    tags: ["query"],
+    tags: ["attachment", "query"],
     deprecated: true,
     parameters: [
       {
@@ -1346,7 +1346,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Link a Discord message to an issue. Requires a connected Discord integration.",
     description: "Link a Discord message to an issue. Requires a connected Discord integration.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -1467,7 +1467,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Link a Front conversation to an issue. Requires a connected Front integration.",
     description: "Link a Front conversation to an issue. Requires a connected Front integration.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -1570,7 +1570,7 @@ export const operations: readonly ManifestOperation[] = [
       "Link a GitHub issue to a Linear issue. Uses the matching GitHub integration and sync mapping when available; may fall back to a URL attachment.",
     description:
       "Link a GitHub issue to a Linear issue. Uses the matching GitHub integration and sync mapping when available; may fall back to a URL attachment.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -1674,7 +1674,7 @@ export const operations: readonly ManifestOperation[] = [
       "Link a GitHub pull request to an issue. Uses the matching GitHub integration when available; may fall back to a URL attachment.",
     description:
       "Link a GitHub pull request to an issue. Uses the matching GitHub integration when available; may fall back to a URL attachment.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -1791,7 +1791,7 @@ export const operations: readonly ManifestOperation[] = [
       "Links a GitLab merge request to an issue. Supply the merge-request URL, number, and full project path including any groups. Linear uses a matching integration when available and otherwise creates a basic URL attachment.",
     description:
       "Links a GitLab merge request to an issue. Supply the merge-request URL, number, and full project path including any groups. Linear uses a matching integration when available and otherwise creates a basic URL attachment.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -1913,7 +1913,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Link an Intercom conversation to an issue. Requires a connected Intercom integration.",
     description: "Link an Intercom conversation to an issue. Requires a connected Intercom integration.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -2028,7 +2028,7 @@ export const operations: readonly ManifestOperation[] = [
       "Links a Jira issue to a Linear issue. The URL selects a connected Jira site; if it identifies no connected site, Linear uses the workspace’s sole Jira integration. With multiple Jira integrations, provide a URL for the intended site.",
     description:
       "Links a Jira issue to a Linear issue. The URL selects a connected Jira site; if it identifies no connected site, Linear uses the workspace’s sole Jira integration. With multiple Jira integrations, provide a URL for the intended site.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -2142,7 +2142,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Link a Salesforce case to an issue. Requires a connected Salesforce integration and a valid case URL.",
     description:
       "Link a Salesforce case to an issue. Requires a connected Salesforce integration and a valid case URL.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -2246,7 +2246,7 @@ export const operations: readonly ManifestOperation[] = [
       "Link an existing Slack message to an issue. This creates a rich attachment using the workspace's Slack integration.",
     description:
       "Link an existing Slack message to an issue. This creates a rich attachment using the workspace's Slack integration.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -2362,7 +2362,7 @@ export const operations: readonly ManifestOperation[] = [
       "Links a URL to an issue and, when recognized, uses the workspace’s matching integration to fetch richer details. Supported integrations can add behaviors such as status updates. If no matching integration can enrich the link, Linear creates a basic URL attachment.",
     description:
       "Links a URL to an issue and, when recognized, uses the workspace’s matching integration to fetch richer details. Supported integrations can add behaviors such as status updates. If no matching integration can enrich the link, Linear creates a basic URL attachment.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -2462,7 +2462,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Link a Zendesk ticket to an issue. Requires a connected Zendesk integration.",
     description: "Link a Zendesk ticket to an issue. Requires a connected Zendesk integration.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "createAsUser",
@@ -2578,7 +2578,7 @@ export const operations: readonly ManifestOperation[] = [
       "Issue attachments the caller can access, with cursor pagination. Use attachmentsForURL to look up a resource URL.",
     description:
       "Issue attachments the caller can access, with cursor pagination. Use attachmentsForURL to look up a resource URL.",
-    tags: ["query"],
+    tags: ["attachment", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -2722,7 +2722,7 @@ export const operations: readonly ManifestOperation[] = [
       "Finds the attachments for a resource URL across issues you can access. A URL can appear on several issues, so use this connection and select each attachment’s issue to find all linked issues.",
     description:
       "Finds the attachments for a resource URL across issues you can access. A URL can appear on several issues, so use this connection and select each attachment’s issue to find all linked issues.",
-    tags: ["query"],
+    tags: ["attachment", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -2857,7 +2857,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists distinct sources on accessible, non-archived issue attachments. API and OAuth attachment sources are grouped by URL domain; other sources are grouped by type. Each group includes the oldest attachment's source metadata. Results may be cached for up to one hour.",
     description:
       "Lists distinct sources on accessible, non-archived issue attachments. API and OAuth attachment sources are grouped by URL domain; other sources are grouped by type. Each group includes the oldest attachment's source metadata. Results may be cached for up to one hour.",
-    tags: ["query"],
+    tags: ["attachment", "query"],
     parameters: [
       {
         name: "teamId",
@@ -2898,7 +2898,7 @@ export const operations: readonly ManifestOperation[] = [
       "Sync an existing Slack attachment with an issue comment thread and import existing replies. Requires a connected Slack integration whose bot can post in the channel; the Slack thread cannot already be synced elsewhere.",
     description:
       "Sync an existing Slack attachment with an issue comment thread and import existing replies. Requires a connected Slack integration whose bot can post in the channel; the Slack thread cannot already be synced elsewhere.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "id",
@@ -2939,7 +2939,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates an existing attachment’s title, subtitle, metadata, or icon. title is required even when changing another field, and metadata replaces the full stored object. This mutation does not move the attachment or change its URL.",
     description:
       "Updates an existing attachment’s title, subtitle, metadata, or icon. title is required even when changing another field, and metadata replaces the full stored object. This mutation does not move the attachment or change its URL.",
-    tags: ["mutation"],
+    tags: ["attachment", "mutation"],
     parameters: [
       {
         name: "input",
@@ -2997,7 +2997,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists recorded events from the workspace audit log, such as sign-ins, permission changes, and exports. Filter by action type, actor, request details, or time to find events of interest. Requires audit-log access; event metadata depends on the action and may outlive the user or resource it describes.",
     description:
       "Lists recorded events from the workspace audit log, such as sign-ins, permission changes, and exports. Filter by action type, actor, request details, or time to find events of interest. Requires audit-log access; event metadata depends on the action and may outlive the user or resource it describes.",
-    tags: ["query"],
+    tags: ["audit-entry", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -3132,7 +3132,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists supported audit action identifiers and a description of each action. Use the returned type values to interpret AuditEntry.type or filter auditEntries. Requires permission to view the workspace audit log.",
     description:
       "Lists supported audit action identifiers and a description of each action. Use the returned type values to interpret AuditEntry.type or filter auditEntries. Requires permission to view the workspace audit log.",
-    tags: ["query"],
+    tags: ["audit-entry", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -3155,7 +3155,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists active browser, desktop, and mobile sign-in sessions for the authenticated account. isCurrentSession identifies the session making this request. Use a returned session ID with logoutSession to revoke a specific session. Requires session JWT authentication; API keys and OAuth access tokens do not provide this session list.",
     description:
       "Lists active browser, desktop, and mobile sign-in sessions for the authenticated account. isCurrentSession identifies the session making this request. Use a returned session ID with logoutSession to revoke a specific session. Requires session JWT authentication; API keys and OAuth access tokens do not provide this session list.",
-    tags: ["query"],
+    tags: ["query", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -3178,7 +3178,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists the signed-in account's workspace access. users contains memberships available with the current sign-in method; availableOrganizations contains workspaces the account may join. lockedUsers and lockedOrganizations identify workspaces that require another sign-in method, such as SAML. Each workspace membership has a different user ID even when it belongs to the same account.",
     description:
       "Lists the signed-in account's workspace access. users contains memberships available with the current sign-in method; availableOrganizations contains workspaces the account may join. lockedUsers and lockedOrganizations identify workspaces that require another sign-in method, such as SAML. Each workspace membership has a different user ID even when it belongs to the same account.",
-    tags: ["query"],
+    tags: ["user", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -3202,7 +3202,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "A comment by UUID or URL hash. Returns an error if no accessible comment matches.",
     description: "A comment by UUID or URL hash. Returns an error if no accessible comment matches.",
-    tags: ["query"],
+    tags: ["comment", "query"],
     parameters: [
       {
         name: "id",
@@ -3254,7 +3254,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a comment on one resource, or a reply when parentId is supplied. You must be allowed to comment on that resource. For issue comments, the author is subscribed to the issue unless doNotSubscribeToIssue is true.",
     description:
       "Creates a comment on one resource, or a reply when parentId is supplied. You must be allowed to comment on that resource. For issue comments, the author is subscribed to the issue unless doNotSubscribeToIssue is true.",
-    tags: ["mutation"],
+    tags: ["comment", "mutation"],
     parameters: [
       {
         name: "input",
@@ -3295,7 +3295,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes a comment and, for a root comment, its replies. You must be allowed to delete the comment and comment on its resource. Deleting a reply selected as the resolution reopens the parent thread.",
     description:
       "Deletes a comment and, for a root comment, its replies. You must be allowed to delete the comment and comment on its resource. Deleting a reply selected as the resolution reopens the parent thread.",
-    tags: ["mutation"],
+    tags: ["comment", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -3341,7 +3341,7 @@ export const operations: readonly ManifestOperation[] = [
       "Marks a root comment’s thread as resolved by you. You may select one of its replies as resolvingCommentId, or resolve the thread without a specific reply. Pass the root comment ID, even when the discussion ended in a reply.",
     description:
       "Marks a root comment’s thread as resolved by you. You may select one of its replies as resolvingCommentId, or resolve the thread without a specific reply. Pass the root comment ID, even when the discussion ended in a reply.",
-    tags: ["mutation"],
+    tags: ["comment", "mutation"],
     parameters: [
       {
         name: "resolvingCommentId",
@@ -3399,7 +3399,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All comments the user has access to in the workspace.",
     description: "All comments the user has access to in the workspace.",
-    tags: ["query"],
+    tags: ["comment", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -3536,7 +3536,7 @@ export const operations: readonly ManifestOperation[] = [
       "Reopens a resolved thread and clears its resolution time, resolving user, and selected resolving reply. Pass the root comment ID. An already unresolved thread is returned unchanged.",
     description:
       "Reopens a resolved thread and clears its resolution time, resolving user, and selected resolving reply. Pass the root comment ID. An already unresolved thread is returned unchanged.",
-    tags: ["mutation"],
+    tags: ["comment", "mutation"],
     parameters: [
       {
         name: "id",
@@ -3578,7 +3578,7 @@ export const operations: readonly ManifestOperation[] = [
       "Replaces a comment’s Markdown body and records an edit time. Content edits are restricted to an authorized author or acting user; comments originating in synced Slack messages or Intercom cannot be edited here. Omit body to keep the existing message.",
     description:
       "Replaces a comment’s Markdown body and records an edit time. Content edits are restricted to an authorized author or acting user; comments originating in synced Slack messages or Intercom cannot be edited here. Omit body to keep the existing message.",
-    tags: ["mutation"],
+    tags: ["comment", "mutation"],
     parameters: [
       {
         name: "skipEditedAt",
@@ -3642,7 +3642,7 @@ export const operations: readonly ManifestOperation[] = [
       "Submits a message to Linear support on behalf of the authenticated user. Delivery happens after the request succeeds.",
     description:
       "Submits a message to Linear support on behalf of the authenticated user. Delivery happens after the request succeeds.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "input",
@@ -3684,7 +3684,7 @@ export const operations: readonly ManifestOperation[] = [
       "Queues a workspace CSV export and emails the requesting user a download link when it is ready. Success confirms scheduling, not completion. Private and restricted teams are excluded unless explicitly selected by their UUIDs. Requires workspace export permission, which permits selecting eligible teams even when the requester is not a member.",
     description:
       "Queues a workspace CSV export and emails the requesting user a download link when it is ready. Success confirms scheduling, not completion. Private and restricted teams are excluded unless explicitly selected by their UUIDs. Requires workspace export permission, which permits selecting eligible teams even when the requester is not a member.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "includePrivateTeamIds",
@@ -3745,7 +3745,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Create a notification to remind a user about an initiative update.",
     description: "Create a notification to remind a user about an initiative update.",
-    tags: ["mutation"],
+    tags: ["initiative-update", "mutation"],
     parameters: [
       {
         name: "userId",
@@ -3797,7 +3797,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Create a notification to remind a user about a project update.",
     description: "Create a notification to remind a user about a project update.",
-    tags: ["mutation"],
+    tags: ["project-update", "mutation"],
     parameters: [
       {
         name: "userId",
@@ -3849,7 +3849,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves a single customer by ID or slug.",
     description: "Retrieves a single customer by ID or slug.",
-    tags: ["query"],
+    tags: ["customer", "query"],
     parameters: [
       {
         name: "id",
@@ -3889,7 +3889,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a customer when the Customers feature is available and enabled in the workspace. Business domains and external IDs must not belong to another customer, including archived customers. If no status is supplied, the first customer status by position is used.",
     description:
       "Creates a customer when the Customers feature is available and enabled in the workspace. Business domains and external IDs must not belong to another customer, including archived customers. If no status is supplied, the first customer status by position is used.",
-    tags: ["mutation"],
+    tags: ["customer", "mutation"],
     parameters: [
       {
         name: "input",
@@ -3930,7 +3930,7 @@ export const operations: readonly ManifestOperation[] = [
       "Permanently deletes a customer, including an archived customer. Use customerMerge when you want to preserve its requests by transferring them to another customer.",
     description:
       "Permanently deletes a customer, including an archived customer. Use customerMerge when you want to preserve its requests by transferring them to another customer.",
-    tags: ["mutation"],
+    tags: ["customer", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -3976,7 +3976,7 @@ export const operations: readonly ManifestOperation[] = [
       "Merges two customers by transferring all needs from the source customer to the target customer. The source customer is archived after the merge. Domains, external IDs, and metadata are combined on the target customer.",
     description:
       "Merges two customers by transferring all needs from the source customer to the target customer. The source customer is archived after the merge. Domains, external IDs, and metadata are combined on the target customer.",
-    tags: ["mutation"],
+    tags: ["customer", "mutation"],
     parameters: [
       {
         name: "sourceCustomerId",
@@ -4030,7 +4030,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves a single customer need by ID or hash.",
     description: "Retrieves a single customer need by ID or hash.",
-    tags: ["query"],
+    tags: ["customer-need", "query"],
     parameters: [
       {
         name: "id",
@@ -4084,7 +4084,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives a customer need so it can be removed from active request lists without permanently deleting it. Use customerNeedUnarchive to restore the saved need.",
     description:
       "Archives a customer need so it can be removed from active request lists without permanently deleting it. Use customerNeedUnarchive to restore the saved need.",
-    tags: ["mutation"],
+    tags: ["customer-need", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -4129,7 +4129,7 @@ export const operations: readonly ManifestOperation[] = [
       "Records customer feedback, optionally linked to an issue. Unlinked requests require Customer Signals to be enabled. You can identify the customer, add Markdown feedback, or link a source attachment. Multiple requests can be recorded for the same customer and issue.",
     description:
       "Records customer feedback, optionally linked to an issue. Unlinked requests require Customer Signals to be enabled. You can identify the customer, add Markdown feedback, or link a source attachment. Multiple requests can be recorded for the same customer and issue.",
-    tags: ["mutation"],
+    tags: ["customer-need", "mutation"],
     parameters: [
       {
         name: "input",
@@ -4170,7 +4170,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a customer need from an existing issue attachment. If that attachment already has an archived need, the need is restored and follows the attachment’s current issue. An existing active need is not duplicated.",
     description:
       "Creates a customer need from an existing issue attachment. If that attachment already has an archived need, the need is restored and follows the attachment’s current issue. An existing active need is not duplicated.",
-    tags: ["mutation"],
+    tags: ["customer-need", "mutation"],
     parameters: [
       {
         name: "input",
@@ -4212,7 +4212,7 @@ export const operations: readonly ManifestOperation[] = [
       "Permanently deletes a customer need. By default, its associated issue or project attachment is also deleted. Set keepAttachment to true to retain that source attachment; the linked issue or project is kept.",
     description:
       "Permanently deletes a customer need. By default, its associated issue or project attachment is also deleted. Set keepAttachment to true to retain that source attachment; the linked issue or project is kept.",
-    tags: ["mutation"],
+    tags: ["customer-need", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -4273,7 +4273,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All customer needs in the workspace, with optional filtering.",
     description: "All customer needs in the workspace, with optional filtering.",
-    tags: ["query"],
+    tags: ["customer-need", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -4410,7 +4410,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores an archived customer need. The need must currently be archived; its saved feedback and associations are kept.",
     description:
       "Restores an archived customer need. The need must currently be archived; its saved feedback and associations are kept.",
-    tags: ["mutation"],
+    tags: ["customer-need", "mutation"],
     parameters: [
       {
         name: "id",
@@ -4452,7 +4452,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a customer request, including its feedback, customer, priority, or issue association. Only manually added source attachments can be replaced or removed. Use clearAttachment to remove such a source; moving the request to another issue also moves its source attachment.",
     description:
       "Updates a customer request, including its feedback, customer, priority, or issue association. Only manually added source attachments can be replaced or removed. Use clearAttachment to remove such a source; moving the request to another issue also moves its source attachment.",
-    tags: ["mutation"],
+    tags: ["customer-need", "mutation"],
     parameters: [
       {
         name: "clearAttachment",
@@ -4522,7 +4522,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All customers in the workspace, with optional filtering and sorting.",
     description: "All customers in the workspace, with optional filtering and sorting.",
-    tags: ["query"],
+    tags: ["customer", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -4672,7 +4672,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "One specific customer status.",
     description: "One specific customer status.",
-    tags: ["query"],
+    tags: ["customer-status", "query"],
     parameters: [
       {
         name: "id",
@@ -4712,7 +4712,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a workspace customer status. Requires permission to manage customer settings and rejects a name or display name already used by another active status.",
     description:
       "Creates a workspace customer status. Requires permission to manage customer settings and rejects a name or display name already used by another active status.",
-    tags: ["mutation"],
+    tags: ["customer-status", "mutation"],
     parameters: [
       {
         name: "input",
@@ -4753,7 +4753,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes a customer status. Cannot delete the last remaining status in a workspace, and the status must not be in use by any customers.",
     description:
       "Deletes a customer status. Cannot delete the last remaining status in a workspace, and the status must not be in use by any customers.",
-    tags: ["mutation"],
+    tags: ["customer-status", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -4802,7 +4802,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All customer statuses defined in the workspace.",
     description: "All customer statuses defined in the workspace.",
-    tags: ["query"],
+    tags: ["customer-status", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -4928,7 +4928,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a workspace customer status. Requires permission to manage customer settings. Customers using the status retain their association with it.",
     description:
       "Updates a workspace customer status. Requires permission to manage customer settings. Customers using the status retain their association with it.",
-    tags: ["mutation"],
+    tags: ["customer-status", "mutation"],
     parameters: [
       {
         name: "input",
@@ -4977,7 +4977,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "One specific customer tier.",
     description: "One specific customer tier.",
-    tags: ["query"],
+    tags: ["customer-tier", "query"],
     parameters: [
       {
         name: "id",
@@ -5017,7 +5017,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a workspace customer tier. Requires permission to manage customer settings and rejects a name or display name already used by another active tier.",
     description:
       "Creates a workspace customer tier. Requires permission to manage customer settings and rejects a name or display name already used by another active tier.",
-    tags: ["mutation"],
+    tags: ["customer-tier", "mutation"],
     parameters: [
       {
         name: "input",
@@ -5056,7 +5056,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes a customer tier. The tier must not be in use by any customers.",
     description: "Deletes a customer tier. The tier must not be in use by any customers.",
-    tags: ["mutation"],
+    tags: ["customer-tier", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -5105,7 +5105,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All customer tiers defined in the workspace.",
     description: "All customer tiers defined in the workspace.",
-    tags: ["query"],
+    tags: ["customer-tier", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -5231,7 +5231,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a workspace customer tier. Requires permission to manage customer settings. Customers using the tier retain their association with it.",
     description:
       "Updates a workspace customer tier. Requires permission to manage customer settings. Customers using the tier retain their association with it.",
-    tags: ["mutation"],
+    tags: ["customer-tier", "mutation"],
     parameters: [
       {
         name: "input",
@@ -5282,7 +5282,7 @@ export const operations: readonly ManifestOperation[] = [
       "Disconnects a customer from its configured data source integration so the integration no longer updates it. External IDs belonging to that source are cleared. Requires permission to manage workspace customer settings.",
     description:
       "Disconnects a customer from its configured data source integration so the integration no longer updates it. External IDs belonging to that source are cleared. Requires permission to manage workspace customer settings.",
-    tags: ["mutation"],
+    tags: ["customer", "mutation"],
     parameters: [
       {
         name: "id",
@@ -5323,7 +5323,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates the supplied customer fields, leaving omitted fields unchanged. For a customer managed by an integration, only fields that are editable in Linear are applied; managed fields are ignored. The request fails if none of the supplied fields are editable.",
     description:
       "Updates the supplied customer fields, leaving omitted fields unchanged. For a customer managed by an integration, only fields that are editable in Linear are applied; managed fields are ignored. The request fails if none of the supplied fields are editable.",
-    tags: ["mutation"],
+    tags: ["customer", "mutation"],
     parameters: [
       {
         name: "input",
@@ -5374,7 +5374,7 @@ export const operations: readonly ManifestOperation[] = [
       "Finds a customer using the supplied UUID, external ID, Slack channel, or domains, and updates it; otherwise creates one. A name is required when no customer matches. Unlike customerUpdate, this operation can override integration-managed fields, and a tierName can create a new customer tier.",
     description:
       "Finds a customer using the supplied UUID, external ID, Slack channel, or domains, and updates it; otherwise creates one. A name is required when no customer matches. Unlike customerUpdate, this operation can override integration-managed fields, and a tierName can create a new customer tier.",
-    tags: ["mutation"],
+    tags: ["customer", "mutation"],
     parameters: [
       {
         name: "input",
@@ -5414,7 +5414,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "One specific custom view, looked up by ID or slug.",
     description: "One specific custom view, looked up by ID or slug.",
-    tags: ["query"],
+    tags: ["custom-view", "query"],
     parameters: [
       {
         name: "id",
@@ -5454,7 +5454,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a saved view owned by you. Choose an issue, project, initiative, or update filter and set shared if others in its scope should use it. Display settings can be saved separately with viewPreferencesCreate.",
     description:
       "Creates a saved view owned by you. Choose an issue, project, initiative, or update filter and set shared if others in its scope should use it. Display settings can be saved separately with viewPreferencesCreate.",
-    tags: ["mutation"],
+    tags: ["custom-view", "mutation"],
     parameters: [
       {
         name: "input",
@@ -5495,7 +5495,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes a saved view without deleting the items it displayed. Only workspace members can delete views shared with the whole workspace; deleting a view used in a pinned tab also requires permission to edit that tab. Use customViewHasSubscribers to check whether other people receive notifications from the view.",
     description:
       "Deletes a saved view without deleting the items it displayed. Only workspace members can delete views shared with the whole workspace; deleting a view used in a pinned tab also requires permission to edit that tab. Use customViewHasSubscribers to check whether other people receive notifications from the view.",
-    tags: ["mutation"],
+    tags: ["custom-view", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -5540,7 +5540,7 @@ export const operations: readonly ManifestOperation[] = [
       "Whether a custom view has active notification subscribers other than the current user. Useful for warning before deleting a shared view.",
     description:
       "Whether a custom view has active notification subscribers other than the current user. Useful for warning before deleting a shared view.",
-    tags: ["query"],
+    tags: ["custom-view", "query"],
     parameters: [
       {
         name: "id",
@@ -5588,7 +5588,7 @@ export const operations: readonly ManifestOperation[] = [
       "All custom views accessible to the user, including personal views and shared workspace views. Excludes views scoped to a specific project or initiative.",
     description:
       "All custom views accessible to the user, including personal views and shared workspace views. Excludes views scoped to a specific project or initiative.",
-    tags: ["query"],
+    tags: ["custom-view", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -5741,7 +5741,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a saved view’s metadata, scope, or filter configuration. Omitted fields are unchanged. Only workspace members can change views shared with the whole workspace; editing a view used in a pinned tab also requires permission to edit that tab.",
     description:
       "Updates a saved view’s metadata, scope, or filter configuration. Omitted fields are unchanged. Only workspace members can change views shared with the whole workspace; editing a view used in a pinned tab also requires permission to edit that tab.",
-    tags: ["mutation"],
+    tags: ["custom-view", "mutation"],
     parameters: [
       {
         name: "input",
@@ -5793,7 +5793,7 @@ export const operations: readonly ManifestOperation[] = [
       "Finds a cycle by its UUID or team-and-number identifier, such as ENG°12, including archived cycles. Use cycles with a team filter to discover a team’s cycles.",
     description:
       "Finds a cycle by its UUID or team-and-number identifier, such as ENG°12, including archived cycles. Use cycles with a team filter to discover a team’s cycles.",
-    tags: ["query"],
+    tags: ["cycle", "query"],
     parameters: [
       {
         name: "id",
@@ -5833,7 +5833,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives a cycle and removes its current issues from it. The issues themselves are not archived. An inherited cycle must be managed through its parent team. Requires permission to manage the team.",
     description:
       "Archives a cycle and removes its current issues from it. The issues themselves are not archived. An inherited cycle must be managed through its parent team. Requires permission to manage the team.",
-    tags: ["mutation"],
+    tags: ["cycle", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -5877,7 +5877,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Unsupported. This mutation always returns an error; cycles are generated from the team’s cycle settings.",
     description:
       "Unsupported. This mutation always returns an error; cycles are generated from the team’s cycle settings.",
-    tags: ["mutation"],
+    tags: ["cycle", "mutation"],
     deprecated: true,
     parameters: [
       {
@@ -5924,7 +5924,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All cycles accessible to the user.",
     description: "All cycles accessible to the user.",
-    tags: ["query"],
+    tags: ["cycle", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -6061,7 +6061,7 @@ export const operations: readonly ManifestOperation[] = [
       "Shifts an upcoming cycle and every later cycle in the team by the same number of days. Local times are preserved in the team’s time zone, and the team’s cycle start day is updated. Use this when moving the schedule as a whole; it requires permission to manage the team.",
     description:
       "Shifts an upcoming cycle and every later cycle in the team by the same number of days. Local times are preserved in the team’s time zone, and the team’s cycle start day is updated. Use this when moving the schedule as a whole; it requires permission to manage the team.",
-    tags: ["mutation"],
+    tags: ["cycle", "mutation"],
     parameters: [
       {
         name: "input",
@@ -6102,7 +6102,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts the upcoming cycle as of midnight today. Completes the previous cycle if it has not yet ended. Only the next upcoming (not yet started) cycle for the team can be started. Requires permission to manage the team.",
     description:
       "Starts the upcoming cycle as of midnight today. Completes the previous cycle if it has not yet ended. Only the next upcoming (not yet started) cycle for the team can be started. Requires permission to manage the team.",
-    tags: ["mutation"],
+    tags: ["cycle", "mutation"],
     parameters: [
       {
         name: "id",
@@ -6143,7 +6143,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a cycle’s name, description, or schedule and returns the resulting cycle. Date changes can shorten adjacent cycles to prevent overlap. You cannot change an active cycle’s start or a completed cycle’s dates, or edit inherited cycles directly. Requires permission to manage the team.",
     description:
       "Updates a cycle’s name, description, or schedule and returns the resulting cycle. Date changes can shorten adjacent cycles to prevent overlap. You cannot change an active cycle’s start or a completed cycle’s dates, or edit inherited cycles directly. Requires permission to manage the team.",
-    tags: ["mutation"],
+    tags: ["cycle", "mutation"],
     parameters: [
       {
         name: "input",
@@ -6194,7 +6194,7 @@ export const operations: readonly ManifestOperation[] = [
       "Looks up license, publication time, and package-wide weekly downloads for up to 500 exact package versions. Currently supports the public npm registry. Results preserve request order, but missing versions, invalid package names, and failed registry lookups are omitted, so match by name and version rather than array index. Version facts and download counts are cached and may not reflect the latest registry changes.",
     description:
       "Looks up license, publication time, and package-wide weekly downloads for up to 500 exact package versions. Currently supports the public npm registry. Results preserve request order, but missing versions, invalid package names, and failed registry lookups are omitted, so match by name and version rather than array index. Version facts and download counts are cached and may not reflect the latest registry changes.",
-    tags: ["query"],
+    tags: ["query", "query"],
     parameters: [
       {
         name: "packages",
@@ -6239,7 +6239,7 @@ export const operations: readonly ManifestOperation[] = [
       "Finds a document by UUID or the short identifier used in its URL. Archived documents can also be returned if you still have access.",
     description:
       "Finds a document by UUID or the short identifier used in its URL. Archived documents can also be returned if you still have access.",
-    tags: ["query"],
+    tags: ["document", "query"],
     parameters: [
       {
         name: "id",
@@ -6279,7 +6279,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists saved-version metadata for a DocumentContent UUID, newest first. Use the content record’s ID, such as Document.documentContentId, rather than the enclosing document’s UUID. The public result includes capture times and contributors, not historical body content.",
     description:
       "Lists saved-version metadata for a DocumentContent UUID, newest first. Use the content record’s ID, such as Document.documentContentId, rather than the enclosing document’s UUID. The public result includes capture times and contributors, not historical body content.",
-    tags: ["query"],
+    tags: ["document-content-history", "query"],
     parameters: [
       {
         name: "id",
@@ -6319,7 +6319,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a document in a project, issue, or release, with optional initial Markdown content. The returned document includes its assigned UUID and metadata; select content to read the resulting body.",
     description:
       "Creates a document in a project, issue, or release, with optional initial Markdown content. The returned document includes its assigned UUID and metadata; select content to read the resulting body.",
-    tags: ["mutation"],
+    tags: ["document", "mutation"],
     parameters: [
       {
         name: "input",
@@ -6361,7 +6361,7 @@ export const operations: readonly ManifestOperation[] = [
       "Moves a document to the trash and archives it, including the sub-documents covered by its archive cascade. It is not permanently removed by this mutation. You must be allowed to manage the document; use documentUnarchive to restore it.",
     description:
       "Moves a document to the trash and archives it, including the sub-documents covered by its archive cascade. It is not permanently removed by this mutation. You must be allowed to manage the document; use documentUnarchive to restore it.",
-    tags: ["mutation"],
+    tags: ["document", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -6427,7 +6427,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists documents you can access, with filters and cursor pagination. Archived documents are excluded unless includeArchived is true; access still follows each document’s location and sharing settings.",
     description:
       "Lists documents you can access, with filters and cursor pagination. Archived documents are excluded unless includeArchived is true; access still follows each document’s location and sharing settings.",
-    tags: ["query"],
+    tags: ["document", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -6579,7 +6579,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores a trashed document and its eligible sub-documents. You must be allowed to manage the restored documents. If the containing resource is archived, restore that resource first.",
     description:
       "Restores a trashed document and its eligible sub-documents. You must be allowed to manage the restored documents. If the containing resource is archived, restore that resource first.",
-    tags: ["mutation"],
+    tags: ["document", "mutation"],
     parameters: [
       {
         name: "id",
@@ -6620,7 +6620,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a document’s metadata or replaces its Markdown body. You must have edit access to the document. Supplying a different container moves the document there, which can affect access; omitted fields are left unchanged.",
     description:
       "Updates a document’s metadata or replaces its Markdown body. You must have edit access to the document. Supplying a different container moves the document there, which can affect access; omitted fields are left unchanged.",
-    tags: ["mutation"],
+    tags: ["document", "mutation"],
     parameters: [
       {
         name: "input",
@@ -6674,7 +6674,7 @@ export const operations: readonly ManifestOperation[] = [
       "[Internal] Changes what people outside a document's teams can do with a document in a public team or in a project with a public team: edit, comment, or view. It can't be above the document's general access. Only the owner of the document, an owner of one of its teams, or a workspace admin can change it. Comment and view need an owner who can access the document.",
     description:
       "[Internal] Changes what people outside a document's teams can do with a document in a public team or in a project with a public team: edit, comment, or view. It can't be above the document's general access. Only the owner of the document, an owner of one of its teams, or a workspace admin can change it. Comment and view need an owner who can access the document.",
-    tags: ["mutation"],
+    tags: ["document", "mutation"],
     parameters: [
       {
         name: "previousWorkspaceAccess",
@@ -6749,7 +6749,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "An accessible intake address by ID, including archived addresses.",
     description: "An accessible intake address by ID, including archived addresses.",
-    tags: ["query"],
+    tags: ["email-intake-address", "query"],
     parameters: [
       {
         name: "id",
@@ -6789,7 +6789,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates an address that accepts email for one team or issue template. For team and template types, an existing active address for that destination is returned instead of creating another. Use the returned emailAddress as the forwarding destination in your mail provider. Asks creation requires the appropriate plan and integration management permission; team and template addresses require permission to manage their destination. Form templates cannot be used for template intake.",
     description:
       "Creates an address that accepts email for one team or issue template. For team and template types, an existing active address for that destination is returned instead of creating another. Use the returned emailAddress as the forwarding destination in your mail provider. Asks creation requires the appropriate plan and integration management permission; team and template addresses require permission to manage their destination. Form templates cannot be used for template intake.",
-    tags: ["mutation"],
+    tags: ["email-intake-address", "mutation"],
     parameters: [
       {
         name: "input",
@@ -6828,7 +6828,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes an email intake address object.",
     description: "Deletes an email intake address object.",
-    tags: ["mutation"],
+    tags: ["email-intake-address", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -6877,7 +6877,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Email intake addresses accessible to the user in the workspace.",
     description: "Email intake addresses accessible to the user in the workspace.",
-    tags: ["query"],
+    tags: ["email-intake-address", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -7002,7 +7002,7 @@ export const operations: readonly ManifestOperation[] = [
       "Requests a check of the intake address’s custom sending domain after you update its DNS records. The check runs asynchronously: success means a check was requested, not that the domain passed verification. Query sesDomainIdentity.canSendFromCustomDomain and dnsRecords for the result. Returns success=false when no custom domain is configured or the domain is already fully verified.",
     description:
       "Requests a check of the intake address’s custom sending domain after you update its DNS records. The check runs asynchronously: success means a check was requested, not that the domain passed verification. Query sesDomainIdentity.canSendFromCustomDomain and dnsRecords for the result. Returns success=false when no custom domain is configured or the domain is already fully verified.",
-    tags: ["mutation"],
+    tags: ["email-intake-address", "mutation"],
     parameters: [
       {
         name: "id",
@@ -7042,7 +7042,7 @@ export const operations: readonly ManifestOperation[] = [
       "Generates a new email address for an existing team or template intake configuration. The old address no longer routes incoming mail, so update any forwarding rules or places where you published it. The intake record and its settings are retained. Asks and Asks web addresses do not support rotation through this mutation.",
     description:
       "Generates a new email address for an existing team or template intake configuration. The old address no longer routes incoming mail, so update any forwarding rules or places where you published it. The intake record and its settings are retained. Asks and Asks web addresses do not support rotation through this mutation.",
-    tags: ["mutation"],
+    tags: ["email-intake-address", "mutation"],
     parameters: [
       {
         name: "id",
@@ -7081,7 +7081,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Updates an existing email intake address.",
     description: "Updates an existing email intake address.",
-    tags: ["mutation"],
+    tags: ["email-intake-address", "mutation"],
     parameters: [
       {
         name: "input",
@@ -7133,7 +7133,7 @@ export const operations: readonly ManifestOperation[] = [
       "Completes email sign-in using the emailed token and the same clientAuthCode sent with emailUserAccountAuthChallenge. Successful authentication consumes the client binding and sets a session cookie. Use the returned memberships and available or locked workspaces to continue into a workspace; the deprecated token field is not populated. An expired token or a code from a different client cannot complete this flow.",
     description:
       "Completes email sign-in using the emailed token and the same clientAuthCode sent with emailUserAccountAuthChallenge. Successful authentication consumes the client binding and sets a session cookie. Use the returned memberships and available or locked workspaces to continue into a workspace; the deprecated token field is not populated. An expired token or a code from a different client cannot complete this flow.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "input",
@@ -7174,7 +7174,7 @@ export const operations: readonly ManifestOperation[] = [
       "Unsubscribes a user from the selected email category using the user ID and token from a Linear email. No sign-in is required because the token authorizes the change. An invalid token returns success=false; other email categories and notification channels are unchanged.",
     description:
       "Unsubscribes a user from the selected email category using the user ID and token from a Linear email. No sign-in is required because the token authorizes the change. An invalid token returns success=false; other email categories and notification channels are unchanged.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "input",
@@ -7215,7 +7215,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts email sign-in and sends a one-time token to the supplied address. Generate and retain a clientAuthCode UUID, then pass it with the emailed token to emailTokenUserAccountAuth within ten minutes. Requesting another challenge replaces the stored client binding for that email. When login challenge verification is enabled, challengeResponse is also required. Success confirms the challenge was accepted; email delivery may finish in the background.",
     description:
       "Starts email sign-in and sends a one-time token to the supplied address. Generate and retain a clientAuthCode UUID, then pass it with the emailed token to emailTokenUserAccountAuth within ten minutes. Requesting another challenge replaces the stored client binding for that email. When login challenge verification is enabled, challengeResponse is also required. Success confirms the challenge was accepted; email delivery may finish in the background.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "input",
@@ -7256,7 +7256,7 @@ export const operations: readonly ManifestOperation[] = [
       "Finds a custom emoji by UUID or exact name. UUID lookup can return archived records, while name lookup returns an active emoji. Use emojis to list the workspace’s custom emoji.",
     description:
       "Finds a custom emoji by UUID or exact name. UUID lookup can return archived records, while name lookup returns an active emoji. Use emojis to list the workspace’s custom emoji.",
-    tags: ["query"],
+    tags: ["emoji", "query"],
     parameters: [
       {
         name: "id",
@@ -7296,7 +7296,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a custom emoji from an image already uploaded to Linear. Its name must be unique in the workspace. The current user is recorded as the creator, and the source is user.",
     description:
       "Creates a custom emoji from an image already uploaded to Linear. Its name must be unique in the workspace. The current user is recorded as the creator, and the source is user.",
-    tags: ["mutation"],
+    tags: ["emoji", "mutation"],
     parameters: [
       {
         name: "input",
@@ -7335,7 +7335,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes an emoji.",
     description: "Deletes an emoji.",
-    tags: ["mutation"],
+    tags: ["emoji", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -7386,7 +7386,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All custom emojis in the workspace.",
     description: "All custom emojis in the workspace.",
-    tags: ["query"],
+    tags: ["emoji", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -7537,7 +7537,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves a single entity external link by its identifier.",
     description: "Retrieves a single entity external link by its identifier.",
-    tags: ["query"],
+    tags: ["entity-external-link", "query"],
     parameters: [
       {
         name: "id",
@@ -7577,7 +7577,7 @@ export const operations: readonly ManifestOperation[] = [
       "Adds an external resource to an initiative, project, or release the caller can access and write to. Provide exactly one parent, a destination URL, and the label to show in Linear. Omit sortOrder to place the link last among the parent’s resources. This stores a reference to the URL; it does not upload or copy the destination content.",
     description:
       "Adds an external resource to an initiative, project, or release the caller can access and write to. Provide exactly one parent, a destination URL, and the label to show in Linear. Omit sortOrder to place the link last among the parent’s resources. This stores a reference to the URL; it does not upload or copy the destination content.",
-    tags: ["mutation"],
+    tags: ["entity-external-link", "mutation"],
     parameters: [
       {
         name: "input",
@@ -7618,7 +7618,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes a resource link from Linear and clears any team pins that refer to it. The external URL’s content is unchanged. The caller must have access to the link’s parent scope; archived links can also be deleted.",
     description:
       "Removes a resource link from Linear and clears any team pins that refer to it. The external URL’s content is unchanged. The caller must have access to the link’s parent scope; archived links can also be deleted.",
-    tags: ["mutation"],
+    tags: ["entity-external-link", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -7664,7 +7664,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes an unarchived resource link’s URL, display label, or position within its parent’s resources. Omitted fields remain unchanged, and the parent cannot be changed. The link must be writable and within the caller’s permitted scope.",
     description:
       "Changes an unarchived resource link’s URL, display label, or position within its parent’s resources. Omitted fields remain unchanged, and the parent cannot be changed. The link must be writable and within the caller’s permitted scope.",
-    tags: ["mutation"],
+    tags: ["entity-external-link", "mutation"],
     parameters: [
       {
         name: "input",
@@ -7715,7 +7715,7 @@ export const operations: readonly ManifestOperation[] = [
       "Retrieves an external user by its Linear UUID, including archived records. Use the ExternalUser ID recorded on Linear content, not the person's ID in Slack, GitHub, or another external service.",
     description:
       "Retrieves an external user by its Linear UUID, including archived records. Use the ExternalUser ID recorded on Linear content, not the person's ID in Slack, GitHub, or another external service.",
-    tags: ["query"],
+    tags: ["external-user", "query"],
     parameters: [
       {
         name: "id",
@@ -7759,7 +7759,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "External users and bots recorded by integrations in the workspace, with cursor-based pagination.",
     description: "External users and bots recorded by integrations in the workspace, with cursor-based pagination.",
-    tags: ["query"],
+    tags: ["external-user", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -7883,7 +7883,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "A specific favorite by ID.",
     description: "A specific favorite by ID.",
-    tags: ["query"],
+    tags: ["favorite", "query"],
     parameters: [
       {
         name: "id",
@@ -7923,7 +7923,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a sidebar favorite for the authenticated user. If it already exists, updates its position and supplied folder instead.",
     description:
       "Creates a sidebar favorite for the authenticated user. If it already exists, updates its position and supplied folder instead.",
-    tags: ["mutation"],
+    tags: ["favorite", "mutation"],
     parameters: [
       {
         name: "input",
@@ -7964,7 +7964,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes a favorite from your sidebar. Deleting a custom folder also removes the favorites inside it; the bookmarked entities are unaffected. The mutation succeeds if the favorite no longer exists.",
     description:
       "Removes a favorite from your sidebar. Deleting a custom folder also removes the favorites inside it; the bookmarked entities are unaffected. The mutation succeeds if the favorite no longer exists.",
-    tags: ["mutation"],
+    tags: ["favorite", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -8013,7 +8013,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "The authenticated user's favorites. Returns all bookmarked items that appear in the user's sidebar.",
     description: "The authenticated user's favorites. Returns all bookmarked items that appear in the user's sidebar.",
-    tags: ["query"],
+    tags: ["favorite", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -8139,7 +8139,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes the position, parent folder, or name of one of your favorites. Omitted fields stay unchanged. The target entity cannot be changed, and predefined live folders cannot be renamed.",
     description:
       "Changes the position, parent folder, or name of one of your favorites. Omitted fields stay unchanged. The target entity cannot be changed, and predefined live folders cannot be renamed.",
-    tags: ["mutation"],
+    tags: ["favorite", "mutation"],
     parameters: [
       {
         name: "input",
@@ -8194,7 +8194,7 @@ export const operations: readonly ManifestOperation[] = [
       "Prepares a file upload and returns a signed destination. Upload the raw bytes with HTTP PUT to uploadFile.uploadUrl, using its headers and the supplied Content-Type; start the request within one minute and send exactly size bytes. Once the PUT succeeds, reference uploadFile.assetUrl in an issue description, comment, or attachment. This mutation does not create that reference for you. Workspace file-type restrictions and plan upload limits apply.",
     description:
       "Prepares a file upload and returns a signed destination. Upload the raw bytes with HTTP PUT to uploadFile.uploadUrl, using its headers and the supplied Content-Type; start the request within one minute and send exactly size bytes. Once the PUT succeeds, reference uploadFile.assetUrl in an issue description, comment, or attachment. This mutation does not create that reference for you. Workspace file-type restrictions and plan upload limits apply.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "metaData",
@@ -8281,7 +8281,7 @@ export const operations: readonly ManifestOperation[] = [
       "Permanently delete an uploaded file by asset URL. This should be used as a last resort and will break comments and documents that reference the asset.",
     description:
       "Permanently delete an uploaded file by asset URL. This should be used as a last resort and will break comments and documents that reference the asset.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -8326,7 +8326,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a rule that maps a Git event to an issue status for a team. Requires permission to manage that team. Rules cannot be created for retired teams.",
     description:
       "Creates a rule that maps a Git event to an issue status for a team. Requires permission to manage that team. Rules cannot be created for retired teams.",
-    tags: ["mutation"],
+    tags: ["git-automation-state", "mutation"],
     parameters: [
       {
         name: "input",
@@ -8367,7 +8367,7 @@ export const operations: readonly ManifestOperation[] = [
       "Permanently deletes a Git automation rule. Requires permission to manage its team. Removing a branch-specific rule allows the team’s default for that event to apply again.",
     description:
       "Permanently deletes a Git automation rule. Requires permission to manage its team. Removing a branch-specific rule allows the team’s default for that event to apply again.",
-    tags: ["mutation"],
+    tags: ["git-automation-state", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -8413,7 +8413,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates the status, branch scope, or event of an existing rule. Requires permission to manage its team, and the team must not be retired. Omitted fields keep their values.",
     description:
       "Updates the status, branch scope, or event of an existing rule. Requires permission to manage its team, and the team must not be retired. Omitted fields keep their values.",
-    tags: ["mutation"],
+    tags: ["git-automation-state", "mutation"],
     parameters: [
       {
         name: "input",
@@ -8464,7 +8464,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a team’s target-branch pattern for Git automation. Add automation rules that reference the returned definition to choose the status changes. Requires team-management permission and an active, non-retired team.",
     description:
       "Creates a team’s target-branch pattern for Git automation. Add automation rules that reference the returned definition to choose the status changes. Requires team-management permission and an active, non-retired team.",
-    tags: ["mutation"],
+    tags: ["git-automation-target-branch", "mutation"],
     parameters: [
       {
         name: "input",
@@ -8505,7 +8505,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes a target-branch definition and its associated automation rules. Future matching events use any remaining applicable rules, including team defaults. Requires team-management permission.",
     description:
       "Deletes a target-branch definition and its associated automation rules. Future matching events use any remaining applicable rules, including team defaults. Requires team-management permission.",
-    tags: ["mutation"],
+    tags: ["git-automation-target-branch", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -8551,7 +8551,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes the pattern or matching mode used by every automation rule linked to this definition. Omitted fields stay unchanged. Requires team-management permission; definitions in retired teams cannot be updated.",
     description:
       "Changes the pattern or matching mode used by every automation rule linked to this definition. Omitted fields stay unchanged. Requires team-management permission; definitions in retired teams cannot be updated.",
-    tags: ["mutation"],
+    tags: ["git-automation-target-branch", "mutation"],
     parameters: [
       {
         name: "input",
@@ -8603,7 +8603,7 @@ export const operations: readonly ManifestOperation[] = [
       "Exchanges a Google OAuth code, sets the authentication cookie, and returns workspace access details. May create an account unless disallowSignup is true.",
     description:
       "Exchanges a Google OAuth code, sets the authentication cookie, and returns workspace access details. May create an account unless disallowSignup is true.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "input",
@@ -8644,7 +8644,7 @@ export const operations: readonly ManifestOperation[] = [
       "Copies an image from an external URL into Linear’s private upload storage. The URL must let Linear download the image directly; an HTML page containing the image is not accepted. On success, the returned URL refers to the copied image and can be used in Linear content. Unlike fileUpload, this mutation performs the download and upload for you.",
     description:
       "Copies an image from an external URL into Linear’s private upload storage. The URL must let Linear download the image directly; an HTML page containing the image is not accepted. On success, the returned URL refers to the copied image and can be used in Linear content. Unlike fileUpload, this mutation performs the download and upload for you.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "url",
@@ -8687,7 +8687,7 @@ export const operations: readonly ManifestOperation[] = [
       "Prepares a file in Linear’s import storage. Upload the raw bytes with HTTP PUT to the returned uploadUrl, using all returned headers and the matching Content-Type. The upload must start within one minute and contain exactly the declared number of bytes. Success prepares the destination; it does not upload the bytes or start an import.",
     description:
       "Prepares a file in Linear’s import storage. Upload the raw bytes with HTTP PUT to the returned uploadUrl, using all returned headers and the matching Content-Type. The upload must start within one minute and contain exactly the declared number of bytes. Success prepares the destination; it does not upload the bytes or start an import.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "metaData",
@@ -8764,7 +8764,7 @@ export const operations: readonly ManifestOperation[] = [
       "The authenticated user’s visible inbox, excluding archived and snoozed notifications. Returns one notification per group of related activity.",
     description:
       "The authenticated user’s visible inbox, excluding archived and snoozed notifications. Returns one notification per group of related activity.",
-    tags: ["query"],
+    tags: ["notification", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -8843,7 +8843,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes read or snooze state for the authenticated user’s group of related inbox notifications. Supply a notification UUID from the group and at least one state change. The response includes the requested notification and all notifications changed.",
     description:
       "Changes read or snooze state for the authenticated user’s group of related inbox notifications. Supply a notification UUID from the group and at least one state change. The response includes the requested notification and all notifications changed.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     parameters: [
       {
         name: "input",
@@ -8895,7 +8895,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns an initiative you can access by UUID, URL slug, or human-readable initiative identifier. Archived initiatives can also be retrieved.",
     description:
       "Returns an initiative you can access by UUID, URL slug, or human-readable initiative identifier. Archived initiatives can also be retrieved.",
-    tags: ["query"],
+    tags: ["initiative", "query"],
     parameters: [
       {
         name: "id",
@@ -8936,7 +8936,7 @@ export const operations: readonly ManifestOperation[] = [
       "Adds an initiative label while keeping the other labels. Label groups themselves cannot be applied, and the group’s selection rules still apply.",
     description:
       "Adds an initiative label while keeping the other labels. Label groups themselves cannot be applied, and the group’s selection rules still apply.",
-    tags: ["mutation"],
+    tags: ["initiative", "mutation"],
     parameters: [
       {
         name: "labelId",
@@ -8984,7 +8984,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Archives an initiative.",
     description: "Archives an initiative.",
-    tags: ["mutation"],
+    tags: ["initiative", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -9029,7 +9029,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates an initiative in a workspace where initiatives are enabled. You can assign an owner and lead team at creation. Add projects separately with initiativeToProjectCreate, and build a hierarchy with initiativeRelationCreate.",
     description:
       "Creates an initiative in a workspace where initiatives are enabled. You can assign an owner and lead team at creation. Add projects separately with initiativeToProjectCreate, and build a hierarchy with initiativeRelationCreate.",
-    tags: ["mutation"],
+    tags: ["initiative", "mutation"],
     parameters: [
       {
         name: "input",
@@ -9070,7 +9070,7 @@ export const operations: readonly ManifestOperation[] = [
       "Moves an initiative to the trash instead of immediately deleting it permanently. You can restore it with initiativeUnarchive while it remains available.",
     description:
       "Moves an initiative to the trash instead of immediately deleting it permanently. You can restore it with initiativeUnarchive while it remains available.",
-    tags: ["mutation"],
+    tags: ["initiative", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -9114,7 +9114,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Suggests filters for an initiative view based on a text prompt.",
     description: "Suggests filters for an initiative view based on a text prompt.",
-    tags: ["query"],
+    tags: ["initiative", "query"],
     parameters: [
       {
         name: "teamId",
@@ -9164,7 +9164,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns a single initiative label by its identifier.",
     description: "Returns a single initiative label by its identifier.",
-    tags: ["query"],
+    tags: ["initiative-label", "query"],
     parameters: [
       {
         name: "id",
@@ -9204,7 +9204,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a workspace label or label group for initiatives. Requires workspace label-management permission. Use parentId to place a label in a group.",
     description:
       "Creates a workspace label or label group for initiatives. Requires workspace label-management permission. Use parentId to place a label in a group.",
-    tags: ["mutation"],
+    tags: ["initiative-label", "mutation"],
     parameters: [
       {
         name: "input",
@@ -9243,7 +9243,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes an initiative label and its children, removing their assignments from initiatives.",
     description: "Deletes an initiative label and its children, removing their assignments from initiatives.",
-    tags: ["mutation"],
+    tags: ["initiative-label", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -9286,7 +9286,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Restores a previously retired initiative label, making it available for use on new initiatives.",
     description: "Restores a previously retired initiative label, making it available for use on new initiatives.",
-    tags: ["mutation"],
+    tags: ["initiative-label", "mutation"],
     parameters: [
       {
         name: "id",
@@ -9326,7 +9326,7 @@ export const operations: readonly ManifestOperation[] = [
       "Retires an initiative label. Retired labels remain on existing initiatives but cannot be applied to new ones.",
     description:
       "Retires an initiative label. Retired labels remain on existing initiatives but cannot be applied to new ones.",
-    tags: ["mutation"],
+    tags: ["initiative-label", "mutation"],
     parameters: [
       {
         name: "id",
@@ -9371,7 +9371,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns all initiative labels in the workspace, with optional filtering.",
     description: "Returns all initiative labels in the workspace, with optional filtering.",
-    tags: ["query"],
+    tags: ["initiative-label", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -9509,7 +9509,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes the supplied label fields. Omitted fields stay unchanged. Requires workspace label-management permission.",
     description:
       "Changes the supplied label fields. Omitted fields stay unchanged. Requires workspace label-management permission.",
-    tags: ["mutation"],
+    tags: ["initiative-label", "mutation"],
     parameters: [
       {
         name: "input",
@@ -9558,7 +9558,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns a single initiative relation by its identifier.",
     description: "Returns a single initiative relation by its identifier.",
-    tags: ["query"],
+    tags: ["initiative-relation", "query"],
     parameters: [
       {
         name: "id",
@@ -9598,7 +9598,7 @@ export const operations: readonly ManifestOperation[] = [
       "Adds a child initiative to a parent. Both must be accessible and unarchived, and the workspace must support sub-initiatives. When the new parent overlaps the child’s existing hierarchy, the overlapping parent links are removed as part of the move. Cycles and excessive nesting are rejected.",
     description:
       "Adds a child initiative to a parent. Both must be accessible and unarchived, and the workspace must support sub-initiatives. When the new parent overlaps the child’s existing hierarchy, the overlapping parent links are removed as part of the move. Cycles and excessive nesting are rejected.",
-    tags: ["mutation"],
+    tags: ["initiative-relation", "mutation"],
     parameters: [
       {
         name: "input",
@@ -9639,7 +9639,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes a parent-child link without deleting either initiative. Deleting a link that no longer exists succeeds without making changes; an existing link still requires access to both initiatives.",
     description:
       "Removes a parent-child link without deleting either initiative. Deleting a link that no longer exists succeeds without making changes; an existing link still requires access to both initiatives.",
-    tags: ["mutation"],
+    tags: ["initiative-relation", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -9688,7 +9688,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns all initiative parent-child relations in the workspace.",
     description: "Returns all initiative parent-child relations in the workspace.",
-    tags: ["query"],
+    tags: ["initiative-relation", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -9814,7 +9814,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes a child initiative’s ordering within its parent. The relation’s endpoints remain unchanged. Both initiatives must be visible to you.",
     description:
       "Changes a child initiative’s ordering within its parent. The relation’s endpoints remain unchanged. Both initiatives must be visible to you.",
-    tags: ["mutation"],
+    tags: ["initiative-relation", "mutation"],
     parameters: [
       {
         name: "input",
@@ -9864,7 +9864,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Removes a label from the initiative while keeping its other labels. The label itself is not deleted.",
     description: "Removes a label from the initiative while keeping its other labels. The label itself is not deleted.",
-    tags: ["mutation"],
+    tags: ["initiative", "mutation"],
     parameters: [
       {
         name: "labelId",
@@ -9922,7 +9922,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns initiatives visible to you in the workspace, with optional filtering and sorting. Initiative access follows its lead team when one is assigned.",
     description:
       "Returns initiatives visible to you in the workspace, with optional filtering and sorting. Initiative access follows its lead team when one is assigned.",
-    tags: ["query"],
+    tags: ["initiative", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -10072,7 +10072,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns a single initiative-to-project association by its identifier.",
     description: "Returns a single initiative-to-project association by its identifier.",
-    tags: ["query"],
+    tags: ["initiative-to-project", "query"],
     parameters: [
       {
         name: "id",
@@ -10112,7 +10112,7 @@ export const operations: readonly ManifestOperation[] = [
       "Links an accessible, active project to an accessible, active initiative. Neither may be read-only. The link is rejected if the project is already in that initiative or one of its ancestors or descendants. App users need initiative:write scope.",
     description:
       "Links an accessible, active project to an accessible, active initiative. Neither may be read-only. The link is rejected if the project is already in that initiative or one of its ancestors or descendants. App users need initiative:write scope.",
-    tags: ["mutation"],
+    tags: ["initiative-to-project", "mutation"],
     parameters: [
       {
         name: "input",
@@ -10153,7 +10153,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes an active project-to-initiative link without deleting either entity. Requires access to the association; app users need initiative:write scope.",
     description:
       "Removes an active project-to-initiative link without deleting either entity. Requires access to the association; app users need initiative:write scope.",
-    tags: ["mutation"],
+    tags: ["initiative-to-project", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -10202,7 +10202,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns all initiative-to-project associations in the workspace.",
     description: "Returns all initiative-to-project associations in the workspace.",
-    tags: ["query"],
+    tags: ["initiative-to-project", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -10328,7 +10328,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes the project’s sort order within the initiative. The initiative and project endpoints cannot be changed through this mutation.",
     description:
       "Changes the project’s sort order within the initiative. The initiative and project endpoints cannot be changed through this mutation.",
-    tags: ["mutation"],
+    tags: ["initiative-to-project", "mutation"],
     parameters: [
       {
         name: "input",
@@ -10379,7 +10379,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores an archived or trashed initiative. This makes the existing initiative available again with its saved properties and associations.",
     description:
       "Restores an archived or trashed initiative. This makes the existing initiative available again with its saved properties and associations.",
-    tags: ["mutation"],
+    tags: ["initiative", "mutation"],
     parameters: [
       {
         name: "id",
@@ -10420,7 +10420,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates the supplied fields of an initiative you can access. Omitted fields keep their current values. Changing the lead team can change who can see the initiative, and the owner must be able to access the new team.",
     description:
       "Updates the supplied fields of an initiative you can access. Omitted fields keep their current values. Changing the lead team can change who can see the initiative, and the owner must be able to access the new team.",
-    tags: ["mutation"],
+    tags: ["initiative", "mutation"],
     parameters: [
       {
         name: "input",
@@ -10471,7 +10471,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives an update and recalculates the initiative’s health from the remaining updates. You must be the author or have permission to manage workspace entities. Use initiativeUpdateUnarchive to restore it.",
     description:
       "Archives an update and recalculates the initiative’s health from the remaining updates. You must be the author or have permission to manage workspace entities. Use initiativeUpdateUnarchive to restore it.",
-    tags: ["mutation"],
+    tags: ["initiative-update", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -10516,7 +10516,7 @@ export const operations: readonly ManifestOperation[] = [
       "Publishes an update, records the current user as author, captures the initiative’s projects, and refreshes its health. Provide the written message in input.body.",
     description:
       "Publishes an update, records the current user as author, captures the initiative’s projects, and refreshes its health. Provide the written message in input.body.",
-    tags: ["mutation"],
+    tags: ["initiative-update", "mutation"],
     parameters: [
       {
         name: "input",
@@ -10562,7 +10562,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns all initiative status updates in the workspace, with optional filtering.",
     description: "Returns all initiative status updates in the workspace, with optional filtering.",
-    tags: ["query"],
+    tags: ["initiative-update", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -10699,7 +10699,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores an archived update and recalculates the initiative’s health. You must be the author or have permission to manage workspace entities.",
     description:
       "Restores an archived update and recalculates the initiative’s health. You must be the author or have permission to manage workspace entities.",
-    tags: ["mutation"],
+    tags: ["initiative-update", "mutation"],
     parameters: [
       {
         name: "id",
@@ -10740,7 +10740,7 @@ export const operations: readonly ManifestOperation[] = [
       "Edits an update’s message or health. You must be the author or have permission to manage workspace entities. Editing the latest update while it is less than one hour old also refreshes its project snapshots.",
     description:
       "Edits an update’s message or health. You must be the author or have permission to manage workspace entities. Editing the latest update while it is less than one hour old also refreshes its project snapshots.",
-    tags: ["mutation"],
+    tags: ["initiative-update", "mutation"],
     parameters: [
       {
         name: "input",
@@ -10789,7 +10789,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves an integration by UUID, including archived integrations.",
     description: "Retrieves an integration by UUID, including archived integrations.",
-    tags: ["query"],
+    tags: ["integration", "query"],
     parameters: [
       {
         name: "id",
@@ -10829,7 +10829,7 @@ export const operations: readonly ManifestOperation[] = [
       "Disconnects an integration that supports archiving while retaining its record for a later reconnect. You can archive your own personal connection; workspace connections generally require integration-creation permission. GitHub installation removal and Jira webhook cleanup run in the background, so a successful response can precede the completed disconnection. Services that do not support archiving must use integrationDelete instead.",
     description:
       "Disconnects an integration that supports archiving while retaining its record for a later reconnect. You can archive your own personal connection; workspace connections generally require integration-creation permission. GitHub installation removal and Jira webhook cleanup run in the background, so a successful response can precede the completed disconnection. Services that do not support archiving must use integrationDelete instead.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -10875,7 +10875,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects the public or private Slack channel selected during OAuth to an existing Asks integration. The channel must be in that integration's Slack workspace and must not already be connected. Individual channel connections require full Asks access and permission to manage Asks settings. Check addBot after success and invite the bot manually when true. Direct messages work with Asks without this setup.",
     description:
       "Connects the public or private Slack channel selected during OAuth to an existing Asks integration. The channel must be in that integration's Slack workspace and must not already be connected. Individual channel connections require full Asks access and permission to manage Asks settings. Check addBot after success and invite the bot manually when true. Direct messages work with Asks without this setup.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -10926,7 +10926,7 @@ export const operations: readonly ManifestOperation[] = [
       "Disconnects an integration that supports deletion and removes its connection record. You can remove your own personal connection; workspace connections require integration-creation permission, and team, project, or view connections follow the permissions for that resource. Some services finish external cleanup in the background, so success does not guarantee that cleanup has finished. Services that retain a record for reconnecting must use integrationArchive instead.",
     description:
       "Disconnects an integration that supports deletion and removes its connection record. You can remove your own personal connection; workspace connections require integration-creation permission, and team, project, or view connections follow the permissions for that resource. Some services finish external cleanup in the background, so success does not guarantee that cleanup has finished. Services that retain a record for reconnecting must use integrationArchive instead.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -10983,7 +10983,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects a Discord server using the OAuth code and redirect URI from its authorization flow, and links the authorizing Discord user to your Linear account. A Linear workspace can have one Discord connection, and the Discord server cannot already belong to another Linear workspace's connection.",
     description:
       "Connects a Discord server using the OAuth code and redirect URI from its authorization flow, and links the authorizing Discord user to your Linear account. A Linear workspace can have one Discord connection, and the Discord server cannot already belong to another Linear workspace's connection.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -11034,7 +11034,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects Figma using an OAuth authorization code and its redirect URI, storing the credentials needed for the workspace integration. The workspace cannot already have an active Figma connection.",
     description:
       "Connects Figma using an OAuth authorization code and its redirect URI, storing the credentials needed for the workspace integration. The workspace cannot already have an active Figma connection.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -11085,7 +11085,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects Front using an OAuth grant. Requires the workspace's support integration plan feature and no existing Front connection. New connections initially reopen linked Front conversations when a Linear issue is completed or canceled; comments do not trigger reopening by default.",
     description:
       "Connects Front using an OAuth grant. Requires the workspace's support integration plan feature and no existing Front connection. New connections initially reopen linked Front conversations when a Linear issue is completed or canceled; comments do not trigger reopening by default.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -11133,7 +11133,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates the workspace's GitHub commit integration and returns its webhook secret. Use the secret when configuring the webhook in GitHub; creating this record alone does not configure GitHub to send events.",
     description:
       "Creates the workspace's GitHub commit integration and returns its webhook secret. Use the secret when configuring the webhook in GitHub; creating this record alone does not configure GitHub to send events.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -11161,7 +11161,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects a GitHub App installation to the workspace using its installation ID and OAuth grant. If replacing a connection would make repositories used by GitHub Issues sync inaccessible, the call stops and returns gitHub.lostRepositoryNames. Review that list, then repeat with confirmReplace set to true to accept the change. GitHub Enterprise Cloud connections require the corresponding workspace plan feature.",
     description:
       "Connects a GitHub App installation to the workspace using its installation ID and OAuth grant. If replacing a connection would make repositories used by GitHub Issues sync inaccessible, the call stops and returns gitHub.lostRepositoryNames. Review that list, then repeat with confirmReplace set to true to accept the change. GitHub Enterprise Cloud connections require the corresponding workspace plan feature.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "confirmReplace",
@@ -11249,7 +11249,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts a GitHub Enterprise Server connection for a GitHub organization or personal account. Open setupUrl to register the app, configure it with webhookSecret, then use installUrl to install it. Call verifyGitHubEnterpriseServerInstallation to check that the app has connected. Success here means the setup record was saved, not that installation is complete. An archived connection for the same organization is reused.",
     description:
       "Starts a GitHub Enterprise Server connection for a GitHub organization or personal account. Open setupUrl to register the app, configure it with webhookSecret, then use installUrl to install it. Call verifyGitHubEnterpriseServerInstallation to check that the app has connected. Success here means the setup record was saved, not that installation is complete. An archived connection for the same organization is reused.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "organizationName",
@@ -11300,7 +11300,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects the GitHub Import App installation authorized by the supplied OAuth code. This creates the connection used to discover repositories for import; it does not import issues by itself.",
     description:
       "Connects the GitHub Import App installation authorized by the supplied OAuth code. This creates the connection used to discover repositories for import; it does not import issues by itself.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "code",
@@ -11350,7 +11350,7 @@ export const operations: readonly ManifestOperation[] = [
       "Queues a refresh of repositories and labels available to a GitHub import integration. Success confirms scheduling.",
     description:
       "Queues a refresh of repositories and labels available to a GitHub import integration. Success confirms scheduling.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "id",
@@ -11392,7 +11392,7 @@ export const operations: readonly ManifestOperation[] = [
       "Links your GitHub account using an OAuth code from Linear's GitHub App authorization flow. codeAccess selects the app with repository code access and defaults to false. This is a personal account connection; connecting a workspace's GitHub App installation uses integrationGithubConnect.",
     description:
       "Links your GitHub account using an OAuth code from Linear's GitHub App authorization flow. codeAccess selects the app with repository code access and defaults to false. This is a personal account connection; connecting a workspace's GitHub App installation uses integrationGithubConnect.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "enterpriseUrl",
@@ -11454,7 +11454,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes repository code access from a GitHub connection. Check action in the response: Done means the change is complete, while InstallBasicApp means you need to finish installing the basic GitHub App before setup is complete.",
     description:
       "Removes repository code access from a GitHub connection. Check action in the response: Done means the change is complete, while InstallBasicApp means you need to finish installing the basic GitHub App before setup is complete.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "integrationId",
@@ -11499,7 +11499,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects a GitLab instance after checking its access token. Configure the GitLab webhook with the returned webhookSecret after a successful response. Only one GitLab connection is allowed per workspace. Token or connectivity failures return success=false and diagnostic error fields instead of creating a connection.",
     description:
       "Connects a GitLab instance after checking its access token. Configure the GitLab webhook with the returned webhookSecret after a successful response. Only one GitLab connection is allowed per workspace. Token or connectivity failures return success=false and diagnostic error fields instead of creating a connection.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "accessToken",
@@ -11590,7 +11590,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Rotates the GitLab token, revoking the previous token and saving its replacement.",
     description: "Rotates the GitLab token, revoking the previous token and saving its replacement.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "integrationId",
@@ -11630,7 +11630,7 @@ export const operations: readonly ManifestOperation[] = [
       "Tests the stored access token against a self-hosted GitLab instance, using the validation project when one is configured. A successful check clears the connection's authentication and transient failure state. On failure, inspect success and the error fields for provider or proxy diagnostics. This mutation does not support the GitLab.com OAuth connection.",
     description:
       "Tests the stored access token against a self-hosted GitLab instance, using the validation project when one is configured. A successful check clears the connection's authentication and transient failure state. On failure, inspect success and the error fields for provider or proxy diagnostics. This mutation does not support the GitLab.com OAuth connection.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "integrationId",
@@ -11669,7 +11669,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Enables or disables automatic self-rotation of the GitLab token.",
     description: "Enables or disables automatic self-rotation of the GitLab token.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "enabled",
@@ -11722,7 +11722,7 @@ export const operations: readonly ManifestOperation[] = [
       "Replaces a GitLab integration's access token after validating the replacement against its existing host and validation project. The connection and webhook stay in place. Supply readonly and expiresAt when the instance cannot report that token information.",
     description:
       "Replaces a GitLab integration's access token after validating the replacement against its existing host and validation project. The connection and webhook stay in place. Supply readonly and expiresAt when the instance cannot report that token information.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "expiresAt",
@@ -11797,7 +11797,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects Gong using an OAuth authorization code and its redirect URI. Requires the workspace's Gong integration plan feature and integration-creation permission. The workspace cannot already have an active Gong connection.",
     description:
       "Connects Gong using an OAuth authorization code and its redirect URI. Requires the workspace's Gong integration plan feature and integration-creation permission. The workspace cannot already have an active Gong connection.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -11847,7 +11847,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects Google Sheets using an OAuth grant that includes both access and refresh tokens. The workspace can have one active Google Sheets connection. This call saves the connection; use refreshGoogleSheetsData to request an export refresh.",
     description:
       "Connects Google Sheets using an OAuth grant that includes both access and refresh tokens. The workspace can have one active Google Sheets connection. This call saves the connection; use refreshGoogleSheetsData to request an export refresh.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "code",
@@ -11888,7 +11888,7 @@ export const operations: readonly ManifestOperation[] = [
       "Checks whether an active integration has every requested OAuth scope recorded on its connection. Use missingScopes to decide whether to request another authorization grant. This does not contact the provider or verify that the current token still works.",
     description:
       "Checks whether an active integration has every requested OAuth scope recorded on its connection. Use missingScopes to decide whether to request another authorization grant. This does not contact the provider or verify that the current token still works.",
-    tags: ["query"],
+    tags: ["integration", "query"],
     parameters: [
       {
         name: "scopes",
@@ -11943,7 +11943,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects an Intercom workspace using an OAuth code and the redirect URI used during authorization. The workspace needs access to the support integration plan feature. Reconnecting the same Intercom workspace refreshes credentials and keeps its settings; disconnect first to switch to a different Intercom workspace. An Intercom workspace cannot be connected to another Linear workspace at the same time.",
     description:
       "Connects an Intercom workspace using an OAuth code and the redirect URI used during authorization. The workspace needs access to the support integration plan feature. Reconnecting the same Intercom workspace refreshes credentials and keeps its settings; disconnect first to switch to a different Intercom workspace. An Intercom workspace cannot be connected to another Linear workspace at the same time.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "domainUrl",
@@ -12004,7 +12004,7 @@ export const operations: readonly ManifestOperation[] = [
       "Uninstalls the Intercom connection and removes its Linear record. It also completes local cleanup when access was already revoked in Intercom. Calling this after the Linear connection has been removed returns an error.",
     description:
       "Uninstalls the Intercom connection and removes its Linear record. It also completes local cleanup when access was already revoked in Intercom. Calling this after the Linear connection has been removed returns an error.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -12031,7 +12031,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "[DEPRECATED] Updates settings on the Intercom integration.",
     description: "[DEPRECATED] Updates settings on the Intercom integration.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     deprecated: true,
     parameters: [
       {
@@ -12075,7 +12075,7 @@ export const operations: readonly ManifestOperation[] = [
       "Links your Jira account to an existing workspace Jira integration. Supply either the OAuth authorization code for Jira Cloud or a personal access token for Jira Server. When the workspace has more than one possible Jira connection, supply workspaceIntegrationId to choose which one to link.",
     description:
       "Links your Jira account to an existing workspace Jira integration. Supply either the OAuth authorization code for Jira Cloud or a personal access token for Jira Server. When the workspace has more than one possible Jira connection, supply workspaceIntegrationId to choose which one to link.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "workspaceIntegrationId",
@@ -12136,7 +12136,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Enables Loom integration for the workspace.",
     description: "Enables Loom integration for the workspace.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     deprecated: true,
     parameters: [],
     response: {
@@ -12162,7 +12162,7 @@ export const operations: readonly ManifestOperation[] = [
       "Links your Microsoft account to Linear. Its tenant must already be connected through a workspace Microsoft Teams integration. Reconnecting the same account refreshes credentials when the existing personal connection has an authentication error; otherwise, disconnect the existing personal connection before linking another account.",
     description:
       "Links your Microsoft account to Linear. Its tenant must already be connected through a workspace Microsoft Teams integration. Reconnecting the same account refreshes credentials when the existing personal connection has an authentication error; otherwise, disconnect the existing personal connection before linking another account.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -12213,7 +12213,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects the Microsoft tenant identified by the OAuth grant to this Linear workspace. An archived connection to the same tenant is restored. Multiple tenants require the corresponding plan feature, and a tenant cannot be actively connected to another Linear workspace. Personal Microsoft accounts are linked separately with integrationMicrosoftPersonalConnect.",
     description:
       "Connects the Microsoft tenant identified by the OAuth grant to this Linear workspace. An archived connection to the same tenant is restored. Multiple tenants require the corresponding plan feature, and a tenant cannot be actively connected to another Linear workspace. Personal Microsoft accounts are linked separately with integrationMicrosoftPersonalConnect.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -12263,7 +12263,7 @@ export const operations: readonly ManifestOperation[] = [
       "Records interest in an integration that is not currently available. No authentication is required, and this does not create an integration or start an installation. Success means the request was accepted for analytics; it does not promise that the integration will be built.",
     description:
       "Records interest in an integration that is not currently available. No authentication is required, and this does not create an integration or start an installation. Success means the request was accepted for analytics; it does not promise that the integration will be built.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "input",
@@ -12308,7 +12308,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Integrations accessible to the caller, with cursor-based pagination.",
     description: "Integrations accessible to the caller, with cursor-based pagination.",
-    tags: ["query"],
+    tags: ["integration", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -12436,7 +12436,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects Salesforce using an OAuth grant and verifies that the authorizing user can access the Linear managed package, including its required license. Requires the workspace's enterprise integration plan feature. Reconnecting an active connection to the same subdomain refreshes credentials while keeping settings and templates; restoring an archived connection runs setup again. Disconnect first to switch to a different Salesforce subdomain.",
     description:
       "Connects Salesforce using an OAuth grant and verifies that the authorizing user can access the Linear managed package, including its required license. Requires the workspace's enterprise integration plan feature. Reconnecting an active connection to the same subdomain refreshes credentials while keeping settings and templates; restoring an archived connection runs setup again. Disconnect first to switch to a different Salesforce subdomain.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "code",
@@ -12509,7 +12509,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects a Sentry installation by exchanging its grant code and confirming installation with Sentry. The workspace can have one active Sentry connection. The new connection initially enables completing linked Linear issues when Sentry issues are resolved and reopening them when Sentry issues are unresolved.",
     description:
       "Connects a Sentry installation by exchanging its grant code and confirming installation with Sentry. The workspace can have one active Sentry connection. The new connection initially enables completing linked Linear issues when Sentry issues are resolved and reopening them when Sentry issues are unresolved.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "code",
@@ -12562,7 +12562,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects a Slack workspace to the main Linear Slack app using an OAuth grant. Reconnecting an archived connection restores it with fresh credentials. Connecting multiple Slack workspaces requires the corresponding plan feature; the same Slack workspace cannot have two active connections or belong to another Linear workspace's connection.",
     description:
       "Connects a Slack workspace to the main Linear Slack app using an OAuth grant. Reconnecting an archived connection restores it with fresh credentials. Connecting multiple Slack workspaces requires the corresponding plan feature; the same Slack workspace cannot have two active connections or belong to another Linear workspace's connection.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "requestedScopes",
@@ -12641,7 +12641,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects a Slack workspace to the Linear Asks app for issue intake. Requires a workspace plan with Asks access. An archived connection to the same Slack workspace is restored with fresh credentials. Multiple Slack workspaces require the corresponding plan feature, and each Slack workspace can be connected to Asks in only one Linear workspace.",
     description:
       "Connects a Slack workspace to the Linear Asks app for issue intake. Requires a workspace plan with Asks access. An archived connection to the same Slack workspace is restored with fresh credentials. Multiple Slack workspaces require the corresponding plan feature, and each Slack workspace can be connected to Asks in only one Linear workspace.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "requestedScopes",
@@ -12709,7 +12709,7 @@ export const operations: readonly ManifestOperation[] = [
       "Links a customer to a public or private Slack channel in a connected Asks workspace. Both the customer and channel must be unlinked.",
     description:
       "Links a customer to a public or private Slack channel in a connected Asks workspace. Both the customer and channel must be unlinked.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -12772,7 +12772,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects the Slack channel selected during OAuth to a custom view and creates default notification settings if needed. You must be able to edit the view, and the view cannot already have this type of Slack connection. Check the response for remaining bot or workspace setup.",
     description:
       "Connects the Slack channel selected during OAuth to a custom view and creates default notification settings if needed. You must be able to edit the view, and the view cannot already have this type of Slack connection. Check the response for remaining bot or workspace setup.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -12832,7 +12832,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Queues an import of custom emoji from Slack using the OAuth grant. Success confirms scheduling.",
     description: "Queues an import of custom emoji from Slack using the OAuth grant. Success confirms scheduling.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -12882,7 +12882,7 @@ export const operations: readonly ManifestOperation[] = [
       "Fetches the current Slack workspace name and updates the name stored on an active Slack or Asks integration. This refreshes Linear's display name; it does not rename the workspace in Slack. A valid integration token is required.",
     description:
       "Fetches the current Slack workspace name and updates the name stored on an active Slack or Asks integration. This refreshes Linear's display name; it does not rename the workspace in Slack. A valid integration token is required.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "integrationId",
@@ -12924,7 +12924,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects the Slack channel selected during OAuth to receive project updates from across the workspace. Requires integration-management permission. Check addBot and the nudge fields in the response for any remaining Slack setup.",
     description:
       "Connects the Slack channel selected during OAuth to receive project updates from across the workspace. Requires integration-management permission. Check addBot and the nudge fields in the response for any remaining Slack setup.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -12975,7 +12975,7 @@ export const operations: readonly ManifestOperation[] = [
       "Links your Slack account for personal notifications and opens a direct message with the Linear app. The Slack workspace must already have a Slack or Asks connection. You can have one active personal Slack connection, and the same Slack account cannot be linked to another user in this Linear workspace. An archived connection owned by you can be restored.",
     description:
       "Links your Slack account for personal notifications and opens a direct message with the Linear app. The Slack workspace must already have a Slack or Asks connection. You can have one active personal Slack connection, and the same Slack account cannot be linked to another user in this Linear workspace. An archived connection owned by you can be restored.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -13029,7 +13029,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects the Slack channel selected during OAuth to a Linear team and creates its default notification settings if needed. Requires permission to manage the team, and each team can have one such connection. Direct messages are not supported. Check addBot and the nudge fields in the response for any remaining Slack setup.",
     description:
       "Connects the Slack channel selected during OAuth to a Linear team and creates its default notification settings if needed. Requires permission to manage the team, and each team can have one such connection. Direct messages are not supported. Check addBot and the nudge fields in the response for any remaining Slack setup.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "shouldUseV2Auth",
@@ -13106,7 +13106,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects the Slack channel selected during OAuth to a project you can access. Choose notifications for project notifications or updates for project updates; each service can have one connection per project. The call also links the channel to the project and creates default notification settings if needed. Check the response for remaining bot or workspace setup.",
     description:
       "Connects the Slack channel selected during OAuth to a project you can access. Choose notifications for project notifications or updates for project updates; each service can have one connection per project. The call also links the channel to the project and creates default notification settings if needed. Check the response for remaining bot or workspace setup.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "service",
@@ -13177,7 +13177,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves a specific integration settings configuration by its identifier.",
     description: "Retrieves a specific integration settings configuration by its identifier.",
-    tags: ["query"],
+    tags: ["integrations-settings", "query"],
     parameters: [
       {
         name: "id",
@@ -13217,7 +13217,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates notification preferences for a destination you can access, with edit permission required for custom views. Supply exactly one team, project, initiative, or view. Settings must not already exist for that destination and, for team settings, context view; use integrationsSettingsUpdate when they do. An app writing initiative preferences also needs initiative:write scope.",
     description:
       "Creates notification preferences for a destination you can access, with edit permission required for custom views. Supply exactly one team, project, initiative, or view. Settings must not already exist for that destination and, for team settings, context view; use integrationsSettingsUpdate when they do. An app writing initiative preferences also needs initiative:write scope.",
-    tags: ["mutation"],
+    tags: ["integrations-settings", "mutation"],
     parameters: [
       {
         name: "input",
@@ -13259,7 +13259,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates the event preferences on an existing integration settings record. Only supplied booleans change, and the destination stays the same. Custom-view settings require permission to edit the view; apps changing initiative settings need initiative:write scope. For older settings that combined update and comment notifications, the first edit preserves the previous comment preference independently.",
     description:
       "Updates the event preferences on an existing integration settings record. Only supplied booleans change, and the destination stays the same. Custom-view settings require permission to edit the view; apps changing initiative settings need initiative:write scope. For older settings that combined update and comment notifications, the first edit preserves the previous comment preference independently.",
-    tags: ["mutation"],
+    tags: ["integrations-settings", "mutation"],
     parameters: [
       {
         name: "input",
@@ -13308,7 +13308,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves a single integration template connection by its identifier.",
     description: "Retrieves a single integration template connection by its identifier.",
-    tags: ["query"],
+    tags: ["integration-template", "query"],
     parameters: [
       {
         name: "id",
@@ -13348,7 +13348,7 @@ export const operations: readonly ManifestOperation[] = [
       "Makes an issue template available through Slack Asks, Slack, Intercom, Zendesk, or Salesforce. Slack Asks requires permission to manage Asks, a connected intake destination, and a team template; linking the template enables triage for that team. Other supported integrations require integration-management permission and accept up to ten templates. Private-team templates are supported only by Slack Asks.",
     description:
       "Makes an issue template available through Slack Asks, Slack, Intercom, Zendesk, or Salesforce. Slack Asks requires permission to manage Asks, a connected intake destination, and a team template; linking the template enables triage for that team. Other supported integrations require integration-management permission and accept up to ten templates. Private-team templates are supported only by Slack Asks.",
-    tags: ["mutation"],
+    tags: ["integration-template", "mutation"],
     parameters: [
       {
         name: "input",
@@ -13389,7 +13389,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes a template's link to an integration or intake destination. The template itself and the integration remain available. Requires permission to manage the Asks integration for Slack Asks, or integration-management permission for other services.",
     description:
       "Removes a template's link to an integration or intake destination. The template itself and the integration remain available. Requires permission to manage the Asks integration for Slack Asks, or integration-management permission for other services.",
-    tags: ["mutation"],
+    tags: ["integration-template", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -13438,7 +13438,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All integration template connections for the workspace, linking templates to integrations.",
     description: "All integration template connections for the workspace, linking templates to integrations.",
-    tags: ["query"],
+    tags: ["integration-template", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -13570,7 +13570,7 @@ export const operations: readonly ManifestOperation[] = [
       "Connects Zendesk using an OAuth grant and creates or selects the user that authors internal notes. Requires the workspace's support integration plan feature. Reconnecting the same subdomain refreshes credentials and keeps existing settings; an archived connection is restored. Disconnect the current integration before switching to a different Zendesk subdomain.",
     description:
       "Connects Zendesk using an OAuth grant and creates or selects the user that authors internal notes. Requires the workspace's support integration plan feature. Reconnecting the same subdomain refreshes credentials and keeps existing settings; an archived connection is restored. Disconnect the current integration before switching to a different Zendesk subdomain.",
-    tags: ["mutation"],
+    tags: ["integration", "mutation"],
     parameters: [
       {
         name: "subdomain",
@@ -13698,7 +13698,7 @@ export const operations: readonly ManifestOperation[] = [
       "Finds an issue by UUID or a human-readable identifier such as ENG-123. Archived issues can also be returned. The query fails if the issue does not exist or you cannot access it.",
     description:
       "Finds an issue by UUID or a human-readable identifier such as ENG-123. Archived issues can also be returned. The query fails if the issue does not exist or you cannot access it.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     parameters: [
       {
         name: "id",
@@ -13739,7 +13739,7 @@ export const operations: readonly ManifestOperation[] = [
       "Add a label without replacing the issue’s existing labels. The label must be available to the issue’s team.",
     description:
       "Add a label without replacing the issue’s existing labels. The label must be available to the issue’s team.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "labelId",
@@ -13790,7 +13790,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives an issue and its sub-issues, keeping their data available for later restoration. Archived issues are excluded from normal issue lists. Pass trash only when you want the deletion grace period to apply instead.",
     description:
       "Archives an issue and its sub-issues, keeping their data available for later restoration. Archived issues are excluded from normal issue lists. Pass trash only when you want the deletion grace period to apply instead.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -13846,7 +13846,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates one to 50 issues in a single batch. If any creation fails, none of the issues in the batch are saved. Put parent inputs before their sub-issues and supply parent UUIDs to connect issues created in the same batch.",
     description:
       "Creates one to 50 issues in a single batch. If any creation fails, none of the issues in the batch are saved. Put parent inputs before their sub-issues and supply parent UUIDs to connect issues created in the same batch.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "input",
@@ -13888,7 +13888,7 @@ export const operations: readonly ManifestOperation[] = [
       "Applies the same update input to one to 50 issues. The batch runs as one transaction, so a failed update rolls back the other updates. Use the returned issues to read the resulting values.",
     description:
       "Applies the same update input to one to 50 issues. The batch runs as one transaction, so a failed update rolls back the other updates. Use the returned issues to read the resulting values.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "input",
@@ -13942,7 +13942,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates an issue in the chosen team and returns it with its assigned identifier. You can supply a template to populate defaults and create any sub-issues it defines. Team settings and automation may set values such as the initial status, assignee, and cycle.",
     description:
       "Creates an issue in the chosen team and returns it with its assigned identifier. You can supply a template to populate defaults and create any sub-issues it defines. Team settings and automation may set values such as the initial status, assignee, and cycle.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "input",
@@ -13984,7 +13984,7 @@ export const operations: readonly ManifestOperation[] = [
       "Moves an issue to the trash and trashes its unarchived sub-issues that you can access. Trashed issues can be restored during the 30-day grace period; permanentlyDelete skips that period and requires workspace entity-management permission.",
     description:
       "Moves an issue to the trash and trashes its unarchived sub-issues that you can access. Trashed issues can be restored during the 30-day grace period; permanentlyDelete skips that period and requires workspace entity-management permission.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -14040,7 +14040,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Stop syncing an issue with the Jira or GitHub integration identified by its sync attachment.",
     description: "Stop syncing an issue with the Jira or GitHub integration identified by its sync attachment.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "attachmentId",
@@ -14085,7 +14085,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Find issues that are related to a given Figma file key.",
     description: "Find issues that are related to a given Figma file key.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -14220,7 +14220,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Suggests filters for an issue view based on a text prompt.",
     description: "Suggests filters for an issue view based on a text prompt.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     parameters: [
       {
         name: "teamId",
@@ -14281,7 +14281,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Validate a Jira CSV uploaded to the workspace. Invalid files return an error.",
     description: "Validate a Jira CSV uploaded to the workspace. Invalid files return an error.",
-    tags: ["query"],
+    tags: ["issue-import", "query"],
     parameters: [
       {
         name: "csvUrl",
@@ -14331,7 +14331,7 @@ export const operations: readonly ManifestOperation[] = [
       "Checks whether a GitHub or Jira import can continue syncing with its source after import. A false result includes an explanation when available; other services return canSync: false. This check does not enable sync.",
     description:
       "Checks whether a GitHub or Jira import can continue syncing with its source after import. A false result includes an explanation when available; other services return canSync: false. This check does not enable sync.",
-    tags: ["query"],
+    tags: ["issue-import", "query"],
     parameters: [
       {
         name: "issueImportId",
@@ -14378,7 +14378,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts fetching Asana tasks into an asynchronous import job. Choose an existing destination team or a new team name. Configure the fetched data and call issueImportProcess to create Linear records.",
     description:
       "Starts fetching Asana tasks into an asynchronous import job. Choose an existing destination team or a new team name. Configure the fetched data and call issueImportProcess to create Linear records.",
-    tags: ["mutation"],
+    tags: ["issue-import", "mutation"],
     parameters: [
       {
         name: "teamId",
@@ -14507,7 +14507,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts fetching stories from Shortcut, whose legacy API name is clubhouse, into an asynchronous import job. Choose an existing destination team or a new team name. Configure the fetched data and call issueImportProcess to create Linear records.",
     description:
       "Starts fetching stories from Shortcut, whose legacy API name is clubhouse, into an asynchronous import job. Choose an existing destination team or a new team name. Configure the fetched data and call issueImportProcess to create Linear records.",
-    tags: ["mutation"],
+    tags: ["issue-import", "mutation"],
     parameters: [
       {
         name: "teamId",
@@ -14619,7 +14619,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates an asynchronous import from a Jira CSV already uploaded to the workspace’s import storage. Choose an existing destination team or a new team name. The response accepts the job; it does not mean the imported records are ready.",
     description:
       "Creates an asynchronous import from a Jira CSV already uploaded to the workspace’s import storage. Choose an existing destination team or a new team name. The response accepts the job; it does not mean the imported records are ready.",
-    tags: ["mutation"],
+    tags: ["issue-import", "mutation"],
     parameters: [
       {
         name: "teamId",
@@ -14719,7 +14719,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts fetching GitHub issues into an asynchronous import job. Choose an existing destination team or provide a name for a new one, and repositories the workspace can import from. After fetching and configuration, use issueImportProcess to create the Linear records. Requires workspace import permission.",
     description:
       "Starts fetching GitHub issues into an asynchronous import job. Choose an existing destination team or provide a name for a new one, and repositories the workspace can import from. After fetching and configuration, use issueImportProcess to create the Linear records. Requires workspace import permission.",
-    tags: ["mutation"],
+    tags: ["issue-import", "mutation"],
     parameters: [
       {
         name: "teamId",
@@ -14837,7 +14837,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts fetching Jira issues into an asynchronous import job. Choose an existing destination team or a new team name and the source Jira project. After fetching and configuration, use issueImportProcess to create the Linear records. Requires workspace import permission.",
     description:
       "Starts fetching Jira issues into an asynchronous import job. Choose an existing destination team or a new team name and the source Jira project. After fetching and configuration, use issueImportProcess to create the Linear records. Requires workspace import permission.",
-    tags: ["mutation"],
+    tags: ["issue-import", "mutation"],
     parameters: [
       {
         name: "teamId",
@@ -14975,7 +14975,7 @@ export const operations: readonly ManifestOperation[] = [
       "Schedules deletion of an import and the data it created, then returns the job with status deleting. This is available within 14 days for eligible imports awaiting configuration, completed imports, or failed imports. You must be the creator or an admin with the destination team’s deletion permission, and another import from the same service must not be processing.",
     description:
       "Schedules deletion of an import and the data it created, then returns the job with status deleting. This is available within 14 days for eligible imports awaiting configuration, completed imports, or failed imports. You must be the creator or an admin with the destination team’s deletion permission, and another import from the same service must not be processing.",
-    tags: ["mutation"],
+    tags: ["issue-import", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -15022,7 +15022,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Validate JQL within the specified Jira project and return an approximate match count.",
     description: "Validate JQL within the specified Jira project and return an approximate match count.",
-    tags: ["query"],
+    tags: ["issue-import", "query"],
     parameters: [
       {
         name: "jiraHostname",
@@ -15103,7 +15103,7 @@ export const operations: readonly ManifestOperation[] = [
       "Saves the supplied mappings and schedules creation of Linear records from the fetched source data. The import must be inProgress; otherwise the mappings are saved but success is false. A successful response means processing was accepted, not that it has finished. Linear-to-Linear migrations can only be managed from the Linear app.",
     description:
       "Saves the supplied mappings and schedules creation of Linear records from the fetched source data. The import must be inProgress; otherwise the mappings are saved but success is false. A successful response means processing was accepted, not that it has finished. Linear-to-Linear migrations can only be managed from the Linear app.",
-    tags: ["mutation"],
+    tags: ["issue-import", "mutation"],
     parameters: [
       {
         name: "mapping",
@@ -15154,7 +15154,7 @@ export const operations: readonly ManifestOperation[] = [
       "Saves mapping choices without starting the import. For external-service imports, supply the full replacement mapping. Requires workspace import permission; Linear-to-Linear migrations can only be managed from the Linear app.",
     description:
       "Saves mapping choices without starting the import. For external-service imports, supply the full replacement mapping. Requires workspace import permission; Linear-to-Linear migrations can only be managed from the Linear app.",
-    tags: ["mutation"],
+    tags: ["issue-import", "mutation"],
     parameters: [
       {
         name: "input",
@@ -15204,7 +15204,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "A label by UUID, including archived labels.",
     description: "A label by UUID, including archived labels.",
-    tags: ["query"],
+    tags: ["issue-label", "query"],
     parameters: [
       {
         name: "id",
@@ -15243,7 +15243,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Create a workspace or team label. Requires permission to manage labels in its scope.",
     description: "Create a workspace or team label. Requires permission to manage labels in its scope.",
-    tags: ["mutation"],
+    tags: ["issue-label", "mutation"],
     parameters: [
       {
         name: "replaceTeamLabels",
@@ -15297,7 +15297,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes a label and its inherited copies. Assignments to that label are removed from issues in the background, so they may remain visible briefly after the mutation succeeds. Retire a label instead if you want to preserve its existing assignments.",
     description:
       "Deletes a label and its inherited copies. Assignments to that label are removed from issues in the background, so they may remain visible briefly after the mutation succeeds. Retire a label instead if you want to preserve its existing assignments.",
-    tags: ["mutation"],
+    tags: ["issue-label", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -15342,7 +15342,7 @@ export const operations: readonly ManifestOperation[] = [
       "Makes a retired label available for new assignments again. Existing issue assignments are preserved. Restoring a group also restores its child labels.",
     description:
       "Makes a retired label available for new assignments again. Existing issue assignments are preserved. Restoring a group also restores its child labels.",
-    tags: ["mutation"],
+    tags: ["issue-label", "mutation"],
     parameters: [
       {
         name: "id",
@@ -15382,7 +15382,7 @@ export const operations: readonly ManifestOperation[] = [
       "Retires a label so it cannot be newly assigned, while keeping it on issues that already use it. Retiring a group also retires its children. Use issueLabelRestore to make the label available again.",
     description:
       "Retires a label so it cannot be newly assigned, while keeping it on issues that already use it. Retiring a group also retires its children. Use issueLabelRestore to make the label available again.",
-    tags: ["mutation"],
+    tags: ["issue-label", "mutation"],
     parameters: [
       {
         name: "id",
@@ -15427,7 +15427,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Workspace and team labels the caller can access, with cursor pagination and optional filters.",
     description: "Workspace and team labels the caller can access, with cursor pagination and optional filters.",
-    tags: ["query"],
+    tags: ["issue-label", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -15566,7 +15566,7 @@ export const operations: readonly ManifestOperation[] = [
       "Update a label. Requires permission to manage labels in its scope; inherited labels must be edited at their source.",
     description:
       "Update a label. Requires permission to manage labels in its scope; inherited labels must be edited at their source.",
-    tags: ["mutation"],
+    tags: ["issue-label", "mutation"],
     parameters: [
       {
         name: "replaceTeamLabels",
@@ -15626,7 +15626,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Issue priority values and corresponding labels.",
     description: "Issue priority values and corresponding labels.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -15648,7 +15648,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "One specific issue relation, looked up by its unique identifier.",
     description: "One specific issue relation, looked up by its unique identifier.",
-    tags: ["query"],
+    tags: ["issue-relation", "query"],
     parameters: [
       {
         name: "id",
@@ -15689,7 +15689,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a relationship between two issues, replacing any conflicting relation between the pair and reusing an identical one. A duplicate relation closes the source as a duplicate of the target and can move linked customer requests to the target. You must have access to both issues and any permissions required for the merge.",
     description:
       "Creates a relationship between two issues, replacing any conflicting relation between the pair and reusing an identical one. A duplicate relation closes the source as a duplicate of the target and can move linked customer requests to the target. You must have access to both issues and any permissions required for the merge.",
-    tags: ["mutation"],
+    tags: ["issue-relation", "mutation"],
     parameters: [
       {
         name: "overrideCreatedAt",
@@ -15741,7 +15741,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes a relation by its UUID. Removing a duplicate relation also runs the unmerge behavior, including moving customer requests back to the original issue when applicable.",
     description:
       "Removes a relation by its UUID. Removing a duplicate relation also runs the unmerge behavior, including moving customer requests back to the original issue when applicable.",
-    tags: ["mutation"],
+    tags: ["issue-relation", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -15790,7 +15790,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Issue relations the caller can access, with cursor pagination.",
     description: "Issue relations the caller can access, with cursor pagination.",
-    tags: ["query"],
+    tags: ["issue-relation", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -15916,7 +15916,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes a relation’s type or the issues it connects. Omitted fields are unchanged, and an issue cannot relate to itself. Changing to or from duplicate also applies the corresponding merge or unmerge behavior.",
     description:
       "Changes a relation’s type or the issues it connects. Omitted fields are unchanged, and an issue cannot relate to itself. Changing to or from duplicate also applies the corresponding merge or unmerge behavior.",
-    tags: ["mutation"],
+    tags: ["issue-relation", "mutation"],
     parameters: [
       {
         name: "input",
@@ -15968,7 +15968,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a reminder notification for you at reminderAt. The time must be in the future, and existing reminders for this issue are replaced. The payload returns success without an issue object.",
     description:
       "Creates a reminder notification for you at reminderAt. The time must be in the future, and existing reminders for this issue are replaced. The payload returns success without an issue object.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "reminderAt",
@@ -16017,7 +16017,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Remove one label while keeping the issue’s other labels.",
     description: "Remove one label while keeping the issue’s other labels.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "labelId",
@@ -16067,7 +16067,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns code repositories that are most likely to be relevant for implementing an issue.",
     description: "Returns code repositories that are most likely to be relevant for implementing an issue.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     parameters: [
       {
         name: "agentSessionId",
@@ -16142,7 +16142,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists issues you can access. Use filter to narrow the results by team, assignee, status, labels, project, or cycle, and cursor arguments to fetch subsequent pages. Archived issues are excluded unless includeArchived is true.",
     description:
       "Lists issues you can access. Use filter to narrow the results by team, assignee, status, labels, project, or cycle, and cursor arguments to fetch subsequent pages. Archived issues are excluded unless includeArchived is true.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -16302,7 +16302,7 @@ export const operations: readonly ManifestOperation[] = [
       "[DEPRECATED] Search issues. This endpoint is deprecated and will be removed in the future – use `searchIssues` instead.",
     description:
       "[DEPRECATED] Search issues. This endpoint is deprecated and will be removed in the future – use `searchIssues` instead.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -16451,7 +16451,7 @@ export const operations: readonly ManifestOperation[] = [
       "Shares an issue with a user who would not otherwise be able to access it. The viewer must have native access to the issue's full sub-issue tree and permission to share issues in the issue's team. Issues that inherit sharing from a parent issue cannot be shared directly.",
     description:
       "Shares an issue with a user who would not otherwise be able to access it. The viewer must have native access to the issue's full sub-issue tree and permission to share issues in the issue's team. Issues that inherit sharing from a parent issue cannot be shared directly.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "userId",
@@ -16503,7 +16503,7 @@ export const operations: readonly ManifestOperation[] = [
       "Subscribes a user to issue updates. Omit both userId and userEmail to subscribe yourself, or provide one of them to choose another workspace user. Subscribing an existing subscriber leaves the subscription in place.",
     description:
       "Subscribes a user to issue updates. Omit both userId and userEmail to subscribe yourself, or provide one of them to choose another workspace user. Subscribing an existing subscriber leaves the subscription in place.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "userEmail",
@@ -16563,7 +16563,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Suggests an issue title based on a customer request message using AI summarization.",
     description: "Suggests an issue title based on a customer request message using AI summarization.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     parameters: [
       {
         name: "request",
@@ -16601,7 +16601,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Get an active issue-to-release link by its UUID.",
     description: "Get an active issue-to-release link by its UUID.",
-    tags: ["query"],
+    tags: ["issue-to-release", "query"],
     parameters: [
       {
         name: "id",
@@ -16641,7 +16641,7 @@ export const operations: readonly ManifestOperation[] = [
       "Associates an issue with a release and returns the link. The issue must be editable and both resources accessible; release management must be available in the workspace. If the association already exists, the mutation returns an error rather than reusing it.",
     description:
       "Associates an issue with a release and returns the link. The issue must be editable and both resources accessible; release management must be available in the workspace. If the association already exists, the mutation returns an error rather than reusing it.",
-    tags: ["mutation"],
+    tags: ["issue-to-release", "mutation"],
     parameters: [
       {
         name: "input",
@@ -16682,7 +16682,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes an issue-to-release association by the link’s UUID, keeping the issue and release. The issue must be editable and the release accessible. Returns an error when the link does not exist.",
     description:
       "Removes an issue-to-release association by the link’s UUID, keeping the issue and release. The issue must be editable and the release accessible. Returns an error when the link does not exist.",
-    tags: ["mutation"],
+    tags: ["issue-to-release", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -16728,7 +16728,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes the association between the specified issue and release, keeping both resources. The issue must be editable and the release accessible. Returns an error when the association does not exist.",
     description:
       "Removes the association between the specified issue and release, keeping both resources. The issue must be editable and the release accessible. Returns an error when the association does not exist.",
-    tags: ["mutation"],
+    tags: ["issue-to-release", "mutation"],
     parameters: [
       {
         name: "releaseId",
@@ -16782,7 +16782,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "A paginated list of accessible issue-to-release links.",
     description: "A paginated list of accessible issue-to-release links.",
-    tags: ["query"],
+    tags: ["issue-to-release", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -16907,7 +16907,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores an archived issue and its sub-issues to normal issue lists. Automatic-archive markers are cleared, and a project association is removed if the project no longer includes the issue’s team.",
     description:
       "Restores an archived issue and its sub-issues to normal issue lists. Automatic-archive markers are cleared, and a project association is removed if the project no longer includes the issue’s team.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "id",
@@ -16948,7 +16948,7 @@ export const operations: readonly ManifestOperation[] = [
       "Stops sharing an issue with a user. The viewer must have native access to the issue's full sub-issue tree and permission to share issues in the issue's team. Issues that inherit sharing from a parent issue cannot be unshared directly.",
     description:
       "Stops sharing an issue with a user. The viewer must have native access to the issue's full sub-issue tree and permission to share issues in the issue's team. Issues that inherit sharing from a parent issue cannot be unshared directly.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "userId",
@@ -17000,7 +17000,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes a user’s subscription to issue updates. Omit both userId and userEmail to unsubscribe yourself, or provide one of them to choose another workspace user.",
     description:
       "Removes a user’s subscription to issue updates. Omit both userId and userEmail to unsubscribe yourself, or provide one of them to choose another workspace user.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "userEmail",
@@ -17063,7 +17063,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates an issue by UUID or human-readable identifier and returns its resulting values. Omitted fields keep their values; list inputs replace their existing lists unless an add/remove field is used. Changes can also trigger team workflow behavior, such as automatic cycle assignment.",
     description:
       "Updates an issue by UUID or human-readable identifier and returns its resulting values. Omitted fields keep their values; list inputs replace their existing lists unless an add/remove field is used. Changes can also trigger team workflow behavior, such as automatic cycle assignment.",
-    tags: ["mutation"],
+    tags: ["issue", "mutation"],
     parameters: [
       {
         name: "input",
@@ -17113,7 +17113,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Find an accessible issue referenced by a version-control branch name. Null if no issue matches.",
     description: "Find an accessible issue referenced by a version-control branch name. Null if no issue matches.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     parameters: [
       {
         name: "branchName",
@@ -17154,7 +17154,7 @@ export const operations: readonly ManifestOperation[] = [
       "Retrieves an accessible Jira project record by its Linear UUID, including an archived record. This ID is distinct from the project's Jira externalId or key. Read importStatus, syncStatus, and latestImport to track migration progress; a successful migration request can return before this work finishes.",
     description:
       "Retrieves an accessible Jira project record by its Linear UUID, including an archived record. This ID is distinct from the project's Jira externalId or key. Read importStatus, syncStatus, and latestImport to track migration progress; a successful migration request can return before this work finishes.",
-    tags: ["query"],
+    tags: ["jira-project", "query"],
     parameters: [
       {
         name: "id",
@@ -17194,7 +17194,7 @@ export const operations: readonly ManifestOperation[] = [
       "Imports or syncs up to 50 projects from one connected Jira site. When both are requested, sync starts after import. Projects are checked independently; retry failed projects only. Repeating an unchanged, running migration returns its existing records. Imports into one team run sequentially. Requires the `admin` scope, access to destination teams, and import permission when importing.",
     description:
       "Imports or syncs up to 50 projects from one connected Jira site. When both are requested, sync starts after import. Projects are checked independently; retry failed projects only. Repeating an unchanged, running migration returns its existing records. Imports into one team run sequentially. Requires the `admin` scope, access to destination teams, and import permission when importing.",
-    tags: ["mutation"],
+    tags: ["jira-project", "mutation"],
     parameters: [
       {
         name: "input",
@@ -17242,7 +17242,7 @@ export const operations: readonly ManifestOperation[] = [
       "Jira projects synced with teams the caller can administer, plus projects whose imports the caller can access. Supports filters and cursor-based pagination.",
     description:
       "Jira projects synced with teams the caller can administer, plus projects whose imports the caller can access. Supports filters and cursor-based pagination.",
-    tags: ["query"],
+    tags: ["jira-project", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -17376,7 +17376,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Returns the most recently completed or updated release for the pipeline associated with the access key.",
     description:
       "Returns the most recently completed or updated release for the pipeline associated with the access key.",
-    tags: ["query"],
+    tags: ["release", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -17400,7 +17400,7 @@ export const operations: readonly ManifestOperation[] = [
       "Signs out the current session and clears authentication cookies. If the token has no session ID, signs out all sessions for the account.",
     description:
       "Signs out the current session and clears authentication cookies. If the token has no session ID, signs out all sessions for the account.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "reason",
@@ -17442,7 +17442,7 @@ export const operations: readonly ManifestOperation[] = [
       "Signs out all sessions for the account, including the current session, and clears authentication cookies.",
     description:
       "Signs out all sessions for the account, including the current session, and clears authentication cookies.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "reason",
@@ -17483,7 +17483,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Signs out every other session for the authenticated account while keeping the current session active.",
     description:
       "Signs out every other session for the authenticated account while keeping the current session active.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "reason",
@@ -17525,7 +17525,7 @@ export const operations: readonly ManifestOperation[] = [
       "Revokes one sign-in session belonging to the authenticated account. Use an ID returned by authenticationSessions; it may be the current session or another device's session. Requires session JWT authentication.",
     description:
       "Revokes one sign-in session belonging to the authenticated account. Use an ID returned by authenticationSessions; it may be the current session or another device's session. Requires session JWT authentication.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "sessionId",
@@ -17564,7 +17564,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns one of the authenticated user’s notifications by UUID, including an archived notification.",
     description: "Returns one of the authenticated user’s notifications by UUID, including an archived notification.",
-    tags: ["query"],
+    tags: ["notification", "query"],
     parameters: [
       {
         name: "id",
@@ -17604,7 +17604,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives one of your notifications, removing it from the active inbox. Other notifications in the same group remain unchanged. Use notificationArchiveAll to archive the group.",
     description:
       "Archives one of your notifications, removing it from the active inbox. Other notifications in the same group remain unchanged. Use notificationArchiveAll to archive the group.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -17648,7 +17648,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Archives the authenticated user’s active notifications for the selected entity or notification group.",
     description:
       "Archives the authenticated user’s active notifications for the selected entity or notification group.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     parameters: [
       {
         name: "input",
@@ -17691,7 +17691,7 @@ export const operations: readonly ManifestOperation[] = [
       "Subscribes to or unsubscribes from a specific notification category for a given notification channel. For example, subscribe to 'issueAssignment' notifications via the 'email' channel.",
     description:
       "Subscribes to or unsubscribes from a specific notification category for a given notification channel. For example, subscribe to 'issueAssignment' notifications via the 'email' channel.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     parameters: [
       {
         name: "channel",
@@ -17754,7 +17754,7 @@ export const operations: readonly ManifestOperation[] = [
       "Marks the authenticated user’s active notifications for the selected entity or notification group as read.",
     description:
       "Marks the authenticated user’s active notifications for the selected entity or notification group as read.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     parameters: [
       {
         name: "readAt",
@@ -17805,7 +17805,7 @@ export const operations: readonly ManifestOperation[] = [
       "Marks the authenticated user’s active notifications for the selected entity or notification group as unread.",
     description:
       "Marks the authenticated user’s active notifications for the selected entity or notification group as unread.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     parameters: [
       {
         name: "input",
@@ -17853,7 +17853,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns individual notifications received by the authenticated user, with optional filters. Related activity can produce several notifications; use inboxNotifications for the grouped inbox view.",
     description:
       "Returns individual notifications received by the authenticated user, with optional filters. Related activity can produce several notifications; use inboxNotifications for the grouped inbox view.",
-    tags: ["query"],
+    tags: ["notification", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -17989,7 +17989,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Snoozes the authenticated user’s active notifications for the selected entity or notification group.",
     description: "Snoozes the authenticated user’s active notifications for the selected entity or notification group.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     parameters: [
       {
         name: "snoozedUntilAt",
@@ -18039,7 +18039,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "A specific notification subscription by ID.",
     description: "A specific notification subscription by ID.",
-    tags: ["query"],
+    tags: ["notification-subscription", "query"],
     parameters: [
       {
         name: "id",
@@ -18079,7 +18079,7 @@ export const operations: readonly ManifestOperation[] = [
       "Subscribes the authenticated user to one target and its requested notification types. Rejects an existing subscription to the same target and view.",
     description:
       "Subscribes the authenticated user to one target and its requested notification types. Rejects an existing subscription to the same target and view.",
-    tags: ["mutation"],
+    tags: ["notification-subscription", "mutation"],
     parameters: [
       {
         name: "input",
@@ -18118,7 +18118,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes a notification subscription reference.",
     description: "Deletes a notification subscription reference.",
-    tags: ["mutation"],
+    tags: ["notification-subscription", "mutation"],
     deprecated: true,
     permissions: [
       {
@@ -18168,7 +18168,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "The authenticated user's subscriptions to entity notifications.",
     description: "The authenticated user's subscriptions to entity notifications.",
-    tags: ["query"],
+    tags: ["notification-subscription", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -18294,7 +18294,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a subscription owned by the authenticated user. Use active: false to pause it without deleting its configuration, or replace notificationSubscriptionTypes to change the events you follow. Subscriptions to read-only projects cannot be changed.",
     description:
       "Updates a subscription owned by the authenticated user. Use active: false to pause it without deleting its configuration, or replace notificationSubscriptionTypes to change the events you follow. Subscriptions to read-only projects cannot be changed.",
-    tags: ["mutation"],
+    tags: ["notification-subscription", "mutation"],
     parameters: [
       {
         name: "input",
@@ -18345,7 +18345,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores one of your archived notifications. Its read and snooze states are preserved, so a snoozed notification may still be absent from the visible inbox.",
     description:
       "Restores one of your archived notifications. Its read and snooze states are preserved, so a snoozed notification may still be absent from the visible inbox.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     parameters: [
       {
         name: "id",
@@ -18385,7 +18385,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Unsnoozes the authenticated user’s active notifications for the selected entity or notification group.",
     description:
       "Unsnoozes the authenticated user’s active notifications for the selected entity or notification group.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     parameters: [
       {
         name: "unsnoozedAt",
@@ -18435,7 +18435,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Updates one of the authenticated user’s notifications. Related notifications are unchanged.",
     description: "Updates one of the authenticated user’s notifications. Related notifications are unchanged.",
-    tags: ["mutation"],
+    tags: ["notification", "mutation"],
     parameters: [
       {
         name: "input",
@@ -18486,7 +18486,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "[ALPHA] A specific OAuth application created by the calling OAuth application through the public API.",
     description:
       "[ALPHA] A specific OAuth application created by the calling OAuth application through the public API.",
-    tags: ["query"],
+    tags: ["oauth-application", "query"],
     parameters: [
       {
         name: "id",
@@ -18524,7 +18524,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "[ALPHA] Archives an OAuth application created by the calling OAuth application.",
     description: "[ALPHA] Archives an OAuth application created by the calling OAuth application.",
-    tags: ["mutation"],
+    tags: ["oauth-application", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -18567,7 +18567,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns the authenticated OAuth application's trusted-source status for Coding Sessions in the workspace. Requires an OAuth access token with the `read` scope.",
     description:
       "Returns the authenticated OAuth application's trusted-source status for Coding Sessions in the workspace. Requires an OAuth access token with the `read` scope.",
-    tags: ["query"],
+    tags: ["oauth-application", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -18591,7 +18591,7 @@ export const operations: readonly ManifestOperation[] = [
       "[ALPHA] Creates an OAuth application private to the current workspace and managed by the calling OAuth application. The caller needs workspace API management permission. Save clientSecret and any webhookSecret from the first successful response. Retrying with the same idempotency key returns the existing unarchived application without updating it and with secrets omitted. Use the application’s id for later management operations and clientId for OAuth flows.",
     description:
       "[ALPHA] Creates an OAuth application private to the current workspace and managed by the calling OAuth application. The caller needs workspace API management permission. Save clientSecret and any webhookSecret from the first successful response. Retrying with the same idempotency key returns the existing unarchived application without updating it and with secrets omitted. Use the application’s id for later management operations and clientId for OAuth flows.",
-    tags: ["mutation"],
+    tags: ["oauth-application", "mutation"],
     parameters: [
       {
         name: "input",
@@ -18632,7 +18632,7 @@ export const operations: readonly ManifestOperation[] = [
       "[ALPHA] Replaces the client secret for an application created by the caller and returns the new secret. Store it before discarding the response; it cannot be retrieved later. Tokens issued through client_credentials are revoked, while tokens from the authorization-code flow remain valid. The caller must be able to manage the application’s credentials, including its private-team access, as well as have workspace API management permission.",
     description:
       "[ALPHA] Replaces the client secret for an application created by the caller and returns the new secret. Store it before discarding the response; it cannot be retrieved later. Tokens issued through client_credentials are revoked, while tokens from the authorization-code flow remain valid. The caller must be able to manage the application’s credentials, including its private-team access, as well as have workspace API management permission.",
-    tags: ["mutation"],
+    tags: ["oauth-application", "mutation"],
     parameters: [
       {
         name: "id",
@@ -18672,7 +18672,7 @@ export const operations: readonly ManifestOperation[] = [
       "[ALPHA] Rotates the webhook signing secret for an OAuth application created by the calling OAuth application.",
     description:
       "[ALPHA] Rotates the webhook signing secret for an OAuth application created by the calling OAuth application.",
-    tags: ["mutation"],
+    tags: ["oauth-application", "mutation"],
     parameters: [
       {
         name: "id",
@@ -18711,7 +18711,7 @@ export const operations: readonly ManifestOperation[] = [
       "[ALPHA] Lists unarchived applications created by the calling OAuth application in the current workspace. This is not a list of every application installed in the workspace. Requires OAuth authentication and workspace API management permission.",
     description:
       "[ALPHA] Lists unarchived applications created by the calling OAuth application in the current workspace. This is not a list of every application installed in the workspace. Requires OAuth authentication and workspace API management permission.",
-    tags: ["query"],
+    tags: ["oauth-application", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -18736,7 +18736,7 @@ export const operations: readonly ManifestOperation[] = [
       "[ALPHA] Updates an unarchived application created by the calling OAuth application in this workspace. Omitted fields keep their current values. Enabling client_credentials or changing the webhook destination requires access to every private team available to the app, or workspace owner permission; an app with access to all private teams requires an owner. Workspace API management permission is required for every update.",
     description:
       "[ALPHA] Updates an unarchived application created by the calling OAuth application in this workspace. Omitted fields keep their current values. Enabling client_credentials or changing the webhook destination requires access to every private team available to the app, or workspace owner permission; an app with access to all private teams requires an owner. Workspace API management permission is required for every update.",
-    tags: ["mutation"],
+    tags: ["oauth-application", "mutation"],
     parameters: [
       {
         name: "input",
@@ -18786,7 +18786,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns the workspace associated with the credentials used for this request. Its ID and URL key identify the workspace, and its fields expose shared settings and resources.",
     description:
       "Returns the workspace associated with the credentials used for this request. Its ID and URL key identify the workspace, and its fields expose shared settings and resources.",
-    tags: ["query"],
+    tags: ["organization", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -18808,7 +18808,7 @@ export const operations: readonly ManifestOperation[] = [
       "Cancels a scheduled workspace deletion while the deletion process still permits cancellation. Requires workspace-settings permission.",
     description:
       "Cancels a scheduled workspace deletion while the deletion process still permits cancellation. Requires workspace-settings permission.",
-    tags: ["mutation"],
+    tags: ["organization", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -18837,7 +18837,7 @@ export const operations: readonly ManifestOperation[] = [
       "Schedules deletion of the workspace and its data after validating the code from organizationDeleteChallenge. This does not finish the deletion during the request. Use organizationCancelDelete while cancellation is still available.",
     description:
       "Schedules deletion of the workspace and its data after validating the code from organizationDeleteChallenge. This does not finish the deletion during the request. Use organizationCancelDelete while cancellation is still available.",
-    tags: ["mutation"],
+    tags: ["organization", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -18881,7 +18881,7 @@ export const operations: readonly ManifestOperation[] = [
       "Requests a deletion confirmation code for the workspace. The code is sent to the requesting user's email and must be used with the organizationDelete mutation to confirm deletion.",
     description:
       "Requests a deletion confirmation code for the workspace. The code is sent to the requesting user's email and must be used with the organizationDelete mutation to confirm deletion.",
-    tags: ["mutation"],
+    tags: ["organization", "mutation"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -18905,7 +18905,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes a domain configuration from the workspace and its authentication settings. Requires workspace-settings permission. Other domain configurations for the workspace are unchanged.",
     description:
       "Removes a domain configuration from the workspace and its authentication settings. Requires workspace-settings permission. Other domain configurations for the workspace are unchanged.",
-    tags: ["mutation"],
+    tags: ["organization-domain", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -18948,7 +18948,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Checks whether a workspace with the given URL key exists.",
     description: "Checks whether a workspace with the given URL key exists.",
-    tags: ["query"],
+    tags: ["organization", "query"],
     parameters: [
       {
         name: "urlKey",
@@ -18987,7 +18987,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Fetches a specific workspace invite by its ID.",
     description: "Fetches a specific workspace invite by its ID.",
-    tags: ["query"],
+    tags: ["organization-invite", "query"],
     parameters: [
       {
         name: "id",
@@ -19027,7 +19027,7 @@ export const operations: readonly ManifestOperation[] = [
       "Invites an email address to the workspace and sends an invitation email. Your role and workspace invitation settings must allow the requested role and teams. Guest invitations require teams; an existing user or unexpired invitation for the address causes an error.",
     description:
       "Invites an email address to the workspace and sends an invitation email. Your role and workspace invitation settings must allow the requested role and teams. Guest invitations require teams; an existing user or unexpired invitation for the address causes an error.",
-    tags: ["mutation"],
+    tags: ["organization-invite", "mutation"],
     parameters: [
       {
         name: "input",
@@ -19066,7 +19066,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes (archives) a workspace invite, preventing it from being accepted.",
     description: "Deletes (archives) a workspace invite, preventing it from being accepted.",
-    tags: ["mutation"],
+    tags: ["organization-invite", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -19111,7 +19111,7 @@ export const operations: readonly ManifestOperation[] = [
       "Fetches public details of a specific workspace invite by its ID. This query does not require authentication and is used for invite acceptance flows.",
     description:
       "Fetches public details of a specific workspace invite by its ID. This query does not require authentication and is used for invite acceptance flows.",
-    tags: ["query"],
+    tags: ["organization-invite", "query"],
     parameters: [
       {
         name: "id",
@@ -19155,7 +19155,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All pending and accepted invites for the workspace.",
     description: "All pending and accepted invites for the workspace.",
-    tags: ["query"],
+    tags: ["organization-invite", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -19281,7 +19281,7 @@ export const operations: readonly ManifestOperation[] = [
       "Replaces the teams an invitee will join on acceptance. Requires permission to manage invitations, and the selected teams must be valid for the invite’s role. This does not change the invitee’s email or role.",
     description:
       "Replaces the teams an invitee will join on acceptance. Requires permission to manage invitations, and the selected teams must be valid for the invite’s role. This does not change the invitee’s email or role.",
-    tags: ["mutation"],
+    tags: ["organization-invite", "mutation"],
     parameters: [
       {
         name: "input",
@@ -19328,7 +19328,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "[DEPRECATED] Starts a trial for the workspace.",
     description: "[DEPRECATED] Starts a trial for the workspace.",
-    tags: ["mutation"],
+    tags: ["organization", "mutation"],
     deprecated: true,
     parameters: [],
     response: {
@@ -19353,7 +19353,7 @@ export const operations: readonly ManifestOperation[] = [
       "Starts a trial for the workspace on the specified plan type. The workspace must not already be on a paid plan or in an active trial.",
     description:
       "Starts a trial for the workspace on the specified plan type. The workspace must not already be on a paid plan or in an active trial.",
-    tags: ["mutation"],
+    tags: ["organization", "mutation"],
     parameters: [
       {
         name: "input",
@@ -19394,7 +19394,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates the workspace associated with your credentials. Omitted fields keep their current values. Most changes require workspace-settings permission; project and initiative reminder schedules require schedule-management permission. Some settings also depend on the workspace’s plan.",
     description:
       "Updates the workspace associated with your credentials. Omitted fields keep their current values. Most changes require workspace-settings permission; project and initiative reminder schedules require schedule-management permission. Some settings also depend on the workspace’s plan.",
-    tags: ["mutation"],
+    tags: ["organization", "mutation"],
     parameters: [
       {
         name: "input",
@@ -19436,7 +19436,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns a project you can access by UUID, URL slug, or human-readable project identifier. Archived projects can also be retrieved.",
     description:
       "Returns a project you can access by UUID, URL slug, or human-readable project identifier. Archived projects can also be retrieved.",
-    tags: ["query"],
+    tags: ["project", "query"],
     parameters: [
       {
         name: "id",
@@ -19477,7 +19477,7 @@ export const operations: readonly ManifestOperation[] = [
       "Adds a project label while keeping the project’s other labels. The label must be available to the project; label-group and team-scoping rules still apply.",
     description:
       "Adds a project label while keeping the project’s other labels. The label must be available to the project; label-group and team-scoping rules still apply.",
-    tags: ["mutation"],
+    tags: ["project", "mutation"],
     parameters: [
       {
         name: "labelId",
@@ -19526,7 +19526,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Archives a project.",
     description: "Archives a project.",
-    tags: ["mutation"],
+    tags: ["project", "mutation"],
     deprecated: true,
     permissions: [
       {
@@ -19586,7 +19586,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a project in the supplied teams. You can apply a project template to fill in defaults and create its milestones, initial issues, and initiative associations. The new project must have at least one accessible team.",
     description:
       "Creates a project in the supplied teams. You can apply a project template to fill in defaults and create its milestones, initial issues, and initiative associations. The new project must have at least one accessible team.",
-    tags: ["mutation"],
+    tags: ["project", "mutation"],
     parameters: [
       {
         name: "aiConversationId",
@@ -19662,7 +19662,7 @@ export const operations: readonly ManifestOperation[] = [
       "Moves a project to the trash. This archives the project rather than immediately deleting it permanently. You can restore it with projectUnarchive while it remains available in the trash.",
     description:
       "Moves a project to the trash. This archives the project rather than immediately deleting it permanently. You can restore it with projectUnarchive while it remains available in the trash.",
-    tags: ["mutation"],
+    tags: ["project", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -19706,7 +19706,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Disables external sync on a project.",
     description: "Disables external sync on a project.",
-    tags: ["mutation"],
+    tags: ["project", "mutation"],
     parameters: [
       {
         name: "syncSource",
@@ -19756,7 +19756,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Suggests filters for a project view based on a text prompt.",
     description: "Suggests filters for a project view based on a text prompt.",
-    tags: ["query"],
+    tags: ["project", "query"],
     parameters: [
       {
         name: "teamId",
@@ -19806,7 +19806,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns a single project label by its identifier.",
     description: "Returns a single project label by its identifier.",
-    tags: ["query"],
+    tags: ["project-label", "query"],
     parameters: [
       {
         name: "id",
@@ -19847,7 +19847,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a label or label group for projects. Workspace labels require workspace label-management permission; team labels require label-management permission in that team and a plan that supports team project labels. replaceTeamLabels can migrate matching labels into the new scope.",
     description:
       "Creates a label or label group for projects. Workspace labels require workspace label-management permission; team labels require label-management permission in that team and a plan that supports team project labels. replaceTeamLabels can migrate matching labels into the new scope.",
-    tags: ["mutation"],
+    tags: ["project-label", "mutation"],
     parameters: [
       {
         name: "replaceTeamLabels",
@@ -19900,7 +19900,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Deletes a project label, its children, and inherited copies, removing their assignments from projects.",
     description:
       "Deletes a project label, its children, and inherited copies, removing their assignments from projects.",
-    tags: ["mutation"],
+    tags: ["project-label", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -19943,7 +19943,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Restores a previously retired project label, making it available for use on new projects.",
     description: "Restores a previously retired project label, making it available for use on new projects.",
-    tags: ["mutation"],
+    tags: ["project-label", "mutation"],
     parameters: [
       {
         name: "id",
@@ -19982,7 +19982,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Retires a project label. Retired labels remain on existing projects but cannot be applied to new ones.",
     description:
       "Retires a project label. Retired labels remain on existing projects but cannot be applied to new ones.",
-    tags: ["mutation"],
+    tags: ["project-label", "mutation"],
     parameters: [
       {
         name: "id",
@@ -20029,7 +20029,7 @@ export const operations: readonly ManifestOperation[] = [
       "All project labels. Returns a paginated list of labels visible to the authenticated user, including both workspace-level and team-scoped labels, with optional filtering.",
     description:
       "All project labels. Returns a paginated list of labels visible to the authenticated user, including both workspace-level and team-scoped labels, with optional filtering.",
-    tags: ["query"],
+    tags: ["project-label", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -20168,7 +20168,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates the supplied project-label fields and propagates changes to inherited copies. Requires label-management permission for the label’s workspace or team. Update the source label rather than an inherited copy.",
     description:
       "Updates the supplied project-label fields and propagates changes to inherited copies. Requires label-management permission for the label’s workspace or team. Update the source label rather than an inherited copy.",
-    tags: ["mutation"],
+    tags: ["project-label", "mutation"],
     parameters: [
       {
         name: "replaceTeamLabels",
@@ -20231,7 +20231,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Fetches a milestone by UUID, including archived milestones.",
     description: "Fetches a milestone by UUID, including archived milestones.",
-    tags: ["query"],
+    tags: ["project-milestone", "query"],
     parameters: [
       {
         name: "id",
@@ -20271,7 +20271,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a milestone in a project you can edit. Its name must be unique among the project’s active milestones. A milestone starts without issues; assign issues to it separately.",
     description:
       "Creates a milestone in a project you can edit. Its name must be unique among the project’s active milestones. A milestone starts without issues; assign issues to it separately.",
-    tags: ["mutation"],
+    tags: ["project-milestone", "mutation"],
     parameters: [
       {
         name: "input",
@@ -20312,7 +20312,7 @@ export const operations: readonly ManifestOperation[] = [
       "Permanently deletes a milestone from a project you can edit. The issues are kept in the project, but their milestone association is removed.",
     description:
       "Permanently deletes a milestone from a project you can edit. The issues are kept in the project, but their milestone association is removed.",
-    tags: ["mutation"],
+    tags: ["project-milestone", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -20358,7 +20358,7 @@ export const operations: readonly ManifestOperation[] = [
       "Moves a milestone and its issues to another project, including archived issues. The caller must have access to every issue in the milestone, and the milestone and destination project must be writable. If an issue's team is not part of the destination project, provide newIssueTeamId or addIssueTeamToProject. The returned team snapshots can be passed to the undo inputs when moving the milestone back to its original project.",
     description:
       "Moves a milestone and its issues to another project, including archived issues. The caller must have access to every issue in the milestone, and the milestone and destination project must be writable. If an issue's team is not part of the destination project, provide newIssueTeamId or addIssueTeamToProject. The returned team snapshots can be passed to the undo inputs when moving the milestone back to its original project.",
-    tags: ["mutation"],
+    tags: ["project-milestone", "mutation"],
     parameters: [
       {
         name: "input",
@@ -20416,7 +20416,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns all project milestones in the workspace, with optional filtering.",
     description: "Returns all project milestones in the workspace, with optional filtering.",
-    tags: ["query"],
+    tags: ["project-milestone", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -20554,7 +20554,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a milestone in a project you can edit, including an archived milestone. Omitted fields keep their current values. Changing projectId moves the milestone and clears its links from issue drafts in the previous project.",
     description:
       "Updates a milestone in a project you can edit, including an archived milestone. Omitted fields keep their current values. Changing projectId moves the milestone and clears its links from issue drafts in the previous project.",
-    tags: ["mutation"],
+    tags: ["project-milestone", "mutation"],
     parameters: [
       {
         name: "input",
@@ -20605,7 +20605,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns a single project relation by its identifier.",
     description: "Returns a single project relation by its identifier.",
-    tags: ["query"],
+    tags: ["project-relation", "query"],
     parameters: [
       {
         name: "id",
@@ -20643,7 +20643,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Creates a dependency between two different projects using date or milestone anchors.",
     description: "Creates a dependency between two different projects using date or milestone anchors.",
-    tags: ["mutation"],
+    tags: ["project-relation", "mutation"],
     parameters: [
       {
         name: "input",
@@ -20682,7 +20682,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes the dependency without deleting either project or milestone.",
     description: "Deletes the dependency without deleting either project or milestone.",
-    tags: ["mutation"],
+    tags: ["project-relation", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -20731,7 +20731,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns all project dependency relations in the workspace.",
     description: "Returns all project dependency relations in the workspace.",
-    tags: ["query"],
+    tags: ["project-relation", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -20855,7 +20855,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Updates the supplied dependency fields and validates both project endpoints.",
     description: "Updates the supplied dependency fields and validates both project endpoints.",
-    tags: ["mutation"],
+    tags: ["project-relation", "mutation"],
     parameters: [
       {
         name: "input",
@@ -20905,7 +20905,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Removes a project label while keeping the project’s other labels. The label itself is not deleted.",
     description: "Removes a project label while keeping the project’s other labels. The label itself is not deleted.",
-    tags: ["mutation"],
+    tags: ["project", "mutation"],
     parameters: [
       {
         name: "labelId",
@@ -20963,7 +20963,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns projects visible to you in the workspace. Use filter to narrow the results and the connection arguments to page or sort them.",
     description:
       "Returns projects visible to you in the workspace. Use filter to narrow the results and the connection arguments to page or sort them.",
-    tags: ["query"],
+    tags: ["project", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -21113,7 +21113,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns a single project status by its identifier.",
     description: "Returns a single project status by its identifier.",
-    tags: ["query"],
+    tags: ["project-status", "query"],
     parameters: [
       {
         name: "id",
@@ -21153,7 +21153,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives a project status. The status must not have any active projects assigned to it and must not be the last status of its type.",
     description:
       "Archives a project status. The status must not have any active projects assigned to it and must not be the last status of its type.",
-    tags: ["mutation"],
+    tags: ["project-status", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -21196,7 +21196,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Creates a new project status.",
     description: "Creates a new project status.",
-    tags: ["mutation"],
+    tags: ["project-status", "mutation"],
     parameters: [
       {
         name: "input",
@@ -21241,7 +21241,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns all project statuses in the workspace.",
     description: "Returns all project statuses in the workspace.",
-    tags: ["query"],
+    tags: ["project-status", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -21364,7 +21364,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Unarchives a project status.",
     description: "Unarchives a project status.",
-    tags: ["mutation"],
+    tags: ["project-status", "mutation"],
     parameters: [
       {
         name: "id",
@@ -21403,7 +21403,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Updates a project status.",
     description: "Updates a project status.",
-    tags: ["mutation"],
+    tags: ["project-status", "mutation"],
     parameters: [
       {
         name: "input",
@@ -21454,7 +21454,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores an archived or trashed project. The operation checks the project quota of each associated team before restoring it.",
     description:
       "Restores an archived or trashed project. The operation checks the project quota of each associated team before restoring it.",
-    tags: ["mutation"],
+    tags: ["project", "mutation"],
     parameters: [
       {
         name: "id",
@@ -21495,7 +21495,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates the supplied fields of a project you can edit. Omitted fields keep their current values. List inputs such as memberIds and labelIds replace the corresponding lists; see each input for clearing rules and team-access behavior.",
     description:
       "Updates the supplied fields of a project you can edit. Omitted fields keep their current values. List inputs such as memberIds and labelIds replace the corresponding lists; see each input for clearing rules and team-access behavior.",
-    tags: ["mutation"],
+    tags: ["project", "mutation"],
     parameters: [
       {
         name: "input",
@@ -21546,7 +21546,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives an update and recalculates the project’s health from the remaining updates. You must be the author or have permission to manage workspace entities. Use projectUpdateUnarchive to restore it.",
     description:
       "Archives an update and recalculates the project’s health from the remaining updates. You must be the author or have permission to manage workspace entities. Use projectUpdateUnarchive to restore it.",
-    tags: ["mutation"],
+    tags: ["project-update", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -21591,7 +21591,7 @@ export const operations: readonly ManifestOperation[] = [
       "Publishes a status update for a project you can edit. The update records the current user as author, captures project progress, and refreshes the project’s health. Provide the message in input.body.",
     description:
       "Publishes a status update for a project you can edit. The update records the current user as author, captures project progress, and refreshes the project’s health. Provide the message in input.body.",
-    tags: ["mutation"],
+    tags: ["project-update", "mutation"],
     parameters: [
       {
         name: "input",
@@ -21630,7 +21630,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Archives a project update and recalculates project health. Use projectUpdateUnarchive to restore it.",
     description: "Archives a project update and recalculates project health. Use projectUpdateUnarchive to restore it.",
-    tags: ["mutation"],
+    tags: ["project-update", "mutation"],
     deprecated: true,
     permissions: [
       {
@@ -21681,7 +21681,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns all project status updates in the workspace, with optional filtering.",
     description: "Returns all project status updates in the workspace, with optional filtering.",
-    tags: ["query"],
+    tags: ["project-update", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -21818,7 +21818,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores an archived update and recalculates the project’s health. The update must currently be archived, and you must be its author or have permission to manage workspace entities.",
     description:
       "Restores an archived update and recalculates the project’s health. The update must currently be archived, and you must be its author or have permission to manage workspace entities.",
-    tags: ["mutation"],
+    tags: ["project-update", "mutation"],
     parameters: [
       {
         name: "id",
@@ -21859,7 +21859,7 @@ export const operations: readonly ManifestOperation[] = [
       "Edits an update’s message or health. You must be its author or have permission to manage workspace entities. Editing the latest update while it is less than one hour old also refreshes its progress snapshot.",
     description:
       "Edits an update’s message or health. You must be its author or have permission to manage workspace entities. Editing the latest update while it is less than one hour old also refreshes its progress snapshot.",
-    tags: ["mutation"],
+    tags: ["project-update", "mutation"],
     parameters: [
       {
         name: "input",
@@ -21910,7 +21910,7 @@ export const operations: readonly ManifestOperation[] = [
       "Registers a browser or device to receive push notifications for the authenticated user. If the same subscription data is already registered, returns that record; otherwise replaces the subscription associated with the current sign-in session. userId in the input is ignored. Successful registration does not guarantee notification delivery; use pushSubscriptionTest to request a test notification.",
     description:
       "Registers a browser or device to receive push notifications for the authenticated user. If the same subscription data is already registered, returns that record; otherwise replaces the subscription associated with the current sign-in session. userId in the input is ignored. Successful registration does not guarantee notification delivery; use pushSubscriptionTest to request a test notification.",
-    tags: ["mutation"],
+    tags: ["push-subscription", "mutation"],
     parameters: [
       {
         name: "input",
@@ -21951,7 +21951,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes a push subscription to stop sending notifications through it. Select success to confirm deletion. This operation does not populate entity, so selecting that field produces a GraphQL error.",
     description:
       "Deletes a push subscription to stop sending notifications through it. Select success to confirm deletion. This operation does not populate entity, so selecting that field produces a GraphQL error.",
-    tags: ["mutation"],
+    tags: ["push-subscription", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -21997,7 +21997,7 @@ export const operations: readonly ManifestOperation[] = [
       "Queues a test notification for the authenticated user. Limited to three requests per minute; success confirms scheduling, not delivery.",
     description:
       "Queues a test notification for the authenticated user. Limited to three requests per minute; success confirms scheduling, not delivery.",
-    tags: ["query"],
+    tags: ["push-subscription", "query"],
     parameters: [
       {
         name: "targetMobile",
@@ -22054,7 +22054,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Public resource quotas for the authenticated workspace. These are not subscription limits.",
     description: "Public resource quotas for the authenticated workspace. These are not subscription limits.",
-    tags: ["query"],
+    tags: ["query", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -22162,7 +22162,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns the quota state recorded for this GraphQL request, including both request count and query complexity. This query also consumes quota. Use remainingAmount with period and allowedAmount to pace requests: quota refills gradually, and reset is not a single instant when an exhausted fixed window is cleared. Other requests made with the same limited identity can consume the remaining quota.",
     description:
       "Returns the quota state recorded for this GraphQL request, including both request count and query complexity. This query also consumes quota. Use remainingAmount with period and allowedAmount to pace requests: quota refills gradually, and reset is not a single instant when an exhausted fixed window is cleared. Other requests made with the same limited identity can consume the remaining quota.",
-    tags: ["query"],
+    tags: ["query", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -22186,7 +22186,7 @@ export const operations: readonly ManifestOperation[] = [
       "Adds an emoji reaction as you to one issue, comment, or update. If you already used that emoji on the same resource, the existing reaction is returned. You must be allowed to comment on the target.",
     description:
       "Adds an emoji reaction as you to one issue, comment, or update. If you already used that emoji on the same resource, the existing reaction is returned. You must be allowed to comment on the target.",
-    tags: ["mutation"],
+    tags: ["reaction", "mutation"],
     parameters: [
       {
         name: "input",
@@ -22227,7 +22227,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes a reaction by its UUID and updates the target’s reaction summary. You must be its creator or have workspace permission to manage entities, and you must be allowed to comment on the target.",
     description:
       "Removes a reaction by its UUID and updates the target’s reaction summary. You must be its creator or have workspace permission to manage entities, and you must be allowed to comment on the target.",
-    tags: ["mutation"],
+    tags: ["reaction", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -22274,7 +22274,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns releases for the pipeline associated with the access key, ordered with the most recently completed or updated first.",
     description:
       "Returns releases for the pipeline associated with the access key, ordered with the most recently completed or updated first.",
-    tags: ["query"],
+    tags: ["release", "query"],
     parameters: [
       {
         name: "after",
@@ -22343,7 +22343,7 @@ export const operations: readonly ManifestOperation[] = [
       "Queues a Google Sheets export refresh. Success confirms scheduling; the returned integration may still contain the previous export state.",
     description:
       "Queues a Google Sheets export refresh. Success confirms scheduling; the returned integration may still contain the previous export state.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "type",
@@ -22393,7 +22393,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Fetch a single release by its UUID or slug identifier.",
     description: "Fetch a single release by its UUID or slug identifier.",
-    tags: ["query"],
+    tags: ["release", "query"],
     parameters: [
       {
         name: "id",
@@ -22431,7 +22431,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Archives a release.",
     description: "Archives a release.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -22476,7 +22476,7 @@ export const operations: readonly ManifestOperation[] = [
       "Completes the release identified by pipeline and version, or the latest started release when version is omitted. Completing a scheduled release may move its open issues to the next release, according to the pipeline’s rollover setting.",
     description:
       "Completes the release identified by pipeline and version, or the latest started release when version is omitted. Completing a scheduled release may move its open issues to the next release, according to the pipeline’s rollover setting.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     parameters: [
       {
         name: "input",
@@ -22517,7 +22517,7 @@ export const operations: readonly ManifestOperation[] = [
       "Marks a release as completed using an access key. If version is provided, completes that specific release; otherwise completes the most recent started release. The pipeline is inferred from the access key.",
     description:
       "Marks a release as completed using an access key. If version is provided, completes that specific release; otherwise completes the most recent started release. The pipeline is inferred from the access key.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     parameters: [
       {
         name: "input",
@@ -22558,7 +22558,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a new release in a pipeline. If no stage is specified, defaults to the first completed stage for continuous pipelines or the first started stage for scheduled pipelines.",
     description:
       "Creates a new release in a pipeline. If no stage is specified, defaults to the first completed stage for continuous pipelines or the first started stage for scheduled pipelines.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     parameters: [
       {
         name: "input",
@@ -22599,7 +22599,7 @@ export const operations: readonly ManifestOperation[] = [
       "Moves a release to trash for permanent deletion after the retention period. Use releaseUnarchive to restore it before deletion.",
     description:
       "Moves a release to trash for permanent deletion after the retention period. Use releaseUnarchive to restore it before deletion.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -22643,7 +22643,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Fetch a release note by its UUID or slug identifier.",
     description: "Fetch a release note by its UUID or slug identifier.",
-    tags: ["query"],
+    tags: ["release-note", "query"],
     parameters: [
       {
         name: "id",
@@ -22683,7 +22683,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a note covering releases from one pipeline. Supply explicit release IDs or an inclusive range, plus an optional title and Markdown body. A scheduled pipeline’s note must cover exactly one release.",
     description:
       "Creates a note covering releases from one pipeline. Supply explicit release IDs or an inclusive range, plus an optional title and Markdown body. A scheduled pipeline’s note must cover exactly one release.",
-    tags: ["mutation"],
+    tags: ["release-note", "mutation"],
     parameters: [
       {
         name: "input",
@@ -22722,7 +22722,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Permanently deletes a release note and its body. The covered releases remain.",
     description: "Permanently deletes a release note and its body. The covered releases remain.",
-    tags: ["mutation"],
+    tags: ["release-note", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -22772,7 +22772,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Release notes in the workspace.",
     description: "Release notes in the workspace.",
-    tags: ["query"],
+    tags: ["release-note", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -22910,7 +22910,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a release note’s title, body, or covered releases. Omitted fields remain unchanged, and a new release selection replaces the old one. The note stays in its original pipeline.",
     description:
       "Updates a release note’s title, body, or covered releases. Omitted fields remain unchanged, and a new release selection replaces the old one. The note stays in its original pipeline.",
-    tags: ["mutation"],
+    tags: ["release-note", "mutation"],
     parameters: [
       {
         name: "input",
@@ -22960,7 +22960,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Fetch a single release pipeline by its UUID or slug identifier.",
     description: "Fetch a single release pipeline by its UUID or slug identifier.",
-    tags: ["query"],
+    tags: ["release-pipeline", "query"],
     parameters: [
       {
         name: "id",
@@ -23000,7 +23000,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives a pipeline and schedules archival of its releases. The release changes run in the background, so they may not be complete when this mutation returns. Requires workspace team-management permission or ownership of every associated team.",
     description:
       "Archives a pipeline and schedules archival of its releases. The release changes run in the background, so they may not be complete when this mutation returns. Requires workspace team-management permission or ownership of every associated team.",
-    tags: ["mutation"],
+    tags: ["release-pipeline", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -23041,7 +23041,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Returns the release pipeline associated with the access key.",
     description: "Returns the release pipeline associated with the access key.",
-    tags: ["query"],
+    tags: ["release-pipeline", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -23065,7 +23065,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a release pipeline with default stages, subject to your workspace’s plan and quota. Requires workspace team-management permission or ownership of every team associated with the pipeline.",
     description:
       "Creates a release pipeline with default stages, subject to your workspace’s plan and quota. Requires workspace team-management permission or ownership of every team associated with the pipeline.",
-    tags: ["mutation"],
+    tags: ["release-pipeline", "mutation"],
     parameters: [
       {
         name: "input",
@@ -23106,7 +23106,7 @@ export const operations: readonly ManifestOperation[] = [
       "Moves a pipeline and its releases to the trash for permanent deletion after the retention period. Repeating the operation does not extend that period. Requires workspace team-management permission or ownership of every associated team.",
     description:
       "Moves a pipeline and its releases to the trash for permanent deletion after the retention period. Repeating the operation does not extend that period. Requires workspace team-management permission or ownership of every associated team.",
-    tags: ["mutation"],
+    tags: ["release-pipeline", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -23157,7 +23157,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All release pipelines in the workspace, with optional filtering and sorting.",
     description: "All release pipelines in the workspace, with optional filtering and sorting.",
-    tags: ["query"],
+    tags: ["release-pipeline", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -23309,7 +23309,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores a pipeline and schedules restoration of its archived releases. Individually trashed releases are left in the trash. The release changes run in the background, and the same pipeline administration permissions apply.",
     description:
       "Restores a pipeline and schedules restoration of its archived releases. Individually trashed releases are left in the trash. The release changes run in the background, and the same pipeline administration permissions apply.",
-    tags: ["mutation"],
+    tags: ["release-pipeline", "mutation"],
     parameters: [
       {
         name: "id",
@@ -23350,7 +23350,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates an existing release pipeline. Supports updating name, slug, type, production flag, path patterns, and team associations. Private teams that the current user cannot access are preserved in the team list.",
     description:
       "Updates an existing release pipeline. Supports updating name, slug, type, production flag, path patterns, and team associations. Private teams that the current user cannot access are preserved in the team list.",
-    tags: ["mutation"],
+    tags: ["release-pipeline", "mutation"],
     parameters: [
       {
         name: "input",
@@ -23407,7 +23407,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All releases in the workspace, with optional filtering and sorting.",
     description: "All releases in the workspace, with optional filtering and sorting.",
-    tags: ["query"],
+    tags: ["release", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -23562,7 +23562,7 @@ export const operations: readonly ManifestOperation[] = [
       "Search releases with optional text matching against name, version, and pipeline name. When no search term is provided, returns releases ordered by stage priority (started > planned > completed > canceled).",
     description:
       "Search releases with optional text matching against name, version, and pipeline name. When no search term is provided, returns releases ordered by stage priority (started > planned > completed > canceled).",
-    tags: ["query"],
+    tags: ["release", "query"],
     parameters: [
       {
         name: "filter",
@@ -23627,7 +23627,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Fetch a single release stage by its UUID.",
     description: "Fetch a single release stage by its UUID.",
-    tags: ["query"],
+    tags: ["release-stage", "query"],
     parameters: [
       {
         name: "id",
@@ -23667,7 +23667,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives a release stage. Only started-type stages can be archived, and only if they have no active releases and at least one other stage of the same type remains. Cannot archive the last non-frozen started stage.",
     description:
       "Archives a release stage. Only started-type stages can be archived, and only if they have no active releases and at least one other stage of the same type remains. Cannot archive the last non-frozen started stage.",
-    tags: ["mutation"],
+    tags: ["release-stage", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -23712,7 +23712,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a new release stage in a pipeline. Non-started stages must use default names and colors and are unique by type; creating a canonical duplicate returns the existing stage. Started stages can optionally be frozen, but at least one non-frozen started stage must remain.",
     description:
       "Creates a new release stage in a pipeline. Non-started stages must use default names and colors and are unique by type; creating a canonical duplicate returns the existing stage. Started stages can optionally be frozen, but at least one non-frozen started stage must remain.",
-    tags: ["mutation"],
+    tags: ["release-stage", "mutation"],
     parameters: [
       {
         name: "input",
@@ -23758,7 +23758,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All release stages in the workspace, with optional filtering.",
     description: "All release stages in the workspace, with optional filtering.",
-    tags: ["query"],
+    tags: ["release-stage", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -23893,7 +23893,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Unarchives a release stage.",
     description: "Unarchives a release stage.",
-    tags: ["mutation"],
+    tags: ["release-stage", "mutation"],
     parameters: [
       {
         name: "id",
@@ -23934,7 +23934,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates an existing release stage. Only started-type stages can be edited. Supports updating name, color, position, and frozen status.",
     description:
       "Updates an existing release stage. Only started-type stages can be edited. Supports updating name, color, position, and frozen status.",
-    tags: ["mutation"],
+    tags: ["release-stage", "mutation"],
     parameters: [
       {
         name: "input",
@@ -23985,7 +23985,7 @@ export const operations: readonly ManifestOperation[] = [
       "Associates issues found in issue or pull request references with a release. Continuous pipelines create completed releases and reuse an existing version only when its commit SHA matches. Scheduled pipelines accumulate issues in an open release or use the supplied version. Existing issue associations are kept unless explicitly reverted in a scheduled pipeline.",
     description:
       "Associates issues found in issue or pull request references with a release. Continuous pipelines create completed releases and reuse an existing version only when its commit SHA matches. Scheduled pipelines accumulate issues in an open release or use the supplied version. Existing issue associations are kept unless explicitly reverted in a scheduled pipeline.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     parameters: [
       {
         name: "input",
@@ -24026,7 +24026,7 @@ export const operations: readonly ManifestOperation[] = [
       "Syncs release data using an access key for CI/CD integration. The pipeline is automatically inferred from the access key's configured resources, so no pipeline ID is needed in the input.",
     description:
       "Syncs release data using an access key for CI/CD integration. The pipeline is automatically inferred from the access key's configured resources, so no pipeline ID is needed in the input.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     parameters: [
       {
         name: "input",
@@ -24067,7 +24067,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores an archived or trashed release before it is permanently deleted. The release keeps its pipeline and saved issue associations.",
     description:
       "Restores an archived or trashed release before it is permanently deleted. The release keeps its pipeline and saved issue associations.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     parameters: [
       {
         name: "id",
@@ -24106,7 +24106,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Updates a release by ID. Omitted fields remain unchanged. A release cannot move to another pipeline.",
     description: "Updates a release by ID. Omitted fields remain unchanged. A release cannot move to another pipeline.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     parameters: [
       {
         name: "input",
@@ -24157,7 +24157,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a release by pipeline identifier. Finds the release by version, otherwise the latest started release or else the planned release with the earliest target date, and optionally transitions it to a new stage by name.",
     description:
       "Updates a release by pipeline identifier. Finds the release by version, otherwise the latest started release or else the planned release with the earliest target date, and optionally transitions it to a new stage by name.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     parameters: [
       {
         name: "input",
@@ -24196,7 +24196,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Updates a release by pipeline using an access key.",
     description: "Updates a release by pipeline using an access key.",
-    tags: ["mutation"],
+    tags: ["release", "mutation"],
     parameters: [
       {
         name: "input",
@@ -24235,7 +24235,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Re-sends a workspace invitation email for the specified invite ID.",
     description: "Re-sends a workspace invitation email for the specified invite ID.",
-    tags: ["mutation"],
+    tags: ["organization-invite", "mutation"],
     parameters: [
       {
         name: "id",
@@ -24275,7 +24275,7 @@ export const operations: readonly ManifestOperation[] = [
       "Re-sends a workspace invitation email to the specified email address, if an outstanding invite exists for that address.",
     description:
       "Re-sends a workspace invitation email to the specified email address, if an outstanding invite exists for that address.",
-    tags: ["mutation"],
+    tags: ["organization-invite", "mutation"],
     parameters: [
       {
         name: "email",
@@ -24314,7 +24314,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "[Deprecated] Returns a single roadmap by its identifier. Use initiatives instead.",
     description: "[Deprecated] Returns a single roadmap by its identifier. Use initiatives instead.",
-    tags: ["query"],
+    tags: ["roadmap", "query"],
     deprecated: true,
     parameters: [
       {
@@ -24353,7 +24353,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "No longer supported and returns an error. Use initiativeArchive.",
     description: "No longer supported and returns an error. Use initiativeArchive.",
-    tags: ["mutation"],
+    tags: ["roadmap", "mutation"],
     deprecated: true,
     permissions: [
       {
@@ -24397,7 +24397,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "No longer supported and returns an error. Use initiativeCreate.",
     description: "No longer supported and returns an error. Use initiativeCreate.",
-    tags: ["mutation"],
+    tags: ["roadmap", "mutation"],
     deprecated: true,
     parameters: [
       {
@@ -24437,7 +24437,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "No longer supported and returns an error. Use initiativeDelete.",
     description: "No longer supported and returns an error. Use initiativeDelete.",
-    tags: ["mutation"],
+    tags: ["roadmap", "mutation"],
     deprecated: true,
     permissions: [
       {
@@ -24487,7 +24487,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Deprecated. Always returns an empty connection. Use initiatives.",
     description: "Deprecated. Always returns an empty connection. Use initiatives.",
-    tags: ["query"],
+    tags: ["roadmap", "query"],
     deprecated: true,
     pagination: {
       style: "cursor",
@@ -24611,7 +24611,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "No longer supported and returns an error. Use initiativeToProject.",
     description: "No longer supported and returns an error. Use initiativeToProject.",
-    tags: ["query"],
+    tags: ["roadmap-to-project", "query"],
     deprecated: true,
     parameters: [
       {
@@ -24650,7 +24650,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "No longer supported and returns an error. Use initiativeToProjectCreate.",
     description: "No longer supported and returns an error. Use initiativeToProjectCreate.",
-    tags: ["mutation"],
+    tags: ["roadmap-to-project", "mutation"],
     parameters: [
       {
         name: "input",
@@ -24689,7 +24689,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "No longer supported and returns an error. Use initiativeToProjectDelete.",
     description: "No longer supported and returns an error. Use initiativeToProjectDelete.",
-    tags: ["mutation"],
+    tags: ["roadmap-to-project", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -24738,7 +24738,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Deprecated. Always returns an empty connection. Use initiativeToProjects.",
     description: "Deprecated. Always returns an empty connection. Use initiativeToProjects.",
-    tags: ["query"],
+    tags: ["roadmap-to-project", "query"],
     deprecated: true,
     pagination: {
       style: "cursor",
@@ -24863,7 +24863,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "No longer supported and returns an error. Use initiativeToProjectUpdate.",
     description: "No longer supported and returns an error. Use initiativeToProjectUpdate.",
-    tags: ["mutation"],
+    tags: ["roadmap-to-project", "mutation"],
     parameters: [
       {
         name: "input",
@@ -24912,7 +24912,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "No longer supported and returns an error. Use initiativeUnarchive.",
     description: "No longer supported and returns an error. Use initiativeUnarchive.",
-    tags: ["mutation"],
+    tags: ["roadmap", "mutation"],
     deprecated: true,
     parameters: [
       {
@@ -24952,7 +24952,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "No longer supported and returns an error. Use initiativeUpdate.",
     description: "No longer supported and returns an error. Use initiativeUpdate.",
-    tags: ["mutation"],
+    tags: ["roadmap", "mutation"],
     deprecated: true,
     parameters: [
       {
@@ -25005,7 +25005,7 @@ export const operations: readonly ManifestOperation[] = [
       "Completes SAML sign-in with the email and token issued by the SAML flow, then sets the authentication cookie. The response identifies workspace memberships and any workspaces that require a different sign-in method. Unlike email token sign-in, this operation does not require clientAuthCode.",
     description:
       "Completes SAML sign-in with the email and token issued by the SAML flow, then sets the authentication cookie. The response identifies workspace memberships and any workspaces that require a different sign-in method. Unlike email token sign-in, this operation does not require clientAuthCode.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "input",
@@ -25056,7 +25056,7 @@ export const operations: readonly ManifestOperation[] = [
       "Searches accessible documents using text matching and meaning. Use teamId to narrow the search, and includeArchived to include archived documents. Results are ordered by relevance unless orderBy is supplied and use cursor pagination. Limited to 30 requests per minute.",
     description:
       "Searches accessible documents using text matching and meaning. Use teamId to narrow the search, and includeArchived to include archived documents. Results are ordered by relevance unless orderBy is supplied and use cursor pagination. Limited to 30 requests per minute.",
-    tags: ["query"],
+    tags: ["document", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -25239,7 +25239,7 @@ export const operations: readonly ManifestOperation[] = [
       "Searches accessible issues using text matching and meaning. Results are ordered by relevance unless orderBy is supplied; use includeComments to search discussion text too. The issue filter narrows the retrieved candidates, so totalCount is not the final filtered count. Limited to 30 requests per minute.",
     description:
       "Searches accessible issues using text matching and meaning. Results are ordered by relevance unless orderBy is supplied; use includeComments to search discussion text too. The issue filter narrows the retrieved candidates, so totalCount is not the final filtered count. Limited to 30 requests per minute.",
-    tags: ["query"],
+    tags: ["issue", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -25421,7 +25421,7 @@ export const operations: readonly ManifestOperation[] = [
       "Searches accessible projects using text matching and meaning. Use teamId to narrow the search, and includeArchived to include archived projects. Results are ordered by relevance unless orderBy is supplied and use cursor pagination. Limited to 30 requests per minute.",
     description:
       "Searches accessible projects using text matching and meaning. Use teamId to narrow the search, and includeArchived to include archived projects. Results are ordered by relevance unless orderBy is supplied and use cursor pagination. Limited to 30 requests per minute.",
-    tags: ["query"],
+    tags: ["project", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -25586,7 +25586,7 @@ export const operations: readonly ManifestOperation[] = [
       "Searches accessible issues, projects, initiatives, and documents together using a natural-language query. Use types to choose resource types and filters to narrow each type separately. Returns ranked results without cursor pagination; maxResults controls the requested count, with extra exact matches or original issues possible. Limited to 30 requests per minute.",
     description:
       "Searches accessible issues, projects, initiatives, and documents together using a natural-language query. Use types to choose resource types and filters to narrow each type separately. Returns ranked results without cursor pagination; maxResults controls the requested count, with extra exact matches or original issues possible. Limited to 30 requests per minute.",
-    tags: ["query"],
+    tags: ["query", "query"],
     parameters: [
       {
         name: "query",
@@ -25680,7 +25680,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists enabled SLA rules from the workspace, the requested team, and its ancestor teams, in rule order. Only rules whose team and status filters could match the team are returned. Other issue conditions still need to be evaluated, so this list does not determine the SLA for a particular issue. Requires access to the requested team's settings.",
     description:
       "Lists enabled SLA rules from the workspace, the requested team, and its ancestor teams, in rule order. Only rules whose team and status filters could match the team are returned. Other issue conditions still need to be evaluated, so this list does not determine the SLA for a particular issue. Requires access to the requested team's settings.",
-    tags: ["query"],
+    tags: ["sla-configuration", "query"],
     parameters: [
       {
         name: "teamId",
@@ -25722,7 +25722,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns a SAML sign-in URL for an existing membership or a matching email domain. Errors if no SSO-enabled workspace is found.",
     description:
       "Returns a SAML sign-in URL for an existing membership or a matching email domain. Errors if no SSO-enabled workspace is found.",
-    tags: ["query"],
+    tags: ["query", "query"],
     parameters: [
       {
         name: "isDesktop",
@@ -25783,7 +25783,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Fetches a specific team by its ID.",
     description: "Fetches a specific team by its ID.",
-    tags: ["query"],
+    tags: ["team", "query"],
     parameters: [
       {
         name: "id",
@@ -25824,7 +25824,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a team with workflow states, labels, and other initial resources. You become a member and, for private teams or plans that support team owners, an owner. copySettingsFromTeamId copies settings and related resources from an existing team; copied settings take precedence over input values except an explicit private value.",
     description:
       "Creates a team with workflow states, labels, and other initial resources. You become a member and, for private teams or plans that support team owners, an owner. copySettingsFromTeamId copies settings and related resources from an existing team; copied settings take precedence over input values except an explicit private value.",
-    tags: ["mutation"],
+    tags: ["team", "mutation"],
     parameters: [
       {
         name: "copySettingsFromTeamId",
@@ -25876,7 +25876,7 @@ export const operations: readonly ManifestOperation[] = [
       "Permanently deletes all cycles for a team and disables cycles. Issues are kept, but their cycle associations are removed. Requires permission to manage the team.",
     description:
       "Permanently deletes all cycles for a team and disables cycles. Issues are kept, but their cycle associations are removed. Requires permission to manage the team.",
-    tags: ["mutation"],
+    tags: ["team", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -25921,7 +25921,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives a team and schedules permanent deletion after a 30-day grace period. You cannot delete the workspace’s final active team. Requires a workspace administrator or team owner; use teamUnarchive before deletion begins to restore it.",
     description:
       "Archives a team and schedules permanent deletion after a 30-day grace period. You cannot delete the workspace’s final active team. Requires a workspace administrator or team owner; use teamUnarchive before deletion begins to restore it.",
-    tags: ["mutation"],
+    tags: ["team", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -25964,7 +25964,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes a previously used team key. The active team key (the team's current key) cannot be deleted.",
     description: "Deletes a previously used team key. The active team key (the team's current key) cannot be deleted.",
-    tags: ["mutation"],
+    tags: ["team", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -26007,7 +26007,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Fetches a specific team membership by its ID.",
     description: "Fetches a specific team membership by its ID.",
-    tags: ["query"],
+    tags: ["team-membership", "query"],
     parameters: [
       {
         name: "id",
@@ -26047,7 +26047,7 @@ export const operations: readonly ManifestOperation[] = [
       "Adds a user to an active team after checking permission and membership limits. Regular workspace members also join ancestor teams. The operation fails if the user is already a member or if the team is archived, retired, or managed through SCIM.",
     description:
       "Adds a user to an active team after checking permission and membership limits. Regular workspace members also join ancestor teams. The operation fails if the user is already a member or if the team is archived, retired, or managed through SCIM.",
-    tags: ["mutation"],
+    tags: ["team-membership", "mutation"],
     parameters: [
       {
         name: "input",
@@ -26089,7 +26089,7 @@ export const operations: readonly ManifestOperation[] = [
       "Removes a user from a team after checking removal permissions and membership restrictions. Leaving cannot remove the user’s last active team, and SCIM-managed memberships must be managed through the identity provider. alsoLeaveParentTeams can extend the removal to parent teams.",
     description:
       "Removes a user from a team after checking removal permissions and membership restrictions. Leaving cannot remove the user’s last active team, and SCIM-managed memberships must be managed through the identity provider. alsoLeaveParentTeams can extend the removal to parent teams.",
-    tags: ["mutation"],
+    tags: ["team-membership", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -26149,7 +26149,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All team memberships in the workspace.",
     description: "All team memberships in the workspace.",
-    tags: ["query"],
+    tags: ["team-membership", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -26273,7 +26273,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Updates the team’s position in the member’s team list.",
     description: "Updates the team’s position in the member’s team list.",
-    tags: ["mutation"],
+    tags: ["team-membership", "mutation"],
     parameters: [
       {
         name: "input",
@@ -26331,7 +26331,7 @@ export const operations: readonly ManifestOperation[] = [
       "All teams whose issues the user can access. This includes public teams and private teams the user is a member of. This may differ from `administrableTeams`, which returns teams whose settings the user can change but whose issues they don't necessarily have access to.",
     description:
       "All teams whose issues the user can access. This includes public teams and private teams the user is a member of. This may differ from `administrableTeams`, which returns teams whose settings the user can change but whose issues they don't necessarily have access to.",
-    tags: ["query"],
+    tags: ["team", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -26468,7 +26468,7 @@ export const operations: readonly ManifestOperation[] = [
       "Restores an archived team and cancels its scheduled deletion while the grace period still permits cancellation. Requires workspace team-management permission, access to the team, and capacity for another active team on the workspace’s plan.",
     description:
       "Restores an archived team and cancels its scheduled deletion while the grace period still permits cancellation. Requires workspace team-management permission, access to the team, and capacity for another active team on the workspace’s plan.",
-    tags: ["mutation"],
+    tags: ["team", "mutation"],
     parameters: [
       {
         name: "id",
@@ -26508,7 +26508,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Updates the supplied team fields. Changes require the relevant team-management permissions.",
     description: "Updates the supplied team fields. Changes require the relevant team-management permissions.",
-    tags: ["mutation"],
+    tags: ["team", "mutation"],
     parameters: [
       {
         name: "mapping",
@@ -26570,7 +26570,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "A template by UUID, including archived templates.",
     description: "A template by UUID, including archived templates.",
-    tags: ["query"],
+    tags: ["template", "query"],
     parameters: [
       {
         name: "id",
@@ -26610,7 +26610,7 @@ export const operations: readonly ManifestOperation[] = [
       "Create a template. Requires permission to manage templates in the workspace, team, or release pipeline that owns it.",
     description:
       "Create a template. Requires permission to manage templates in the workspace, team, or release pipeline that owns it.",
-    tags: ["mutation"],
+    tags: ["template", "mutation"],
     parameters: [
       {
         name: "input",
@@ -26651,7 +26651,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes a template and its inherited copies. Requires permission to manage templates in its scope; inherited copies must be deleted at their source. Resources already created from the template remain.",
     description:
       "Deletes a template and its inherited copies. Requires permission to manage templates in its scope; inherited copies must be deleted at their source. Resources already created from the template remain.",
-    tags: ["mutation"],
+    tags: ["template", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -26695,7 +26695,7 @@ export const operations: readonly ManifestOperation[] = [
       "All accessible workspace and team templates, including archived templates. Use templateSearch for filters and a result limit.",
     description:
       "All accessible workspace and team templates, including archived templates. Use templateSearch for filters and a result limit.",
-    tags: ["query"],
+    tags: ["template", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -26722,7 +26722,7 @@ export const operations: readonly ManifestOperation[] = [
       "Finds templates matching a filter, ordered as they appear in Linear. Unlike templates, this excludes archived templates by default and supports a result limit. A null-team filter selects templates without a team, including pipeline-scoped release-note templates.",
     description:
       "Finds templates matching a filter, ordered as they appear in Linear. Unlike templates, this excludes archived templates by default and supports a result limit. A null-team filter selects templates without a team, including pipeline-scoped release-note templates.",
-    tags: ["query"],
+    tags: ["template", "query"],
     parameters: [
       {
         name: "includeArchived",
@@ -26788,7 +26788,7 @@ export const operations: readonly ManifestOperation[] = [
       "Lists templates enabled for the specified integration service. The returned templateData also includes the body as Markdown for integrations that cannot read Linear’s rich-text format. Unsupported service types return an empty list.",
     description:
       "Lists templates enabled for the specified integration service. The returned templateData also includes the body as Markdown for integrations that cannot read Linear’s rich-text format. Unsupported service types return an empty list.",
-    tags: ["query"],
+    tags: ["template", "query"],
     parameters: [
       {
         name: "integrationType",
@@ -26829,7 +26829,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes a template’s metadata, saved defaults, or team scope. Update an inherited template at its source, and supply the full templateData when replacing its configuration. Changing a template does not rewrite resources already created from it.",
     description:
       "Changes a template’s metadata, saved defaults, or team scope. Update an inherited template at its source, and supply the full templateData when replacing its configuration. Changing a template does not rewrite resources already created from it.",
-    tags: ["mutation"],
+    tags: ["template", "mutation"],
     parameters: [
       {
         name: "input",
@@ -26878,7 +26878,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves an accessible time schedule by UUID, including archived schedules.",
     description: "Retrieves an accessible time schedule by UUID, including archived schedules.",
-    tags: ["query"],
+    tags: ["time-schedule", "query"],
     parameters: [
       {
         name: "id",
@@ -26918,7 +26918,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates an API-managed on-call schedule in the workspace. Provide a name and the complete list of shifts, then reference the returned schedule ID from a triage responsibility to use it for a team. An OAuth-created schedule is owned by that application for later updates and deletion. Duplicate IDs or external IDs are rejected.",
     description:
       "Creates an API-managed on-call schedule in the workspace. Provide a name and the complete list of shifts, then reference the returned schedule ID from a triage responsibility to use it for a team. An OAuth-created schedule is owned by that application for later updates and deletion. Duplicate IDs or external IDs are rejected.",
-    tags: ["mutation"],
+    tags: ["time-schedule", "mutation"],
     parameters: [
       {
         name: "input",
@@ -26959,7 +26959,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes an API-managed schedule and replaces linked triage responsibilities with available fallback users. The same ownership and team-management requirements as timeScheduleUpdate apply. Integration-synced schedules cannot be deleted here.",
     description:
       "Deletes an API-managed schedule and replaces linked triage responsibilities with available fallback users. The same ownership and team-management requirements as timeScheduleUpdate apply. Integration-synced schedules cannot be deleted here.",
-    tags: ["mutation"],
+    tags: ["time-schedule", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -27004,7 +27004,7 @@ export const operations: readonly ManifestOperation[] = [
       "Requests a refresh of a schedule managed by an integration. The schedule must have an associated integration. Success means the refresh was queued; the returned timeSchedule may still contain its previous shifts. Query the schedule again to read the refreshed entries.",
     description:
       "Requests a refresh of a schedule managed by an integration. The schedule must have an associated integration. Success means the refresh was queued; the returned timeSchedule may still contain its previous shifts. Query the schedule again to read the refreshed entries.",
-    tags: ["mutation"],
+    tags: ["time-schedule", "mutation"],
     parameters: [
       {
         name: "id",
@@ -27050,7 +27050,7 @@ export const operations: readonly ManifestOperation[] = [
       "Returns the on-call schedules the caller can access, including API-managed and integration-managed schedules. Use the connection arguments to paginate. The integration and externalId fields identify where a schedule comes from.",
     description:
       "Returns the on-call schedules the caller can access, including API-managed and integration-managed schedules. Use the connection arguments to paginate. The integration and externalId fields identify where a schedule comes from.",
-    tags: ["query"],
+    tags: ["time-schedule", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -27176,7 +27176,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates an unarchived, API-managed schedule. Omitted fields remain unchanged; entries replaces every existing shift. OAuth callers can update only schedules created by the same application. Other callers need management permission for every team using the schedule, or workspace team management permission if no team uses it. Integration-synced schedules cannot be edited here.",
     description:
       "Updates an unarchived, API-managed schedule. Omitted fields remain unchanged; entries replaces every existing shift. OAuth callers can update only schedules created by the same application. Other callers need management permission for every team using the schedule, or workspace team management permission if no team uses it. Integration-synced schedules cannot be edited here.",
-    tags: ["mutation"],
+    tags: ["time-schedule", "mutation"],
     parameters: [
       {
         name: "input",
@@ -27228,7 +27228,7 @@ export const operations: readonly ManifestOperation[] = [
       "Finds an unarchived schedule by its workspace-unique externalId and updates it, or creates one if none exists. For a new schedule, include name and the same externalId inside input; the lookup argument is not copied into input automatically. A supplied entries list replaces the old shifts. Email references without userId are matched to workspace users when possible; unmatched references remain external. The same ownership rules as timeScheduleUpdate apply to an existing schedule.",
     description:
       "Finds an unarchived schedule by its workspace-unique externalId and updates it, or creates one if none exists. For a new schedule, include name and the same externalId inside input; the lookup argument is not copied into input automatically. A supplied entries list replaces the old shifts. Email references without userId are matched to workspace users when possible; unmatched references remain external. The same ownership rules as timeScheduleUpdate apply to an existing schedule.",
-    tags: ["mutation"],
+    tags: ["time-schedule", "mutation"],
     parameters: [
       {
         name: "input",
@@ -27279,7 +27279,7 @@ export const operations: readonly ManifestOperation[] = [
       "Submits an anonymous $pageview or $pageleave analytics event, with optional properties and session correlation. Unsupported event names return success=false. A successful response means tracking accepted the event, not that analytics delivery has completed. Limited to 30 requests per hour.",
     description:
       "Submits an anonymous $pageview or $pageleave analytics event, with optional properties and session correlation. Unsupported event names return success=false. A successful response means tracking accepted the event, not that analytics delivery has completed. Limited to 30 requests per hour.",
-    tags: ["mutation"],
+    tags: ["mutation", "mutation"],
     parameters: [
       {
         name: "input",
@@ -27324,7 +27324,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "All triage responsibilities.",
     description: "All triage responsibilities.",
-    tags: ["query"],
+    tags: ["triage-responsibility", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -27447,7 +27447,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "A specific triage responsibility.",
     description: "A specific triage responsibility.",
-    tags: ["query"],
+    tags: ["triage-responsibility", "query"],
     parameters: [
       {
         name: "id",
@@ -27487,7 +27487,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates the team’s triage responsibility using a manual user selection or an on-call schedule. The team must be writable, the workspace plan must support triage responsibility, and the caller needs team management permission. A team can have only one rule. Selecting an integration-managed schedule also queues a refresh of its shifts.",
     description:
       "Creates the team’s triage responsibility using a manual user selection or an on-call schedule. The team must be writable, the workspace plan must support triage responsibility, and the caller needs team management permission. A team can have only one rule. Selecting an integration-managed schedule also queues a refresh of its shifts.",
-    tags: ["mutation"],
+    tags: ["triage-responsibility", "mutation"],
     parameters: [
       {
         name: "input",
@@ -27526,7 +27526,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes a triage responsibility.",
     description: "Deletes a triage responsibility.",
-    tags: ["mutation"],
+    tags: ["triage-responsibility", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -27572,7 +27572,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates the action or responsible users for a writable team’s existing rule. Changing to a manual selection clears its schedule, and changing to a schedule clears its manual selection. Omitted fields remain unchanged. Requires team management permission; selecting a different integration-managed schedule queues a refresh.",
     description:
       "Updates the action or responsible users for a writable team’s existing rule. Changing to a manual selection clears its schedule, and changing to a schedule clears its manual selection. Omitted fields remain unchanged. Requires team management permission; selecting a different integration-managed schedule queues a refresh.",
-    tags: ["mutation"],
+    tags: ["triage-responsibility", "mutation"],
     parameters: [
       {
         name: "input",
@@ -27623,7 +27623,7 @@ export const operations: readonly ManifestOperation[] = [
       "Retrieves a usage-based billing alert by UUID, including archived alerts. Requires workspace billing permission.",
     description:
       "Retrieves a usage-based billing alert by UUID, including archived alerts. Requires workspace billing permission.",
-    tags: ["query"],
+    tags: ["usage-alert", "query"],
     parameters: [
       {
         name: "id",
@@ -27670,7 +27670,7 @@ export const operations: readonly ManifestOperation[] = [
       "The workspace's usage-based billing alerts, such as a low or exhausted usage credit balance. Alerts for expired promotional credits are archived and excluded unless archived resources are requested. Use resolvedAt to tell an open alert from one whose condition has since cleared. Requires workspace billing permission.",
     description:
       "The workspace's usage-based billing alerts, such as a low or exhausted usage credit balance. Alerts for expired promotional credits are archived and excluded unless archived resources are requested. Use resolvedAt to tell an open alert from one whose condition has since cleared. Requires workspace billing permission.",
-    tags: ["query"],
+    tags: ["usage-alert", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -27806,7 +27806,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Fetches a specific user by their ID.",
     description: "Fetches a specific user by their ID.",
-    tags: ["query"],
+    tags: ["user", "query"],
     parameters: [
       {
         name: "id",
@@ -27848,7 +27848,7 @@ export const operations: readonly ManifestOperation[] = [
       "Changes the workspace role of a user. The requesting user must have a role equal to or higher than the target role. Requires workspace admin permissions.",
     description:
       "Changes the workspace role of a user. The requesting user must have a role equal to or higher than the target role. Requires workspace admin permissions.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "role",
@@ -27898,7 +27898,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Connects the Discord user to this Linear account via OAuth2.",
     description: "Connects the Discord user to this Linear account via OAuth2.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "redirectUri",
@@ -27947,7 +27947,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Disconnects the external user from this Linear account.",
     description: "Disconnects the external user from this Linear account.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "workspaceIntegrationId",
@@ -27999,7 +27999,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "write",
     summary: "Updates a specific user settings flag by performing an operation (e.g., increment or clear) on it.",
     description: "Updates a specific user settings flag by performing an operation (e.g., increment or clear) on it.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "operation",
@@ -28051,7 +28051,7 @@ export const operations: readonly ManifestOperation[] = [
       "Revokes all active sessions for a user, forcing them to re-authenticate. Can only be called by a workspace admin or owner.",
     description:
       "Revokes all active sessions for a user, forcing them to re-authenticate. Can only be called by a workspace admin or owner.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "id",
@@ -28092,7 +28092,7 @@ export const operations: readonly ManifestOperation[] = [
       "Revokes a specific authentication session for a user. The admin cannot revoke their own sessions with this mutation. Can only be called by a workspace admin or owner.",
     description:
       "Revokes a specific authentication session for a user. The admin cannot revoke their own sessions with this mutation. Can only be called by a workspace admin or owner.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "sessionId",
@@ -28151,7 +28151,7 @@ export const operations: readonly ManifestOperation[] = [
       "Users in the workspace, with filtering and pagination. Disabled accounts are excluded unless includeDisabled is true.",
     description:
       "Users in the workspace, with filtering and pagination. Disabled accounts are excluded unless includeDisabled is true.",
-    tags: ["query"],
+    tags: ["user", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -28314,7 +28314,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Lists all active authentication sessions for a user. Can only be called by a workspace admin or owner.",
     description:
       "Lists all active authentication sessions for a user. Can only be called by a workspace admin or owner.",
-    tags: ["query"],
+    tags: ["user", "query"],
     parameters: [
       {
         name: "id",
@@ -28351,7 +28351,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "The authenticated user's notification and UI settings.",
     description: "The authenticated user's notification and UI settings.",
-    tags: ["query"],
+    tags: ["user-settings", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -28374,7 +28374,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Resets one or more of the user's setting flags. If no specific flags are provided, all flags are reset.",
     description:
       "Resets one or more of the user's setting flags. If no specific flags are provided, all flags are reset.",
-    tags: ["mutation"],
+    tags: ["user-settings", "mutation"],
     parameters: [
       {
         name: "flags",
@@ -28420,7 +28420,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates the settings record identified by id. You must own that record or have permission to manage workspace entities. General settings and notification category or channel preferences merge with existing values. See notificationDeliveryPreferences for its schedule replacement and mobile-channel effects.",
     description:
       "Updates the settings record identified by id. You must own that record or have permission to manage workspace entities. General settings and notification category or channel preferences merge with existing values. See notificationDeliveryPreferences for its schedule replacement and mobile-channel effects.",
-    tags: ["mutation"],
+    tags: ["user-settings", "mutation"],
     parameters: [
       {
         name: "input",
@@ -28472,7 +28472,7 @@ export const operations: readonly ManifestOperation[] = [
       "Suspends a user, deactivating their account and revoking access to the workspace. The suspended user's sessions are invalidated. Can only be called by a workspace admin or owner.",
     description:
       "Suspends a user, deactivating their account and revoking access to the workspace. The suspended user's sessions are invalidated. Can only be called by a workspace admin or owner.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "forceBypassScimRestrictions",
@@ -28524,7 +28524,7 @@ export const operations: readonly ManifestOperation[] = [
     summary: "Unlinks a guest user from their identity provider. Can only be called by an admin when SCIM is enabled.",
     description:
       "Unlinks a guest user from their identity provider. Can only be called by an admin when SCIM is enabled.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "id",
@@ -28565,7 +28565,7 @@ export const operations: readonly ManifestOperation[] = [
       "Re-activates a suspended user, restoring their access to the workspace. Can only be called by a workspace admin or owner.",
     description:
       "Re-activates a suspended user, restoring their access to the workspace. Can only be called by a workspace admin or owner.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "forceBypassScimRestrictions",
@@ -28619,7 +28619,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates a user’s profile. Use the user UUID or me for your own account. Updating another user requires member-management permission; identity-provider rules may block name changes, and application accounts only accept name and displayName.",
     description:
       "Updates a user’s profile. Use the user UUID or me for your own account. Updating another user requires member-management permission; identity-provider rules may block name changes, and application accounts only accept name and displayName.",
-    tags: ["mutation"],
+    tags: ["user", "mutation"],
     parameters: [
       {
         name: "input",
@@ -28670,7 +28670,7 @@ export const operations: readonly ManifestOperation[] = [
       "The authenticated user's workspace-level view display preferences for a view type. Returns the user-type preferences that are not scoped to a team, project, or other entity. Null if the user has not customized the view.",
     description:
       "The authenticated user's workspace-level view display preferences for a view type. Returns the user-type preferences that are not scoped to a team, project, or other entity. Null if the user has not customized the view.",
-    tags: ["query"],
+    tags: ["user", "query"],
     parameters: [
       {
         name: "viewType",
@@ -28711,7 +28711,7 @@ export const operations: readonly ManifestOperation[] = [
       "Checks whether Linear has received the first connection from the GitHub Enterprise Server app during this setup attempt.",
     description:
       "Checks whether Linear has received the first connection from the GitHub Enterprise Server app during this setup attempt.",
-    tags: ["query"],
+    tags: ["query", "query"],
     parameters: [
       {
         name: "integrationId",
@@ -28750,7 +28750,7 @@ export const operations: readonly ManifestOperation[] = [
       "The account making this request. For OAuth applications using actor=app, this is the application account.",
     description:
       "The account making this request. For OAuth applications using actor=app, this is the application account.",
-    tags: ["query"],
+    tags: ["query", "query"],
     parameters: [],
     response: {
       confidence: "contract",
@@ -28774,7 +28774,7 @@ export const operations: readonly ManifestOperation[] = [
       "Saves display settings for a view and scope. Existing records that conflict with the supplied type, view type, and scope are deleted and replaced, so supply the settings you want to retain. Personal preferences are owned by the current user.",
     description:
       "Saves display settings for a view and scope. Existing records that conflict with the supplied type, view type, and scope are deleted and replaced, so supply the settings you want to retain. Personal preferences are owned by the current user.",
-    tags: ["mutation"],
+    tags: ["view-preferences", "mutation"],
     parameters: [
       {
         name: "input",
@@ -28815,7 +28815,7 @@ export const operations: readonly ManifestOperation[] = [
       "Deletes a saved preferences record, allowing the view to use its fallback defaults. You can delete only your own user-type preferences. If the record is already absent, the mutation still succeeds.",
     description:
       "Deletes a saved preferences record, allowing the view to use its fallback defaults. You can delete only your own user-type preferences. If the record is already absent, the mutation still succeeds.",
-    tags: ["mutation"],
+    tags: ["view-preferences", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -28861,7 +28861,7 @@ export const operations: readonly ManifestOperation[] = [
       "Replaces the supplied settings objects on a saved preferences record. You can update only your own user-type preferences; changing workspace defaults for a custom view also requires permission to edit that view.",
     description:
       "Replaces the supplied settings objects on a saved preferences record. You can update only your own user-type preferences; changing workspace defaults for a custom view also requires permission to edit that view.",
-    tags: ["mutation"],
+    tags: ["view-preferences", "mutation"],
     parameters: [
       {
         name: "input",
@@ -28911,7 +28911,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Retrieves a single webhook by its identifier.",
     description: "Retrieves a single webhook by its identifier.",
-    tags: ["query"],
+    tags: ["webhook", "query"],
     parameters: [
       {
         name: "id",
@@ -28951,7 +28951,7 @@ export const operations: readonly ManifestOperation[] = [
       "Creates a webhook subscription and returns its configuration, including the signing secret. Choose one team or all public teams, and provide a public HTTPS destination with the resource types you want to receive. The destination must not already be registered for the same team scope. Requires workspace API management permission; a team-specific webhook also requires that team’s management permission. AuditEntry subscriptions have separate audit log access requirements.",
     description:
       "Creates a webhook subscription and returns its configuration, including the signing secret. Choose one team or all public teams, and provide a public HTTPS destination with the resource types you want to receive. The destination must not already be registered for the same team scope. Requires workspace API management permission; a team-specific webhook also requires that team’s management permission. AuditEntry subscriptions have separate audit log access requirements.",
-    tags: ["mutation"],
+    tags: ["webhook", "mutation"],
     parameters: [
       {
         name: "input",
@@ -28990,7 +28990,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "destructive",
     summary: "Deletes a webhook subscription and stops future deliveries.",
     description: "Deletes a webhook subscription and stops future deliveries.",
-    tags: ["mutation"],
+    tags: ["webhook", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -29035,7 +29035,7 @@ export const operations: readonly ManifestOperation[] = [
       "Generates and returns a new HMAC-SHA256 signing secret for the webhook. Update your receiver to verify later deliveries with the returned key; the previous key is replaced rather than kept as a second active key. This changes webhook signatures, not the endpoint or subscribed event streams.",
     description:
       "Generates and returns a new HMAC-SHA256 signing secret for the webhook. Update your receiver to verify later deliveries with the returned key; the previous key is replaced rather than kept as a second active key. This changes webhook signatures, not the endpoint or subscribed event streams.",
-    tags: ["mutation"],
+    tags: ["webhook", "mutation"],
     parameters: [
       {
         name: "id",
@@ -29081,7 +29081,7 @@ export const operations: readonly ManifestOperation[] = [
       "Webhook subscriptions in the workspace, with cursor-based pagination. Requires permission to manage the workspace API.",
     description:
       "Webhook subscriptions in the workspace, with cursor-based pagination. Requires permission to manage the workspace API.",
-    tags: ["query"],
+    tags: ["webhook", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -29207,7 +29207,7 @@ export const operations: readonly ManifestOperation[] = [
       "Updates an existing webhook without changing its team scope. Omitted properties remain unchanged, and resourceTypes replaces the complete list of event streams. Setting enabled to false pauses delivery while retaining the subscription. Changing secret changes the key your receiver must use for later deliveries. Requires workspace API management permission and access to the subscribed resource types.",
     description:
       "Updates an existing webhook without changing its team scope. Omitted properties remain unchanged, and resourceTypes replaces the complete list of event streams. Setting enabled to false pauses delivery while retaining the subscription. Changing secret changes the key your receiver must use for later deliveries. Requires workspace API management permission and access to the subscribed resource types.",
-    tags: ["mutation"],
+    tags: ["webhook", "mutation"],
     parameters: [
       {
         name: "input",
@@ -29257,7 +29257,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "An issue status by UUID, including archived statuses.",
     description: "An issue status by UUID, including archived statuses.",
-    tags: ["query"],
+    tags: ["workflow-state", "query"],
     parameters: [
       {
         name: "id",
@@ -29297,7 +29297,7 @@ export const operations: readonly ManifestOperation[] = [
       "Archives an unused status so it is no longer available for new issues. First move or archive every active issue in that status. You must be able to manage the team, and cannot archive reserved or inherited statuses or the last active status of a type.",
     description:
       "Archives an unused status so it is no longer available for new issues. First move or archive every active issue in that status. You must be able to manage the team, and cannot archive reserved or inherited statuses or the last active status of a type.",
-    tags: ["mutation"],
+    tags: ["workflow-state", "mutation"],
     permissions: [
       {
         key: "linear.delete",
@@ -29342,7 +29342,7 @@ export const operations: readonly ManifestOperation[] = [
       "Add an issue status to a team. Requires permission to manage the team; inherited workflows cannot be edited directly.",
     description:
       "Add an issue status to a team. Requires permission to manage the team; inherited workflows cannot be edited directly.",
-    tags: ["mutation"],
+    tags: ["workflow-state", "mutation"],
     parameters: [
       {
         name: "input",
@@ -29388,7 +29388,7 @@ export const operations: readonly ManifestOperation[] = [
     effect: "read",
     summary: "Issue statuses from teams the caller can access, with cursor pagination and optional filters.",
     description: "Issue statuses from teams the caller can access, with cursor pagination and optional filters.",
-    tags: ["query"],
+    tags: ["workflow-state", "query"],
     pagination: {
       style: "cursor",
       cursor: {
@@ -29526,7 +29526,7 @@ export const operations: readonly ManifestOperation[] = [
       "Update a status’s name, color, description, or position. Requires permission to manage the team. Reserved and inherited statuses cannot be changed.",
     description:
       "Update a status’s name, color, description, or position. Requires permission to manage the team. Reserved and inherited statuses cannot be changed.",
-    tags: ["mutation"],
+    tags: ["workflow-state", "mutation"],
     parameters: [
       {
         name: "input",

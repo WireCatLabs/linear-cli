@@ -25,9 +25,18 @@ export const DESKTOP = {
   hosts: ["api.linear.app"],
   tagline: "Linear issues and projects in your local WireCat store",
   syncs: "your issues, projects and comments",
+  mcpPort: 8757,
   signIn: {
     gives: "Lets your agent read your Linear issues, projects and comments, and change them when you allow it.",
     asks: "A personal API key from Linear's Settings → Account → Security & access.",
+    methods: [
+      {
+        id: "token",
+        label: "Linear personal API key",
+        words: ["{profile}", "session", "start", "--json"],
+        stdin: true,
+      },
+    ],
   },
 } satisfies ManifestIdentity
 
