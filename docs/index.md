@@ -7,4 +7,5 @@ command per operation of Linear's GraphQL schema.
 
 It has the commands every WireCat CLI shares: `doctor`, `commands`, `config`, `skill`, `mcp`, `runs` and `upgrade`,
 and `session` to sign in with a Linear personal API key.
-Start with [installation](installation.md), then [usage](usage.md).
+Start with [installation](installation.md), then [usage](usage.md). Before you connect an agent over MCP, read
+[MCP](mcp.md) and [permissions](permissions.md).

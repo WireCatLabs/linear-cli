@@ -30,8 +30,9 @@
 
 ## What you get
 
-- **The answer, not the search.** Ask about an issue in your own words. The agent finds it by its words, with its
-  state, assignee and comments; with `memo`, by meaning too, beside your notes and other documents.
+- **The answer, not the search.** Ask about an issue in your own words. The agent finds it by its words, and by
+  meaning after `sync --embed`, with its state, assignee and comments. With `memo`, it also finds it beside your notes
+  and other documents.
 - **Your open issues as your tasks.** Open issues assigned to you become tasks in WireCat, and close when the issue
   is done or goes to someone else.
 - **Issues from the chat.** Create an issue, move it to Done, change its assignee or priority, or add a comment.
@@ -111,8 +112,8 @@ linear work mcp config                            # the entry for Claude Desktop
 Over MCP nobody is at a terminal to answer a question, so a write set to `ask` goes ahead. Each one is kept as a run in
 `linear work runs list`. The first line above keeps the API's writes away from the agent.
 
-More: [agents and MCP](https://github.com/WireCatLabs/linear-cli/blob/main/docs/usage.md#agents) ·
-[permissions](https://github.com/WireCatLabs/linear-cli/blob/main/docs/configuration.md#permissions)
+More: [MCP](https://github.com/WireCatLabs/linear-cli/blob/main/docs/mcp.md) ·
+[permissions](https://github.com/WireCatLabs/linear-cli/blob/main/docs/permissions.md)
 
 ## What it can do
 
@@ -184,7 +185,8 @@ linear work config set permissions.api readonly   # the Linear API reads, never 
 linear work config show                           # each setting and where it came from
 ```
 
-More: [settings](https://github.com/WireCatLabs/linear-cli/blob/main/docs/configuration.md)
+More: [permissions](https://github.com/WireCatLabs/linear-cli/blob/main/docs/permissions.md) ·
+[settings](https://github.com/WireCatLabs/linear-cli/blob/main/docs/configuration.md)
 
 ## Security
 
@@ -209,7 +211,7 @@ More: [troubleshooting](https://github.com/WireCatLabs/linear-cli/blob/main/docs
 ## Documentation
 
 Everything is in [docs/](https://github.com/WireCatLabs/linear-cli/blob/main/docs/index.md): installation, usage,
-settings, security and the command reference.
+MCP, permissions, settings, security and the command reference.
 
 ## Development
 
