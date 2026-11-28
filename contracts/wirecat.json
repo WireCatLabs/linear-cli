@@ -7167,7 +7167,20 @@
     ],
     "signIn": {
       "gives": "Lets your agent read your Linear issues, projects and comments, and change them when you allow it.",
-      "asks": "A personal API key from Linear's Settings → Account → Security & access."
+      "asks": "A personal API key from Linear's Settings → Account → Security & access.",
+      "methods": [
+        {
+          "id": "token",
+          "label": "Linear personal API key",
+          "words": [
+            "{profile}",
+            "session",
+            "start",
+            "--json"
+          ],
+          "stdin": true
+        }
+      ]
     },
     "skill": {
       "status": [
@@ -7191,6 +7204,7 @@
       ]
     },
     "mcpServer": {
+      "port": 8757,
       "start": [
         "mcp",
         "server",
