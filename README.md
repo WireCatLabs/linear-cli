@@ -31,11 +31,11 @@
 ## What you get
 
 - **The answer, not the search.** Ask about an issue in your own words. The agent finds it by its words, with its
-  state, assignee and comments; with `memo`, by meaning too, beside your notes and other documents.
+  state, assignee and comments; with `wcat`, by meaning too, beside your notes and other documents.
 - **Your open issues as your tasks.** Open issues assigned to you become tasks in WireCat, and close when the issue
   is done or goes to someone else.
 - **Issues from the chat.** Create an issue, move it to Done, change its assignee or priority, or add a comment.
-- **Documents beside the issues.** Linear documents are copied too, and `memo` finds them with your notes and other
+- **Documents beside the issues.** Linear documents are copied too, and `wcat` finds them with your notes and other
   documents.
 - **The whole Linear API too.** Every operation of Linear's API is a command with its own help, for what has no
   command of its own yet.

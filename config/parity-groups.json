@@ -1,7 +1,7 @@
 [
   {
     "name": "linear",
-    "members": ["linear", "tg", "max", "memo", "drive", "zm", "wa"],
+    "members": ["linear", "tg", "max", "wcat", "drive", "zm", "wa"],
     "covers": ["commands", "upgrade"],
     "differences": []
   }

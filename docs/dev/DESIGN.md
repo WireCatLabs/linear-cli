@@ -40,7 +40,7 @@ Languages: en.
 ## Further answers
 
 - **Linear documents go through cli-core's documents (NEED-2807 A, 2026-11-23),** like Notion and Drive, so they
-  reach the store, `linear <profile> search`, memo's `search all` and search by meaning. The source is `src/documents/source.ts`, built from
+  reach the store, `linear <profile> search`, `wcat`'s `search all` and search by meaning. The source is `src/documents/source.ts`, built from
   `src/documents/manifest.ts` with cli-core's `documentSourceFromManifest`; the manifest stays out of
   `wirecat.config.ts`.
   - Folders are projects under `linear:all`. A document outside a project (on an issue, an initiative, a team, a
