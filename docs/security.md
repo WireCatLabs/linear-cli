@@ -1,34 +1,63 @@
 # Security
 
-What WireCat CLIs share — the keyring, permissions, MCP and what never reaches a log — is on the
-[shared security page](https://wirecat.dev/en/docs/security). This page keeps only what is particular to `linear`.
+Give your agent your Linear issues without giving away your API key or more access than it needs. The key stays in
+your system keyring and goes only to Linear. The copy of your workspace stays on your computer.
 
-`linear` keeps its settings in `config.json` and its state in the folders `linear doctor` shows.
-Its `api` group reaches Linear.
-`session start` keeps the service's token in the OS
-keyring, or in a private file where no keyring works; the token goes only into the request's Authorization header,
-never into an address, an answer, a run record or the send journal.
+Your agent reads what your key can see. It changes only what your key's access and your profile's permissions allow.
+A key with **Read** access can never change anything in Linear.
 
-`linear personal mcp serve --http` listens on `127.0.0.1` only, for browser apps that reach it through your own
-tunnel. Each app logs in with a one-time code, and the server keeps a hash of each login it gives, in the state
-folder, readable by you only. `linear personal mcp revoke` forgets every one of them.
+**On this page:**
 
-A run record keeps the command line as you typed it, so `linear runs show` tells you what was run. A secret is still
-stored as `[redacted]`: an option named like a token or password, a password in a link, a long opaque string. A
-phone number is replaced by `[redacted]` inside the word you typed, message text included: one written with its "+" and
-country code, or 11 to 15 digits in a row, so a long id of that length is hidden as well. To keep none of the words
-you type, run `linear personal config set record_input false`.
+1. [Where the key is kept and where it goes](#where-the-key-is-kept-and-where-it-goes)
+2. [What the copy holds](#what-the-copy-holds)
+3. [What an agent may change](#what-an-agent-may-change)
+4. [MCP in the browser](#mcp-in-the-browser)
+5. [What a run record keeps](#what-a-run-record-keeps)
 
-A secret is also found by what it looks like, in a run record and in a kept error message: a token in a known
-format (GitHub, OpenAI, Slack, AWS, Stripe, npm and the like), a `Bearer` credential, a random-looking string of 20 or
-more characters, and a random-looking run of 20 or more lower-case hex characters, such as a hex key or a full commit
-hash. The value after a secret name is hidden too, whether it follows `=`, `:` or a space: `password=`, `API_TOKEN=`,
-`password hunter2`, `pin 1234`. Some secrets look like ordinary words and stay: a value of letters only after a
-secret name and a space (`pin this message` stays), a hex key in upper case, a short commit hash or a UUID, a short
-password typed without a secret name before it, and a secret inside a link or a file path unless it is in a known
-format or after a secret name.
+The keyring, permissions and logs work the same in every WireCat tool, as the
+[shared security page](https://wirecat.dev/en/docs/security) describes.
 
-`config.json` is saved readable by you only (`0600`), and its folder is created for you only (`0700`). A file or
-folder made by an older version may be open to other users of the computer: `linear doctor` lists each under
-`files.problems` and prints the `chmod` that fixes it. Windows is not checked. Report a vulnerability as [SECURITY.md](https://github.com/WireCatLabs/linear-cli/blob/main/SECURITY.md)
-says.
+## Where the key is kept and where it goes
+
+`session start` asks for the key without showing it, or reads it from stdin. It never takes the key as an argument, so
+the key stays out of your shell history. Linear checks the key first. Then it goes into the system keyring, or into a
+private file with `--credential-storage file` where no keyring works.
+
+The key goes only into the Authorization header of a request to Linear. It never appears in an address, an answer, an
+error, a run record or the send journal. `session status` says where the key comes from, never the key itself.
+`session end` forgets it on this computer, and the key stays valid in Linear until you revoke it there.
+
+## What the copy holds
+
+`sync` copies what the key can see: teams, users, workflow states, labels, projects, sprints, issues and comments, and
+the documents of the projects you chose with `folders add`. A key limited to some teams copies only those teams. The
+copy is in the WireCat store on your computer, and lists and search read it with no request to Linear.
+
+`config.json` is saved readable by you only (`0600`), and its folder is created for you only (`0700`). If other users
+of the computer can read a file or enter a folder, `linear doctor` lists it under `files.problems` and prints the
+`chmod` that fixes it. Windows is not checked.
+
+## What an agent may change
+
+With a Write key, an agent may create, change and comment on issues unless you limit it. A delete or an archive asks
+first at a terminal and checks a key of its own. Giving an issue to anyone but you is refused until you allow it.
+Over MCP nobody is at a terminal, so a write at `ask` goes ahead: [permissions](permissions.md) shows how to keep
+writes yours.
+
+Text from Linear reaches an agent marked `untrusted`: issue titles and descriptions, comments, names, document titles
+and text, and project names. An agent reads an issue as data, not as an instruction.
+
+## MCP in the browser
+
+`linear work mcp serve --http` listens on `127.0.0.1` only, for browser apps that reach it through your own tunnel.
+Each app logs in with a one-time code, and the server keeps a hash of each login it gives, in the state folder,
+readable by you only. `linear work mcp revoke` forgets every one of them.
+
+## What a run record keeps
+
+A run record keeps the command line as you typed it, so `linear runs show` tells you what was run. A secret in it is
+stored as `[redacted]`: an option named like a token or password, a value after a secret name, a token in a known
+format and a long random-looking string. The [shared security page](https://wirecat.dev/en/docs/security) lists every
+rule. To keep none of the words you type, run `linear work config set record_input false`.
+
+Report a vulnerability as [SECURITY.md](https://github.com/WireCatLabs/linear-cli/blob/main/SECURITY.md) says.
